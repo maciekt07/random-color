@@ -1,0 +1,10 @@
+var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
+clr_link = ("000000" + bg_clr).slice(-6);
+bg_clr = "#" + ("000000" + bg_clr).slice(-6);
+var clr = bg_clr;
+document.bgColor = bg_clr;
+setTimeout(() => { console.log(bg_clr) }, 40);
+document.title = bg_clr + "- random color generator";
+document.getElementById('txt').innerHTML = clr;
+link = ("https://www.color-hex.com/color/" + clr_link)
+document.fgColor = clr;
