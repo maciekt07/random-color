@@ -7,6 +7,7 @@
     border-radius: 50px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
     -webkit-text-stroke: 1.5px black;
+    cursor: text;
 }
 .button1 {
   background-color: white;
