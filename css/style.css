@@ -9,9 +9,9 @@
     -webkit-text-stroke: 1.5px black;
 }
 .button1 {
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    display: inline-block;
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  display: inline-block;
   padding: 10px 20px;
   font-size: 36px;
   cursor: pointer;
