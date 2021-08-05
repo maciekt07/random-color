@@ -8,7 +8,7 @@
     -webkit-text-stroke: 1.5px black;
     cursor: text;
 }
-.button1 {
+button {
   background-color: white;
   display: inline-block;
   padding: 10px 20px;
@@ -22,12 +22,12 @@
   transition-duration: 0.5s;
   animation-delay: 5s;
 }
-.button1:hover {
+button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   background-color: #cff4fc;
   color: #63b1ff;
 }
-.button1:active {
+button:active {
   background-color: #cff4fc;
   font-size: 34px;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
