@@ -1,5 +1,4 @@
 .div1 {
-    font-family: 'Poppins', sans-serif;
     font-size: 96px;
     background-color: white;
     height: auto;
@@ -11,7 +10,6 @@
 }
 .button1 {
   background-color: white;
-  font-family: 'Poppins', sans-serif;
   display: inline-block;
   padding: 10px 20px;
   font-size: 36px;
@@ -35,4 +33,5 @@
 }
 * {
   cursor: crosshair; 
+  font-family: 'Poppins', sans-serif;  
 }
