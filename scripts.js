@@ -8,3 +8,4 @@ document.title = bg_clr + "- random color generator";
 document.getElementById('txt').innerHTML = clr;
 link = ("https://www.color-hex.com/color/" + clr_link)
 document.fgColor = clr;
+document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
