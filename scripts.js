@@ -6,6 +6,7 @@ document.bgColor = bg_clr;
 setTimeout(() => { console.log(bg_clr) }, 40);
 document.title = bg_clr + "- random color generator";
 document.getElementById('txt').innerHTML = clr;
+document.getElementById('div1').innerHTML = clr;
 link = ("https://www.color-hex.com/color/" + clr_link)
 document.fgColor = clr;
 document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
