@@ -9,3 +9,22 @@ document.getElementById('txt').innerHTML = clr;
 link = ("https://www.color-hex.com/color/" + clr_link)
 document.fgColor = clr;
 document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
+// copy
+function CopyToClipboard(containerid) {
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+    }
+  }
+  //tooltip
+  function myFunction() { 
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copied: " + bg_clr;
+  }
