@@ -7,11 +7,17 @@
 <link rel="icon" href="img/icon1.png" type="image/png">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>  
+<body>
+<div class="div2" id="div1"></div>
 <center><div class="div1" id="txt"></div></center>
 <br><br>
 <center><button onclick="window.open(link)">more info</button></center>
 <br>
+<center><div class="tooltip">
+<button id="button1" class="button1" onclick="CopyToClipboard('div1');myFunction()">copy text</button>
+<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+</div></center>
+<br>  
 <center><button onclick="javascript:location.reload(true)">refresh</button></center>
 <script type="text/javascript" src="scripts.js"></script>
 </body>
