@@ -45,7 +45,6 @@ font-family: 'Poppins', sans-serif;
   position: relative;
   display: inline-block;
 }
-
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 140px;
@@ -62,7 +61,6 @@ font-family: 'Poppins', sans-serif;
   opacity: 0;
   transition: opacity 0.3s;
 }
-
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -73,7 +71,6 @@ font-family: 'Poppins', sans-serif;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
-
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
