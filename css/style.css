@@ -113,7 +113,7 @@ font-family: 'Poppins', sans-serif;
 
 .social-btn:hover {
 	width: 150px;
-	border-radius: 5px;
+	border-radius: 15px;
 	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 	 background-color: #cff4fc;
   	 color: #63b1ff;
