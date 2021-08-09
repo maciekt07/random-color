@@ -1,4 +1,3 @@
-
 // bgColor
 var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
 bg_clr = "#" + ("000000" + bg_clr).slice(-6);
