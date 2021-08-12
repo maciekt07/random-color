@@ -1,13 +1,29 @@
 .div1 {
-font-size: 96px;
-background-color: white;
-height: auto;
-width: 450px;
-border-radius: 50px;
-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
--webkit-text-stroke: 1.5px black;
-cursor: text;
-letter-spacing: 2px;
+  font-size: 96px;
+  background-color: white;
+  height: auto;
+  width: 450px;
+  border-radius: 50px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+  -webkit-text-stroke: 1.5px black;
+  cursor: text;
+  letter-spacing: 2px;
+}
+.divrgb {
+  font-size: 22px;
+  background-color: white;
+  color: black;
+  height: auto;
+  width: 350px;
+  cursor: text;
+  -webkit-text-stroke: 0px currentColor;
+}
+.divtxt {
+  cursor: text;
+}
+.input {
+  visibility: hiden;
+  display: none;
 }
 .button1 {
 background-color: white;
