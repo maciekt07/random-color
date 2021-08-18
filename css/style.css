@@ -20,6 +20,12 @@ cursor: text;
 .divtxt {
 cursor: text;
 }
+svg {
+cursor: pointer;
+}
+path {
+cursor: pointer;
+}
 .input {
 visibility: hiden;
 display: none;
