@@ -23,6 +23,13 @@ String.prototype.convertToRGB = function(){
   return aRgb;
 }
 document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
+  //tooltip
+  function myFunction() { 
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copied: " + bg_clr;
+  }
+}
+main();
 // copy
 function CopyToClipboard(containerid) {
     if (document.selection) {
@@ -37,10 +44,3 @@ function CopyToClipboard(containerid) {
       document.execCommand("copy");
     }
   }
-  //tooltip
-  function myFunction() { 
-    var tooltip = document.getElementById("myTooltip");
-    tooltip.innerHTML = "Copied: " + bg_clr;
-  }
-}
-main();
