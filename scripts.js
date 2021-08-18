@@ -23,11 +23,6 @@ String.prototype.convertToRGB = function(){
   return aRgb;
 }
 document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
-  //tooltip
-  function myFunction() { 
-    var tooltip = document.getElementById("myTooltip");
-    tooltip.innerHTML = "Copied: " + bg_clr;
-  }
 }
 main();
 // copy
