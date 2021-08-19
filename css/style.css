@@ -2,12 +2,12 @@
 font-size: 96px;
 background-color: white;
 height: auto;
-width: 480px;
+width: 475px;
 border-radius: 50px;
 box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
 -webkit-text-stroke: 1.5px black;
 cursor: text;
-letter-spacing: 1.7px;
+letter-spacing: 1.5px;
 }
 .divrgb {
 font-size: 22px;
@@ -17,14 +17,25 @@ width: auto;
 cursor: text;
 -webkit-text-stroke: 0px currentColor;
 }
+h2 {
+color: black;
+background-color: white;
+width: 16%;
+height: auto;
+cursor: text;
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+border-radius: 30px;
+font-size: 19px;
+}
+.span1 {
+font-size: 24px;
+cursor: text;
+}
 .divtxt {
 cursor: text;
 }
-svg {
-cursor: pointer;
-}
-path {
-cursor: pointer;
+svg, path, ol, li, hr {
+  cursor: text;
 }
 .input {
 visibility: hiden;
@@ -51,7 +62,7 @@ color: #63b1ff;
 }
 .button1:active {
 background-color: #cff4fc;
-font-size: 35px;
+font-size: 35.5px;
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 transition-duration: 0.1s;
 animation-delay: 1s;
@@ -62,6 +73,40 @@ font-family: 'Poppins', sans-serif;
 }
 .div2 {
 font-size: 0px;
+}
+.tooltip {
+position: relative;
+display: inline-block;
+}
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 140px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 5px;
+position: absolute;
+z-index: 1;
+bottom: 110%;
+left: 50%;
+margin-left: -75px;
+opacity: 0;
+transition: opacity 0.3s;
+}
+.tooltip .tooltiptext::after {
+content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #555 transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+visibility: visible;
+opacity: 1;
 }
 .body1, .flex-center {
 display: flex;
@@ -100,7 +145,7 @@ width: 150px;
 border-radius: 15px;
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 background-color: #cff4fc;
-color: #63b1ff;
+color: #63b1ff; 
 }
 .social-btn:hover span {
 padding: 2px;
@@ -110,4 +155,29 @@ color: #63b1ff;
 }
 #github {
 fill: #333;
+}
+.history {
+height: 300px;
+overflow:auto;
+font-family: 'Poppins', sans-serif;
+}
+.button2 {
+margin-top: 30px;
+background-color: white;
+display: inline-block;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+text-decoration: none;
+outline: none;
+border: none;
+border-radius: 12px;
+transition-duration: 0.5s;
+animation-delay: 5s;
+}
+.button2:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+background-color: #cff4fc;
+color: #63b1ff;
 }
