@@ -23,19 +23,38 @@ String.prototype.convertToRGB = function(){
   return aRgb;
 }
 document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
+document.getElementById('historylist').innerHTML += "<li>" + bg_clr + "<hr><br></li>";
 }
 main();
 // copy
 function CopyToClipboard(containerid) {
-    if (document.selection) {
-      var range = document.body.createTextRange();
-      range.moveToElementText(document.getElementById(containerid));
-      range.select().createTextRange();
-      document.execCommand("copy");
-    } else if (window.getSelection) {
-      var range = document.createRange();
-      range.selectNode(document.getElementById(containerid));
-      window.getSelection().addRange(range);
-      document.execCommand("copy");
-    }
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
   }
+}
+//show history button
+document.getElementById("history").style.display = "none";
+function showh() {
+  var x = document.getElementById("history");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+const btn = document.getElementById("hbutton");
+btn.addEventListener("click", ()=>{
+    if(btn.innerText === "show history"){
+        btn.innerText = "hide history";
+    }else{
+        btn.innerText= "show history";
+    }
+});
