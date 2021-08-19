@@ -3,7 +3,6 @@ var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
 bg_clr = "#" + ("000000" + bg_clr).slice(-6);
 clr_link = ("000000" + bg_clr).slice(-6);
 document.bgColor = bg_clr;
-setTimeout(() => { console.log(bg_clr) }, 40);
 document.title = bg_clr + "- random color";
 document.getElementById('txt').innerHTML = bg_clr;
 document.getElementById('div1').innerHTML = bg_clr;
@@ -22,8 +21,11 @@ String.prototype.convertToRGB = function(){
   ];
   return aRgb;
 }
+console.log(bg_clr);
+console.log(document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB());
 document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
 document.getElementById('historylist').innerHTML += "<li>" + bg_clr + "<hr><br></li>";
+console.log('%c=-=-=-=-=-=-= ', 'color:#bf66ff; font-size: 18px;');
 }
 main();
 // copy
