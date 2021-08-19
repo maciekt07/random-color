@@ -24,7 +24,7 @@ String.prototype.convertToRGB = function(){
 console.log(bg_clr);
 console.log(document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB());
 document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
-document.getElementById('historylist').innerHTML += "<li>" + bg_clr + "<hr><br></li>";
+document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + (" RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
 console.log('%c=-=-=-=-=-=-= ', 'color:#bf66ff; font-size: 18px;');
 }
 main();
