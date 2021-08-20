@@ -60,3 +60,8 @@ btn.addEventListener("click", ()=>{
         btn.innerText= "show history";
     }
 });
+ document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 32) {
+        main()
+    }
+  });
