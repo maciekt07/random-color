@@ -61,7 +61,7 @@ btn.addEventListener("click", ()=>{
     }
 });
  document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 32) { //space, r
+    if(event.keyCode == 32) { //space button changes color
         main()
     }
   });
