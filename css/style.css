@@ -31,9 +31,11 @@ font-size: 20px;
 font-size: 26px;
 cursor: text;
 }
-svg, path, ol, li, hr, .divtxt {
+ol, li, hr, .divtxt {
   cursor: text;
 }
+svg, path {
+  cursor: pointer;
 .input {
 visibility: hiden;
 display: none;
