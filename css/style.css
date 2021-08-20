@@ -36,6 +36,7 @@ cursor: text;
 }
 svg, path {
 cursor: pointer;
+}
 .input {
 visibility: hiden;
 display: none;
