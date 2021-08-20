@@ -61,7 +61,7 @@ btn.addEventListener("click", ()=>{
     }
 });
  document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 32) {
+    if(event.keyCode == 32, 82) { //space, r
         main()
     }
   });
