@@ -6,15 +6,11 @@ width: 475px;
 border-radius: 50px;
 box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
 -webkit-text-stroke: 1.5px black;
-cursor: text;
 letter-spacing: 1.5px;
 }
 .divrgb {
 font-size: 22px;
 color: black;
-height: auto;
-width: auto;
-cursor: text;
 -webkit-text-stroke: 0px currentColor;
 }
 h2 {
@@ -22,33 +18,29 @@ color: black;
 background-color: white;
 width: 330px;
 height: auto;
-cursor: text;
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 border-radius: 30px;
 font-size: 20px;
 }
 .span1 {
 font-size: 26px;
+}
+ol, li, hr, h2, .divtxt, .span1, .divrgb, .div1 {
 cursor: text;
 }
-ol, li, hr, .divtxt {
-cursor: text;
-}
-svg, path {
+svg, path, .button1 {
 cursor: pointer;
 }
 .input {
-visibility: hiden;
 display: none;
+visibility: hiden;
 }
 .button1 {
 background-color: white;
 display: inline-block;
 padding: 10px 20px;
 font-size: 36px;
-cursor: pointer;
 text-align: center;
-text-decoration: none;
 outline: none;
 border: none;
 border-radius: 20px;
@@ -135,7 +127,6 @@ padding: 10px 20px;
 font-size: 17px;
 cursor: pointer;
 text-align: center;
-text-decoration: none;
 outline: none;
 border: none;
 border-radius: 12px;
