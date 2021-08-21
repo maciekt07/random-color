@@ -11,7 +11,7 @@ link1 = ("https://www.github.com/maciekkoks")
 document.fgColor = bg_clr;
 document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
 document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
-//rgb
+// rgb
 String.prototype.convertToRGB = function(){
   var aRgbHex = this.match(/.{1,2}/g);
   var aRgb = [
@@ -42,7 +42,7 @@ function CopyToClipboard(containerid) {
     document.execCommand("copy");
   }
 }
-//show history button
+// show history button
 document.getElementById("history").style.display = "none";
 function showh() {
   var x = document.getElementById("history");
@@ -61,7 +61,7 @@ btn.addEventListener("click", ()=>{
     }
 });
  document.addEventListener('keyup', function(event) {
-    if(event.keyCode == 32) { //space button changes color
+    if(event.keyCode == 32 || event.KeyCode == 82) { // space and r key changes color
         main()
     }
   });
