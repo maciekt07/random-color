@@ -60,7 +60,7 @@ btn.addEventListener("click", ()=>{
         btn.innerText= "show history";
     }
 });
- document.addEventListener('keydown', function(event) {
+ document.addEventListener('keyup', function(event) {
     if(event.keyCode == 32) { //space button changes color
         main()
     }
