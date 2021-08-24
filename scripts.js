@@ -26,6 +26,8 @@ console.log(document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.co
 document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
 document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + (" RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
 console.log('%c=-=-=-=-=-=-= ', 'color:#bf66ff; font-size: 18px;');
+document.getElementById("alert").style.display = "none";
+document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;  
 }
 // copy
 function CopyToClipboard(containerid) {
