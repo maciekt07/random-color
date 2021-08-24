@@ -27,7 +27,6 @@ document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB()
 document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + (" RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
 console.log('%c=-=-=-=-=-=-= ', 'color:#bf66ff; font-size: 18px;');
 }
-main();
 // copy
 function CopyToClipboard(containerid) {
   if (document.selection) {
@@ -42,6 +41,7 @@ function CopyToClipboard(containerid) {
     document.execCommand("copy");
   }
 }
+main();
 // show history button
 document.getElementById("history").style.display = "none";
 function showh() {
