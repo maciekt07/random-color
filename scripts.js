@@ -60,8 +60,8 @@ btn.addEventListener("click", ()=>{
         btn.innerText= "show history";
     }
 });
- document.addEventListener('keyup', function(event) {
-    if(event.keyCode == 32 || event.KeyCode == 82) { // space and r key changes color
-        main()
-    }
-  });
+  document.addEventListener('keyup', function(event) {
+      if(event.keyCode == 32 || event.keyCode == 82) { //space and r button changes color
+          main()
+      }
+    });
