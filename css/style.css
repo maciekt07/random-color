@@ -138,3 +138,32 @@ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 background-color: #cff4fc;
 color: #63b1ff;
 }
+.alert {
+padding: 20px;
+background-color: #ffffff;
+color: white;
+width: 250px;
+right: 100%;
+position: absolute;
+bottom: 1%;
+right: 1%;;
+border-radius: 18px;
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+font-size: 16px;
+}      
+.closebtn {
+margin-left: 15px;
+color: black;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+}     
+.closebtn:hover {
+color: red;
+}
+.alertspan {
+color: black;
+}
