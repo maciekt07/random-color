@@ -61,7 +61,7 @@ btn.addEventListener("click", ()=>{
     }
 });
   document.addEventListener('keyup', function(event) {
-      if(event.keyCode == 82) { //space and r button changes color
+      if(event.keyCode == 82) { // r button changes color
           main()
       }
 });
