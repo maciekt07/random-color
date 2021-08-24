@@ -21,7 +21,6 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     border-radius: 30px;
     font-size: 20px;
-
     }
     .span1 {
     font-size: 26px;
@@ -166,6 +165,7 @@
     }
     .closebtn:hover {
     color: red;
+    cursor: pointer;
     }
     .alertspan {
     color: black;
