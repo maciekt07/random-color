@@ -1,4 +1,4 @@
-.div1 {
+    .div1 {
     font-size: 96px;
     background-color: white;
     height: auto;
@@ -153,8 +153,7 @@
     font-size: 16px;
     cursor: default;
     }
-      
-      .closebtn {
+    .closebtn {
     margin-left: 15px;
     color: black;
     font-weight: bold;
@@ -164,10 +163,10 @@
     cursor: pointer;
     transition: 0.3s;
     }
-      
     .closebtn:hover {
     color: red;
     }
     .alertspan {
     color: black;
+    cursor: default;
     }
