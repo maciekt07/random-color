@@ -162,6 +162,7 @@
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
+    cursor: default;
     }
     .closebtn:hover {
     color: red;
