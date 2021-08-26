@@ -29,21 +29,6 @@ function main() {
   
   document.getElementById("alert").style.display = "none";
   document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
-  
-  }
-   // copy
-   function CopyToClipboard(containerid) {
-    if (document.selection) {
-      var range = document.body.createTextRange();
-      range.moveToElementText(document.getElementById(containerid));
-      range.select().createTextRange();
-      document.execCommand("copy");
-    } else if (window.getSelection) {
-      var range = document.createRange();
-      range.selectNode(document.getElementById(containerid));
-      window.getSelection().addRange(range);
-      document.execCommand("copy");
-    }
   }
   main();
   //show history button
@@ -72,4 +57,11 @@ function main() {
 function showa() {
     document.getElementById("alert").style.display = "block";
     setTimeout(function(){ document.getElementById("alert").style.display = "none"; }, 4500);
+}
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
 }
