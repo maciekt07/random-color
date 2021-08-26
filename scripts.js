@@ -58,6 +58,7 @@ function showa() {
     document.getElementById("alert").style.display = "block";
     setTimeout(function(){ document.getElementById("alert").style.display = "none"; }, 4500);
 }
+// copy
 function copyToClipboard(element) {
   var $temp = $("<input>");
   $("body").append($temp);
