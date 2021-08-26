@@ -71,5 +71,5 @@ function main() {
   });
 function showa() {
     document.getElementById("alert").style.display = "block";
-    setTimeout(function(){ document.getElementById("alert").style.display = "none"; }, 4000);
+    setTimeout(function(){ document.getElementById("alert").style.display = "none"; }, 4500);
 }
