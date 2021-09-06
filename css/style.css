@@ -63,7 +63,7 @@ svg, path, .button1 {
     font-family: 'Poppins', sans-serif;
     }
 .div2 {
-    font-size: 0px;
+    display: none;
     }
     .body1, .flex-center {
     display: flex;
