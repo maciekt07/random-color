@@ -4,12 +4,17 @@ function main() {
   clr_link = ("000000" + bg_clr).slice(-6);
   
   document.bgColor = bg_clr;
+  document.fgColor = bg_clr;
   document.getElementById('txt').innerHTML = bg_clr;
   document.getElementById('div1').innerHTML = bg_clr;
-  document.fgColor = bg_clr;
+  document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
+  document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + (" RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
   document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
   document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
+  document.getElementById("alert").style.display = "none";
+  document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
   
+ 
   // title
   window.onblur = function() { document.title = bg_clr + " - Random Color" };
   window.onfocus = function() { document.title = ("Random Color") };
@@ -28,15 +33,9 @@ function main() {
     return aRgb;
  }
   
-  
   console.log(bg_clr);
   console.log(document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB());
-  document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
-  document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + (" RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
   console.log('%c=-=-=-=-=-=-= ', 'color:#bf66ff; font-size: 18px;');
-  
-  document.getElementById("alert").style.display = "none";
-  document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
   }
   
 main();
