@@ -9,10 +9,10 @@ function main() {
   document.getElementById('div1').innerHTML = bg_clr;
   document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
   document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + (" RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
-  document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
   document.getElementById("alert").style.display = "none";
   document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
+  document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
   
  
   // title
