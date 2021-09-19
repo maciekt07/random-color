@@ -12,7 +12,7 @@ function main() {
   
   // title
   window.onblur = function() { document.title = bg_clr + " - random color" };
-  window.onfocus = function() { document.title = ("Random Color") };
+  window.onfocus = function() { document.title = ("🟣Random Color🟣") };
   
   link = ("https://www.color-hex.com/color/" + clr_link);
   link1 = ("https://www.github.com/maciekkoks");
