@@ -4,7 +4,7 @@ function main() {
   clr_link = ("000000" + bg_clr).slice(-6);
   document.bgColor = bg_clr;
   
-  window.onblur = function() { document.title = bg_clr + " - random color" };
+  window.onblur = function() { document.title = bg_clr + " - random color" }; //title
   window.onfocus = function() { document.title = ("Random Color") };
   
   document.getElementById('txt').innerHTML = bg_clr;
@@ -34,7 +34,8 @@ function main() {
   document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
   }
   main();
-  //show history button
+  
+//show history
   document.getElementById("history").style.display = "none";
   function showh() {
     var x = document.getElementById("history");
@@ -44,7 +45,8 @@ function main() {
       x.style.display = "none";
     }
   }
-  const btn = document.getElementById("hbutton");
+
+  const btn = document.getElementById("hbutton"); //change button text show/hide
   btn.addEventListener("click", ()=>{
       if(btn.innerText === "show history"){
           btn.innerText = "hide history";
@@ -57,11 +59,14 @@ function main() {
         main()
     }
   });
-function showa() {
+
+function showa() { // show copy alert
     document.getElementById("alert").style.display = "block";
-    setTimeout(function(){ document.getElementById("alert").style.display = "none"; }, 4500);
-    
+    setTimeout(function() {
+      $('#alert').fadeOut('slow');
+  }, 3500); 
 }
+
 // copy
 function copyToClipboard(element) {
   var $temp = $("<input>");
