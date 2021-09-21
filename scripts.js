@@ -69,7 +69,7 @@ function showa() { // show copy alert
     document.getElementById("alert").style.display = "block";
     setTimeout(function() {
         $('#alert').fadeOut('slow');
-    }, 3500);
+    }, 3000);
 }
 
 // copy
