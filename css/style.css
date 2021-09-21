@@ -7,12 +7,14 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
     -webkit-text-stroke: 1.5px black;
     letter-spacing: 1.5px;
-    }
+}
+
 .divrgb {
     font-size: 22px;
     color: black;
     -webkit-text-stroke: 0px currentColor;
-    }
+}
+
 h2 {
     color: black;
     background-color: white;
@@ -20,20 +22,34 @@ h2 {
     height: auto;
     border-radius: 30px;
     font-size: 20px;
-    }
+}
+
 .span1 {
     font-size: 26px;
-    }
-ol, li, hr, h2, .divtxt, .span1, .divrgb, .div1 {
+}
+
+ol,
+li,
+hr,
+h2,
+.divtxt,
+.span1,
+.divrgb,
+.div1 {
     cursor: text;
-    }
-svg, path, .button1 {
+}
+
+svg,
+path,
+.button1 {
     cursor: pointer;
-    }
+}
+
 .input {
     display: none;
     visibility: hiden;
-    }
+}
+
 .button1 {
     background-color: white;
     display: inline-block;
@@ -45,39 +61,48 @@ svg, path, .button1 {
     border-radius: 20px;
     transition-duration: 0.5s;
     animation-delay: 5s;
-    }
+}
+
 .button1:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: #cff4fc;
     color: #63b1ff;
-    }
+}
+
 .button1:active {
     background-color: #cff4fc;
     font-size: 35.5px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     transition-duration: 0.1s;
     animation-delay: 1s;
-    }
+}
+
 * {
-    cursor: crosshair; 
+    cursor: crosshair;
     font-family: 'Poppins', sans-serif;
-    }
+}
+
 .div2 {
     display: none;
-    }
-    .body1, .flex-center {
+}
+
+.body1,
+.flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
-    }
+}
+
 .body1 {
     height: 100vh;
     background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
     cursor: pointer;
-    }
+}
+
 .social-links {
     display: flex;
-    }
+}
+
 .social-btn {
     cursor: pointer;
     height: 50px;
@@ -89,35 +114,41 @@ svg, path, .button1 {
     background: white;
     margin: 5px;
     transition: 1s;
-    }
+}
+
 .social-btn span {
     width: 0px;
     overflow: hidden;
     transition: 1s;
     text-align: center;
     cursor: pointer;
-    }
+}
+
 .social-btn:hover {
     width: 150px;
     border-radius: 15px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: #cff4fc;
-    color: #63b1ff; 
-    }
+    color: #63b1ff;
+}
+
 .social-btn:hover span {
     padding: 2px;
     width: max-content;
     background-color: #cff4fc;
     color: #63b1ff;
-    }
+}
+
 #github {
     fill: #333;
-    }
+}
+
 .history {
     height: 300px;
-    overflow:auto;
+    overflow: auto;
     font-family: 'Poppins', sans-serif;
-    }
+}
+
 .button2 {
     margin-top: 4.7%;
     background-color: white;
@@ -131,12 +162,14 @@ svg, path, .button1 {
     border-radius: 12px;
     transition-duration: 0.5s;
     animation-delay: 5s;
-    }
+}
+
 .button2:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: #cff4fc;
     color: #63b1ff;
-    }
+}
+
 .alert {
     padding: 20px;
     background-color: #ffffff;
@@ -145,12 +178,14 @@ svg, path, .button1 {
     right: 100%;
     position: absolute;
     bottom: 1%;
-    right: 1%;;
+    right: 1%;
+    ;
     border-radius: 18px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     font-size: 16px;
     cursor: default;
-    }
+}
+
 .closebtn {
     margin-left: 15px;
     color: black;
@@ -160,12 +195,14 @@ svg, path, .button1 {
     line-height: 20px;
     transition: 0.3s;
     cursor: default;
-    }
+}
+
 .closebtn:hover {
     color: red;
     cursor: pointer;
-    }
+}
+
 .alertspan {
     color: black;
     cursor: default;
-    }
+}
