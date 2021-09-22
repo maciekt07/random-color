@@ -71,7 +71,6 @@ path,
 
 .button1:active {
     background-color: #cff4fc;
-    font-size: 35.5px;
     box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
     transition-duration: 0.1s;
     animation-delay: 1s;
