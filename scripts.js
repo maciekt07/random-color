@@ -5,7 +5,7 @@ function main() {
     document.bgColor = bg_clr;
 
     window.onblur = function() {
-        document.title = bg_clr + " - Random Color"
+        document.title = "Random color - " + bg_clr;
     }; //title
     window.onfocus = function() {
         document.title = ("Random Color")
