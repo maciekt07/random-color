@@ -1,23 +1,24 @@
 .div1 {
     font-size: 96px;
-    background-color: white;
     height: auto;
     width: 475px;
     border-radius: 50px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
-    -webkit-text-stroke: 1.5px black;
+    -webkit-text-stroke: 1.5px var(--font-clr);
     letter-spacing: 1.5px;
+    background-color: var(--foreground);
+    ;
 }
 
 .divrgb {
     font-size: 22px;
-    color: black;
+    color: var(--font-clr);
     -webkit-text-stroke: 0px currentColor;
 }
 
 h2 {
-    color: black;
-    background-color: white;
+    color: var(--font-clr);
+    background-color: var(--foreground);
     width: 360px;
     height: auto;
     border-radius: 30px;
@@ -51,7 +52,7 @@ path,
 }
 
 .button1 {
-    background-color: white;
+    background-color: var(--foreground);
     display: inline-block;
     padding: 10px 20px;
     font-size: 36px;
@@ -61,16 +62,17 @@ path,
     border-radius: 20px;
     transition-duration: 0.5s;
     animation-delay: 5s;
+    color: var(--font-clr);
 }
 
 .button1:hover {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-    background-color: #cff4fc;
+    background-color: var(--btn-hover);
     color: #63b1ff;
 }
 
 .button1:active {
-    background-color: #cff4fc;
+    background-color: var(--btn-hover);
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
     transition-duration: 0.1s;
     animation-delay: 1s;
@@ -108,9 +110,9 @@ path,
     width: 50px;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: black;
+    color: var(--font-clr);
     border-radius: 10px;
-    background: white;
+    background: var(--foreground);
     margin: 5px;
     transition: 1s;
 }
@@ -127,19 +129,19 @@ path,
     width: 150px;
     border-radius: 15px;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-    background-color: #cff4fc;
+    background-color: var(--btn-hover);
     color: #63b1ff;
 }
 
 .social-btn:hover span {
     padding: 2px;
     width: max-content;
-    background-color: #cff4fc;
+    background-color: var(--btn-hover);
     color: #63b1ff;
 }
 
 #github {
-    fill: #333;
+    fill: var(--gthb-fill);
 }
 
 .history {
@@ -150,7 +152,7 @@ path,
 
 .button2 {
     margin-top: 4.5%;
-    background-color: white;
+    background-color: var(--foreground);
     display: inline-block;
     padding: 10px 20px;
     font-size: 17px;
@@ -161,19 +163,19 @@ path,
     border-radius: 12px;
     transition-duration: 0.5s;
     animation-delay: 5s;
+    color: var(--font-clr);
 }
 
 .button2:hover {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-    background-color: #cff4fc;
+    background-color: var(--btn-hover);
     color: #63b1ff;
 }
 
 .alert {
     padding: 20px;
-    background-color: #ffffff;
-    color: white;
-    width: 250px;
+    background-color: var(--foreground);
+    width: 290px;
     right: 100%;
     position: absolute;
     bottom: 1%;
@@ -187,7 +189,7 @@ path,
 
 .closebtn {
     margin-left: 15px;
-    color: black;
+    color: var(--font-clr);
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -202,7 +204,7 @@ path,
 }
 
 .alertspan {
-    color: black;
+    color: var(--font-clr);
     cursor: default;
 }
 
@@ -217,4 +219,51 @@ path,
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Assistant:400,700|Playfair+Display:900");
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-light: white;
+    --clr-dark: #454545;
+    --foreground: var(--clr-dark);
+    --background: var(--clr-light);
+    --btn-hover: #454545;
+    --font-clr: white;
+    --gthb-fill: white;
+
+    --ff-title: "Playfair Display", serif;
+    --ff-body: "Assistant", sans-serif;
+}
+
+.darkmode {
+    --clr-light: white;
+    --clr-dark: #454545;
+
+    --btn-hover: #cff4fc;
+    --font-clr: black;
+    --gthb-fill: #333;
+    --foreground: var(--clr-light);
+    --background: var(--clr-dark);
+}
+
+.dark-mode-toggle {
+    position: absolute;
+    z-index: 100;
+    top: 1em;
+    right: 1em;
+    color: var(--foreground);
+    border: 2px solid currentColor;
+    padding: 4px;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
 }
