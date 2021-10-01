@@ -221,7 +221,6 @@ path,
     user-select: none;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Assistant:400,700|Playfair+Display:900");
 
 *,
 *::before,
@@ -266,6 +265,6 @@ path,
     background: transparent;
     cursor: pointer;
     border-radius: 5px;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
 }
