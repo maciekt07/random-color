@@ -229,28 +229,26 @@ path,
     box-sizing: border-box;
 }
 
-:root {
-    --clr-light: white;
-    --clr-dark: #454545;
-    --foreground: var(--clr-dark);
-    --background: var(--clr-light);
-    --btn-hover: #454545;
-    --font-clr: white;
-    --gthb-fill: white;
-
-    --ff-title: "Playfair Display", serif;
-    --ff-body: "Assistant", sans-serif;
+: root {
+    --ff - title: "Playfair Display", serif;
+    --ff - body: "Assistant", sans - serif;
+    --clr - light: white;
+    --clr - dark: #454545;
+  
+  --btn-hover: # cff4fc;
+    --font - clr: black;
+    --gthb - fill: #333;
+  --foreground: var(--clr-light);
+  --background: var(--clr-dark);
 }
-
 .darkmode {
     --clr-light: white;
-    --clr-dark: #454545;
-
-    --btn-hover: #cff4fc;
-    --font-clr: black;
-    --gthb-fill: #333;
-    --foreground: var(--clr-light);
-    --background: var(--clr-dark);
+    --clr-dark: # 454545;
+    --foreground: var (--clr - dark);
+    --background: var (--clr - light);
+    --btn - hover: #454545;
+    --font-clr: white;
+  --gthb-fill: white;
 }
 
 .dark-mode-toggle {
