@@ -66,7 +66,7 @@ document.addEventListener('keyup', function(event) {
 });
 
 document.addEventListener('keyup', function(event) {
-    if (event.keyCode == 68) { // d button changes theme
+    if (event.keyCode == 84) { // t button changes theme
         document.getElementById("dark-mode-toggle").click();
     }
 });
