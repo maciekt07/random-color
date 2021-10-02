@@ -65,6 +65,13 @@ document.addEventListener('keyup', function(event) {
     }
 });
 
+document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 68) { // d button changes theme
+        document.getElementById("dark-mode-toggle").click();
+    }
+});
+
+
 function showa() { // show copy alert
     document.getElementById("alert").style.display = "block";
     setTimeout(function() {
