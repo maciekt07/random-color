@@ -12,12 +12,10 @@ function main() {
     };
 
     document.getElementById('txt').innerHTML = bg_clr;
-    document.getElementById('div1').innerHTML = bg_clr;
     link = ("https://www.color-hex.com/color/" + clr_link)
     link1 = ("https://www.github.com/maciekkoks")
     document.fgColor = bg_clr;
     document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
-    document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
     //rgb
     String.prototype.convertToRGB = function() {
         var aRgbHex = this.match(/.{1,2}/g);
