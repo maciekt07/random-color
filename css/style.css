@@ -46,11 +46,6 @@ path,
     cursor: pointer;
 }
 
-.input {
-    display: none;
-    visibility: hiden;
-}
-
 .button1 {
     background-color: var(--foreground);
     display: inline-block;
@@ -81,10 +76,6 @@ path,
 * {
     cursor: crosshair;
     font-family: 'Poppins', sans-serif;
-}
-
-.div2 {
-    display: none;
 }
 
 .body1,
