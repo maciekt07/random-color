@@ -89,26 +89,35 @@ function copyToClipboard(element) {
 
 if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
-  }
-  // local storage
+}
+// local storage
 let darkMode = localStorage.getItem('darkMode');
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
 const enableDarkMode = () => {
-  document.body.classList.add('darkmode');
-  localStorage.setItem('darkMode', 'enabled');
+    document.body.classList.add('darkmode');
+    localStorage.setItem('darkMode', 'enabled');
 };
 const disableDarkMode = () => {
-  document.body.classList.remove('darkmode'); 
-  localStorage.setItem('darkMode', null);
+    document.body.classList.remove('darkmode');
+    localStorage.setItem('darkMode', null);
 };
 if (darkMode === 'enabled') {
-  enableDarkMode();
+    enableDarkMode();
 }
 darkModeToggle.addEventListener('click', () => {
-  darkMode = localStorage.getItem('darkMode');
-  if (darkMode !== 'enabled') {
-    enableDarkMode();  
-  } else {
-    disableDarkMode();
-  }
+    darkMode = localStorage.getItem('darkMode');
+    if (darkMode !== 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
 });
+// Google Analytics
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+gtag('js', new Date());
+
+gtag('config', 'G-4QTNJRWC58');
