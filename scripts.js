@@ -57,17 +57,6 @@ btn.addEventListener("click", () => {
         btn.innerText = "show history";
     }
 });
-document.addEventListener('keyup', function(event) {
-    if (event.keyCode == 82) { // r button changes color
-        main()
-    }
-});
-
-document.addEventListener('keyup', function(event) {
-    if (event.keyCode == 84) { // t button changes theme
-        document.getElementById("dark-mode-toggle").click();
-    }
-});
 
 
 function showa() { // show copy alert
