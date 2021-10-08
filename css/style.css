@@ -223,7 +223,7 @@ path,
     --ff-body: "Assistant", sans-serif;
 
     --clr-light: white;
-    --clr-dark: #454545;
+    --clr-dark: #2e2e2e;
 
     --btn-hover: #cff4fc;
     --font-clr: black;
@@ -234,10 +234,10 @@ path,
 
 .darkmode {
     --clr-light: white;
-    --clr-dark: #454545;
+    --clr-dark: #2e2e2e;
     --foreground: var(--clr-dark);
     --background: var(--clr-light);
-    --btn-hover: #454545;
+    --btn-hover: #2e2e2e;
     --font-clr: white;
     --gthb-fill: white;
 }
