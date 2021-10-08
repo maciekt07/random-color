@@ -256,3 +256,14 @@ path,
     width: 35px;
     height: 35px;
 }
+
+.noscript {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 30000000;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    font-size: 32px;
+}
