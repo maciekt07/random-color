@@ -255,6 +255,14 @@ path,
     border-radius: 5px;
     width: 35px;
     height: 35px;
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+
+}
+
+.dark-mode-toggle:hover {
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .noscript {
