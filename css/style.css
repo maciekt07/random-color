@@ -272,6 +272,7 @@ path,
     z-index: 30000000;
     height: 100%;
     width: 100%;
-    background-color: #FFFFFF;
+    background-color: #2e2e2e;
     font-size: 32px;
+    color: white;
 }
