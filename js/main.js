@@ -60,10 +60,7 @@ btn.addEventListener("click", () => {
 
 
 function showa() { // show copy alert
-    document.getElementById("alert").style.display = "block";
-    setTimeout(function() {
-        $('#alert').fadeOut('slow');
-    }, 3000);
+    $("#alert").show().delay(3000).fadeOut();
 }
 
 // copy
