@@ -7,6 +7,7 @@
     -webkit-text-stroke: 1.5px var(--font-clr);
     letter-spacing: 1.5px;
     background-color: var(--foreground);
+    color: var(hex-code);
     ;
 }
 
@@ -16,14 +17,15 @@
     -webkit-text-stroke: 0px currentColor;
 }
 
-h2 {
+#history {
     color: var(--font-clr);
     background-color: var(--foreground);
-    width: 360px;
+    width: 370px;
     height: auto;
     border-radius: 30px;
     font-size: 20px;
 }
+
 
 .span1 {
     font-size: 26px;
@@ -36,7 +38,8 @@ h2,
 .divtxt,
 .span1,
 .divrgb,
-.div1 {
+.div1,
+#history {
     cursor: text;
 }
 
@@ -129,7 +132,7 @@ path,
 }
 
 #github {
-    fill: var(--gthb-fill);
+    fill: var(--github-fill);
 }
 
 .history {
@@ -217,29 +220,25 @@ path,
 }
 
 :root {
-
-
-    --ff-title: "Playfair Display", serif;
-    --ff-body: "Assistant", sans-serif;
-
-    --clr-light: white;
-    --clr-dark: #2e2e2e;
-
-    --btn-hover: #cff4fc;
-    --font-clr: black;
-    --gthb-fill: #333;
     --foreground: var(--clr-light);
     --background: var(--clr-dark);
+    --clr-light: white;
+    --clr-dark: black;
+    --btn-hover: #cff4fc;
+    --font-clr: black;
+    --github-fill: #333;
+    --selection: #92c5f7;
+
 }
 
 .darkmode {
-    --clr-light: white;
-    --clr-dark: #2e2e2e;
     --foreground: var(--clr-dark);
     --background: var(--clr-light);
-    --btn-hover: #2e2e2e;
-    --font-clr: white;
-    --gthb-fill: white;
+    --btn-hover: black;
+    --font-clr: #bdbdbd;
+    --github-fill: #bdbdbd;
+    --selection: #4f97df;
+
 }
 
 .dark-mode-toggle {
@@ -272,7 +271,11 @@ path,
     z-index: 30000000;
     height: 100%;
     width: 100%;
-    background-color: #2e2e2e;
+    background-color: black;
     font-size: 32px;
     color: white;
+}
+
+*::selection {
+    background: var(--selection);
 }
