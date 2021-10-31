@@ -26,12 +26,11 @@ function main() {
         ];
         return aRgb;
     }
+    console.log('%c--------- ', 'color:#949494; font-size: 20px;');
     console.log(bg_clr);
     console.log(document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB());
     document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
     document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
-    console.log('%c=-=-=-=-=-=-= ', 'color:#9c64f5; font-size: 18px;');
-
     document.getElementById("alert").style.display = "none";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
 }
@@ -60,7 +59,11 @@ btn.addEventListener("click", () => {
 
 
 function showa() { // show copy alert
-    $("#alert").show().delay(3000).fadeOut();
+    $("#alert").show().delay(4200).fadeOut();
+}
+
+function hidea() {
+    $("#alert").hide();
 }
 
 // copy
@@ -89,13 +92,16 @@ const disableDarkMode = () => {
 };
 if (darkMode === 'enabled') {
     enableDarkMode();
+    console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
 }
 darkModeToggle.addEventListener('click', () => {
     darkMode = localStorage.getItem('darkMode');
     if (darkMode !== 'enabled') {
         enableDarkMode();
+        console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
     } else {
         disableDarkMode();
+        console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
     }
 });
 // Google Analytics
