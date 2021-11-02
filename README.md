@@ -1,4 +1,4 @@
-# [maciekkoks.github.io/random-color/](https://maciekkoks.github.io/random-color/)
+# [maciekkoks.github.io/random-color/](https://maciekkoks.github.io/Random-Color/)
 A simple random color website with their hex code by using HTML CSS and JavaScript.
 Theme is stored in local storage.
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview.png)
