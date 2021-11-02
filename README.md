@@ -1,7 +1,7 @@
 # [maciekkoks.github.io/random-color/](https://maciekkoks.github.io/random-color/)
 A simple random color website with their hex code by using HTML CSS and JavaScript.
 Theme is stored in local storage.
-![previev](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/previev.png)
+![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview.png)
 # Shortcuts
 ```js
 document.addEventListener('keyup', function(event) {
