@@ -8,7 +8,11 @@
     letter-spacing: 1.5px;
     background-color: var(--foreground);
     color: var(hex-code);
-    ;
+    transition: 0s all;
+}
+
+body {
+    transition: 0.2s all;
 }
 
 .divrgb {
