@@ -10,28 +10,29 @@
 <head>
     <meta name="author" content="github.com/maciekkoks">
     <meta name="theme-color" content="#000000">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Random Color Author: github.com/maciekkoks">
     <meta name="keywords" content="Random Color, maciekkoks">
     <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="img/icon1.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <title>Random Color</title>
 </head>
 
 <body>
-    <button id="dark-mode-toggle" class="dark-mode-toggle">
+    <button id="dark-mode-toggle" class="dark-mode-toggle" title="change theme color">
         <svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496">
             <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)" />
         </svg>
     </button>
+    <!-- <input id="color_input" type="color" value="#000000" title="load your color" onclick="clrpicker()"> no kurwa nie umiem-->
     <br>
-    <center>
+    <section class="main">
         <div type="text" class="div1">
             <div class="divtxt" id="txt"></div>
             <div class="divrgb" id="divrgb"></div>
-    </center>
+    </section>
     <br><br>
     <center><button class="button1" id="moreinfo" onclick="window.open(link)">more info</button></center>
     <br>
@@ -68,9 +69,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QTNJRWC58"></script>
     <noscript>
-            <div class="noscript">
-                <p>JavaScript is not enabled.</p>
-            </div>
+        <p>JavaScript is not enabled.</p>
     </noscript>
 </body>
 
