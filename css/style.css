@@ -1,3 +1,84 @@
+* {
+    cursor: crosshair;
+    font-family: 'Poppins', sans-serif;
+}
+
+*::selection {
+    background: var(--selection);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    transition: 0.2s all;
+}
+
+:root {
+    --foreground: var(--clr-light);
+    --clr-light: white;
+    --clr-dark: black;
+    --btn-hover: #cff4fc;
+    --font-clr: black;
+    --github-fill: #333;
+    --selection: #92c5f7;
+}
+
+.darkmode {
+    --foreground: var(--clr-dark);
+    --btn-hover: black;
+    --font-clr: #bdbdbd;
+    --github-fill: #bdbdbd;
+    --selection: #4f97df;
+}
+
+.dark-mode-toggle {
+    position: absolute;
+    z-index: 100;
+    top: 1em;
+    right: 1em;
+    color: var(--foreground);
+    border: 2px solid currentColor;
+    padding: 4px;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+
+}
+
+.dark-mode-toggle:hover {
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/* #color_input {
+    position: absolute;
+    z-index: 100;
+    top: 5em;
+    right: 1em;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--foreground);
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+}
+#color_input:hover {
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+} */
+.main {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
 .div1 {
     font-size: 96px;
     height: auto;
@@ -11,46 +92,10 @@
     transition: 0s all;
 }
 
-body {
-    transition: 0.2s all;
-}
-
 .divrgb {
     font-size: 22px;
     color: var(--font-clr);
     -webkit-text-stroke: 0px currentColor;
-}
-
-#history {
-    color: var(--font-clr);
-    background-color: var(--foreground);
-    width: 370px;
-    height: auto;
-    border-radius: 30px;
-    font-size: 20px;
-}
-
-
-.span1 {
-    font-size: 26px;
-}
-
-ol,
-li,
-hr,
-h2,
-.divtxt,
-.span1,
-.divrgb,
-.div1,
-#history {
-    cursor: text;
-}
-
-svg,
-path,
-.button1 {
-    cursor: pointer;
 }
 
 .button1 {
@@ -80,18 +125,12 @@ path,
     animation-delay: 1s;
 }
 
-* {
-    cursor: crosshair;
-    font-family: 'Poppins', sans-serif;
-}
-
 .body1,
 .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
     cursor: pointer;
 }
 
@@ -145,6 +184,19 @@ path,
     font-family: 'Poppins', sans-serif;
 }
 
+#history {
+    color: var(--font-clr);
+    background-color: var(--foreground);
+    width: 370px;
+    height: auto;
+    border-radius: 30px;
+    font-size: 20px;
+}
+
+.span1 {
+    font-size: 26px;
+}
+
 .button2 {
     margin-top: 4.5%;
     background-color: var(--foreground);
@@ -168,6 +220,7 @@ path,
 }
 
 .alert {
+    display: none;
     padding: 20px;
     background-color: var(--foreground);
     width: 290px;
@@ -175,10 +228,14 @@ path,
     position: absolute;
     bottom: 1%;
     right: 1%;
-    ;
     border-radius: 18px;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     font-size: 16px;
+    cursor: default;
+}
+
+.alertspan {
+    color: var(--font-clr);
     cursor: default;
 }
 
@@ -198,77 +255,7 @@ path,
     cursor: pointer;
 }
 
-.alertspan {
-    color: var(--font-clr);
-    cursor: default;
-}
-
-.button1,
-.button2,
-.social-btn,
-.closebtn {
-    /*  disable text selection   */
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-:root {
-    --foreground: var(--clr-light);
-    --background: var(--clr-dark);
-    --clr-light: white;
-    --clr-dark: black;
-    --btn-hover: #cff4fc;
-    --font-clr: black;
-    --github-fill: #333;
-    --selection: #92c5f7;
-
-}
-
-.darkmode {
-    --foreground: var(--clr-dark);
-    --background: var(--clr-light);
-    --btn-hover: black;
-    --font-clr: #bdbdbd;
-    --github-fill: #bdbdbd;
-    --selection: #4f97df;
-
-}
-
-.dark-mode-toggle {
-    position: absolute;
-    z-index: 100;
-    top: 1em;
-    right: 1em;
-    color: var(--foreground);
-    border: 2px solid currentColor;
-    padding: 4px;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-
-}
-
-.dark-mode-toggle:hover {
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-
-}
-
-.noscript {
+noscript {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -281,6 +268,35 @@ path,
     text-align: center;
 }
 
-*::selection {
-    background: var(--selection);
+ol,
+li,
+hr,
+h2,
+.divtxt,
+.span1,
+.divrgb,
+.div1,
+#history {
+    cursor: text;
+}
+
+svg,
+path,
+.button1,
+#color_input {
+    cursor: pointer;
+}
+
+.button1,
+.button2,
+.social-btn,
+.closebtn,
+.dark-mode-toggle {
+    /*  disable text selection   */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
