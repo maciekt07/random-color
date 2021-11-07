@@ -16,7 +16,7 @@ function main() {
     link1 = ("https://www.github.com/maciekkoks")
     document.fgColor = bg_clr;
     document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
-    document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
+    // document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
     //rgb
     String.prototype.convertToRGB = function() {
         var aRgbHex = this.match(/.{1,2}/g);
@@ -110,7 +110,6 @@ darkModeToggle.addEventListener('click', () => {
 //         document.body.style.backgroundColor = colorPicker.value;
 //     })
 // }
-
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
