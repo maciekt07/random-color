@@ -16,6 +16,7 @@ function main() {
     link1 = ("https://www.github.com/maciekkoks")
     document.fgColor = bg_clr;
     document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
+    document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
     //rgb
     String.prototype.convertToRGB = function() {
         var aRgbHex = this.match(/.{1,2}/g);
@@ -25,13 +26,12 @@ function main() {
             parseInt(aRgbHex[2], 16)
         ];
         return aRgb;
-    }
+    };
     console.log('%c--------- ', 'color:#949494; font-size: 20px;');
     console.log(bg_clr);
-    console.log(document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB());
+    console.log('RGB ' + clr_link.convertToRGB());
     document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
     document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
-    document.getElementById("alert").style.display = "none";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
 }
 main();
@@ -45,8 +45,8 @@ function showh() {
         x.style.display = "block";
     } else {
         x.style.display = "none";
-    }
-}
+    };
+};
 
 const btn = document.getElementById("hbutton"); //change button text show/hide
 btn.addEventListener("click", () => {
@@ -54,17 +54,16 @@ btn.addEventListener("click", () => {
         btn.innerText = "hide history";
     } else {
         btn.innerText = "show history";
-    }
+    };
 });
 
-
 function showa() { // show copy alert
-    $("#alert").show().delay(4200).fadeOut();
-}
+    $("#alert").show().delay(4000).fadeOut(500);
+};
 
 function hidea() {
     $("#alert").hide();
-}
+};
 
 // copy
 function copyToClipboard(element) {
@@ -73,12 +72,12 @@ function copyToClipboard(element) {
     $temp.val($(element).text()).select();
     document.execCommand("copy");
     $temp.remove();
-}
+};
 
 
 if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
-}
+};
 // local storage
 let darkMode = localStorage.getItem('darkMode');
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
@@ -93,7 +92,7 @@ const disableDarkMode = () => {
 if (darkMode === 'enabled') {
     enableDarkMode();
     console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-}
+};
 darkModeToggle.addEventListener('click', () => {
     darkMode = localStorage.getItem('darkMode');
     if (darkMode !== 'enabled') {
@@ -102,14 +101,23 @@ darkModeToggle.addEventListener('click', () => {
     } else {
         disableDarkMode();
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
-    }
+    };
 });
+
+// function clrpicker() {
+//     const colorPicker = document.getElementById("color_input");
+//     colorPicker.addEventListener("input", ()=>{
+//         document.body.style.backgroundColor = colorPicker.value;
+//     })
+// }
+
+
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
 
 function gtag() {
     dataLayer.push(arguments);
-}
+};
 gtag('js', new Date());
 
 gtag('config', 'G-4QTNJRWC58');
