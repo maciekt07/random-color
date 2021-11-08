@@ -2,7 +2,7 @@ function main() {
     var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
     bg_clr = "#" + ("000000" + bg_clr).slice(-6);
     clr_link = ("000000" + bg_clr).slice(-6);
-    document.bgColor = bg_clr;
+    document.body.style.backgroundColor = bg_clr;
 
     window.onblur = function() {
         document.title = "Random Color - " + bg_clr;
@@ -10,13 +10,12 @@ function main() {
     window.onfocus = function() {
         document.title = ("Random Color")
     };
-
     document.getElementById('txt').innerHTML = bg_clr;
     link = ("https://www.color-hex.com/color/" + clr_link)
     link1 = ("https://www.github.com/maciekkoks")
     document.fgColor = bg_clr;
     document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
-    // document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
+    document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
     //rgb
     String.prototype.convertToRGB = function() {
         var aRgbHex = this.match(/.{1,2}/g);
@@ -103,13 +102,23 @@ darkModeToggle.addEventListener('click', () => {
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
     };
 });
+// complicated af zone 
+function clrpicker() {
+    const colorPicker = document.getElementById("color_input");
+    colorPicker.addEventListener("input", () => {
+        document.getElementById("divrgb").style.color = "var(--foreground)";
+        document.body.style.backgroundColor = colorPicker.value;
+        document.fgColor = colorPicker.value;
+        document.getElementById('txt').innerHTML = colorPicker.value;
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
+        document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
+        document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + colorPicker.value;
+        window.onblur = function() {document.title = "Random Color - " + colorPicker.value;};window.onfocus = function() {document.title = ("Random Color")
+        };
+    })
+}
 
-// function clrpicker() {
-//     const colorPicker = document.getElementById("color_input");
-//     colorPicker.addEventListener("input", ()=>{
-//         document.body.style.backgroundColor = colorPicker.value;
-//     })
-// }
+function show_rgb() {document.getElementById("divrgb").style.color = "var(--font-clr)";document.getElementById("color_input").value = document.getElementById("txt").textContent;}
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
