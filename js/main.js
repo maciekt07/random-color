@@ -109,6 +109,7 @@ function clrpicker() {
         document.getElementById("divrgb").style.color = "var(--foreground)";
         document.body.style.backgroundColor = colorPicker.value;
         document.fgColor = colorPicker.value;
+        document.getElementById("moreinfo").disabled = true;
         document.getElementById('txt').innerHTML = colorPicker.value;
         document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
         document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
@@ -118,7 +119,9 @@ function clrpicker() {
     })
 }
 
-function show_rgb() {document.getElementById("divrgb").style.color = "var(--font-clr)";document.getElementById("color_input").value = document.getElementById("txt").textContent;}
+function show_rgb() {document.getElementById("divrgb").style.color = "var(--font-clr)";document.getElementById("color_input").value = document.getElementById("txt").textContent;
+document.getElementById("moreinfo").disabled = false;
+}
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
