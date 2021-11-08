@@ -6,7 +6,7 @@ Theme is stored in local storage.
 ```js
 document.addEventListener('keyup', function(event) {
     if (event.keyCode == 82) { // r button changes color
-        main()
+        document.getElementById("refresh").click();
     }
 });
 
