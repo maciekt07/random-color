@@ -114,14 +114,11 @@ function clrpicker() {
         document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
         document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
         document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + colorPicker.value;
-        window.onblur = function() {document.title = "Random Color - " + colorPicker.value;};window.onfocus = function() {document.title = ("Random Color")
-        };
+        window.onblur = function() {document.title = "Random Color - " + colorPicker.value;};window.onfocus = function() {document.title = ("Random Color")};
     })
 }
 
-function show_rgb() {document.getElementById("divrgb").style.color = "var(--font-clr)";document.getElementById("color_input").value = document.getElementById("txt").textContent;
-document.getElementById("moreinfo").disabled = false;
-}
+function show_rgb() {document.getElementById("divrgb").style.color = "var(--font-clr)";document.getElementById("color_input").value = document.getElementById("txt").textContent;document.getElementById("moreinfo").disabled = false;}
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
