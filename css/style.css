@@ -44,7 +44,6 @@ body {
     border: 2px solid currentColor;
     padding: 4px;
     background: transparent;
-    cursor: pointer;
     border-radius: 5px;
     width: 40px;
     height: 40px;
@@ -131,7 +130,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    cursor: pointer;
 }
 
 .social-links {
@@ -139,7 +137,6 @@ body {
 }
 
 .social-btn {
-    cursor: pointer;
     height: 50px;
     width: 50px;
     font-family: 'Poppins', sans-serif;
@@ -156,7 +153,6 @@ body {
     overflow: hidden;
     transition: 1s;
     text-align: center;
-    cursor: pointer;
 }
 
 .social-btn:hover {
@@ -203,7 +199,6 @@ body {
     display: inline-block;
     padding: 10px 20px;
     font-size: 17px;
-    cursor: pointer;
     text-align: center;
     outline: none;
     border: none;
@@ -252,7 +247,6 @@ body {
 
 .closebtn:hover {
     color: red;
-    cursor: pointer;
 }
 
 noscript {
@@ -281,8 +275,15 @@ h2,
 }
 
 svg,
+.body1,
 path,
 .button1,
+.flex-center,
+.social-btn,
+.closebtn:hover,
+.button2,
+.social-btn span,
+.dark-mode-toggle,
 #color_input {
     cursor: pointer;
 }
