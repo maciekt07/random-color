@@ -103,7 +103,7 @@ darkModeToggle.addEventListener('click', () => {
     };
 });
 
-// complicated af zone 
+// complicated af zone kinda bugged lol
 function clrpicker() {
     const colorPicker = document.getElementById("color_input");
     colorPicker.addEventListener("input", () => {
