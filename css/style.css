@@ -25,9 +25,11 @@ body {
     --font-clr: black;
     --github-fill: #333;
     --selection: #92c5f7;
+    --blackwhite: black;
 }
 
 .darkmode {
+    --blackwhite: white;
     --foreground: var(--clr-dark);
     --btn-hover: black;
     --font-clr: #bdbdbd;
@@ -45,25 +47,23 @@ body {
     padding: 4px;
     background: transparent;
     border-radius: 5px;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     transition-duration: 0.5s;
     animation-delay: 5s;
-
 }
 
 .dark-mode-toggle:hover {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 #color_input {
     position: absolute;
     z-index: 100;
-    top: 5em;
+    top: 5.5em;
     right: 1em;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border: none;
     background: var(--foreground);
     transition-duration: 0.5s;
@@ -76,13 +76,17 @@ body {
     border-radius: 5px;
 }
 
+#color_input:hover {
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+}
+
 #color_input::-webkit-color-swatch {
-    border-radius: 15px;
+    border-radius: 50%;
     border: none;
 }
 
 #color_input::-moz-color-swatch {
-    border-radius: 15px;
+    border-radius: 50%;
     border: none;
 }
 
