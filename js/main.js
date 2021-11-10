@@ -26,10 +26,13 @@ function main() {
         ];
         return aRgb;
     };
+    const txt1 = document.getElementById("txt").textContent;
+    var Str = txt1;
+    var StrNew = Str.replace("#", "");
     console.log('%c--------- ', 'color:#949494; font-size: 20px;');
     console.log(bg_clr);
     console.log('RGB ' + clr_link.convertToRGB());
-    document.getElementById('divrgb').innerHTML = ('RGB ') + clr_link.convertToRGB();
+    document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
     document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
 }
@@ -102,29 +105,36 @@ darkModeToggle.addEventListener('click', () => {
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
     };
 });
-
-// complicated af zone kinda bugged lol
+// complicated af zone 
 function clrpicker() {
     const colorPicker = document.getElementById("color_input");
     colorPicker.addEventListener("input", () => {
-        hidea();
-        document.body.style.backgroundColor = colorPicker.value;
-        document.fgColor = colorPicker.value;
         const txt1 = document.getElementById("txt").textContent;
         var Str = txt1;
         var StrNew = Str.replace("#", "");
+        hidea();
+        document.body.style.backgroundColor = colorPicker.value;
+        document.fgColor = colorPicker.value;
         document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
         link = ("https://www.color-hex.com/color/" + StrNew);
         document.getElementById('txt').innerHTML = colorPicker.value;
         document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
         document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
         document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + colorPicker.value;
-        	window.onblur = function() {document.title = "Random Color - " + colorPicker.value;};window.onfocus = function() {document.title = ("Random Color")};
+        window.onblur = function() {
+            document.title = "Random Color - " + colorPicker.value;
+        };
+        window.onfocus = function() {
+            document.title = ("Random Color")
+        };
     })
 }
 
-function input_refresh() {document.getElementById("color_input").value = document.getElementById("txt").textContent;}
-
+function input_refresh() {
+    document.getElementById("color_input").value = document.getElementById("txt").textContent;
+}
+document.getElementById("color_input").click();
+document.getElementById("dbgrbtn").click();
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
