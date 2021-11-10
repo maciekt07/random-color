@@ -68,10 +68,18 @@ body {
     background: var(--foreground);
     transition-duration: 0.5s;
     animation-delay: 5s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
+
 #color_input:hover {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 }
+
 .main {
     text-align: center;
     display: flex;
@@ -81,7 +89,7 @@ body {
 .div1 {
     font-size: 96px;
     height: auto;
-    width: 475px;
+    width: 465px;
     border-radius: 50px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
     -webkit-text-stroke: 1.5px var(--font-clr);
@@ -287,6 +295,7 @@ path,
 #color_input {
     cursor: pointer;
 }
+
 br,
 .button1,
 .button2,
