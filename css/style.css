@@ -161,7 +161,6 @@ body {
 .social-btn {
     height: 50px;
     width: 50px;
-    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     color: var(--font-clr);
     border-radius: 10px;
@@ -199,7 +198,6 @@ body {
 .history {
     height: 300px;
     overflow: auto;
-    font-family: 'Poppins', sans-serif;
 }
 
 #history {
@@ -316,7 +314,6 @@ br,
 .social-btn,
 .closebtn,
 .dark-mode-toggle {
-    /*  disable text selection   */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
