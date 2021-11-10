@@ -76,6 +76,16 @@ body {
     border-radius: 5px;
 }
 
+#color_input::-webkit-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
+#color_input::-moz-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
 #color_input:hover {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 }
