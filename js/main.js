@@ -63,7 +63,7 @@ function showa() { // show copy alert
     $("#alert").show().delay(4000).fadeOut(500);
 };
 
-function hidea() {
+function hidea() { //hide copy alert
     $("#alert").hide();
 };
 
@@ -76,7 +76,7 @@ function copyToClipboard(element) {
     $temp.remove();
 };
 
-
+// darkmode toggle
 if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
 };
@@ -105,7 +105,7 @@ darkModeToggle.addEventListener('click', () => {
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
     };
 });
-// complicated af zone 
+// color picker
 function clrpicker() {
     const colorPicker = document.getElementById("color_input");
     colorPicker.addEventListener("input", () => {
@@ -133,6 +133,7 @@ function clrpicker() {
 function input_refresh() {
     document.getElementById("color_input").value = document.getElementById("txt").textContent;
 }
+//bug repair
 document.getElementById("color_input").click();
 document.getElementById("dbgrbtn").click();
 
