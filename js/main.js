@@ -1,4 +1,5 @@
 function main() {
+    
     var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
     bg_clr = "#" + ("000000" + bg_clr).slice(-6);
     clr_link = ("000000" + bg_clr).slice(-6);
@@ -10,12 +11,14 @@ function main() {
     window.onfocus = function() {
         document.title = ("Random Color");
     };
+    
     document.getElementById('txt').innerHTML = bg_clr;
     link = ("https://www.color-hex.com/color/" + clr_link);
     link1 = ("https://www.github.com/maciekkoks");
     document.fgColor = bg_clr;
     document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
     document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
+    
     //rgb
     String.prototype.convertToRGB = function() {
         var aRgbHex = this.match(/.{1,2}/g);
@@ -26,6 +29,7 @@ function main() {
         ];
         return aRgb;
     };
+    
     const txt1 = document.getElementById("txt").textContent;
     var Str = txt1;
     var StrNew = Str.replace("#", "");
@@ -35,12 +39,12 @@ function main() {
     document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
     document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
+
 }
 main();
 
 //show history
 document.getElementById("history").style.display = "none";
-
 function showh() {
     var x = document.getElementById("history");
     if (x.style.display === "none") {
@@ -49,7 +53,6 @@ function showh() {
         x.style.display = "none";
     };
 };
-
 const btn = document.getElementById("hbutton"); //change button text show/hide
 btn.addEventListener("click", () => {
     if (btn.innerText === "show history") {
@@ -58,6 +61,7 @@ btn.addEventListener("click", () => {
         btn.innerText = "show history";
     };
 });
+
 
 function showa() { // show copy alert
     $("#alert").show().delay(4000).fadeOut(500);
@@ -75,6 +79,7 @@ function copyToClipboard(element) {
     document.execCommand("copy");
     $temp.remove();
 };
+
 
 // darkmode toggle
 if (document.location.search.match(/type=embed/gi)) {
@@ -105,6 +110,8 @@ darkModeToggle.addEventListener('click', () => {
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
     };
 });
+
+
 // color picker
 function clrpicker() {
     const colorPicker = document.getElementById("color_input");
@@ -128,6 +135,8 @@ function clrpicker() {
 function input_refresh() {
     document.getElementById("color_input").value = document.getElementById("txt").textContent;
 }
+
+
 //bug repair
 document.getElementById("color_input").click();
 document.getElementById("dbgrbtn").click();
