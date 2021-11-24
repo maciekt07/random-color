@@ -94,6 +94,14 @@ body {
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 }
 
+@media (max-width: 585px) {
+    .dark-mode-toggle {
+        top: 16em;
+    } #color_input {
+        top: 20.5em;
+    }
+}
+    
 .main {
     text-align: center;
     display: flex;
