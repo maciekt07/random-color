@@ -212,6 +212,7 @@ body {
     color: var(--font-clr);
     background-color: var(--foreground);
     width: 370px;
+    min-height: 350px;
     height: auto;
     border-radius: 30px;
     font-size: 20px;
