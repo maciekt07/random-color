@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+*::selection {
+    background: var(--selection);
+}
+
 body {
     transition: 0.3s all;
 }
