@@ -97,9 +97,9 @@ body {
 
 @media (max-width: 585px) {
     .dark-mode-toggle {
-        top: 16em;
+        top: 15em;
     } #color_input {
-        top: 20.5em;
+        top: 19.5em;
     }
 }
     
