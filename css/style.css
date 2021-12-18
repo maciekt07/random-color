@@ -294,7 +294,9 @@ footer {
 @media (max-width: 635px) {
     footer {
         display: block;
-        
+    }
+    .alert {
+        bottom: 8%;
     }
         }
 .madeby {
