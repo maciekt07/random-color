@@ -283,7 +283,7 @@ li {
 }
 footer {
     display: none;
-    background-color: white;
+    background-color: var(--foreground);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -300,7 +300,7 @@ footer {
     }
         }
 .madeby {
-    color: black;
+    color: var(--font-clr);
     font-size: 20px;
 } 
 a, a:visited {color: #7656e8;transition-duration: 0.4s;}
