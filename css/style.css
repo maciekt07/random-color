@@ -102,7 +102,6 @@ body {
         top: 19.5em;
     }
 }
-    
 .main {
     text-align: center;
     display: flex;
@@ -282,7 +281,28 @@ li {
 .closebtn:hover {
     color: red;
 }
-
+footer {
+    display: none;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+}
+@media (max-width: 635px) {
+    footer {
+        display: block;
+        
+    }
+        }
+.madeby {
+    color: black;
+    font-size: 20px;
+} 
+a, a:visited {color: #7656e8;transition-duration: 0.4s;}
+a:hover {color: #5d88de;}       
 noscript {
     position: fixed;
     top: 0px;
