@@ -22,9 +22,10 @@ body {
     --clr-light: white;
     --clr-dark: black;
     --btn-hover: #cff4fc;
+    --button-txt-hover:#63b1ff;
     --font-clr: black;
     --github-fill: #333;
-    --selection: #92c5f7;
+    --selection: #add8e6;
     --blackwhite: black;
     --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 }
@@ -33,9 +34,10 @@ body {
     --blackwhite: white;
     --foreground: var(--clr-dark);
     --btn-hover: black;
-    --font-clr: #bdbdbd;
-    --github-fill: #bdbdbd;
-    --selection: #68a2db;
+    --button-txt-hover: #6666ff;
+    --font-clr: #c7c7c7;
+    --github-fill: #c7c7c7;
+    --selection: #6666ff;
 }
 
 .dark-mode-toggle {
@@ -147,14 +149,7 @@ body {
 .button1:hover {
     box-shadow: var(--shadow);
     background-color: var(--btn-hover);
-    color: #63b1ff;
-}
-
-.button1:active {
-    background-color: var(--btn-hover);
-    box-shadow: var(--shadow);
-    transition-duration: 0.1s;
-    animation-delay: 1s;
+    color: var(--button-txt-hover);
 }
 
 .body1,
@@ -245,7 +240,7 @@ li {
 .button2:hover {
     box-shadow: var(--shadow);
     background-color: var(--btn-hover);
-    color: #63b1ff;
+    color: var(--button-txt-hover);
 }
 
 .alert {
