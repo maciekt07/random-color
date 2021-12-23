@@ -99,15 +99,18 @@ const disableDarkMode = () => {
 if (darkMode === 'enabled') {
     enableDarkMode();
     console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
+    document.getElementById("heart").innerHTML = "💜"
 };
 darkModeToggle.addEventListener('click', () => {
     darkMode = localStorage.getItem('darkMode');
     if (darkMode !== 'enabled') {
         enableDarkMode();
         console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
+        document.getElementById("heart").innerHTML = "💜"
     } else {
         disableDarkMode();
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
+        document.getElementById("heart").innerHTML = "💙"
     };
 });
 
