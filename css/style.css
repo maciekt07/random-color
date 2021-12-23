@@ -26,6 +26,8 @@ body {
     --font-clr: black;
     --github-fill: #333;
     --selection: #add8e6;
+    --a-clr: #0076d7;
+    --a-hover: #886ce4;
     --blackwhite: black;
     --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 }
@@ -38,6 +40,8 @@ body {
     --font-clr: #c7c7c7;
     --github-fill: #c7c7c7;
     --selection: #6666ff;
+    --a-clr: #886ce4;
+    --a-hover: #0076d7;
 }
 
 .dark-mode-toggle {
@@ -187,14 +191,14 @@ body {
     border-radius: 15px;
     box-shadow: var(--shadow);
     background-color: var(--btn-hover);
-    color: #63b1ff;
+    color: var(--button-txt-hover);
 }
 
 .social-btn:hover span {
     padding: 2px;
     width: max-content;
     background-color: var(--btn-hover);
-    color: #63b1ff;
+    color: var(--button-txt-hover);
 }
 
 #github {
@@ -285,6 +289,7 @@ footer {
     right: 0;
     border-radius: 20px 20px 0 0;
     text-align: center;
+    cursor: default;
 }
 @media (max-width: 635px) {
     footer {
@@ -297,9 +302,10 @@ footer {
 .madeby {
     color: var(--font-clr);
     font-size: 20px;
+    cursor: default;
 } 
-a, a:visited {color: #7656e8;transition-duration: 0.4s;}
-a:hover {color: #5d88de;}       
+a, a:visited {color: var(--a-clr);transition-duration: 0.5s;cursor: pointer;}
+a:hover {color: var(--a-hover);}       
 noscript {
     position: fixed;
     top: 0px;
