@@ -301,7 +301,7 @@ footer {
         }
 .madeby {
     color: var(--font-clr);
-    font-size: 24px;
+    font-size: 20px;
 } 
 a, a:visited {color: #7656e8;transition-duration: 0.4s;}
 a:hover {color: #5d88de;}       
