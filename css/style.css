@@ -78,8 +78,6 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: none;
-    cursor: pointer;
     border-radius: 5px;
 }
 
@@ -95,10 +93,6 @@ body {
 #color_input::-moz-color-swatch {
     border-radius: 50%;
     border: none;
-}
-
-#color_input:hover {
-    box-shadow: var(--shadow);
 }
 
 @media (max-width: 585px) {
@@ -138,11 +132,9 @@ body {
 
 .button1 {
     background-color: var(--foreground);
-    display: inline-block;
     padding: 10px 20px;
     font-size: 36px;
     text-align: center;
-    outline: none;
     border: none;
     border-radius: 20px;
     transition-duration: 0.5s;
