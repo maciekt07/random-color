@@ -1,5 +1,5 @@
 function main() {
-    
+
     var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
     bg_clr = "#" + ("000000" + bg_clr).slice(-6);
     clr_link = ("000000" + bg_clr).slice(-6);
@@ -11,14 +11,14 @@ function main() {
     window.onfocus = function() {
         document.title = ("Random Color");
     };
-    
+
     document.getElementById('txt').innerHTML = bg_clr;
     link = ("https://www.color-hex.com/color/" + clr_link);
     link1 = ("https://www.github.com/maciekkoks");
     document.fgColor = bg_clr;
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
     document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
-    
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
+
     //rgb
     String.prototype.convertToRGB = function() {
         var aRgbHex = this.match(/.{1,2}/g);
@@ -29,7 +29,7 @@ function main() {
         ];
         return aRgb;
     };
-    
+
     const txt1 = document.getElementById("txt").textContent;
     var Str = txt1;
     var StrNew = Str.replace("#", "");
@@ -39,9 +39,45 @@ function main() {
     document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
     document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
-
+    
+    // darkmode toggle
+    if (document.location.search.match(/type=embed/gi)) {
+        window.parent.postMessage("resize", "*");
+    };
+    // local storage
+    let darkMode = localStorage.getItem('darkMode');
+    const darkModeToggle = document.querySelector('#dark-mode-toggle');
+    const enableDarkMode = () => {
+        document.body.classList.add('darkmode');
+        localStorage.setItem('darkMode', 'enabled');
+    };
+    const disableDarkMode = () => {
+        document.body.classList.remove('darkmode');
+        localStorage.setItem('darkMode', null);
+    };
+    if (darkMode === 'enabled') {
+        enableDarkMode();
+        console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
+        document.getElementById("heart").innerHTML = "💜"
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
+    };
+    darkModeToggle.addEventListener('click', () => {
+        darkMode = localStorage.getItem('darkMode');
+        if (darkMode !== 'enabled') {
+            enableDarkMode();
+            console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
+            document.getElementById("heart").innerHTML = "💜"
+            document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
+        } else {
+            disableDarkMode();
+            console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
+            document.getElementById("heart").innerHTML = "💙"
+            document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
+        };
+    });
 }
 main();
+
 
 //show history
 document.getElementById("history").style.display = "none";
@@ -80,41 +116,6 @@ function copyToClipboard(element) {
     $temp.remove();
 };
 
-
-// darkmode toggle
-if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-};
-// local storage
-let darkMode = localStorage.getItem('darkMode');
-const darkModeToggle = document.querySelector('#dark-mode-toggle');
-const enableDarkMode = () => {
-    document.body.classList.add('darkmode');
-    localStorage.setItem('darkMode', 'enabled');
-};
-const disableDarkMode = () => {
-    document.body.classList.remove('darkmode');
-    localStorage.setItem('darkMode', null);
-};
-if (darkMode === 'enabled') {
-    enableDarkMode();
-    console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-    document.getElementById("heart").innerHTML = "💜"
-};
-darkModeToggle.addEventListener('click', () => {
-    darkMode = localStorage.getItem('darkMode');
-    if (darkMode !== 'enabled') {
-        enableDarkMode();
-        console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-        document.getElementById("heart").innerHTML = "💜"
-    } else {
-        disableDarkMode();
-        console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
-        document.getElementById("heart").innerHTML = "💙"
-    };
-});
-
-
 // color picker
 function clrpicker() {
     const colorPicker = document.getElementById("color_input");
@@ -131,7 +132,12 @@ function clrpicker() {
         document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
         document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
         document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + colorPicker.value;
-        window.onblur = function() {document.title = "Random Color - " + colorPicker.value;};window.onfocus = function() {document.title = ("Random Color")};
+        window.onblur = function() {
+            document.title = "Random Color - " + colorPicker.value;
+        };
+        window.onfocus = function() {
+            document.title = ("Random Color")
+        };
     })
 }
 
