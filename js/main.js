@@ -40,41 +40,8 @@ function main() {
     document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
     
-    // darkmode toggle
-    if (document.location.search.match(/type=embed/gi)) {
-        window.parent.postMessage("resize", "*");
-    };
-    // local storage
-    let darkMode = localStorage.getItem('darkMode');
-    const darkModeToggle = document.querySelector('#dark-mode-toggle');
-    const enableDarkMode = () => {
-        document.body.classList.add('darkmode');
-        localStorage.setItem('darkMode', 'enabled');
-    };
-    const disableDarkMode = () => {
-        document.body.classList.remove('darkmode');
-        localStorage.setItem('darkMode', null);
-    };
-    if (darkMode === 'enabled') {
-        enableDarkMode();
-        console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-        document.getElementById("heart").innerHTML = "💜"
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
-    };
-    darkModeToggle.addEventListener('click', () => {
-        darkMode = localStorage.getItem('darkMode');
-        if (darkMode !== 'enabled') {
-            enableDarkMode();
-            console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-            document.getElementById("heart").innerHTML = "💜"
-            document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
-        } else {
-            disableDarkMode();
-            console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
-            document.getElementById("heart").innerHTML = "💙"
-            document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
-        };
-    });
+    
+    
 }
 main();
 
@@ -145,7 +112,38 @@ function input_refresh() {
     document.getElementById("color_input").value = document.getElementById("txt").textContent;
 }
 
-
+// darkmode toggle
+if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+};
+// local storage
+let darkMode = localStorage.getItem('darkMode');
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+const enableDarkMode = () => {
+    document.body.classList.add('darkmode');
+    localStorage.setItem('darkMode', 'enabled');
+};
+const disableDarkMode = () => {
+    document.body.classList.remove('darkmode');
+    localStorage.setItem('darkMode', null);
+};
+if (darkMode === 'enabled') {
+    enableDarkMode();
+    console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
+    document.getElementById("heart").innerHTML = "💜"
+};
+darkModeToggle.addEventListener('click', () => {
+    darkMode = localStorage.getItem('darkMode');
+    if (darkMode !== 'enabled') {
+        enableDarkMode();
+        console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
+        document.getElementById("heart").innerHTML = "💜"
+    } else {
+        disableDarkMode();
+        console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
+        document.getElementById("heart").innerHTML = "💙"
+    };
+});
 //bug repair
 document.getElementById("color_input").click();
 document.getElementById("dbgrbtn").click();
