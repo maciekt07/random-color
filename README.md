@@ -1,5 +1,5 @@
 # [maciekkoks.github.io/random-color/](https://maciekkoks.github.io/random-color/)
-A simple random color picker with hex code made using using HTML, CSS, JavaScript, and jQuery,
+A simple random color picker with hex code made by using HTML, CSS, JavaScript, and jQuery,
 theme is stored in local storage.
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview.png)
 # Shortcuts
