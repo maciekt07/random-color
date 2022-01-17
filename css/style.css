@@ -250,7 +250,7 @@ li {
     right: 100%;
     position: absolute;
     bottom: 2%;
-    right: 5%;
+    right: 120px;
     border-radius: 18px;
     font-size: 16px;
     cursor: default;
@@ -275,6 +275,8 @@ li {
 .closebtn:hover {
     color: red;
 }
+
+
 footer {
     display: none;
     background-color: var(--foreground);
