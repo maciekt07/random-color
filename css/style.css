@@ -249,8 +249,8 @@ li {
     width: 290px;
     right: 100%;
     position: absolute;
-    bottom: 1%;
-    right: 1%;
+    bottom: 2%;
+    right: 5%;
     border-radius: 18px;
     font-size: 16px;
     cursor: default;
@@ -326,6 +326,7 @@ h2,
     cursor: text;
 }
 
+img,
 svg,
 .body1,
 path,
@@ -336,6 +337,7 @@ path,
 .button2,
 .social-btn span,
 .dark-mode-toggle,
+#bmc-wbtn,
 #color_input {
     cursor: pointer;
 }
