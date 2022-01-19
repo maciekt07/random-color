@@ -122,24 +122,29 @@ if (document.location.search.match(/type=embed/gi)) {
 
 
 //local storage
-
 // save last color in local storage
 function locals() {
     localStorage.setItem('clr', document.getElementById("txt").textContent)
     console.log(localStorage.getItem("clr"))
 }
 
-const clr = localStorage.getItem("clr")
-document.body.style.backgroundColor = clr;
-document.fgColor = clr;
-document.querySelector('input[type="color"]').setAttribute("value", clr);
-document.querySelector('meta[name="theme-color"]').setAttribute("content", clr);
-document.getElementById("color_input").value = clr;
-document.getElementById('divrgb').innerHTML = ('RGB ') + clr.replace("#", "").convertToRGB();
-document.getElementById('txt').innerHTML = clr;
-document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + clr;
-document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
-link = ("https://www.color-hex.com/color/" + clr.replace("#", ""));
+if (localStorage.getItem("clr") != null) {
+    const clr = localStorage.getItem("clr")
+    document.body.style.backgroundColor = clr;
+    document.fgColor = clr;
+    document.querySelector('input[type="color"]').setAttribute("value", clr);
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", clr);
+    document.getElementById("color_input").value = clr;
+    document.getElementById('divrgb').innerHTML = ('RGB ') + clr.replace("#", "").convertToRGB();
+    document.getElementById('txt').innerHTML = clr;
+    document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + clr;
+    document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
+    link = ("https://www.color-hex.com/color/" + clr.replace("#", ""));
+} else {
+    document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
+}
+locals()
+
 window.onblur = function() {
     document.title = "Random Color - " + clr;
 };
