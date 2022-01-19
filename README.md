@@ -40,3 +40,6 @@ document.addEventListener('keyup', function(event) {
     }
 });
 ```
+# Page Speed
+![pagespeed](https://raw.githubusercontent.com/maciekkoks/random-color/main/img/pagespeed.png)
+By [Google PageSpeed](https://pagespeed.web.dev)
