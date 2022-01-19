@@ -146,7 +146,7 @@ darkModeToggle.addEventListener('click', () => {
 });
 //bug repair
 document.getElementById("color_input").click();
-document.getElementById("dbgrbtn").click();
+document.getElementById("db").click();
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
