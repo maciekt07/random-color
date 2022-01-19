@@ -37,17 +37,20 @@ function main() {
     console.log(bg_clr);
     console.log('RGB ' + clr_link.convertToRGB());
     document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
-    document.getElementById('historylist').innerHTML += "<li>" + bg_clr + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
-    
-    
-    
 }
 main();
 
 
+// add color to history list
+function historyl() {
+    document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
+}
+
+
 //show history
 document.getElementById("history").style.display = "none";
+
 function showh() {
     var x = document.getElementById("history");
     if (x.style.display === "none") {
@@ -116,7 +119,31 @@ function input_refresh() {
 if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
 };
-// local storage
+
+
+//local storage
+
+// save last color in local storage
+function locals() {
+    localStorage.setItem('clr', document.getElementById("txt").textContent)
+    console.log(localStorage.getItem("clr"))
+}
+
+const clr = localStorage.getItem("clr")
+document.body.style.backgroundColor = clr;
+document.fgColor = clr;
+document.querySelector('input[type="color"]').setAttribute("value", clr);
+document.querySelector('meta[name="theme-color"]').setAttribute("content", clr);
+document.getElementById("color_input").value = clr;
+document.getElementById('divrgb').innerHTML = ('RGB ') + clr.replace("#", "").convertToRGB();
+document.getElementById('txt').innerHTML = clr;
+document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + clr;
+document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
+link = ("https://www.color-hex.com/color/" + clr.replace("#", ""));
+window.onblur = function() {
+    document.title = "Random Color - " + clr;
+};
+//save theme in local storage
 let darkMode = localStorage.getItem('darkMode');
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
 const enableDarkMode = () => {
@@ -130,20 +157,18 @@ const disableDarkMode = () => {
 if (darkMode === 'enabled') {
     enableDarkMode();
     console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-    document.getElementById("heart").innerHTML = "💜"
 };
 darkModeToggle.addEventListener('click', () => {
     darkMode = localStorage.getItem('darkMode');
     if (darkMode !== 'enabled') {
         enableDarkMode();
         console.log('%cDarkmode Enabled! 🌙', 'color:#bd9ff5;');
-        document.getElementById("heart").innerHTML = "💜"
     } else {
         disableDarkMode();
         console.log('%cDarkmode Disabled! ☀️', 'color:#bd9ff5;');
-        document.getElementById("heart").innerHTML = "💙"
     };
 });
+
 //bug repair
 document.getElementById("color_input").click();
 document.getElementById("db").click();
