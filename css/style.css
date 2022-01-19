@@ -277,32 +277,9 @@ li {
 }
 
 
-footer {
+#db {
     display: none;
-    background-color: var(--foreground);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 20px 20px 0 0;
-    text-align: center;
-    cursor: default;
 }
-/* @media (max-width: 635px) {
-    footer {
-        display: block;
-    }
-    .alert {
-        bottom: 8%;
-    }
-        }
-.madeby {
-    color: var(--font-clr);
-    font-size: 20px;
-    cursor: default;
-} 
-a, a:visited {color: var(--a-clr);transition-duration: 0.5s;cursor: pointer;}
-a:hover {color: var(--a-hover);}        */
 noscript {
     position: fixed;
     top: 0px;
