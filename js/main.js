@@ -140,14 +140,13 @@ if (localStorage.getItem("clr") != null) {
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + clr;
     document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     link = ("https://www.color-hex.com/color/" + clr.replace("#", ""));
+    window.onblur = function() {
+        document.title = "Random Color - " + clr;
+    };
 } else {
     document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
 }
 locals()
-
-window.onblur = function() {
-    document.title = "Random Color - " + clr;
-};
 //save theme in local storage
 let darkMode = localStorage.getItem('darkMode');
 const darkModeToggle = document.querySelector('#dark-mode-toggle');
