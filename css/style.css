@@ -1,4 +1,3 @@
-
 * {
     cursor: crosshair;
     font-family: Arial, Helvetica, sans-serif;
@@ -18,12 +17,16 @@ body {
     transition: 0.3s all;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --foreground: var(--clr-light);
     --clr-light: white;
     --clr-dark: #0d0d0d;
     --btn-hover: #cff4fc;
-    --button-txt-hover:#63b1ff;
+    --button-txt-hover: #63b1ff;
     --font-clr: black;
     --github-fill: #333;
     --selection: #add8e6;
@@ -45,11 +48,9 @@ body {
     --a-hover: #0076d7;
 }
 
-.dark-mode-toggle {
-    position: absolute;
-    z-index: 100;
-    top: 1em;
-    right: 1em;
+.dark-mode-toggle,
+.history-btn,
+.shortcuts {
     color: var(--foreground);
     border: 2px solid currentColor;
     padding: 4px;
@@ -58,7 +59,14 @@ body {
     width: 45px;
     height: 45px;
     transition-duration: 0.5s;
-    animation-delay: 5s;
+    animation-delay: 5s
+}
+
+.dark-mode-toggle {
+    position: absolute;
+    z-index: 100;
+    top: 1em;
+    right: 1em;
 }
 
 .dark-mode-toggle:hover {
@@ -87,8 +95,10 @@ body {
 }
 
 #color_input::-webkit-color-swatch {
-    border-radius: 50%;
+    border-radius: 100%;
     border: none;
+    transition-duration: 0.5s;
+    animation-delay: 5s;
 }
 
 #color_input::-moz-color-swatch {
@@ -96,13 +106,153 @@ body {
     border: none;
 }
 
+.history-btn {
+    position: absolute;
+    z-index: 100;
+    top: 10em;
+    right: 1em;
+    color: var(--foreground);
+    border: 2px solid currentColor;
+    padding: 4px;
+    background: transparent;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+}
+
+.history-btn:hover {
+    box-shadow: var(--shadow);
+}
+
+.historyicon {
+    fill: var(--foreground);
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+}
+
+.shortcuts {
+    position: absolute;
+    z-index: 100;
+    top: 14.5em;
+    right: 1em;
+    color: var(--foreground);
+    border: 2px solid currentColor;
+    padding: 4px;
+    background: transparent;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+}
+
+.shortcuts:hover {
+    box-shadow: var(--shadow);
+}
+
+.command {
+    fill: var(--foreground);
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+}
+
 @media (max-width: 585px) {
     .dark-mode-toggle {
-        top: 15em;
-    } #color_input {
-        top: 19.5em;
+        top: 16em;
+    }
+
+    #color_input {
+        top: 20.5em;
+    }
+
+    .history-btn {
+        top: 25em;
+    }
+
+    .shortcuts {
+        top: 29.5em;
     }
 }
+
+.shortcuts-popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    cursor: default;
+}
+
+.shortcuts-popup.show {
+    opacity: 2;
+    pointer-events: auto;
+}
+
+.modal {
+    background-color: rgb(31, 31, 31);
+    width: 600px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    cursor: default;
+}
+
+table,
+tr,
+td {
+    cursor: default;
+}
+
+#s-close {
+    outline: none;
+    border: 3px solid red;
+    padding: 12px;
+    background: transparent;
+    color: red;
+    font-size: 18px;
+    border-radius: 12px;
+    width: 110px;
+    transition-duration: 0.2s;
+    animation-delay: 0.5s;
+}
+
+
+
+#s-close:hover {
+    opacity: 0.5;
+}
+
+.s-header {
+    color: white;
+    font-size: 26px;
+}
+
+.s-p {
+    font-size: 16px;
+    color: white;
+    opacity: 0.7;
+}
+
+.key {
+    margin-left: 100px;
+    color: white;
+    opacity: 0.6;
+    background: #4e4e4e;
+    padding: 6px;
+    border-radius: 5px;
+}
+
 .main {
     text-align: center;
     display: flex;
@@ -114,7 +264,7 @@ body {
     font-size: 96px;
     height: auto;
     width: 460px;
-    border-radius: 50px;
+    border-radius: 55px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
     -webkit-text-stroke: 1.5px var(--font-clr);
     letter-spacing: 1.5px;
@@ -204,7 +354,44 @@ body {
     overflow: auto;
 }
 
+.h-close-btn {
+    margin-right: 4px;
+    color: var(--font-clr);
+    font-weight: bold;
+    float: right;
+    font-size: 24px;
+    line-height: 20px;
+    transition: 0.3s;
+    cursor: default;
+}
+
+.h-top {
+    fill: white;
+    align-items: center;
+}
+
+#h-back-to-top {
+    display: none;
+    margin-bottom: 10px;
+    width: 55px;
+    height: 55px;
+    background-color: rgb(133, 133, 133);
+    padding: 15px;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    transition-duration: 0.5s;
+    animation-delay: 5s;
+    color: var(--font-clr);
+}
+
+#h-back-to-top:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
 #history {
+    padding: 12px;
     color: var(--font-clr);
     background-color: var(--foreground);
     width: 370px;
@@ -214,46 +401,26 @@ body {
     font-size: 20px;
     margin-left: 17px;
 }
+
 li {
     margin: 6px;
 }
+
 .span1 {
     font-size: 26px;
-}
-
-.button2 {
-    margin-top: 4%;
-    background-color: var(--foreground);
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 17px;
-    text-align: center;
-    outline: none;
-    border: none;
-    border-radius: 12px;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-    color: var(--font-clr);
-}
-
-.button2:hover {
-    box-shadow: var(--shadow);
-    background-color: var(--btn-hover);
-    color: var(--button-txt-hover);
 }
 
 .alert {
     display: none;
     padding: 20px;
     background-color: var(--foreground);
-    width: 290px;
-    right: 100%;
-    position: absolute;
-    bottom: 2%;
-    right: 100px;
+    box-shadow: var(--shadow);
+    width: 310px;
     border-radius: 18px;
     font-size: 16px;
     cursor: default;
+    margin-top: 30px;
+    font-weight: 600;
 }
 
 .alertspan {
@@ -266,20 +433,21 @@ li {
     color: var(--font-clr);
     font-weight: bold;
     float: right;
-    font-size: 22px;
+    font-size: 26px;
     line-height: 20px;
     transition: 0.3s;
     cursor: default;
 }
 
-.closebtn:hover {
+.closebtn:hover,
+.h-close-btn:hover {
     color: red;
 }
-
 
 #db {
     display: none;
 }
+
 noscript {
     position: fixed;
     top: 0px;
@@ -293,6 +461,9 @@ noscript {
     text-align: center;
 }
 
+.key,
+.s-p,
+.s-header,
 ol,
 li,
 hr,
@@ -305,6 +476,7 @@ h2,
     cursor: text;
 }
 
+button,
 img,
 svg,
 .body1,
@@ -317,7 +489,11 @@ path,
 .social-btn span,
 .dark-mode-toggle,
 #bmc-wbtn,
-#color_input {
+#color_input,
+.shortcuts,
+.history-btn,
+.h-close-btn,
+#h-back-to-to {
     cursor: pointer;
 }
 
