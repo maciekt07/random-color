@@ -39,7 +39,7 @@ function main() {
     console.log(bg_clr);
     console.log('RGB ' + clr_link.convertToRGB());
     document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
-    document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
+    document.getElementById('alertspan').innerHTML = "📋 Copied to clipboard: " + bg_clr;
     counter++
     const top_btn = document.getElementById("h-back-to-top");
     if (counter == 4) {
@@ -76,7 +76,6 @@ function showh() {
 //     };
 // });
 
-
 document.getElementById("shortcuts").addEventListener('click', () => {
     if (document.getElementById("shortcuts-popup").className == "shortcuts-popup") {
         document.getElementById("shortcuts-popup").classList.add("show");
@@ -92,9 +91,6 @@ document.getElementById("s-close").addEventListener('click', () => {
 // document.getElementById("shortcuts-popup").addEventListener('click', () => {
 //     document.getElementById("shortcuts-popup").classList.remove("show");
 // });
-
-
-
 
 function showa() { // show copy alert
     $("#alert").slideDown("slow").delay(2600).fadeOut(500);
@@ -128,7 +124,7 @@ function clrpicker() {
         document.getElementById('txt').innerHTML = colorPicker.value;
         document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
         document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
-        document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + colorPicker.value;
+        document.getElementById('alertspan').innerHTML = "📋 Copied to clipboard: " + colorPicker.value;
         window.onblur = function() {
             document.title = "Random Color - " + colorPicker.value;
         };
@@ -164,7 +160,7 @@ if (localStorage.getItem("clr") != null) {
     document.getElementById("color_input").value = clr;
     document.getElementById('divrgb').innerHTML = ('RGB ') + clr.replace("#", "").convertToRGB();
     document.getElementById('txt').innerHTML = clr;
-    document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + clr;
+    document.getElementById('alertspan').innerHTML = "📋 Copied to clipboard: " + clr;
     document.getElementById('historylist').innerHTML += "<li>" + document.getElementById("txt").textContent + (" | ") + ("RGB ") + clr_link.convertToRGB() + "<hr><br></li>";
     link = ("https://www.color-hex.com/color/" + clr.replace("#", ""));
     window.onblur = function() {
@@ -246,7 +242,12 @@ document.getElementById("close1").addEventListener('click', () => {
 });
 
 document.getElementById("h-back-to-top").addEventListener('click', () => {
-    window.open('#history', '_self')
+    // window.open('#history', '_self')
+    document.getElementById("h").scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
 });
 
 document.getElementById("a-close2").addEventListener('click', () => {
