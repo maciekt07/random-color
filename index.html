@@ -1,526 +1,113 @@
-* {
-    cursor: crosshair;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-*::selection {
-    background: var(--selection);
-}
-
-body {
-    transition: 0.3s all;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-:root {
-    --foreground: var(--clr-light);
-    --clr-light: white;
-    --clr-dark: #0d0d0d;
-    --btn-hover: #cff4fc;
-    --button-txt-hover: #63b1ff;
-    --font-clr: black;
-    --github-fill: #333;
-    --selection: #add8e6;
-    --a-clr: #0076d7;
-    --a-hover: #886ce4;
-    --blackwhite: black;
-    --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-}
-
-.darkmode {
-    --blackwhite: white;
-    --foreground: var(--clr-dark);
-    --btn-hover: black;
-    --button-txt-hover: #6666ff;
-    --font-clr: #b5b5b5;
-    --github-fill: #b5b5b5;
-    --selection: #6666ff;
-    --a-clr: #886ce4;
-    --a-hover: #0076d7;
-}
-
-.dark-mode-toggle,
-.history-btn,
-.shortcuts {
-    color: var(--foreground);
-    border: 2px solid currentColor;
-    padding: 4px;
-    background: transparent;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    transition-duration: 0.5s;
-    animation-delay: 5s
-}
-
-.dark-mode-toggle {
-    position: absolute;
-    z-index: 100;
-    top: 1em;
-    right: 1em;
-}
-
-.dark-mode-toggle:hover {
-    box-shadow: var(--shadow);
-}
-
-#color_input {
-    position: absolute;
-    z-index: 100;
-    top: 5.5em;
-    right: 1em;
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: var(--foreground);
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 5px;
-}
-
-#color_input:hover {
-    box-shadow: var(--shadow);
-}
-
-#color_input::-webkit-color-swatch {
-    border-radius: 100%;
-    border: none;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-}
-
-#color_input::-moz-color-swatch {
-    border-radius: 50%;
-    border: none;
-}
-
-.history-btn {
-    position: absolute;
-    z-index: 100;
-    top: 10em;
-    right: 1em;
-    color: var(--foreground);
-    border: 2px solid currentColor;
-    padding: 4px;
-    background: transparent;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-}
-
-.history-btn:hover {
-    box-shadow: var(--shadow);
-}
-
-.historyicon {
-    fill: var(--foreground);
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-}
-
-.shortcuts {
-    position: absolute;
-    z-index: 100;
-    top: 14.5em;
-    right: 1em;
-    color: var(--foreground);
-    border: 2px solid currentColor;
-    padding: 4px;
-    background: transparent;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-}
-
-.shortcuts:hover {
-    box-shadow: var(--shadow);
-}
-
-.command {
-    fill: var(--foreground);
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-}
-
-@media (max-width: 585px) {
-    .dark-mode-toggle {
-        top: 16em;
-    }
-
-    #color_input {
-        top: 20.5em;
-    }
-
-    .history-btn {
-        top: 25em;
-    }
-
-    .shortcuts {
-        top: 29.5em;
-    }
-}
-
-.shortcuts-popup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(3.5px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    cursor: default;
-}
-
-.shortcuts-popup.show {
-    opacity: 2;
-    pointer-events: auto;
-}
-
-.modal {
-    background-color: rgb(31, 31, 31);
-    width: 600px;
-    max-width: 100%;
-    padding: 30px 50px;
-    border-radius: 30px;
-    box-shadow: var(--shadow);
-    cursor: default;
-}
-
-@media (max-width: 700px) {
-    .modal {
-        width: 400px;
-    }
-}
-
-table,
-tr,
-td {
-    cursor: default;
-}
-
-#s-close {
-    outline: none;
-    border: 3px solid red;
-    padding: 12px;
-    background: transparent;
-    color: red;
-    font-size: 18px;
-    border-radius: 12px;
-    width: 110px;
-    transition-duration: 0.2s;
-    animation-delay: 0.5s;
-}
-
-
-
-#s-close:hover {
-    opacity: 0.5;
-}
-
-.s-header {
-    font-size: 24px;
-    color: white;
-    opacity: 0.8;
-    text-transform: uppercase;
-}
-
-.s-p {
-    font-size: 16px;
-    color: white;
-    opacity: 0.7;
-}
-
-.key {
-    font-size: 18px;
-    margin-left: 100px;
-    color: white;
-    opacity: 0.6;
-    background: #4e4e4e;
-    padding: 6px;
-    border-radius: 5px;
-}
-
-.main {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
-.div1 {
-    padding: 1px;
-    font-size: 96px;
-    height: auto;
-    width: 460px;
-    border-radius: 55px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
-    -webkit-text-stroke: 1.5px var(--font-clr);
-    letter-spacing: 1.5px;
-    background-color: var(--foreground);
-    transition: 0s all;
-}
-
-.divrgb {
-    font-size: 22px;
-    color: var(--font-clr);
-    -webkit-text-stroke: 0px currentColor;
-}
-
-.buttons {
-    text-align: center;
-}
-
-.button1 {
-    background-color: var(--foreground);
-    padding: 10px 20px;
-    font-size: 36px;
-    text-align: center;
-    border: none;
-    border-radius: 20px;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-    color: var(--font-clr);
-}
-
-.button1:hover {
-    box-shadow: var(--shadow);
-    background-color: var(--btn-hover);
-    color: var(--button-txt-hover);
-}
-
-.body1,
-.flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.social-links {
-    display: flex;
-}
-
-.social-btn {
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-    color: var(--font-clr);
-    border-radius: 10px;
-    background: var(--foreground);
-    margin: 5px;
-    transition: 1s;
-}
-
-.social-btn span {
-    width: 0px;
-    overflow: hidden;
-    transition: 1s;
-    text-align: center;
-}
-
-.social-btn:hover {
-    width: 150px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    background-color: var(--btn-hover);
-    color: var(--button-txt-hover);
-}
-
-.social-btn:hover span {
-    padding: 2px;
-    width: max-content;
-    background-color: var(--btn-hover);
-    color: var(--button-txt-hover);
-}
-
-#github {
-    fill: var(--github-fill);
-}
-
-.history {
-    height: 300px;
-    overflow: auto;
-}
-
-.h-close-btn {
-    margin-top: 5px;
-    margin-right: 10px;
-    color: var(--font-clr);
-    font-weight: bold;
-    float: right;
-    font-size: 28px;
-    line-height: 20px;
-    transition: 0.3s;
-    cursor: default;
-}
-
-.h-top {
-    fill: white;
-    align-items: center;
-}
-
-#h-back-to-top {
-    display: none;
-    margin-bottom: 10px;
-    width: 55px;
-    height: 55px;
-    background-color: #1d1f28;
-    padding: 14px;
-    text-align: center;
-    border: none;
-    border-radius: 14px;
-    transition-duration: 0.5s;
-    animation-delay: 5s;
-    color: var(--font-clr);
-}
-
-#h-back-to-top:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow);
-    background: rgb(58, 65, 110);
-    /* background: radial-gradient(circle, rgba(58,65,110,1) 13%, rgba(29,31,40,1) 78%); */
-}
-
-#history {
-    padding: 12px;
-    color: var(--font-clr);
-    background-color: var(--foreground);
-    width: 370px;
-    min-height: 350px;
-    height: auto;
-    border-radius: 30px;
-    font-size: 20px;
-    margin-left: 17px;
-}
-
-li {
-    margin: 6px;
-}
-
-.span1 {
-    margin-left: 20px;
-    font-size: 26px;
-}
-
-.alert {
-    margin-top: 300px;
-    display: none;
-    padding: 25px;
-    background-color: var(--foreground);
-    box-shadow: var(--shadow);
-    width: 330px;
-    border-radius: 18px;
-    font-size: 16px;
-    cursor: default;
-    margin-top: 30px;
-    font-weight: 600;
-}
-
-.alertspan {
-    color: var(--font-clr);
-    cursor: default;
-}
-
-.closebtn {
-    margin-left: 15px;
-    color: var(--font-clr);
-    font-weight: bold;
-    float: right;
-    font-size: 26px;
-    line-height: 20px;
-    transition: 0.3s;
-    cursor: default;
-}
-
-.closebtn:hover,
-.h-close-btn:hover {
-    color: red;
-}
-
-#db {
-    display: none;
-}
-
-noscript {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 30000000;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    font-size: 32px;
-    color: white;
-    text-align: center;
-}
-
-.key,
-.s-p,
-.s-header,
-ol,
-li,
-hr,
-h2,
-.divtxt,
-.span1,
-.divrgb,
-.div1,
-#history {
-    cursor: text;
-}
-
-button,
-img,
-svg,
-.body1,
-path,
-.button1,
-.flex-center,
-.social-btn,
-.closebtn:hover,
-.button2,
-.social-btn span,
-.dark-mode-toggle,
-#bmc-wbtn,
-#color_input,
-.shortcuts,
-.history-btn,
-.h-close-btn,
-#h-back-to-to {
-    cursor: pointer;
-}
-
-br,
-.button1,
-.button2,
-.social-btn,
-.closebtn,
-.dark-mode-toggle {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="author" content="github.com/maciekkoks">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Random Color Author: github.com/maciekkoks">
+    <meta name="keywords" content="random color, maciekkoks, random color tool">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="img/icon1.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Random Color</title>
+</head>
+
+<body>
+    <button id="dark-mode-toggle" class="dark-mode-toggle" title="Change Theme Color"> <svg width="100%" viewBox="0 0 496 496">
+            <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)" />
+        </svg> </button> <input id="color_input" type="color" value="#000000" title="Set Custom Color" onchange="locals();"> <br> <button id="hbutton" class="history-btn" title="Show History"> <svg class="historyicon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.12">
+            <path d="M28.45,55.88c0,.11,0,.22,0,.32l4.44-4.46a6.68,6.68,0,1,1,9.48,9.42L27.14,76.51a6.69,6.69,0,0,1-9.32.15L2.28,63A6.68,6.68,0,0,1,11.08,53l4,3.54v0a54.33,54.33,0,0,1,8-31,52.56,52.56,0,0,1,24-20.73,60.17,60.17,0,0,1,11-3.51,52.58,52.58,0,0,1,60.1,31.09,58.07,58.07,0,0,1,3.47,11,52.47,52.47,0,0,1-1.31,26.95A53.16,53.16,0,0,1,105.8,93a57.11,57.11,0,0,1-22.56,13.1,48.52,48.52,0,0,1-40.51-5.89A6.68,6.68,0,0,1,50,89a35.12,35.12,0,0,0,5.53,3,34.21,34.21,0,0,0,5.7,1.86,35.43,35.43,0,0,0,18.23-.54A43.77,43.77,0,0,0,96.74,83.19a39.7,39.7,0,0,0,10.93-17.06,39,39,0,0,0,1-20.08,46.38,46.38,0,0,0-2.68-8.5,39.19,39.19,0,0,0-45-23.22,45,45,0,0,0-8.52,2.72A39,39,0,0,0,34.5,32.49a40.94,40.94,0,0,0-6.05,23.39ZM60.83,34a6.11,6.11,0,0,1,12.22,0V53l14.89,8.27A6.09,6.09,0,1,1,82,71.93L64.43,62.16a6.11,6.11,0,0,1-3.6-5.57V34Z" />
+        </svg> </button> <button id="shortcuts" class="shortcuts" title="Show Shortcuts"> <svg class="command" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+            <g>
+                <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+                    <path d="M1748.1,4996.3c-619.2-79.6-1187.6-488.7-1461.8-1052.7c-143.7-291.9-183.5-473.3-183.5-835.9c0-272,6.6-333.9,59.7-504.2C352.7,1971,788.3,1517.7,1409.7,1303.2l214.5-75.2l747.5-6.6l745.3-6.6V111.2V-990.1l-712.1-8.9c-650.2-8.8-729.8-13.3-889-57.5C848-1240,330.5-1757.5,151.4-2423.2c-68.6-249.9-68.6-696.6,0-948.7c238.8-884.6,1057.1-1477.3,1957.2-1419.8c254.3,17.7,440.1,64.1,672.3,172.5c524.1,241.1,889,674.5,1057.1,1247.3c30.9,110.6,39.8,254.3,46.4,866.9l11.1,736.4h1101.3h1101.3l11.1-734.2c6.6-614.8,15.5-758.5,46.5-869.1c212.3-725.4,782.9-1258.3,1492.7-1391c977.5-185.8,1935,422.4,2193.8,1391c57.5,212.3,68.6,654.6,22.1,862.5c-168.1,760.7-778.4,1349-1539.2,1481.7c-143.7,24.3-358.3,33.2-820.4,33.2h-628.1V109v1105.7l747.5,6.6l745.3,6.6l214.5,75.2c513.1,176.9,908.9,524.1,1134.5,999.6c493.2,1043.8-57.5,2284.5-1167.7,2627.2c-858,265.4-1837.7-150.4-2235.8-946.5c-183.5-367.1-212.3-546.2-212.3-1344.6v-648H4996.8H3891v650.2c0,475.5-8.8,694.4-30.9,813.8c-163.7,829.3-813.8,1437.5-1649.8,1541.4C2002.4,5022.9,1953.8,5022.9,1748.1,4996.3z M8393.6,4162.6c557.3-210.1,855.8-822.7,676.7-1386.6c-112.8-360.5-422.4-654.6-789.5-751.9c-103.9-26.5-267.6-33.2-767.4-33.2h-636.9v625.8c0,678.9,11.1,767.4,126.1,1004c117.2,241,378.2,466.6,632.5,550.7C7869.5,4248.9,8176.9,4246.6,8393.6,4162.6z M2325.3,4180.3c179.1-55.3,378.2-181.3,502-322.9c115-128.3,236.6-371.5,267.6-537.4c11.1-64.1,22.1-391.4,22.1-723.2v-605.9h-636.9c-499.8,0-663.4,6.6-767.4,33.2c-493.2,130.5-833.7,568.3-835.9,1083.6c-4.4,490.9,291.9,906.7,758.5,1065.9C1827.7,4240,2124.1,4242.2,2325.3,4180.3z M6098.1,106.8l4.4-1101.3H4996.8H3891V95.7c0,601.5,6.6,1099.1,15.5,1105.7c6.6,8.9,502,13.3,1099.1,11.1l1085.8-6.6L6098.1,106.8z M3117-2392.2c0-479.9-8.8-659-33.2-767.4c-123.8-524.1-639.1-902.3-1172.1-858c-521.9,44.2-942.1,431.2-1030.5,950.9c-95.1,563.9,305.2,1141.1,873.5,1265c92.9,19.9,327.3,30.9,749.7,30.9l612.6,2.2V-2392.2z M8227.7-1799.5c575-121.6,973-685.6,884.6-1251.7c-79.6-526.3-502-920-1030.5-966.4c-548.4-46.4-1063.7,345-1180.9,895.7c-15.5,70.8-24.3,362.7-24.3,734.2v619.2h603.7C7911.5-1768.6,8123.8-1777.4,8227.7-1799.5z" />
+                </g>
+            </g>
+        </svg> </button>
+    <div id="shortcuts-popup" class="shortcuts-popup">
+        <div class="modal">
+            <h1 class="s-header">⌨️ Keyboard Shortcuts</h1><br>
+            <table>
+                <tr>
+                    <td>
+                        <p class="s-p">Generate Random Color </p>
+                    </td>
+                    <td><span class="key">R</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="s-p">Change Theme Color </p>
+                    </td>
+                    <td><span class="key">T</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="s-p">Copy Text </p>
+                    </td>
+                    <td><span class="key">C</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="s-p">Open Color Picker </p>
+                    </td>
+                    <td><span class="key">P</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="s-p">Show More Info </p>
+                    </td>
+                    <td><span class="key">M</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="s-p">Show History List </p>
+                    </td>
+                    <td><span class="key">H</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="s-p">Show Shortcuts </p>
+                    </td>
+                    <td><span class="key">/</span></td>
+                </tr>
+            </table> <br> <button id="s-close">Close</button>
+        </div>
+    </div>
+    <section class="main">
+        <div type="text" class="div1">
+            <div class="divtxt" id="txt"></div>
+            <div class="divrgb" id="divrgb"></div>
+    </section> <br><br>
+    <div class="buttons"> <button class="button1" id="moreinfo">more info</button> </div><br>
+    <div class="buttons"> <button id="copy" class="button1">copy text</button> </div><br>
+    <div class="buttons"> <button class="button1" id="refresh">refresh</button> </div><br>
+    <center>
+        <div class='social-btn flex-center body1' id="github"> <svg width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg> <span>maciekkoks</span> </div><br><br>
+        <div id="h" class="history">
+            <h1 id="history"> <span class="span1">History list</span><span class="h-close-btn" id="close1">&times;</span><br>
+                <ol id="historylist"></ol> <button id="h-back-to-top"><svg class="h-top" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                        <g>
+                            <path d="M978,715.9L531.1,225.5c-8.6-8.6-19.9-12.2-31-11.7c-11.3-0.5-22.6,3.2-31.1,11.7L22,715.9C6,732,6,758.1,22,774.2c16,16.1,42,16.1,57.9,0l420.1-460.8l420,460.8c16,16.1,42,16.1,58,0C994,758.1,994,732,978,715.9L978,715.9z" />
+                        </g>
+                    </svg></button>
+            </h1>
+        </div>
+    </center>
+    <center>
+        <div class="alert" id="alert"> <span class="closebtn" id="a-close2">&times;</span> <span id="alertspan" class="alertspan"></span> </div>
+    </center> <button id="db"></button>
+    <script type="text/javascript" src="js/shortcuts.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QTNJRWC58"></script>
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="maciekt07" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script> <noscript>
+        <p>You need to enable JavaScript to run this app.</p>
+    </noscript>
+</body>
+
+</html>
