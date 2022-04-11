@@ -33,3 +33,16 @@ document.addEventListener('keyup', function(event) {
         document.getElementById("hbutton").click();
     }
 });
+
+document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 191) { // / button shows shortucts
+        document.getElementById("shortcuts").click();
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    if (event.keyCode == 80) { // p button opens color picker
+        document.getElementById("color_input").click();
+    }
+});
+
