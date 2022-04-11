@@ -1,3 +1,5 @@
+var counter = 0
+
 function main() {
 
     var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
@@ -14,7 +16,7 @@ function main() {
 
     document.getElementById('txt').innerHTML = bg_clr;
     link = ("https://www.color-hex.com/color/" + clr_link);
-    link1 = ("https://www.github.com/maciekkoks");
+    github = ("https://www.github.com/maciekkoks");
     document.fgColor = bg_clr;
     document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
     document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
@@ -38,6 +40,12 @@ function main() {
     console.log('RGB ' + clr_link.convertToRGB());
     document.getElementById('divrgb').innerHTML = ('RGB ') + StrNew.convertToRGB();
     document.getElementById('alertspan').innerHTML = "Copied to clipboard: " + bg_clr;
+    counter++
+    const top_btn = document.getElementById("h-back-to-top");
+    if (counter == 4) {
+        top_btn.style.display = "block"
+    }
+    console.log(document.getElementById("shortcuts-popup").className)
 }
 main();
 
@@ -59,18 +67,37 @@ function showh() {
         x.style.display = "none";
     };
 };
-const btn = document.getElementById("hbutton"); //change button text show/hide
-btn.addEventListener("click", () => {
-    if (btn.innerText === "show history") {
-        btn.innerText = "hide history";
+// const btn = document.getElementById("hbutton"); //change button text show/hide
+// btn.addEventListener("click", () => {
+//     if (btn.innerText === "show history") {
+//         btn.innerText = "hide history";
+//     } else {
+//         btn.innerText = "show history";
+//     };
+// });
+
+
+document.getElementById("shortcuts").addEventListener('click', () => {
+    if (document.getElementById("shortcuts-popup").className == "shortcuts-popup") {
+        document.getElementById("shortcuts-popup").classList.add("show");
     } else {
-        btn.innerText = "show history";
-    };
+        document.getElementById("shortcuts-popup").classList.remove("show");
+    }
 });
+
+document.getElementById("s-close").addEventListener('click', () => {
+    document.getElementById("shortcuts-popup").classList.remove("show");
+});
+
+// document.getElementById("shortcuts-popup").addEventListener('click', () => {
+//     document.getElementById("shortcuts-popup").classList.remove("show");
+// });
+
+
 
 
 function showa() { // show copy alert
-    $("#alert").show().delay(4000).fadeOut(500);
+    $("#alert").slideDown("slow").delay(2600).fadeOut(500);
 };
 
 function hidea() { //hide copy alert
@@ -176,6 +203,56 @@ darkModeToggle.addEventListener('click', () => {
 //bug repair
 document.getElementById("color_input").click();
 document.getElementById("db").click();
+
+
+
+//buttons
+document.getElementById("dark-mode-toggle").addEventListener('click', () => {
+    hidea();
+});
+
+document.getElementById("color_input").addEventListener('click', () => {
+    clrpicker();
+    locals();
+});
+
+document.getElementById("hbutton").addEventListener('click', () => {
+    showh();
+});
+
+document.getElementById("moreinfo").addEventListener('click', () => {
+    window.open(link);
+});
+
+document.getElementById("copy").addEventListener('click', () => {
+    copyToClipboard('#txt');
+    showa()
+});
+
+document.getElementById("refresh").addEventListener('click', () => {
+    main();
+    hidea();
+    input_refresh();
+    locals();
+    historyl()
+});
+
+document.getElementById("github").addEventListener('click', () => {
+    window.open(github)
+});
+
+document.getElementById("close1").addEventListener('click', () => {
+    showh()
+});
+
+document.getElementById("h-back-to-top").addEventListener('click', () => {
+    window.open('#history', '_self')
+});
+
+document.getElementById("a-close2").addEventListener('click', () => {
+    hidea()
+});
+
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
