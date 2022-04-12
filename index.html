@@ -27,6 +27,14 @@
                 </g>
             </g>
         </svg> </button>
+        <button title="Toggle Fullscreen" id="fullscreen" class="fullscreen" title="Show Shortcuts"> 
+
+            <svg class="fs-icon" xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 20 20">
+                
+                <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z"/>
+              </svg>              
+            </button>
+
     <div id="shortcuts-popup" class="shortcuts-popup">
         <div class="modal">
             <h1 class="s-header">⌨️ Keyboard Shortcuts</h1><br>
@@ -76,7 +84,7 @@
             </table> <br> <button id="s-close">Close</button>
         </div>
     </div>
-    <section class="main">
+    <section id="main" class="main animate__animated animate__headShake">
         <div type="text" class="div1">
             <div class="divtxt" id="txt"></div>
             <div class="divrgb" id="divrgb"></div>
@@ -103,9 +111,10 @@
     </center> <button id="db"></button>
     <script type="text/javascript" src="js/shortcuts.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.2.0/screenfull.min.js" integrity="sha512-GoG2/bE6QSPKSrjuoII6iPL2ODnwUJvFgysFYLTW2ltpx6G5nj+mYvhPq5rLPZby0rdMFU2fo4BMlWND7+QZ5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QTNJRWC58"></script>
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="maciekt07" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script> <noscript>
+    <noscript>
         <p>You need to enable JavaScript to run this app.</p>
     </noscript>
 </body>
