@@ -451,7 +451,12 @@
   }
   
   .alert {
-    margin-top: 300px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 1em;
+    justify-content: center;
+    align-items: center;
     display: none;
     padding: 25px;
     background-color: var(--foreground);
@@ -460,7 +465,6 @@
     border-radius: 18px;
     font-size: 16px;
     cursor: default;
-    margin-top: 30px;
     font-weight: 600;
   }
   
