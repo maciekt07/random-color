@@ -15,7 +15,7 @@ function main() {
 
   document.getElementById("txt").innerHTML = bg_clr;
   link = "https://www.color-hex.com/color/" + clr_link;
-  github = "https://www.github.com/maciekkoks";
+  github = "https://www.github.com/maciekt07";
   document.fgColor = bg_clr;
   document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
   document
