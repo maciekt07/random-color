@@ -18,7 +18,7 @@
 <body>
     <button id="dark-mode-toggle" class="dark-mode-toggle" title="Change Theme Color"> <svg width="100%" viewBox="0 0 496 496">
             <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)" />
-        </svg> </button> <input id="color_input" type="color" value="#000000" title="Set Custom Color" onchange="locals();"> <br> <button id="hbutton" class="history-btn" title="Show History"> <svg class="historyicon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.12">
+        </svg> </button> <input id="color_input" type="color" value="#000000" title="Set Custom Color" onchange="locals();clr_name()"> <br> <button id="hbutton" class="history-btn" title="Show History"> <svg class="historyicon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.12">
             <path d="M28.45,55.88c0,.11,0,.22,0,.32l4.44-4.46a6.68,6.68,0,1,1,9.48,9.42L27.14,76.51a6.69,6.69,0,0,1-9.32.15L2.28,63A6.68,6.68,0,0,1,11.08,53l4,3.54v0a54.33,54.33,0,0,1,8-31,52.56,52.56,0,0,1,24-20.73,60.17,60.17,0,0,1,11-3.51,52.58,52.58,0,0,1,60.1,31.09,58.07,58.07,0,0,1,3.47,11,52.47,52.47,0,0,1-1.31,26.95A53.16,53.16,0,0,1,105.8,93a57.11,57.11,0,0,1-22.56,13.1,48.52,48.52,0,0,1-40.51-5.89A6.68,6.68,0,0,1,50,89a35.12,35.12,0,0,0,5.53,3,34.21,34.21,0,0,0,5.7,1.86,35.43,35.43,0,0,0,18.23-.54A43.77,43.77,0,0,0,96.74,83.19a39.7,39.7,0,0,0,10.93-17.06,39,39,0,0,0,1-20.08,46.38,46.38,0,0,0-2.68-8.5,39.19,39.19,0,0,0-45-23.22,45,45,0,0,0-8.52,2.72A39,39,0,0,0,34.5,32.49a40.94,40.94,0,0,0-6.05,23.39ZM60.83,34a6.11,6.11,0,0,1,12.22,0V53l14.89,8.27A6.09,6.09,0,1,1,82,71.93L64.43,62.16a6.11,6.11,0,0,1-3.6-5.57V34Z" />
         </svg> </button> <button id="shortcuts" class="shortcuts" title="Show Shortcuts"> <svg class="command" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
             <g>
@@ -27,13 +27,13 @@
                 </g>
             </g>
         </svg> </button>
-        <button title="Toggle Fullscreen" id="fullscreen" class="fullscreen" title="Show Shortcuts"> 
+    <button title="Toggle Fullscreen" id="fullscreen" class="fullscreen" title="Show Shortcuts">
 
-            <svg class="fs-icon" xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 20 20">
-                
-                <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z"/>
-              </svg>              
-            </button>
+        <svg class="fs-icon" xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 20 20">
+
+            <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z" />
+        </svg>
+    </button>
 
     <div id="shortcuts-popup" class="shortcuts-popup">
         <div class="modal">
@@ -57,12 +57,35 @@
                     </td>
                     <td><span class="key">C</span></td>
                 </tr>
+
+
+
                 <tr>
                     <td>
                         <p class="s-p">Open Color Picker </p>
                     </td>
                     <td><span class="key">P</span></td>
                 </tr>
+
+
+                <tr>
+                    <td>
+                        <p class="s-p">Toggle Fullscreen </p>
+                    </td>
+                    <td><span class="key">F</span></td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <p class="s-p">Show/Hide Color Name </p>
+                    </td>
+                    <td><span class="key">N</span></td>
+                </tr>
+
+
+
+
                 <tr>
                     <td>
                         <p class="s-p">Show More Info </p>
@@ -86,8 +109,11 @@
     </div>
     <section id="main" class="main animate__animated animate__headShake">
         <div type="text" class="div1">
+
             <div class="divtxt" id="txt"></div>
+            <div class="divname" id="name"></div>
             <div class="divrgb" id="divrgb"></div>
+
     </section> <br><br>
     <div class="buttons"> <button class="button1" id="moreinfo">more info</button> </div><br>
     <div class="buttons"> <button id="copy" class="button1">copy text</button> </div><br>
@@ -115,6 +141,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QTNJRWC58"></script>
     <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="maciekt07" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+    <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
+
+    <script type="text/javascript">
+        function clr_name() {
+            const hex = document.getElementById("txt").textContent;
+            var n_match = ntc.name(hex);
+            n_name = n_match[1]; // Text string: Color name
+
+            console.log(n_name)
+            document.getElementById("name").textContent = n_name
+        }
+        clr_name();
+    </script>
     <noscript>
         <p>You need to enable JavaScript to run this app.</p>
     </noscript>
