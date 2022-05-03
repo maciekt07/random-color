@@ -41,7 +41,7 @@ html {
   --foreground: var(--clr-dark);
   --btn-hover: black;
   --button-txt-hover: #6666ff;
-  --font-clr: #b5b5b5;
+  --font-clr: #c8c8c8;
   --github-fill: #b5b5b5;
   --selection: #6666ff;
   --a-clr: #886ce4;
@@ -82,12 +82,13 @@ html {
   height: 45px;
   border: none;
   background: var(--foreground);
-  transition-duration: 0.5s;
-  animation-delay: 5s;
+  transition-duration: 0.3s;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 5px;
+  transition-duration: 0.5s;
+  animation-delay: 5s;
 }
 
 #color_input:hover {
@@ -97,8 +98,6 @@ html {
 #color_input::-webkit-color-swatch {
   border-radius: 100%;
   border: none;
-  transition-duration: 0.5s;
-  animation-delay: 5s;
 }
 
 #color_input::-moz-color-swatch {
@@ -300,11 +299,11 @@ td {
   padding: 12px;
   font-size: 96px;
   height: auto;
-  width: 460px;
+  width: 450px;
   border-radius: 60px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
   -webkit-text-stroke: 1.5px var(--font-clr);
-  letter-spacing: 1.5px;
+  letter-spacing: 1.7px;
   background-color: var(--foreground);
   transition: 0s all;
 }
@@ -345,6 +344,11 @@ td {
   box-shadow: var(--shadow);
   background-color: var(--btn-hover);
   color: var(--button-txt-hover);
+}
+
+.button1:active {
+  transition-duration: 0s;
+  animation-delay: 0s;
 }
 
 .body1,
@@ -421,13 +425,13 @@ td {
 #h-back-to-top {
   display: none;
   margin-bottom: 10px;
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   background-color: #1d1f28;
   padding: 14px;
   text-align: center;
   border: none;
-  border-radius: 14px;
+  border-radius: 13px;
   transition-duration: 0.5s;
   animation-delay: 5s;
   color: var(--font-clr);
@@ -437,11 +441,10 @@ td {
   transform: translateY(-6px);
   box-shadow: var(--shadow);
   background: rgb(58, 65, 110);
-  /* background: radial-gradient(circle, rgba(58,65,110,1) 13%, rgba(29,31,40,1) 78%); */
 }
 
 #history {
-  padding: 12px;
+  padding: 10px;
   color: var(--font-clr);
   background-color: var(--foreground);
   width: 370px;
@@ -462,21 +465,19 @@ li {
 }
 
 .alert {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 1em;
-  justify-content: center;
-  align-items: center;
   display: none;
+  position: relative;
+  bottom: 1em;
   padding: 25px;
   background-color: var(--foreground);
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   width: 340px;
-  border-radius: 18px;
+  border-radius: 25px;
   font-size: 16px;
   cursor: default;
   font-weight: 600;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
 }
 
 .alertspan {
