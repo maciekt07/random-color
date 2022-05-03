@@ -1,6 +1,7 @@
 var counter = 0;
 
 function main() {
+    counter++;
     var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
     bg_clr = "#" + ("000000" + bg_clr).slice(-6);
     clr_link = ("000000" + bg_clr).slice(-6);
@@ -36,12 +37,14 @@ function main() {
     const txt1 = document.getElementById("txt").textContent;
     var Str = txt1;
     var StrNew = Str.replace("#", "");
-    console.log("%c--------- ", "color:#949494; font-size: 20px;");
-    console.log("RGB " + clr_link.convertToRGB());
+
     document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
     document.getElementById("alertspan").innerHTML =
         "<span class='copy-emoji'>📋</span> Copied to clipboard: " + bg_clr;
-    counter++;
+
+    console.log("%c--------- ", "color:#949494; font-size: 20px;");
+    console.log(counter)
+    console.log("RGB " + clr_link.convertToRGB());
     const top_btn = document.getElementById("h-back-to-top");
     if (counter == 4) {
         top_btn.style.display = "block";
@@ -104,7 +107,7 @@ document.getElementById("s-close").addEventListener("click", () => {
 
 function showa() {
     // show copy alert
-    $("#alert").slideDown("slow").delay(2600).fadeOut(500);
+    // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
 }
 
 function hidea() {
@@ -166,7 +169,7 @@ if (document.location.search.match(/type=embed/gi)) {
 // save last color in local storage
 function locals() {
     localStorage.setItem("clr", document.getElementById("txt").textContent);
-    console.log(localStorage.getItem("clr"));
+    console.log('%c%s', "color:#b144e4", localStorage.getItem("clr"));
 }
 
 if (localStorage.getItem("clr") != null) {
@@ -259,9 +262,24 @@ document.getElementById("moreinfo").addEventListener("click", () => {
 
 document.getElementById("copy").addEventListener("click", () => {
     copyToClipboard("#txt");
-    showa();
-});
+    document.getElementById("history").style.display = "none"
 
+    // showa();
+    document.getElementById("alert").style.display = "block";
+
+    const alert = document.querySelector(".alert");
+    alert.classList.add('animate__animated', 'animate__fadeInDown');
+    alert.addEventListener('animationend', () => {
+        alert.classList.remove('animate__animated', 'animate__fadeInDown');
+        setTimeout(() => {
+            alert.classList.add('animate__animated', 'animate__fadeOut');
+        }, 1800);
+        setTimeout(() => {
+            hidea();
+            alert.classList.remove('animate__animated', 'animate__fadeOut');
+        }, 2650);
+    });
+});
 document.getElementById("refresh").addEventListener("click", () => {
     main();
     hidea();
@@ -269,6 +287,11 @@ document.getElementById("refresh").addEventListener("click", () => {
     locals();
     historyl();
     clr_name();
+    // const el = document.querySelector(".div1");
+    // el.classList.add('animate__animated', 'animate__headShake');
+    // el.addEventListener('animationend', () => {
+    //     el.classList.remove('animate__animated', 'animate__headShake');
+    //     });
 });
 
 document.getElementById("github").addEventListener("click", () => {
@@ -321,7 +344,6 @@ document.getElementById("fullscreen").addEventListener("click", () => {
         }
     }
 });
-
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
