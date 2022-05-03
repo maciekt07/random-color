@@ -61,7 +61,7 @@ document.addEventListener("keyup", function(event) {
   }
 });
 
-document.getElementById("name").style.display = "blocknn"
+
 document.addEventListener("keyup", function(event) {
   if (event.keyCode == 78) {
       // n button hides color name
