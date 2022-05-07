@@ -319,28 +319,28 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     if (screenfull.isEnabled) {
         if (screenfull.isFullscreen) {
             screenfull.exit();
-            document.getElementById("fullscreen").style.top = "19em";
+            // document.getElementById("fullscreen").style.top = "19em";
             document.getElementById("main").style.display = "flex";
-            document.getElementById("dark-mode-toggle").style.display = "block";
-            document.getElementById("shortcuts").style.display = "block";
+            // document.getElementById("dark-mode-toggle").style.display = "block";
+            // document.getElementById("shortcuts").style.display = "block";
             document.getElementById("moreinfo").style.visibility = "visible";
             document.getElementById("copy").style.visibility = "visible";
             document.getElementById("refresh").style.visibility = "visible";
             document.getElementById("github").style.display = "flex";
-            document.getElementById("hbutton").style.display = "block";
-            document.getElementById("color_input").style.display = "block";
+            // document.getElementById("hbutton").style.display = "block";
+            // document.getElementById("color_input").style.display = "block";
         } else {
             screenfull.request();
-            document.getElementById("fullscreen").style.top = "3em";
+            // document.getElementById("fullscreen").style.top = "3em";
             document.getElementById("main").style.display = "none";
-            document.getElementById("dark-mode-toggle").style.display = "none";
-            document.getElementById("shortcuts").style.display = "none";
+            // document.getElementById("dark-mode-toggle").style.display = "none";
+            // document.getElementById("shortcuts").style.display = "none";
             document.getElementById("moreinfo").style.visibility = "hidden";
             document.getElementById("copy").style.visibility = "hidden";
             document.getElementById("refresh").style.visibility = "hidden";
             document.getElementById("github").style.display = "none";
-            document.getElementById("hbutton").style.display = "none";
-            document.getElementById("color_input").style.display = "none";
+            // document.getElementById("hbutton").style.display = "none";
+            // document.getElementById("color_input").style.display = "none";
         }
     }
 });
