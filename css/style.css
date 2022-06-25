@@ -24,7 +24,7 @@ html {
 :root {
   --foreground: var(--clr-light);
   --clr-light: white;
-  --clr-dark: #0d0d0d;
+  --clr-dark: #0F111A;
   --btn-hover: #cff4fc;
   --button-txt-hover: #63b1ff;
   --font-clr: black;
@@ -41,7 +41,7 @@ html {
   --foreground: var(--clr-dark);
   --btn-hover: black;
   --button-txt-hover: #6666ff;
-  --font-clr: #c8c8c8;
+  --font-clr: #DFDFDF;
   --github-fill: #b5b5b5;
   --selection: #6666ff;
   --a-clr: #886ce4;
@@ -191,7 +191,7 @@ html {
 
 @media (max-width: 700px) {
   .modal {
-      width: 400px;
+      width: 500px;
   }
 }
 
@@ -302,7 +302,10 @@ td {
   width: 450px;
   border-radius: 60px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
-  -webkit-text-stroke: 1.5px var(--font-clr);
+  /* -webkit-text-stroke: 1.5px var(--font-clr); */
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: var(--font-clr);
+
   letter-spacing: 1.7px;
   background-color: var(--foreground);
   transition: 0s all;
@@ -464,15 +467,22 @@ li {
   font-size: 26px;
 }
 
+.alertbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 .alert {
   display: none;
-  position: relative;
-  bottom: 1em;
-  padding: 25px;
+  position: absolute;
+  bottom: 2em;
+  padding: 30px;
   background-color: var(--foreground);
   /* box-shadow: var(--shadow); */
   width: 340px;
-  border-radius: 25px;
+  border-radius: 30px;
   font-size: 16px;
   cursor: default;
   font-weight: 600;
