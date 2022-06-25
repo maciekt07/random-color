@@ -236,6 +236,7 @@ darkModeToggle.addEventListener("click", () => {
 //buttons
 document.getElementById("dark-mode-toggle").addEventListener("click", () => {
     hidea();
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 var rpt = 0;
@@ -250,19 +251,23 @@ document.getElementById("color_input").addEventListener("click", () => {
     clrpicker();
     locals();
     clr_name();
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("hbutton").addEventListener("click", () => {
     showh();
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("moreinfo").addEventListener("click", () => {
     window.open(link);
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("copy").addEventListener("click", () => {
     copyToClipboard("#txt");
-    document.getElementById("history").style.display = "none"
+    console.log("Copied to clipboard " + document.getElementById("txt").textContent)
+    // document.getElementById("history").style.display = "none"
 
     // showa();
     document.getElementById("alert").style.display = "block";
@@ -279,6 +284,7 @@ document.getElementById("copy").addEventListener("click", () => {
             alert.classList.remove('animate__animated', 'animate__fadeOut');
         }, 2650);
     });
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 document.getElementById("refresh").addEventListener("click", () => {
     main();
@@ -287,6 +293,7 @@ document.getElementById("refresh").addEventListener("click", () => {
     locals();
     historyl();
     clr_name();
+    document.getElementById("shortcuts-popup").classList.remove("show");
     // const el = document.querySelector(".div1");
     // el.classList.add('animate__animated', 'animate__headShake');
     // el.addEventListener('animationend', () => {
@@ -296,6 +303,7 @@ document.getElementById("refresh").addEventListener("click", () => {
 
 document.getElementById("github").addEventListener("click", () => {
     window.open(github);
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("close1").addEventListener("click", () => {
@@ -319,6 +327,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     if (screenfull.isEnabled) {
         if (screenfull.isFullscreen) {
             screenfull.exit();
+            console.log("Fullscreen disabled")
             // document.getElementById("fullscreen").style.top = "19em";
             document.getElementById("main").style.display = "flex";
             // document.getElementById("dark-mode-toggle").style.display = "block";
@@ -331,6 +340,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
             // document.getElementById("color_input").style.display = "block";
         } else {
             screenfull.request();
+            console.log("Fullscreen enabled")
             // document.getElementById("fullscreen").style.top = "3em";
             document.getElementById("main").style.display = "none";
             // document.getElementById("dark-mode-toggle").style.display = "none";
@@ -343,6 +353,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
             // document.getElementById("color_input").style.display = "none";
         }
     }
+
 });
 
 // Google Analytics
