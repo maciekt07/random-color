@@ -63,9 +63,10 @@ document.addEventListener("keyup", function(event) {
 
 
 document.addEventListener("keyup", function(event) {
+  const n = document.getElementById("name")
   if (event.keyCode == 78) {
       // n button hides color name
-      const n = document.getElementById("name")
+      
       if (n.style.display == "block") {
           n.style.display = "none"
       } else {
