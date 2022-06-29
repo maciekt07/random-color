@@ -14,7 +14,7 @@
 }
 
 body {
-  transition: 0.3s all;
+  transition: 0.4s all;
 }
 
 html {
@@ -408,6 +408,27 @@ td {
   overflow: auto;
 }
 
+#historyhex:hover {
+  color: white;
+  background: rgb(58, 65, 110);
+  text-decoration: none;
+
+}
+
+#historyhex {
+  padding: 6px;
+  border-radius: 8px;
+  text-decoration: underline;
+
+}
+
+.hclrimg {
+  border-radius: 5px;
+  position: relative;
+  bottom: -9px;
+  margin: 4px;
+}
+
 .h-close-btn {
   margin-top: 5px;
   margin-right: 10px;
@@ -450,7 +471,7 @@ td {
   padding: 10px;
   color: var(--font-clr);
   background-color: var(--foreground);
-  width: 370px;
+  width: 380px;
   min-height: 350px;
   height: auto;
   border-radius: 30px;
@@ -460,6 +481,7 @@ td {
 
 li {
   margin: 6px;
+  text-align: left;
 }
 
 .span1 {
@@ -566,7 +588,8 @@ path,
 .shortcuts,
 .history-btn,
 .h-close-btn,
-#h-back-to-to {
+#h-back-to-to,
+#historyhex {
   cursor: pointer;
 }
 
@@ -575,7 +598,9 @@ br,
 .button2,
 .social-btn,
 .closebtn,
-.dark-mode-toggle {
+.dark-mode-toggle,
+#historyhex,
+.hclrimg {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
