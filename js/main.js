@@ -56,15 +56,40 @@ setTimeout(() => {
         .getElementById("main")
         .classList.remove("animate__animated", "animate__headShake");
 }, 1500);
+
 // add color to history list
+var hclrx = []
+
 function historyl() {
+    var c_link = document.getElementById("txt").textContent.replace("#", "");
+
     document.getElementById("historylist").innerHTML +=
-        "<li>" +
-        document.getElementById("txt").textContent +
+        "<li>" + "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr()'>" + "<img class='hclrimg' src='https://singlecolorimage.com/get/" + c_link + "/25x25'/>" +
+        document.getElementById("txt").textContent + "</span>" +
         " | " +
         "RGB " +
         clr_link.convertToRGB() +
         "<hr><br></li>";
+};
+
+function hclr() {
+    const x = hclrx[hclrx.length - 1];
+    var x2 = x.replace("#", "");
+    console.log(x)
+    document.getElementById("txt").textContent = x
+    document.body.style.backgroundColor = x;
+    document.fgColor = x;
+    document.getElementById("color_input").value = x
+    clr_name()
+    document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB()
+    link = "https://www.color-hex.com/color/" + x2;
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
+    document.getElementById("alertspan").innerHTML =
+        "<span class='copy-emoji'>📋</span> Copied to clipboard: " + x;
+    window.onblur = function() {
+        document.title = "Random Color - " + x;
+    };
+    locals();
 }
 
 //show history
@@ -138,15 +163,9 @@ function clrpicker() {
             "RGB " + StrNew.convertToRGB();
         link = "https://www.color-hex.com/color/" + StrNew;
         document.getElementById("txt").innerHTML = colorPicker.value;
-        document
-            .querySelector('meta[name="theme-color"]')
-            .setAttribute("content", colorPicker.value);
-        document
-            .querySelector('input[type="color"]')
-            .setAttribute("value", colorPicker.value);
-        document.getElementById("alertspan").innerHTML =
-            "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
-            colorPicker.value;
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
+        document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
+        document.getElementById("alertspan").innerHTML = "<span class='copy-emoji'>📋</span> Copied to clipboard: " + colorPicker.value;
         window.onblur = function() {
             document.title = "Random Color - " + colorPicker.value;
         };
@@ -186,9 +205,11 @@ if (localStorage.getItem("clr") != null) {
     document.getElementById("txt").innerHTML = clr;
     document.getElementById("alertspan").innerHTML =
         "<span class='copy-emoji'>📋</span> Copied to clipboard: " + clr;
+    var c_link = document.getElementById("txt").textContent.replace("#", "");
+
     document.getElementById("historylist").innerHTML +=
-        "<li>" +
-        document.getElementById("txt").textContent +
+        "<li>" + "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr()'>" + "<img class='hclrimg' src='https://singlecolorimage.com/get/" + c_link + "/25x25'/>" +
+        document.getElementById("txt").textContent + "</span>" +
         " | " +
         "RGB " +
         clr_link.convertToRGB() +
