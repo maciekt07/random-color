@@ -398,10 +398,12 @@ document.getElementById("fullscreen").addEventListener("click", () => {
   if (screenfull.isEnabled) {
     if (screenfull.isFullscreen) {
       screenfull.exit();
+      if (window.screen.width > 1024) {
       showalert();
       document.getElementById("alertspan").innerHTML =
         "<span class='copy-emoji'>🖥️</span> Fullscreen Disabled!";
       console.log("Fullscreen disabled");
+      }
       // document.getElementById("fullscreen").style.top = "19em";
       document.getElementById("main").style.display = "flex";
       // document.getElementById("dark-mode-toggle").style.display = "block";
@@ -414,10 +416,12 @@ document.getElementById("fullscreen").addEventListener("click", () => {
       // document.getElementById("color_input").style.display = "block";
     } else {
       screenfull.request();
+      if (window.screen.width > 1024) {
       showalert();
       document.getElementById("alertspan").innerHTML =
         "<span class='copy-emoji'>🖥️</span> Fullscreen Enabled!";
       console.log("Fullscreen enabled");
+      }
       // document.getElementById("fullscreen").style.top = "3em";
       document.getElementById("main").style.display = "none";
       // document.getElementById("dark-mode-toggle").style.display = "none";
