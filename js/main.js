@@ -120,7 +120,9 @@ document.getElementById("shortcuts").addEventListener("click", () => {
     } else {
         document.getElementById("shortcuts-popup").classList.remove("show");
     }
+    document.getElementById("history").style.display = "none";
 });
+
 
 document.getElementById("s-close").addEventListener("click", () => {
     document.getElementById("shortcuts-popup").classList.remove("show");
