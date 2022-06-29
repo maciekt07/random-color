@@ -416,14 +416,14 @@ td {
 }
 
 #historyhex {
-  padding: 6px;
+  padding: 7px;
   border-radius: 8px;
   text-decoration: underline;
 
 }
 
 .hclrimg {
-  border-radius: 5px;
+  border-radius: 7px;
   position: relative;
   bottom: -9px;
   margin: 4px;
@@ -435,7 +435,7 @@ td {
   color: var(--font-clr);
   font-weight: bold;
   float: right;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 20px;
   transition: 0.3s;
   cursor: default;
@@ -515,6 +515,7 @@ li {
 .alertspan {
   color: var(--font-clr);
   cursor: default;
+  text-align: center;
 }
 
 .copy-emoji {
@@ -598,9 +599,7 @@ br,
 .button2,
 .social-btn,
 .closebtn,
-.dark-mode-toggle,
-#historyhex,
-.hclrimg {
+.dark-mode-toggle {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
