@@ -1,111 +1,111 @@
 var counter = 0;
 
 function main() {
-  counter++;
-  var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
-  bg_clr = "#" + ("000000" + bg_clr).slice(-6);
-  clr_link = ("000000" + bg_clr).slice(-6);
-  document.body.style.backgroundColor = bg_clr;
+    counter++;
+    var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
+    bg_clr = "#" + ("000000" + bg_clr).slice(-6);
+    clr_link = ("000000" + bg_clr).slice(-6);
+    document.body.style.backgroundColor = bg_clr;
 
-  window.onblur = function () {
-    document.title = "Random Color - " + bg_clr;
-  }; //title
-  window.onfocus = function () {
-    document.title = "Random Color";
-  };
+    window.onblur = () => {
+        document.title = "Random Color - " + bg_clr;
+    }; //title
+    window.onfocus = () => {
+        document.title = "Random Color";
+    };
 
-  document.getElementById("txt").innerHTML = bg_clr;
-  link = "https://www.color-hex.com/color/" + clr_link;
-  github = "https://www.github.com/maciekt07";
-  document.fgColor = bg_clr;
-  document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
-  document
-    .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", bg_clr);
+    document.getElementById("txt").innerHTML = bg_clr;
+    link = "https://www.color-hex.com/color/" + clr_link;
+    github = "https://www.github.com/maciekt07";
+    document.fgColor = bg_clr;
+    document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
+    document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", bg_clr);
 
-  //rgb
-  String.prototype.convertToRGB = function () {
-    var aRgbHex = this.match(/.{1,2}/g);
-    var aRgb = [
-      parseInt(aRgbHex[0], 16),
-      parseInt(aRgbHex[1], 16),
-      parseInt(aRgbHex[2], 16),
-    ];
-    return aRgb;
-  };
+    //rgb
+    String.prototype.convertToRGB = function() {
+        var aRgbHex = this.match(/.{1,2}/g);
+        var aRgb = [
+            parseInt(aRgbHex[0], 16),
+            parseInt(aRgbHex[1], 16),
+            parseInt(aRgbHex[2], 16),
+        ];
+        return aRgb;
+    };
 
-  const txt1 = document.getElementById("txt").textContent;
-  var Str = txt1;
-  var StrNew = Str.replace("#", "");
+    const txt1 = document.getElementById("txt").textContent;
+    var Str = txt1;
+    var StrNew = Str.replace("#", "");
 
-  document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
-  document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + bg_clr;
+    document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
+    document.getElementById("alertspan").innerHTML =
+        "<span class='copy-emoji'>📋</span> Copied to clipboard: " + bg_clr;
 
-  console.log("%c--------- ", "color:#949494; font-size: 20px;");
-  console.log(counter);
-  console.log("RGB " + clr_link.convertToRGB());
-  const top_btn = document.getElementById("h-back-to-top");
-  if (counter == 4) {
-    top_btn.style.display = "block";
-  }
+    console.log("%c--------- ", "color:#949494; font-size: 20px;");
+    console.log(counter);
+    console.log("RGB " + clr_link.convertToRGB());
+    const top_btn = document.getElementById("h-back-to-top");
+    if (counter == 4) {
+        top_btn.style.display = "block";
+    }
 }
 main();
 setTimeout(() => {
-  document
-    .getElementById("main")
-    .classList.remove("animate__animated", "animate__headShake");
-}, 1500);
+    document
+        .getElementById("main")
+        .classList.remove("animate__animated", "animate__headShake");
+}, 1000);
 
 // add color to history list
 var hclrx = [];
 
 function historyl() {
-  const c_link = document.getElementById("txt").textContent.replace("#", "");
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr()'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    c_link +
-    "/25x25'/>" +
-    document.getElementById("txt").textContent +
-    "</span>" +
-    " | " +
-    "RGB " +
-    clr_link.convertToRGB() +
-    "<hr><br></li>";
+    const c_link = document.getElementById("txt").textContent.replace("#", "");
+    document.getElementById("historylist").innerHTML +=
+        "<li>" +
+        "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea();l++'>" +
+        "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
+        c_link +
+        "/25x25'/>" +
+        document.getElementById("txt").textContent +
+        "</span>" +
+        " | " +
+        "RGB " +
+        clr_link.convertToRGB() +
+        "<hr><br></li>";
 }
 
 function hclr() {
-  const x = hclrx[hclrx.length - 1];
-  var x2 = x.replace("#", "");
-  console.log(x);
-  document.getElementById("txt").textContent = x;
-  document.body.style.backgroundColor = x;
-  document.fgColor = x;
-  document.getElementById("color_input").value = x;
-  clr_name();
-  document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
-  link = "https://www.color-hex.com/color/" + x2;
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
-  document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + x;
-  window.onblur = function () {
-    document.title = "Random Color - " + x;
-  };
-  locals();
+    const x = hclrx[hclrx.length - 1];
+    var x2 = x.replace("#", "");
+    console.log(x);
+    document.getElementById("txt").textContent = x;
+    document.body.style.backgroundColor = x;
+    document.fgColor = x;
+    document.getElementById("color_input").value = x;
+    clr_name();
+    document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
+    link = "https://www.color-hex.com/color/" + x2;
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
+    document.getElementById("alertspan").innerHTML =
+        "<span class='copy-emoji'>📋</span> Copied to clipboard: " + x;
+    window.onblur = () => {
+        document.title = "Random Color - " + x;
+    };
+    locals();
 }
 
 //show history
 document.getElementById("history").style.display = "none";
 
 function showh() {
-  var x = document.getElementById("history");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+    var x = document.getElementById("history");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }
 // const btn = document.getElementById("hbutton"); //change button text show/hide
 // btn.addEventListener("click", () => {
@@ -117,18 +117,20 @@ function showh() {
 // });
 
 document.getElementById("shortcuts").addEventListener("click", () => {
-  if (
-    document.getElementById("shortcuts-popup").className == "shortcuts-popup"
-  ) {
-    document.getElementById("shortcuts-popup").classList.add("show");
-  } else {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-  }
-  document.getElementById("history").style.display = "none";
+    if (
+        document.getElementById("shortcuts-popup").className == "shortcuts-popup"
+    ) {
+        document.getElementById("shortcuts-popup").classList.add("show");
+    } else {
+        document.getElementById("shortcuts-popup").classList.remove("show");
+    }
+    document.getElementById("history").style.display = "none";
+    document.getElementById("modaltext").innerHTML = '<h1 class="s-header">⌨️ Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Color Picker </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>'
+
 });
 
 document.getElementById("s-close").addEventListener("click", () => {
-  document.getElementById("shortcuts-popup").classList.remove("show");
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 // document.getElementById("shortcuts-popup").addEventListener('click', () => {
@@ -136,311 +138,445 @@ document.getElementById("s-close").addEventListener("click", () => {
 // });
 
 function showa() {
-  // show copy alert
-  // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
+    // show copy alert
+    // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
 }
 
 function hidea() {
-  //hide copy alert
-  $("#alert").hide();
-  document
-    .querySelector(".alert")
-    .classList.remove(
-      "animate__animated",
-      "animate__fadeInDown",
-      "animate__faster"
-    );
-  document
-    .querySelector(".alert")
-    .classList.remove("animate__animated", "animate__fadeOut");
+    //hide copy alert
+    $("#alert").hide();
+    document
+        .querySelector(".alert")
+        .classList.remove(
+            "animate__animated",
+            "animate__fadeInDown",
+            "animate__faster"
+        );
+    document
+        .querySelector(".alert")
+        .classList.remove("animate__animated", "animate__fadeOut");
 }
 
 // copy
 function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
 }
 
 // color picker
 function clrpicker() {
-  const colorPicker = document.getElementById("color_input");
-  colorPicker.addEventListener("input", () => {
-    const txt1 = document.getElementById("txt").textContent;
-    var Str = txt1;
-    var StrNew = Str.replace("#", "");
-    hidea();
-    document.body.style.backgroundColor = colorPicker.value;
-    document.fgColor = colorPicker.value;
-    document.getElementById("divrgb").innerHTML =
-      "RGB " + StrNew.convertToRGB();
-    link = "https://www.color-hex.com/color/" + StrNew;
-    document.getElementById("txt").innerHTML = colorPicker.value;
-    document
-      .querySelector('meta[name="theme-color"]')
-      .setAttribute("content", colorPicker.value);
-    document
-      .querySelector('input[type="color"]')
-      .setAttribute("value", colorPicker.value);
-    document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
-      colorPicker.value;
-    window.onblur = function () {
-      document.title = "Random Color - " + colorPicker.value;
-    };
-    window.onfocus = function () {
-      document.title = "Random Color";
-    };
-  });
+    const colorPicker = document.getElementById("color_input");
+    colorPicker.addEventListener("input", () => {
+        const txt1 = document.getElementById("txt").textContent;
+        var Str = txt1;
+        var StrNew = Str.replace("#", "");
+        hidea();
+        document.body.style.backgroundColor = colorPicker.value;
+        document.fgColor = colorPicker.value;
+        document.getElementById("divrgb").innerHTML =
+            "RGB " + StrNew.convertToRGB();
+        link = "https://www.color-hex.com/color/" + StrNew;
+        document.getElementById("txt").innerHTML = colorPicker.value;
+        document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute("content", colorPicker.value);
+        document
+            .querySelector('input[type="color"]')
+            .setAttribute("value", colorPicker.value);
+        document.getElementById("alertspan").innerHTML =
+            "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
+            colorPicker.value;
+        window.onblur = () => {
+            document.title = "Random Color - " + colorPicker.value;
+        };
+    });
 }
 
 function input_refresh() {
-  document.getElementById("color_input").value =
-    document.getElementById("txt").textContent;
+    document.getElementById("color_input").value =
+        document.getElementById("txt").textContent;
 }
 
 // darkmode toggle
 if (document.location.search.match(/type=embed/gi)) {
-  window.parent.postMessage("resize", "*");
+    window.parent.postMessage("resize", "*");
 }
 
 //buttons
 document.getElementById("dark-mode-toggle").addEventListener("click", () => {
-  hidea();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+    hidea();
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 var rpt = 0;
 
+document.getElementById("color_input").addEventListener("change", () => {
+    ifFavClr();
+    l = 0;
+})
+
 document.getElementById("color_input").addEventListener("click", () => {
-  if (rpt == 0) {
-    //bug repair
-    document.getElementById("color_input").click();
-    document.getElementById("db").click();
-  }
-  rpt++;
-  clrpicker();
-  locals();
-  clr_name();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+    ifFavClr();
+    l = 0;
+    if (rpt == 0) {
+        //bug repair
+        document.getElementById("color_input").click();
+        document.getElementById("db").click();
+    }
+    rpt++;
+    clrpicker();
+    locals();
+    clr_name();
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("hbutton").addEventListener("click", () => {
-  showh();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+    showh();
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("moreinfo").addEventListener("click", () => {
-  window.open(link);
-  document.getElementById("shortcuts-popup").classList.remove("show");
+    window.open(link);
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("copy").addEventListener("click", () => {
-  copyToClipboard("#txt");
-  console.log(
-    "Copied to clipboard " + document.getElementById("txt").textContent
-  );
-  // document.getElementById("history").style.display = "none"
-  document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
-    document.getElementById("txt").textContent;
-  // showa();
-  showalert();
-});
-function showalert() {
-  hidea();
-  document.getElementById("alert").style.display = "block";
-  const alert = document.querySelector(".alert");
-  alert.classList.add("animate__animated", "animate__fadeInDown");
-  alert.addEventListener("animationend", () => {
-    alert.classList.remove(
-      "animate__animated",
-      "animate__fadeInDown",
-      "animate__faster"
+    copyToClipboard("#txt");
+    console.log(
+        "Copied to clipboard " + document.getElementById("txt").textContent
     );
-    setTimeout(() => {
-      alert.classList.add("animate__animated", "animate__fadeOut");
-    }, 1300);
-    setTimeout(() => {
-      hidea();
-      alert.classList.remove("animate__animated", "animate__fadeOut");
-    }, 1700);
-  });
-  document.getElementById("shortcuts-popup").classList.remove("show");
-}
+    // document.getElementById("history").style.display = "none"
+    document.getElementById("alertspan").innerHTML =
+        "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
+        document.getElementById("txt").textContent;
+    // showa();
+    showalert();
+});
 
+function showalert() {
+    hidea();
+    document.getElementById("alert").style.display = "block";
+    const alert = document.querySelector(".alert");
+    alert.classList.add("animate__animated", "animate__fadeInDown");
+    alert.addEventListener("animationend", () => {
+        alert.classList.remove(
+            "animate__animated",
+            "animate__fadeInDown",
+            "animate__faster"
+        );
+        setTimeout(() => {
+            alert.classList.add("animate__animated", "animate__fadeOut");
+        }, 1000);
+        setTimeout(() => {
+            hidea();
+            alert.classList.remove("animate__animated", "animate__fadeOut");
+        }, 1350);
+    });
+    document.getElementById("shortcuts-popup").classList.remove("show");
+}
+const uniqueFavs = (array) => (
+    array.filter((currentValue, index, arr) => (
+        arr.indexOf(currentValue) === index
+    ))
+);
+const like = document.getElementById("like")
+const addToFavs = () => {
+    var new_favs = document.getElementById("txt").textContent;
+    if (localStorage.getItem("favs") == null) {
+        localStorage.setItem("favs", "[]");
+    }
+    var old_favs = JSON.parse(localStorage.getItem("favs"));
+    old_favs.push(new_favs)
+    localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)))
+}
+let ifFavClr = () => {
+    if (localStorage.getItem("favs") !== null) {
+        if (localStorage.getItem("favs").includes(document.getElementById("txt").textContent)) {
+            like.style.color = "#FF2E78"
+        } else {
+            like.style.color = "currentColor"
+        }
+    }
+}
+const removeFromFavs = (arr, item) => {
+    let newArray = [...arr]
+    const index = newArray.findIndex((element) => element === item)
+    if (index !== -1) {
+        newArray.splice(index, 1)
+        return newArray
+    }
+}
+let l = 0
+document.getElementById("fav").addEventListener("click", () => {
+    addToFavs();
+    l++
+    if (l % 2 != 0) {
+        like.style.color = "#FF2E78"
+        showalert();
+        document.getElementById("alertspan").innerHTML =
+            "<span class='copy-emoji'>❤️</span> Added to favorites: " + document.getElementById("txt").textContent;
+        like.classList.add("fa-beat")
+        setTimeout(() => {
+            like.classList.remove("fa-beat")
+        }, 2050);
+    } else {
+        //remove from favs
+        //get favs
+        let favsNew = JSON.parse(localStorage.getItem("favs"));
+        console.log(favsNew)
+        console.log(removeFromFavs(favsNew, document.getElementById("txt").textContent))
+        localStorage.removeItem("favs")
+        if (localStorage.getItem("favs") == null) {
+            localStorage.setItem("favs", "[]");
+        }
+        localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, document.getElementById("txt").textContent)))
+        ifFavClr();
+        like.classList.remove("fa-beat")
+        like.style.color = "currentColor"
+        showalert();
+        document.getElementById("alertspan").innerHTML =
+            "<span class='copy-emoji'>💔</span> Removed from favorites: " + document.getElementById("txt").textContent;
+        like.classList.add("fa-shake")
+        setTimeout(() => {
+            like.classList.remove("fa-shake")
+        }, 600);
+
+    }
+})
 //local storage
 // save last color in local storage
 function locals() {
-  localStorage.setItem("clr", document.getElementById("txt").textContent);
-  console.log("%c%s", "color:#b144e4", localStorage.getItem("clr"));
+    localStorage.setItem("clr", document.getElementById("txt").textContent);
+    console.log("%c%s", "color:#b144e4", localStorage.getItem("clr"));
 }
 
 if (localStorage.getItem("clr") != null) {
-  const clr = localStorage.getItem("clr");
-  document.body.style.backgroundColor = clr;
-  document.fgColor = clr;
-  document.querySelector('input[type="color"]').setAttribute("value", clr);
-  document
-    .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", clr);
-  document.getElementById("color_input").value = clr;
-  document.getElementById("divrgb").innerHTML =
-    "RGB " + clr.replace("#", "").convertToRGB();
-  document.getElementById("txt").innerHTML = clr;
-  document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + clr;
-  const c_link = document.getElementById("txt").textContent.replace("#", "");
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr()'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    c_link +
-    "/25x25'/>" +
-    document.getElementById("txt").textContent +
-    "</span>" +
-    " | " +
-    "RGB " +
-    clr_link.convertToRGB() +
-    "<hr><br></li>";
-  link = "https://www.color-hex.com/color/" + clr.replace("#", "");
-  window.onblur = function () {
-    document.title = "Random Color - " + clr;
-  };
+    l = 1
+    const clr = localStorage.getItem("clr");
+    document.body.style.backgroundColor = clr;
+    document.fgColor = clr;
+    document.querySelector('input[type="color"]').setAttribute("value", clr);
+    document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", clr);
+    document.getElementById("color_input").value = clr;
+    document.getElementById("divrgb").innerHTML =
+        "RGB " + clr.replace("#", "").convertToRGB();
+    document.getElementById("txt").innerHTML = clr;
+    document.getElementById("alertspan").innerHTML =
+        "<span class='copy-emoji'>📋</span> Copied to clipboard: " + clr;
+    const c_link = document.getElementById("txt").textContent.replace("#", "");
+    document.getElementById("historylist").innerHTML +=
+        "<li>" +
+        "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea();l++'>" +
+        "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
+        c_link +
+        "/25x25'/>" +
+        document.getElementById("txt").textContent +
+        "</span>" +
+        " | " +
+        "RGB " +
+        clr_link.convertToRGB() +
+        "<hr><br></li>";
+    link = "https://www.color-hex.com/color/" + clr.replace("#", "");
+    if (localStorage.getItem("favs").includes(document.getElementById("txt").textContent)) {
+        like.style.color = "#FF2E78"
+    } else {
+        like.style.color = "currentColor"
+        l++
+    }
+    window.onblur = () => {
+        document.title = "Random Color - " + clr;
+    };
+
 } else {
-  const c_link = document.getElementById("txt").textContent.replace("#", "");
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr()'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    c_link +
-    "/25x25'/>" +
-    document.getElementById("txt").textContent +
-    "</span>" +
-    " | " +
-    "RGB " +
-    clr_link.convertToRGB() +
-    "<hr><br></li>";
+    const c_link = document.getElementById("txt").textContent.replace("#", "");
+    document.getElementById("historylist").innerHTML +=
+        "<li>" +
+        "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea();'>" +
+        "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
+        c_link +
+        "/25x25'/>" +
+        document.getElementById("txt").textContent +
+        "</span>" +
+        " | " +
+        "RGB " +
+        clr_link.convertToRGB() +
+        "<hr><br></li>";
+    ifFavClr();
+    l++
 }
 locals();
 //save theme in local storage
 let darkMode = localStorage.getItem("darkMode");
 const darkModeToggle = document.querySelector("#dark-mode-toggle");
 const enableDarkMode = () => {
-  document.body.classList.add("darkmode");
-  localStorage.setItem("darkMode", "enabled");
+    document.body.classList.add("darkmode");
+    localStorage.setItem("darkMode", "enabled");
 };
 const disableDarkMode = () => {
-  document.body.classList.remove("darkmode");
-  localStorage.setItem("darkMode", null);
+    document.body.classList.remove("darkmode");
+    localStorage.setItem("darkMode", null);
 };
 if (darkMode === "enabled") {
-  enableDarkMode();
-  console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-}
-darkModeToggle.addEventListener("click", () => {
-  darkMode = localStorage.getItem("darkMode");
-  if (darkMode !== "enabled") {
     enableDarkMode();
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-    showalert();
-    document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>🌙</span> Darkmode Enabled!";
-  } else {
-    disableDarkMode();
-    console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
-    showalert();
-    document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>☀️</span> Darkmode Disabled!";
-  }
+}
+darkModeToggle.addEventListener("click", () => {
+    darkMode = localStorage.getItem("darkMode");
+    if (darkMode !== "enabled") {
+        enableDarkMode();
+        console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
+        showalert();
+        document.getElementById("alertspan").innerHTML =
+            "<span class='copy-emoji'>🌙</span> Darkmode Enabled!";
+    } else {
+        disableDarkMode();
+        console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
+        showalert();
+        document.getElementById("alertspan").innerHTML =
+            "<span class='copy-emoji'>☀️</span> Darkmode Disabled!";
+    }
 });
 
+var favsChangeClr = null
+
+document.getElementById("favlist").addEventListener("click", () => {
+    document.getElementById("history").style.display = "none";
+    let favsarr = JSON.parse(localStorage.getItem("favs"))
+    if (
+        document.getElementById("shortcuts-popup").className == "shortcuts-popup"
+    ) {
+        document.getElementById("shortcuts-popup").classList.add("show");
+    } else {
+        document.getElementById("shortcuts-popup").classList.remove("show");
+    }
+    document.getElementById("modaltext").innerHTML = "<h1 class='favsheader'>🌈 Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors: " + favsarr.length + "</h1>";
+    ul = document.createElement('div');
+    document.getElementById("modaltext").appendChild(ul);
+    favsarr.forEach(item => {
+        let li = document.createElement('p');
+        li.setAttribute("id", "favsli")
+        ul.appendChild(li);
+        li.innerHTML += "<img class='favsimg' align='left' src='https://singlecolorimage.com/get/" +
+            item.replace("#", "") +
+            "/29x44'/>" + item + "</br>" + " " + ntc.name(item)[1];
+        li.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();l++")
+    });
+})
+
+
+const ChangeToFav = () => {
+
+    document.getElementById("shortcuts-popup").classList.remove("show");
+    var x2 = favsChangeClr.replace("#", "");
+    console.log(favsChangeClr);
+    document.getElementById("txt").textContent = favsChangeClr;
+    document.body.style.backgroundColor = favsChangeClr;
+    document.fgColor = favsChangeClr;
+    document.getElementById("color_input").value = favsChangeClr;
+    clr_name();
+    document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
+    link = "https://www.color-hex.com/color/" + x2;
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", favsChangeClr);
+    document.getElementById("alertspan").innerHTML =
+        "<span class='copy-emoji'>📋</span> Copied to clipboard: " + favsChangeClr;
+    window.onblur = () => {
+        document.title = "Random Color - " + favsChangeClr;
+    };
+    locals();
+}
+
+
 document.getElementById("refresh").addEventListener("click", () => {
-  main();
-  hidea();
-  input_refresh();
-  locals();
-  historyl();
-  clr_name();
-  document.getElementById("shortcuts-popup").classList.remove("show");
-  // const el = document.querySelector(".div1");
-  // el.classList.add('animate__animated', 'animate__headShake');
-  // el.addEventListener('animationend', () => {
-  //     el.classList.remove('animate__animated', 'animate__headShake');
-  //     });
+    main();
+    hidea();
+    input_refresh();
+    locals();
+    historyl();
+    clr_name();
+    ifFavClr();
+    document.getElementById("shortcuts-popup").classList.remove("show");
+    l = 0;
+    // const el = document.querySelector(".div1");
+    // el.classList.add('animate__animated', 'animate__headShake');
+    // el.addEventListener('animationend', () => {
+    //     el.classList.remove('animate__animated', 'animate__headShake');
+    //     });
 });
 
 document.getElementById("github").addEventListener("click", () => {
-  window.open(github);
-  document.getElementById("shortcuts-popup").classList.remove("show");
+    window.open(github);
+    document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
 document.getElementById("close1").addEventListener("click", () => {
-  showh();
+    showh();
 });
 
 document.getElementById("h-back-to-top").addEventListener("click", () => {
-  // window.open('#history', '_self')
-  document.getElementById("h").scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
+    // window.open('#history', '_self')
+    document.getElementById("h").scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
 });
 
 document.getElementById("a-close2").addEventListener("click", () => {
-  hidea();
+    hidea();
 });
 
 document.getElementById("fullscreen").addEventListener("click", () => {
-  if (screenfull.isEnabled) {
-    if (screenfull.isFullscreen) {
-      screenfull.exit();
-      if (window.screen.width > 1024) {
-      showalert();
-      document.getElementById("alertspan").innerHTML =
-        "<span class='copy-emoji'>🖥️</span> Fullscreen Disabled!";
-      console.log("Fullscreen disabled");
-      }
-      // document.getElementById("fullscreen").style.top = "19em";
-      document.getElementById("main").style.display = "flex";
-      // document.getElementById("dark-mode-toggle").style.display = "block";
-      // document.getElementById("shortcuts").style.display = "block";
-      document.getElementById("moreinfo").style.visibility = "visible";
-      document.getElementById("copy").style.visibility = "visible";
-      document.getElementById("refresh").style.visibility = "visible";
-      document.getElementById("github").style.display = "flex";
-      // document.getElementById("hbutton").style.display = "block";
-      // document.getElementById("color_input").style.display = "block";
-    } else {
-      screenfull.request();
-      if (window.screen.width > 1024) {
-      showalert();
-      document.getElementById("alertspan").innerHTML =
-        "<span class='copy-emoji'>🖥️</span> Fullscreen Enabled!";
-      console.log("Fullscreen enabled");
-      }
-      // document.getElementById("fullscreen").style.top = "3em";
-      document.getElementById("main").style.display = "none";
-      // document.getElementById("dark-mode-toggle").style.display = "none";
-      // document.getElementById("shortcuts").style.display = "none";
-      document.getElementById("moreinfo").style.visibility = "hidden";
-      document.getElementById("copy").style.visibility = "hidden";
-      document.getElementById("refresh").style.visibility = "hidden";
-      document.getElementById("github").style.display = "none";
-      // document.getElementById("hbutton").style.display = "none";
-      // document.getElementById("color_input").style.display = "none";
+    if (screenfull.isEnabled) {
+        if (screenfull.isFullscreen) {
+            screenfull.exit();
+            if (window.screen.width > 1024) {
+                showalert();
+                document.getElementById("alertspan").innerHTML =
+                    "<span class='copy-emoji'>🖥️</span> Fullscreen Disabled!";
+                console.log("Fullscreen disabled");
+            }
+            // document.getElementById("fullscreen").style.top = "19em";
+            document.getElementById("main").style.display = "flex";
+            // document.getElementById("dark-mode-toggle").style.display = "block";
+            // document.getElementById("shortcuts").style.display = "block";
+            document.getElementById("moreinfo").style.visibility = "visible";
+            document.getElementById("copy").style.visibility = "visible";
+            document.getElementById("refresh").style.visibility = "visible";
+            document.getElementById("github").style.display = "flex";
+            // document.getElementById("hbutton").style.display = "block";
+            // document.getElementById("color_input").style.display = "block";
+        } else {
+            screenfull.request();
+            if (window.screen.width > 1024) {
+                showalert();
+                document.getElementById("alertspan").innerHTML =
+                    "<span class='copy-emoji'>🖥️</span> Fullscreen Enabled!";
+                console.log("Fullscreen enabled");
+            }
+            // document.getElementById("fullscreen").style.top = "3em";
+            document.getElementById("main").style.display = "none";
+            // document.getElementById("dark-mode-toggle").style.display = "none";
+            // document.getElementById("shortcuts").style.display = "none";
+            document.getElementById("moreinfo").style.visibility = "hidden";
+            document.getElementById("copy").style.visibility = "hidden";
+            document.getElementById("refresh").style.visibility = "hidden";
+            document.getElementById("github").style.display = "none";
+            // document.getElementById("hbutton").style.display = "none";
+            // document.getElementById("color_input").style.display = "none";
+        }
     }
-  }
 });
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
 
 function gtag() {
-  dataLayer.push(arguments);
+    dataLayer.push(arguments);
 }
 gtag("js", new Date());
 
