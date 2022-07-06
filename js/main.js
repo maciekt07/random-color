@@ -393,6 +393,7 @@ if (localStorage.getItem("clr") != null) {
     };
 
 } else {
+    document.getElementById("fav").click();
     const c_link = document.getElementById("txt").textContent.replace("#", "");
     document.getElementById("historylist").innerHTML +=
         "<li>" +
