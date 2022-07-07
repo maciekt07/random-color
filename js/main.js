@@ -464,9 +464,11 @@ document.getElementById("favlist").addEventListener("click", () => {
         ul.appendChild(li);
         li.innerHTML += "<img class='favsimg' align='left' src='https://singlecolorimage.com/get/" +
             item.replace("#", "") +
-            "/29x44'/>" + item + "</br>" + " " + ntc.name(item)[1];
+            "/29x44'/>" + item + "</br>" + " " + "<span class='favsclrname'>"+ ntc.name(item)[1]+"</span>";
         li.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();l++")
     });
+    var height = document.getElementById("txt").style.height;
+    console.log(height)
 })
 
 
@@ -530,6 +532,7 @@ document.getElementById("h-back-to-top").addEventListener("click", () => {
 document.getElementById("a-close2").addEventListener("click", () => {
     hidea();
 });
+
 
 document.getElementById("fullscreen").addEventListener("click", () => {
     if (screenfull.isEnabled) {
