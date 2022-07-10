@@ -117,6 +117,7 @@ function showh() {
 // });
 
 document.getElementById("shortcuts").addEventListener("click", () => {
+    document.getElementById("s-delete").style.display = "none"
     if (
         document.getElementById("shortcuts-popup").className == "shortcuts-popup"
     ) {
@@ -446,6 +447,7 @@ darkModeToggle.addEventListener("click", () => {
 var favsChangeClr = null
 
 document.getElementById("favlist").addEventListener("click", () => {
+    hidea();
     document.getElementById("history").style.display = "none";
     let favsarr = JSON.parse(localStorage.getItem("favs"))
     if (
@@ -457,6 +459,7 @@ document.getElementById("favlist").addEventListener("click", () => {
     }
     document.getElementById("modaltext").innerHTML = "<h1 class='favsheader'>🌈 Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors: " + favsarr.length + "</h1>";
     ul = document.createElement('div');
+    ul.setAttribute("style", "cursor:default")
     document.getElementById("modaltext").appendChild(ul);
     favsarr.forEach(item => {
         let li = document.createElement('p');
@@ -465,10 +468,19 @@ document.getElementById("favlist").addEventListener("click", () => {
         li.innerHTML += "<img class='favsimg' align='left' src='https://singlecolorimage.com/get/" +
             item.replace("#", "") +
             "/29x44'/>" + item + "</br>" + " " + "<span class='favsclrname'>"+ ntc.name(item)[1]+"</span>";
-        li.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();l++")
+        li.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();l++;this.classList.add('animate__animated', 'animate__backOutRight')")
     });
-    var height = document.getElementById("txt").style.height;
-    console.log(height)
+    const del = document.getElementById("s-delete")
+    if (favsarr.length > 0) {
+    del.style.display = "block"
+    } else {
+        del.style.display = "none"
+    }
+    del.addEventListener("click", ()=>{
+            document.getElementById("shortcuts-popup").classList.remove("show");
+            like.style.color = "currentColor"
+            localStorage.setItem("favs", "[]");  
+    })
 })
 
 
