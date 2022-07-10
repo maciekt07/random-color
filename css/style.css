@@ -181,7 +181,7 @@ html {
 
 .modal {
   height: auto;
-  max-height: 1000px;
+  max-height: 800px;
   background-color: rgb(31, 31, 31);
   width: 550px;
   max-width: 100%;
@@ -192,33 +192,34 @@ html {
   overflow: auto;
 }
 
-/* @media (max-width: 700px) {
-.modal {
-    width: 530px;
-}
-} */
-
 table,
 tr,
 td {
   cursor: default;
 }
 
-#s-close {
+.s-close {
   outline: none;
   border: 3px solid red;
-  padding: 12px;
+  padding: 15px;
   background: transparent;
   color: red;
   font-size: 18px;
-  border-radius: 12px;
-  width: 110px;
+  border-radius: 15px;
+  width: auto;
   transition-duration: 0.2s;
   animation-delay: 0.5s;
 }
 
-#s-close:hover {
+.s-close:hover {
   opacity: 0.5;
+}
+
+
+.s-delete {
+  display: none;
+  border: 3px solid rgb(255, 80, 80);
+  color: rgb(255, 80, 80);
 }
 
 .s-header {
@@ -235,6 +236,7 @@ td {
 }
 
 #favsli {
+  transition: 0.2s;
   opacity: 0.8;
   text-align: center;
   margin-right: 220px;
@@ -268,7 +270,17 @@ td {
   font-size: 30px;
   color: white;
   margin-left: 10px;
+  cursor: text;
 }
+
+@media (max-width: 700px) {
+  .modal {
+      width: 450px;
+    }
+    #favsli {
+      margin-right: 125px;
+    }
+  }
 
 .key {
   font-size: 18px;
