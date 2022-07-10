@@ -37,7 +37,9 @@
             <div class="modal">
                 <span id="modaltext">
                 </span>
-                <br> <button id="s-close">Close</button>
+                <br> 
+                <button id="s-delete" class="s-close s-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete All</button><br>
+                <button id="s-close" class="s-close"><i class="fa-solid fa-circle-xmark"></i></i>&nbsp;Close</button>
             </div>
         </div>
     </div>
@@ -78,7 +80,7 @@
         function clr_name() {
             const hex = document.getElementById("txt").textContent;
             var n_match = ntc.name(hex);
-            n_name = n_match[1]; // Text string: Color name
+            n_name = n_match[1];
             console.log(n_name)
             document.getElementById("name").textContent = n_name
         }
