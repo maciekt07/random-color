@@ -34,6 +34,8 @@ html {
   --a-hover: #886ce4;
   --blackwhite: black;
   --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+  --bar-clr: rgba(222, 222, 222, 0.5);
+  --hr-gradient: linear-gradient(90deg, rgba(108, 209, 228, 1) 24%, rgba(67, 143, 223, 1) 76%);
 }
 
 .darkmode {
@@ -46,11 +48,18 @@ html {
   --selection: #6666ff;
   --a-clr: #886ce4;
   --a-hover: #0076d7;
+  --bar-clr: rgba(45, 45, 45, 0.5);
+  --hr-gradient: linear-gradient(90deg, rgba(136, 108, 228, 1) 24%, rgba(142, 60, 228, 1) 76%);
 }
 
 .dark-mode-toggle,
 .history-btn,
-.shortcuts {
+.shortcuts,
+.history-btn,
+.shortcuts,
+.fullscreen,
+.fav-list-btn,
+.fav-btn {
   color: var(--foreground);
   border: 2px solid currentColor;
   padding: 4px;
@@ -60,10 +69,12 @@ html {
   height: 45px;
   transition-duration: 0.5s;
   animation-delay: 5s;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .dark-mode-toggle {
-  position: absolute;
   z-index: 100;
   top: 1em;
   right: 1em;
@@ -106,19 +117,9 @@ html {
 }
 
 .history-btn {
-  position: absolute;
-  z-index: 100;
   top: 10em;
   right: 1em;
-  color: var(--foreground);
-  border: 2px solid currentColor;
-  padding: 4px;
-  background: transparent;
-  border-radius: 5px;
-  width: 45px;
-  height: 45px;
-  transition-duration: 0.5s;
-  animation-delay: 5s;
+  cursor: pointer;
 }
 
 .history-btn:hover {
@@ -132,19 +133,8 @@ html {
 }
 
 .shortcuts {
-  position: absolute;
-  z-index: 100;
   top: 14.5em;
   right: 1em;
-  color: var(--foreground);
-  border: 2px solid currentColor;
-  padding: 4px;
-  background: transparent;
-  border-radius: 5px;
-  width: 45px;
-  height: 45px;
-  transition-duration: 0.5s;
-  animation-delay: 5s;
 }
 
 .shortcuts:hover {
@@ -246,6 +236,7 @@ td {
   color: white;
   text-decoration: underline;
   border: 3px solid rgb(58, 65, 110);
+  cursor: pointer;
 }
 
 #favsli:hover {
@@ -276,11 +267,12 @@ td {
 @media (max-width: 700px) {
   .modal {
       width: 450px;
-    }
-    #favsli {
-      margin-right: 125px;
-    }
   }
+
+  #favsli {
+      margin-right: 125px;
+  }
+}
 
 .key {
   font-size: 18px;
@@ -293,19 +285,8 @@ td {
 }
 
 .fullscreen {
-  position: absolute;
-  z-index: 100;
   top: 19em;
   right: 1em;
-  color: var(--foreground);
-  border: 2px solid currentColor;
-  padding: 4px;
-  background: transparent;
-  border-radius: 5px;
-  width: 45px;
-  height: 45px;
-  transition-duration: 0.5s;
-  animation-delay: 5s;
 }
 
 .fs-icon {
@@ -320,19 +301,8 @@ td {
 
 
 .fav-btn {
-  position: absolute;
-  z-index: 100;
   top: 23.5em;
   right: 1em;
-  color: var(--foreground);
-  border: 2px solid currentColor;
-  padding: 4px;
-  background: transparent;
-  border-radius: 5px;
-  width: 45px;
-  height: 45px;
-  transition-duration: 0.5s;
-  animation-delay: 5s;
 }
 
 i {
@@ -348,19 +318,30 @@ i {
 
 
 .fav-list-btn {
-  position: absolute;
-  z-index: 100;
   top: 28em;
   right: 1em;
-  color: var(--foreground);
-  border: 2px solid currentColor;
-  padding: 4px;
-  background: transparent;
-  border-radius: 5px;
-  width: 45px;
-  height: 45px;
+}
+
+.fav-list-btn:hover {
+  box-shadow: var(--shadow);
+}
+
+.right-bar {
+  z-index: 99;
+  backdrop-filter: blur(30px);
+  height: 435px;
+  width: 75px;
+  background: var(--bar-clr);
+  display: inline-block;
+  position: absolute;
+  right: 0em;
+  top: 0em;
+  border-radius: 18px 0 0 18px;
   transition-duration: 0.5s;
   animation-delay: 5s;
+  border-left: 2px solid var(--foreground);
+  border-bottom: 2px solid var(--foreground);
+  cursor: default;
 }
 
 @media (max-width: 585px) {
@@ -391,6 +372,10 @@ i {
   .fav-list-btn {
       top: 47.5em;
   }
+
+  .right-bar {
+      top: 16em;
+  }
 }
 
 .main {
@@ -405,7 +390,7 @@ i {
   height: auto;
   width: 450px;
   border-radius: 60px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   /* -webkit-text-stroke: 1.5px var(--font-clr); */
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: var(--font-clr);
@@ -445,6 +430,7 @@ i {
   transition-duration: 0.5s;
   animation-delay: 5s;
   color: var(--font-clr);
+  cursor: pointer;
 }
 
 .button1:hover {
@@ -464,6 +450,7 @@ i {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  cursor: pointer;
 }
 
 .social-links {
@@ -479,6 +466,7 @@ i {
   background: var(--foreground);
   margin: 5px;
   transition: 1s;
+  cursor: pointer;
 }
 
 .social-btn span {
@@ -486,6 +474,7 @@ i {
   overflow: hidden;
   transition: 1s;
   text-align: center;
+  cursor: pointer;
 }
 
 .social-btn:hover {
@@ -512,18 +501,17 @@ i {
   overflow: auto;
 }
 
+#historyhex {
+  padding: 7px;
+  border-radius: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 #historyhex:hover {
   color: white;
   background: rgb(58, 65, 110);
   text-decoration: none;
-
-}
-
-#historyhex {
-  padding: 7px;
-  border-radius: 8px;
-  text-decoration: underline;
-
 }
 
 .hclrimg {
@@ -539,7 +527,7 @@ i {
   color: var(--font-clr);
   font-weight: bold;
   float: right;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 20px;
   transition: 0.3s;
   cursor: default;
@@ -563,6 +551,7 @@ i {
   transition-duration: 0.5s;
   animation-delay: 5s;
   color: var(--font-clr);
+  cursor: pointer;
 }
 
 #h-back-to-top:hover {
@@ -588,9 +577,22 @@ li {
   text-align: left;
 }
 
-.span1 {
+.history-header {
+  margin-top: 40px;
   margin-left: 20px;
-  font-size: 26px;
+  font-size: 27px;
+  cursor: text;
+}
+
+hr {
+  height: 2px;
+  border: none;
+  background: var(--hr-gradient);
+  border-radius: 100px;
+}
+
+.fa-chevron-up {
+  color: white;
 }
 
 .alertbox {
@@ -606,17 +608,15 @@ li {
   bottom: 2em;
   padding: 30px;
   background-color: var(--foreground);
-  /* box-shadow: var(--shadow); */
+  backdrop-filter: blur(4px);
   width: auto;
   border-radius: 30px;
   font-size: 16px;
   cursor: default;
   font-weight: 600;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
 }
 
-.alertspan {
+#alertspan {
   color: var(--font-clr);
   cursor: default;
   text-align: center;
@@ -641,6 +641,7 @@ li {
 .closebtn:hover,
 .h-close-btn:hover {
   color: red;
+  cursor: pointer;
 }
 
 #db {
@@ -676,35 +677,20 @@ h2,
   cursor: text;
 }
 
-button,
 img,
 svg,
-.body1,
 path,
-.button1,
-.flex-center,
-.social-btn,
-.closebtn:hover,
-.button2,
-.social-btn span,
-.dark-mode-toggle,
-#bmc-wbtn,
-#color_input,
-.shortcuts,
-.history-btn,
-.h-close-btn,
-#h-back-to-to,
-#historyhex,
-#favsli {
+#bmc-wbtn
+{
   cursor: pointer;
 }
 
 br,
 .button1,
-.button2,
 .social-btn,
 .closebtn,
-.dark-mode-toggle {
+.dark-mode-toggle,
+.h-close-btn {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
