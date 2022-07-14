@@ -601,12 +601,12 @@ document.getElementById("fullscreen").addEventListener("click", () => {
   }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500
+const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
-  location = url + "/?" + txt.textContent
+  location = url + "?" + txt.textContent
 }
 const urlError = () => {
-  location = url + "/?" + localStorage.getItem("clr");
+  location = url + "?" + localStorage.getItem("clr");
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL")
     window.alert("ERROR: Invalid Color in URL")
@@ -616,7 +616,7 @@ const urlError = () => {
 }
 const urlLoad = () => {
   let urlhex = location.toString().replace(url + "/?", "");
-  let targetLength  = 49; //30 for http://127.0.0.1:5500
+  let targetLength  = 30; //30 for http://127.0.0.1:5500
   if (location.toString().length  == targetLength) {
   document.getElementById("shortcuts-popup").classList.remove("show");
   var url2 = urlhex.replace("#", "");
