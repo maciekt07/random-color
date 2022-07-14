@@ -97,6 +97,7 @@ const hclr = () => {
     document.title = "Random Color - " + x;
   };
   locals();
+  urlChange();
 };
 
 //show history
@@ -515,6 +516,7 @@ const ChangeToFav = () => {
     document.title = "Random Color - " + favsChangeClr;
   };
   locals();
+  urlChange();
 };
 
 document.getElementById("refresh").addEventListener("click", () => {
@@ -525,6 +527,7 @@ document.getElementById("refresh").addEventListener("click", () => {
   historyl();
   clr_name();
   ifFavClr();
+  urlChange();
   document.getElementById("shortcuts-popup").classList.remove("show");
   l = 0;
   // const el = document.querySelector(".div1");
@@ -597,6 +600,48 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
   }
 });
+//url
+const url = "https://maciekt07.github.io/random-color"
+const urlChange = () => {
+  location = url + "?" + txt.textContent
+}
+const urlError = () => {
+  location = url + "?" + localStorage.getItem("clr");
+  setTimeout(() => {
+    console.error("ERROR: Invalid Color in URL")
+    window.alert("ERROR: Invalid Color in URL")
+  }, 1000);
+  //TODO
+  //404 not found error
+}
+const urlLoad = () => {
+  let urlhex = location.toString().replace(url + "/?", "");
+  let targetLength  = 49;
+  if (location.toString().length  == targetLength) {
+  document.getElementById("shortcuts-popup").classList.remove("show");
+  var url2 = urlhex.replace("#", "");
+  console.log("Changed Color to " + urlhex);
+  txt.textContent = urlhex;
+  document.body.style.backgroundColor = urlhex;
+  document.fgColor = urlhex;
+  document.getElementById("color_input").value = urlhex;
+  document.getElementById("divrgb").textContent = "RGB " + url2.convertToRGB();
+  link = "https://www.color-hex.com/color/" + url2;
+  document
+    .querySelector('meta[name="theme-color"]')
+    .setAttribute("content", urlhex);
+  document.getElementById("alertspan").innerHTML =
+    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + urlhex;
+  window.onblur = () => {
+    document.title = "Random Color - " + urlhex;
+  };
+  locals();
+  urlChange();
+} else {
+  urlError();
+  }
+}
+urlLoad();
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
