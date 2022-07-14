@@ -100,6 +100,7 @@ html {
   border-radius: 5px;
   transition-duration: 0.5s;
   animation-delay: 5s;
+  cursor: pointer;
 }
 
 #color_input:hover {
@@ -344,7 +345,7 @@ i {
   cursor: default;
 }
 
-@media (max-width: 585px) {
+@media (max-width: 550px) {
   .dark-mode-toggle {
       top: 20em;
   }
@@ -374,6 +375,7 @@ i {
   }
 
   .right-bar {
+      border-top: 2px solid var(--foreground);
       top: 16em;
   }
 }
@@ -416,6 +418,12 @@ i {
   display: block;
 }
 
+@media (max-width: 650px) {
+  .div1 {
+    font-size: 80px;
+    width: 400px;
+  }
+}
 .buttons {
   text-align: center;
 }
