@@ -393,13 +393,15 @@ i {
   width: 450px;
   border-radius: 60px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  /* -webkit-text-stroke: 1.5px var(--font-clr); */
-  -webkit-text-stroke-width: 1.5px;
-  -webkit-text-stroke-color: var(--font-clr);
-
   letter-spacing: 1.7px;
   background-color: var(--foreground);
   transition: 0s all;
+}
+
+@supports (-webkit-text-stroke: 1.5px var(--font-clr)) {
+  .div1 {
+    -webkit-text-stroke: 1.5px var(--font-clr);
+  }
 }
 
 .divrgb {
