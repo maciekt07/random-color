@@ -603,10 +603,10 @@ document.getElementById("fullscreen").addEventListener("click", () => {
 //url
 const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 
 const urlChange = () => {
-  location = url + "?" + txt.textContent
+  location = url + "/?" + txt.textContent
 }
 const urlError = () => {
-  location = url + "?" + localStorage.getItem("clr");
+  location = url + "/?" + localStorage.getItem("clr");
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL")
     window.alert("ERROR: Invalid Color in URL")
@@ -642,9 +642,6 @@ const urlLoad = () => {
   }
 }
 urlLoad();
-const urlInvalidLink = () => {
-  
-}
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
