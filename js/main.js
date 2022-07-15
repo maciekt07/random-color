@@ -1,18 +1,11 @@
-var counter = 0;
+let counter = 0;
 const txt = document.getElementById("txt");
 const main = () => {
   counter++;
-  var bg_clr = Math.floor(Math.random() * 16777215).toString(16);
+  let bg_clr = Math.floor(Math.random() * 16777215).toString(16);
   bg_clr = "#" + ("000000" + bg_clr).slice(-6);
   clr_link = ("000000" + bg_clr).slice(-6);
   document.body.style.backgroundColor = bg_clr;
-
-  window.onblur = () => {
-    document.title = "Random Color - " + bg_clr;
-  }; //title
-  window.onfocus = () => {
-    document.title = "Random Color";
-  };
 
   txt.innerHTML = bg_clr;
   link = "https://www.color-hex.com/color/" + clr_link;
@@ -25,8 +18,8 @@ const main = () => {
 
   //rgb
   String.prototype.convertToRGB = function () {
-    var aRgbHex = this.match(/.{1,2}/g);
-    var aRgb = [
+    let aRgbHex = this.match(/.{1,2}/g);
+    let aRgb = [
       parseInt(aRgbHex[0], 16),
       parseInt(aRgbHex[1], 16),
       parseInt(aRgbHex[2], 16),
@@ -35,8 +28,8 @@ const main = () => {
   };
 
   const txt1 = txt.textContent;
-  var Str = txt1;
-  var StrNew = Str.replace("#", "");
+  let Str = txt1;
+  let StrNew = Str.replace("#", "");
 
   document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
   document.getElementById("alertspan").innerHTML =
@@ -61,8 +54,15 @@ setTimeout(() => {
     .classList.remove("animate__animated", "animate__headShake");
 }, 1000);
 
+window.onblur = () => {
+  document.title = "Random Color - " + txt.textContent;
+}; //title
+window.onfocus = () => {
+  document.title = "Random Color";
+};
+
 // add color to history list
-var hclrx = [];
+let hclrx = [];
 
 const historyl = () => {
   const c_link = txt.textContent.replace("#", "");
@@ -82,7 +82,7 @@ const historyl = () => {
 
 const hclr = () => {
   const x = hclrx[hclrx.length - 1];
-  var x2 = x.replace("#", "");
+  let x2 = x.replace("#", "");
   txt.textContent = x;
   document.body.style.backgroundColor = x;
   document.fgColor = x;
@@ -93,9 +93,6 @@ const hclr = () => {
   document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
   document.getElementById("alertspan").innerHTML =
     "<span class='copy-emoji'>📋</span> Copied to clipboard: " + x;
-  window.onblur = () => {
-    document.title = "Random Color - " + x;
-  };
   locals();
   urlChange();
 };
@@ -164,7 +161,7 @@ const hidea = () => {
 
 // copy
 const copyToClipboard = (element) => {
-  var $temp = $("<input>");
+  let $temp = $("<input>");
   $("body").append($temp);
   $temp.val($(element).text()).select();
   document.execCommand("copy");
@@ -177,8 +174,8 @@ const clrpicker = () => {
   colorPicker.addEventListener("input", () => {
     clr_name();
     const txt1 = txt.textContent;
-    var Str = txt1;
-    var StrNew = Str.replace("#", "");
+    let Str = txt1;
+    let StrNew = Str.replace("#", "");
     hidea();
     document.body.style.backgroundColor = colorPicker.value;
     document.fgColor = colorPicker.value;
@@ -195,9 +192,6 @@ const clrpicker = () => {
     document.getElementById("alertspan").innerHTML =
       "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
       colorPicker.value;
-    window.onblur = () => {
-      document.title = "Random Color - " + colorPicker.value;
-    };
   });
 };
 
@@ -217,7 +211,7 @@ document.getElementById("dark-mode-toggle").addEventListener("click", () => {
   document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
-var rpt = 0;
+let rpt = 0;
 
 document.getElementById("color_input").addEventListener("change", () => {
   ifFavClr();
@@ -284,11 +278,11 @@ const uniqueFavs = (array) =>
   );
 const like = document.getElementById("like");
 const addToFavs = () => {
-  var new_favs = txt.textContent;
+  let new_favs = txt.textContent;
   if (localStorage.getItem("favs") == null) {
     localStorage.setItem("favs", "[]");
   }
-  var old_favs = JSON.parse(localStorage.getItem("favs"));
+  let old_favs = JSON.parse(localStorage.getItem("favs"));
   old_favs.push(new_favs);
   localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)));
 };
@@ -390,9 +384,6 @@ if (localStorage.getItem("clr") != null) {
     like.style.color = "currentColor";
     l++;
   }
-  window.onblur = () => {
-    document.title = "Random Color - " + clr;
-  };
 } else {
   document.getElementById("fav").click();
   const c_link = txt.textContent.replace("#", "");
@@ -444,7 +435,7 @@ darkModeToggle.addEventListener("click", () => {
   }
 });
 
-var favsChangeClr = null;
+let favsChangeClr = null;
 
 document.getElementById("favlist").addEventListener("click", () => {
   hidea();
@@ -498,7 +489,7 @@ document.getElementById("favlist").addEventListener("click", () => {
 
 const ChangeToFav = () => {
   document.getElementById("shortcuts-popup").classList.remove("show");
-  var x2 = favsChangeClr.replace("#", "");
+  let x2 = favsChangeClr.replace("#", "");
   console.log("Changed Color to " + favsChangeClr);
   txt.textContent = favsChangeClr;
   document.body.style.backgroundColor = favsChangeClr;
@@ -512,12 +503,11 @@ const ChangeToFav = () => {
     .setAttribute("content", favsChangeClr);
   document.getElementById("alertspan").innerHTML =
     "<span class='copy-emoji'>📋</span> Copied to clipboard: " + favsChangeClr;
-  window.onblur = () => {
-    document.title = "Random Color - " + favsChangeClr;
-  };
   locals();
   urlChange();
 };
+
+
 
 document.getElementById("refresh").addEventListener("click", () => {
   main();
@@ -558,6 +548,10 @@ document.getElementById("h-back-to-top").addEventListener("click", () => {
 document.getElementById("a-close2").addEventListener("click", () => {
   hidea();
 });
+
+document.getElementById("main").addEventListener("dblclick", () => {
+  document.getElementById("fav").click();
+})
 
 document.getElementById("fullscreen").addEventListener("click", () => {
   if (screenfull.isEnabled) {
@@ -601,7 +595,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
   }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 
+const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
   location = url + "/?" + txt.textContent
 }
@@ -609,17 +603,22 @@ const urlError = () => {
   location = url + "/?" + localStorage.getItem("clr");
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL")
-    window.alert("ERROR: Invalid Color in URL")
-  }, 1000);
+    document.getElementById("alertspan").innerHTML =
+    "<span class='alert-emoji'>❌</span> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL"
+    showalert();
+  }, 300);
   //TODO
   //404 not found error
 }
+
+isHexColor = hex => typeof hex === 'string' && hex.length === 6 && !isNaN(Number('0x' + hex))
 const urlLoad = () => {
   let urlhex = location.toString().replace(url + "/?", "");
-  let targetLength  = 49; //30 for http://127.0.0.1:5500
-  if (location.toString().length  == targetLength) {
+  let urlhexnumber = urlhex.replace("#", "")
+  let targetLength  = 49; //30 for http://127.0.0.1:5500 49 for https://maciekt07.github.io/random-color
+  if (location.toString().length  == targetLength && isHexColor(urlhexnumber)) {
   document.getElementById("shortcuts-popup").classList.remove("show");
-  var url2 = urlhex.replace("#", "");
+  let url2 = urlhex.replace("#", "");
   console.log("Changed Color to " + urlhex);
   txt.textContent = urlhex;
   document.body.style.backgroundColor = urlhex;
@@ -632,20 +631,22 @@ const urlLoad = () => {
     .setAttribute("content", urlhex);
   document.getElementById("alertspan").innerHTML =
     "<span class='copy-emoji'>📋</span> Copied to clipboard: " + urlhex;
-  window.onblur = () => {
-    document.title = "Random Color - " + urlhex;
-  };
   locals();
   urlChange();
+  ifFavClr();
 } else {
   urlError();
   }
 }
 urlLoad();
 
+window.addEventListener('hashchange', () => {
+  urlLoad();
+}, false);
+
+
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
-
 function gtag() {
   dataLayer.push(arguments);
 }
