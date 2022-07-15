@@ -200,6 +200,7 @@ td {
   width: auto;
   transition-duration: 0.2s;
   animation-delay: 0.5s;
+  cursor: pointer;
 }
 
 .s-close:hover {
@@ -211,6 +212,7 @@ td {
   display: none;
   border: 3px solid rgb(255, 80, 80);
   color: rgb(255, 80, 80);
+  cursor: pointer;
 }
 
 .s-header {
@@ -396,12 +398,7 @@ i {
   letter-spacing: 1.7px;
   background-color: var(--foreground);
   transition: 0s all;
-}
-
-@supports (-webkit-text-stroke: 1.5px var(--font-clr)) {
-  .div1 {
-    -webkit-text-stroke: 1.5px var(--font-clr);
-  }
+  -webkit-text-stroke: 1.5px var(--font-clr);
 }
 
 .divrgb {
@@ -512,6 +509,7 @@ i {
 }
 
 #historyhex {
+  transition: 0.1s;
   padding: 7px;
   border-radius: 10px;
   text-decoration: underline;
@@ -527,7 +525,7 @@ i {
 .hclrimg {
   border-radius: 7px;
   position: relative;
-  bottom: -9px;
+  bottom: -10px;
   margin: 4px;
 }
 
@@ -597,7 +595,8 @@ li {
 hr {
   height: 2px;
   border: none;
-  background: var(--hr-gradient);
+  /* background: var(--hr-gradient); */
+  background-color: rgba(114, 114, 114, 0.5);
   border-radius: 100px;
 }
 
@@ -632,7 +631,7 @@ hr {
   text-align: center;
 }
 
-.copy-emoji {
+.alert-emoji {
   font-size: 18px;
 }
 
