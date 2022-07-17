@@ -146,6 +146,7 @@ html {
   fill: var(--foreground);
   transition-duration: 0.5s;
   animation-delay: 5s;
+  --animate-duration: 0.6s
 }
 
 .shortcuts-popup {
@@ -617,7 +618,7 @@ hr {
   bottom: 2em;
   padding: 30px;
   background-color: var(--foreground);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(80px);
   width: auto;
   border-radius: 30px;
   font-size: 16px;
