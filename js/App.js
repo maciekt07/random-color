@@ -7,6 +7,16 @@ fetch(URL, {
     const date = json.color;
     console.log("%cToday Lucky Color is: " + date, "color:white;padding:8px;border:2px solid yellow;border-radius:12px");
 });
+ //rgb
+ String.prototype.convertToRGB = function () {
+  let aRgbHex = this.match(/.{1,2}/g);
+  let aRgb = [
+    parseInt(aRgbHex[0], 16),
+    parseInt(aRgbHex[1], 16),
+    parseInt(aRgbHex[2], 16),
+  ];
+  return aRgb;
+};
 let counter = 0;
 const txt = document.getElementById("txt");
 const main = () => {
@@ -15,7 +25,6 @@ const main = () => {
   bg_clr = "#" + ("000000" + bg_clr).slice(-6);
   clr_link = ("000000" + bg_clr).slice(-6);
   document.body.style.backgroundColor = bg_clr;
-
   txt.innerHTML = bg_clr;
   link = "https://www.color-hex.com/color/" + clr_link;
   github = "https://www.github.com/maciekt07";
@@ -24,35 +33,20 @@ const main = () => {
   document
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", bg_clr);
-
-  //rgb
-  String.prototype.convertToRGB = function () {
-    let aRgbHex = this.match(/.{1,2}/g);
-    let aRgb = [
-      parseInt(aRgbHex[0], 16),
-      parseInt(aRgbHex[1], 16),
-      parseInt(aRgbHex[2], 16),
-    ];
-    return aRgb;
-  };
-
   const txt1 = txt.textContent;
   let Str = txt1;
   let StrNew = Str.replace("#", "");
-
   document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
   document.getElementById("alertspan").innerHTML =
     "<span class='copy-emoji'>📋</span> Copied to clipboard: " + bg_clr;
-
   console.log("%c--------- ", "color:#949494; font-size: 20px;");
   console.log(
-    counter + ". " + txt.textContent + " RGB " + clr_link.convertToRGB()
+    counter + ". " + txt.textContent + " " + document.getElementById("name").textContent + " RGB " + clr_link.convertToRGB()
   );
   const top_btn = document.getElementById("h-back-to-top");
   if (counter == 4) {
     top_btn.style.display = "block";
   }
-  
 };
 main();
 document
@@ -387,7 +381,7 @@ if (localStorage.getItem("clr") != null) {
     "</span>" +
     " | " +
     "RGB " +
-    clr_link.convertToRGB() +
+    txt.textContent.replace("#", "").convertToRGB() +
     "<hr><br></li>";
   link = "https://www.color-hex.com/color/" + clr.replace("#", "");
   if (localStorage.getItem("favs").includes(txt.textContent)) {
@@ -502,7 +496,7 @@ document.getElementById("favlist").addEventListener("click", () => {
 const ChangeToFav = () => {
   document.getElementById("shortcuts-popup").classList.remove("show");
   let x2 = favsChangeClr.replace("#", "");
-  console.log("Changed Color to " + favsChangeClr);
+  // console.log("Changed Color to " + favsChangeClr);
   txt.textContent = favsChangeClr;
   document.body.style.backgroundColor = favsChangeClr;
   document.fgColor = favsChangeClr;
@@ -610,7 +604,7 @@ const urlChange = () => {
   location = url + "/?" + txt.textContent
 }
 const urlError = () => {
-  //change url to previews
+  //change url to previous
   location = url + "/?" + localStorage.getItem("clr");
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL")
