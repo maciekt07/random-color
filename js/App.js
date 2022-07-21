@@ -1,660 +1,714 @@
-const URL = 'https://aztro.sameerkumar.website/?sign=aries&day=today';
-fetch(URL, {
-    method: 'POST'
-})
-.then(response => response.json())
-.then(json => {
-    const date = json.color;
-    console.log("%cToday Lucky Color is: " + date, "color:white;padding:8px;border:2px solid yellow;border-radius:12px");
-});
- //rgb
- String.prototype.convertToRGB = function () {
-  let aRgbHex = this.match(/.{1,2}/g);
-  let aRgb = [
-    parseInt(aRgbHex[0], 16),
-    parseInt(aRgbHex[1], 16),
-    parseInt(aRgbHex[2], 16),
-  ];
-  return aRgb;
-};
-let counter = 0;
-const txt = document.getElementById("txt");
-const main = () => {
-  counter++;
-  let bg_clr = Math.floor(Math.random() * 16777215).toString(16);
-  bg_clr = "#" + ("000000" + bg_clr).slice(-6);
-  clr_link = ("000000" + bg_clr).slice(-6);
-  document.body.style.backgroundColor = bg_clr;
-  txt.innerHTML = bg_clr;
-  link = "https://www.color-hex.com/color/" + clr_link;
-  github = "https://www.github.com/maciekt07";
-  document.fgColor = bg_clr;
-  document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
-  document
-    .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", bg_clr);
-  const txt1 = txt.textContent;
-  let Str = txt1;
-  let StrNew = Str.replace("#", "");
-  document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
-  document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + bg_clr;
-  console.log("%c--------- ", "color:#949494; font-size: 20px;");
-  console.log(
-    counter + ". " + txt.textContent + " " + document.getElementById("name").textContent + " RGB " + clr_link.convertToRGB()
-  );
-  const top_btn = document.getElementById("h-back-to-top");
-  if (counter == 4) {
-    top_btn.style.display = "block";
-  }
-};
-main();
-document
-  .getElementById("main")
-  .classList.add("animate__animated", "animate__headShake");
-setTimeout(() => {
-  document
-    .getElementById("main")
-    .classList.remove("animate__animated", "animate__headShake");
-}, 1000);
-
-window.onblur = () => {
-  document.title = "Random Color - " + txt.textContent;
-}; //title
-window.onfocus = () => {
-  document.title = "Random Color";
-};
-
-
-
-
-// add color to history list
-let hclrx = [];
-
-const historyl = () => {
-  const c_link = txt.textContent.replace("#", "");
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea();l++'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    c_link +
-    "/25x25'/>" +
-    txt.textContent +
-    "</span>" +
-    " | " +
-    "RGB " +
-    clr_link.convertToRGB() +
-    "<hr><br></li>";
-};
-
-const hclr = () => {
-  const x = hclrx[hclrx.length - 1];
-  let x2 = x.replace("#", "");
-  txt.textContent = x;
-  document.body.style.backgroundColor = x;
-  document.fgColor = x;
-  document.getElementById("color_input").value = x;
-  clr_name();
-  document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
-  link = "https://www.color-hex.com/color/" + x2;
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
-  document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + x;
-  locals();
-  urlChange();
-};
-
-//show history
-document.getElementById("history").style.display = "none";
-
-const showh = () => {
-  const x = document.getElementById("history");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-};
-// const btn = document.getElementById("hbutton"); //change button text show/hide
-// btn.addEventListener("click", () => {
-//     if (btn.innerText === "show history") {
-//         btn.innerText = "hide history";
-//     } else {
-//         btn.innerText = "show history";
-//     };
-// });
-
-document.getElementById("shortcuts").addEventListener("click", () => {
-  document.getElementById("s-delete").style.display = "none";
-  if (
-    document.getElementById("shortcuts-popup").className == "shortcuts-popup"
-  ) {
-    document.getElementById("shortcuts-popup").classList.add("show");
-  } else {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-  }
-  document.getElementById("history").style.display = "none";
-  document.getElementById("modaltext").innerHTML =
-    '<h1 class="s-header"><i class="twa twa-lg twa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Color Picker </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
-});
-
-document.getElementById("s-close").addEventListener("click", () => {
-  document.getElementById("shortcuts-popup").classList.remove("show");
-});
-
-// document.getElementById("shortcuts-popup").addEventListener('click', () => {
-//     document.getElementById("shortcuts-popup").classList.remove("show");
-// });
-
-// const showa = () => {
-//   // show copy alert
-//   // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
-// };
-
-
-
-// copy
-const copyToClipboard = (element) => {
-  let $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-};
-
-// color picker
-const colorPicker = document.getElementById("color_input");
-const clrpicker = () => {
-  colorPicker.addEventListener("input", () => {
-    clr_name();
-    const txt1 = txt.textContent;
-    let Str = txt1;
-    let StrNew = Str.replace("#", "");
-    hidea();
-    document.body.style.backgroundColor = colorPicker.value;
-    document.fgColor = colorPicker.value;
-    document.getElementById("divrgb").innerHTML =
-      "RGB " + StrNew.convertToRGB();
-    link = "https://www.color-hex.com/color/" + StrNew;
-    txt.innerHTML = colorPicker.value;
-    document
-      .querySelector('meta[name="theme-color"]')
-      .setAttribute("content", colorPicker.value);
-    document
-      .querySelector('input[type="color"]')
-      .setAttribute("value", colorPicker.value);
-    document.getElementById("alertspan").innerHTML =
-      "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " +
-      colorPicker.value;
-  });
-};
-
-const input_refresh = () => {
-  document.getElementById("color_input").value =
-    document.getElementById("txt").textContent;
-};
-
-// darkmode toggle
-if (document.location.search.match(/type=embed/gi)) {
-  window.parent.postMessage("resize", "*");
+* {
+  cursor: crosshair;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-//buttons
-document.getElementById("dark-mode-toggle").addEventListener("click", () => {
-  hidea();
-  document.getElementById("shortcuts-popup").classList.remove("show");
-});
-
-let rpt = 0;
-
-document.getElementById("color_input").addEventListener("change", () => {
-  ifFavClr();
-  l = 0;
-});
-
-document.getElementById("color_input").addEventListener("click", () => {
-  ifFavClr();
-  l = 0;
-  if (rpt == 0) {
-    //bug repair
-    document.getElementById("color_input").click();
-    document.getElementById("db").click();
-  }
-  rpt++;
-  clrpicker();
-  locals();
-  clr_name();
-  document.getElementById("shortcuts-popup").classList.remove("show");
-});
-
-document.getElementById("hbutton").addEventListener("click", () => {
-  showh();
-  document.getElementById("shortcuts-popup").classList.remove("show");
-});
-
-document.getElementById("moreinfo").addEventListener("click", () => {
-  window.open(link);
-  document.getElementById("shortcuts-popup").classList.remove("show");
-});
-
-document.getElementById("copy").addEventListener("click", () => {
-  copyToClipboard("#txt");
-  console.log("Copied to clipboard " + txt.textContent);
-  // document.getElementById("history").style.display = "none"
-  document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " +
-    txt.textContent;
-  // showa();
-  showalert();
-});
-
-const alert = document.querySelector(".alert");
-alert.style.setProperty("--animate-duration", "0.6s");
-const showalert = () => {
-  hidea();
-  document.getElementById("alert").style.display = "block";
-  alert.classList.add("animate__animated", "animate__fadeInDown");
-  alert.addEventListener("animationend", () => {
-    alert.classList.remove("animate__animated", "animate__fadeInDown");
-   setTimeout(() => {
-      alert.classList.add("animate__animated", "animate__fadeOut");
-    }, 800);
-  setTimeout(() => {
-      hidea();
-      alert.classList.remove("animate__animated", "animate__fadeOut");
-    }, 1300);
-  });
-  document.getElementById("shortcuts-popup").classList.remove("show");
-};
-
-const hidea = () => {
-  //hide alert
-  $("#alert").hide();
-  document
-    .querySelector(".alert")
-    .classList.remove(
-      "animate__animated",
-      "animate__fadeInDown",
-      "animate__faster"
-    );
-  document
-    .querySelector(".alert")
-    .classList.remove("animate__animated", "animate__fadeOut");
-};
-
-const uniqueFavs = (array) =>
-  array.filter(
-    (currentValue, index, arr) => arr.indexOf(currentValue) === index
-  );
-const like = document.getElementById("like");
-const addToFavs = () => {
-  let new_favs = txt.textContent;
-  if (localStorage.getItem("favs") == null) {
-    localStorage.setItem("favs", "[]");
-  }
-  let old_favs = JSON.parse(localStorage.getItem("favs"));
-  old_favs.push(new_favs);
-  localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)));
-};
-let ifFavClr = () => {
-  if (localStorage.getItem("favs") !== null) {
-    if (localStorage.getItem("favs").includes(txt.textContent)) {
-      like.style.color = "#FF2E78";
-    } else {
-      like.style.color = "currentColor";
-    }
-  }
-};
-const removeFromFavs = (arr, item) => {
-  let newArray = [...arr];
-  const index = newArray.findIndex((element) => element === item);
-  if (index !== -1) {
-    newArray.splice(index, 1);
-    return newArray;
-  }
-};
-let l = 0;
-document.getElementById("fav").addEventListener("click", () => {
-  addToFavs();
-  l++;
-  if (l % 2 != 0) {
-    like.style.color = "#FF2E78";
-    showalert();
-    document.getElementById("alertspan").innerHTML =
-      "<span class='alert-emoji'>❤️</span>Added to favorites: " +
-      txt.textContent;
-    like.classList.add("fa-beat");
-    setTimeout(() => {
-      like.classList.remove("fa-beat");
-    }, 2050);
-  } else {
-    //remove from favs
-    let favsNew = JSON.parse(localStorage.getItem("favs"));
-    localStorage.removeItem("favs");
-    if (localStorage.getItem("favs") == null) {
-      localStorage.setItem("favs", "[]");
-    }
-    localStorage.setItem(
-      "favs",
-      JSON.stringify(removeFromFavs(favsNew, txt.textContent))
-    );
-    ifFavClr();
-    like.classList.remove("fa-beat");
-    like.style.color = "currentColor";
-    showalert();
-    document.getElementById("alertspan").innerHTML =
-      "<span class='alert-emoji'>💔</span> Removed from favorites: " +
-      txt.textContent;
-    like.classList.add("fa-shake");
-    setTimeout(() => {
-      like.classList.remove("fa-shake");
-    }, 600);
-  }
-});
-//local storage
-// save last color in local storage
-const locals = () => {
-  localStorage.setItem("clr", txt.textContent);
-  // console.log("%c%s", "color:#b144e4", localStorage.getItem("clr"));
-};
-
-if (localStorage.getItem("clr") != null) {
-  l = 1;
-  const clr = localStorage.getItem("clr");
-  document.body.style.backgroundColor = clr;
-  document.fgColor = clr;
-  document.querySelector('input[type="color"]').setAttribute("value", clr);
-  document
-    .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", clr);
-  document.getElementById("color_input").value = clr;
-  document.getElementById("divrgb").innerHTML =
-    "RGB " + clr.replace("#", "").convertToRGB();
-  txt.innerHTML = clr;
-  document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + clr;
-  const c_link = txt.textContent.replace("#", "");
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea();l++'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    c_link +
-    "/25x25'/>" +
-    txt.textContent +
-    "</span>" +
-    " | " +
-    "RGB " +
-    txt.textContent.replace("#", "").convertToRGB() +
-    "<hr><br></li>";
-  link = "https://www.color-hex.com/color/" + clr.replace("#", "");
-  if (localStorage.getItem("favs").includes(txt.textContent)) {
-    like.style.color = "#FF2E78";
-  } else {
-    like.style.color = "currentColor";
-    l++;
-  }
-} else {
-  document.getElementById("fav").click();
-  const c_link = txt.textContent.replace("#", "");
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea();'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    c_link +
-    "/25x25'/>" +
-    txt.textContent +
-    "</span>" +
-    " | " +
-    "RGB " +
-    clr_link.convertToRGB() +
-    "<hr><br></li>";
-  ifFavClr();
-  l++;
-}
-locals();
-//save theme in local storage
-let darkMode = localStorage.getItem("darkMode");
-const darkModeToggle = document.querySelector("#dark-mode-toggle");
-const enableDarkMode = () => {
-  document.body.classList.add("darkmode");
-  localStorage.setItem("darkMode", "enabled");
-};
-const disableDarkMode = () => {
-  document.body.classList.remove("darkmode");
-  localStorage.setItem("darkMode", null);
-};
-if (darkMode === "enabled") {
-  enableDarkMode();
-  console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-}
-darkModeToggle.addEventListener("click", () => {
-  darkMode = localStorage.getItem("darkMode");
-  if (darkMode !== "enabled") {
-    enableDarkMode();
-    console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-    showalert();
-    document.getElementById("alertspan").innerHTML =
-      "<span class='alert-emoji'>🌙</span> Darkmode Enabled!";
-  } else {
-    disableDarkMode();
-    console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
-    showalert();
-    document.getElementById("alertspan").innerHTML =
-      "<span class='alert-emoji'>☀️</span> Darkmode Disabled!";
-  }
-});
-
-let favsChangeClr = null;
-
-document.getElementById("favlist").addEventListener("click", () => {
-  hidea();
-  document.getElementById("history").style.display = "none";
-  let favsarr = JSON.parse(localStorage.getItem("favs"));
-  if (
-    document.getElementById("shortcuts-popup").className == "shortcuts-popup"
-  ) {
-    document.getElementById("shortcuts-popup").classList.add("show");
-  } else {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-  }
-  document.getElementById("modaltext").innerHTML =
-    "<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors: " +
-    favsarr.length +
-    "</h1>";
-  ul = document.createElement("div");
-  ul.setAttribute("style", "cursor:default");
-  document.getElementById("modaltext").appendChild(ul);
-  favsarr.forEach((item) => {
-    let li = document.createElement("p");
-    li.setAttribute("id", "favsli");
-    ul.appendChild(li);
-    li.innerHTML +=
-      "<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/" +
-      item.replace("#", "") +
-      "/29x44'/>" +
-      item +
-      "</br>" +
-      " " +
-      "<span class='favsclrname'>" +
-      ntc.name(item)[1] +
-      "</span>";
-    li.setAttribute(
-      "onclick",
-      "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();l++;this.classList.add('animate__animated', 'animate__backOutRight')"
-    );
-  });
-  const del = document.getElementById("s-delete");
-  if (favsarr.length > 0) {
-    del.style.display = "block";
-  } else {
-    del.style.display = "none";
-  }
-  del.addEventListener("click", () => {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-    like.style.color = "currentColor";
-    localStorage.setItem("favs", "[]");
-  });
-});
-
-const ChangeToFav = () => {
-  document.getElementById("shortcuts-popup").classList.remove("show");
-  let x2 = favsChangeClr.replace("#", "");
-  // console.log("Changed Color to " + favsChangeClr);
-  txt.textContent = favsChangeClr;
-  document.body.style.backgroundColor = favsChangeClr;
-  document.fgColor = favsChangeClr;
-  document.getElementById("color_input").value = favsChangeClr;
-  clr_name();
-  document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
-  link = "https://www.color-hex.com/color/" + x2;
-  document
-    .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", favsChangeClr);
-  document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + favsChangeClr;
-  locals();
-  urlChange();
-};
-
-document.getElementById("refresh").addEventListener("click", () => {
-  main();
-  hidea();
-  input_refresh();
-  locals();
-  historyl();
-  clr_name();
-  ifFavClr();
-  urlChange();
-  document.getElementById("shortcuts-popup").classList.remove("show");
-  l = 0;
-  // const el = document.querySelector(".div1");
-  // el.classList.add('animate__animated', 'animate__headShake');
-  // el.addEventListener('animationend', () => {
-  //     el.classList.remove('animate__animated', 'animate__headShake');
-  //     });
-});
-
-document.getElementById("github").addEventListener("click", () => {
-  window.open(github);
-  document.getElementById("shortcuts-popup").classList.remove("show");
-});
-
-document.getElementById("close1").addEventListener("click", () => {
-  showh();
-});
-
-document.getElementById("h-back-to-top").addEventListener("click", () => {
-  // window.open('#history', '_self')
-  document.getElementById("h").scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-});
-
-document.getElementById("a-close2").addEventListener("click", () => {
-  hidea();
-});
-
-document.getElementById("main").addEventListener("dblclick", () => {
-  document.getElementById("fav").click();
-})
-
-document.getElementById("fullscreen").addEventListener("click", () => {
-  if (screenfull.isEnabled) {
-    if (screenfull.isFullscreen) {
-      screenfull.exit();
-      if (window.screen.width > 1024) {
-        showalert();
-        document.getElementById("alertspan").innerHTML =
-          "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Disabled!";
-        console.log("Fullscreen disabled");
-      }
-      // document.getElementById("fullscreen").style.top = "19em";
-      document.getElementById("main").style.display = "flex";
-      // document.getElementById("dark-mode-toggle").style.display = "block";
-      // document.getElementById("shortcuts").style.display = "block";
-      document.getElementById("moreinfo").style.visibility = "visible";
-      document.getElementById("copy").style.visibility = "visible";
-      document.getElementById("refresh").style.visibility = "visible";
-      document.getElementById("github").style.display = "flex";
-      // document.getElementById("hbutton").style.display = "block";
-      // document.getElementById("color_input").style.display = "block";
-    } else {
-      screenfull.request();
-      if (window.screen.width > 1024) {
-        showalert();
-        document.getElementById("alertspan").innerHTML =
-          "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Enabled!";
-        console.log("Fullscreen enabled");
-      }
-      // document.getElementById("fullscreen").style.top = "3em";
-      document.getElementById("main").style.display = "none";
-      // document.getElementById("dark-mode-toggle").style.display = "none";
-      // document.getElementById("shortcuts").style.display = "none";
-      document.getElementById("moreinfo").style.visibility = "hidden";
-      document.getElementById("copy").style.visibility = "hidden";
-      document.getElementById("refresh").style.visibility = "hidden";
-      document.getElementById("github").style.display = "none";
-      // document.getElementById("hbutton").style.display = "none";
-      // document.getElementById("color_input").style.display = "none";
-    }
-  }
-});
-//url
-const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
-const urlChange = () => {
-  location = url + "/?" + txt.textContent
-}
-const urlError = () => {
-  //change url to previous
-  location = url + "/?" + localStorage.getItem("clr");
-  setTimeout(() => {
-    console.error("ERROR: Invalid Color in URL")
-    document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-cross-mark'></i> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL"
-    showalert();
-  }, 300);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-isHexColor = hex => typeof hex === 'string' && hex.length === 6 && !isNaN(Number('0x' + hex))
-const urlLoad = () => {
-  let urlhex = location.toString().replace(url + "/?", "");
-  let urlhexnumber = urlhex.replace("#", "")
-  let targetLength  = 30; //30 for http://127.0.0.1:5500 49 for https://maciekt07.github.io/random-color
-  if (location.toString().length  == targetLength && isHexColor(urlhexnumber)) {
-  document.getElementById("shortcuts-popup").classList.remove("show");
-  let url2 = urlhex.replace("#", "");
-  txt.textContent = urlhex;
-  document.body.style.backgroundColor = urlhex;
-  document.fgColor = urlhex;
-  document.getElementById("color_input").value = urlhex;
-  document.getElementById("divrgb").textContent = "RGB " + url2.convertToRGB();
-  link = "https://www.color-hex.com/color/" + url2;
-  document
-    .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", urlhex);
-  document.getElementById("alertspan").innerHTML =
-    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + urlhex;
-  locals();
-  urlChange();
-  ifFavClr();
-} else {
-  urlError();
+*::selection {
+  background: var(--selection);
+}
+
+body {
+  transition: 0.3s all;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --foreground: var(--clr-light);
+  --clr-light: white;
+  --clr-dark: #0F111A;
+  --btn-hover: #cff4fc;
+  --button-txt-hover: #63b1ff;
+  --font-clr: black;
+  --github-fill: #333;
+  --selection: #add8e6;
+  --a-clr: #0076d7;
+  --a-hover: #886ce4;
+  --blackwhite: black;
+  --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+  --bar-clr: rgba(222, 222, 222, 0.5);
+  --hr-gradient: linear-gradient(90deg, rgba(108, 209, 228, 1) 24%, rgba(67, 143, 223, 1) 76%);
+}
+
+.darkmode {
+  --blackwhite: white;
+  --foreground: var(--clr-dark);
+  --btn-hover: black;
+  --button-txt-hover: #6666ff;
+  --font-clr: #DFDFDF;
+  --github-fill: #b5b5b5;
+  --selection: #6666ff;
+  --a-clr: #886ce4;
+  --a-hover: #0076d7;
+  --bar-clr: rgba(45, 45, 45, 0.5);
+  --hr-gradient: linear-gradient(90deg, rgba(136, 108, 228, 1) 24%, rgba(142, 60, 228, 1) 76%);
+}
+
+.twa-lg {
+  cursor: default;
+}
+
+.dark-mode-toggle,
+.history-btn,
+.shortcuts,
+.history-btn,
+.shortcuts,
+.fullscreen,
+.fav-list-btn,
+.fav-btn {
+  color: var(--foreground);
+  border: 2px solid currentColor;
+  padding: 4px;
+  background: transparent;
+  border-radius: 5px;
+  width: 45px;
+  height: 45px;
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.dark-mode-toggle {
+  z-index: 100;
+  top: 1em;
+  right: 1em;
+}
+
+.dark-mode-toggle:hover {
+  box-shadow: var(--shadow);
+}
+
+#color_input {
+  position: absolute;
+  z-index: 100;
+  top: 5.5em;
+  right: 1em;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background: var(--foreground);
+  transition-duration: 0.3s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+  cursor: pointer;
+}
+
+#color_input:hover {
+  box-shadow: var(--shadow);
+}
+
+#color_input::-webkit-color-swatch {
+  border-radius: 100%;
+  border: none;
+}
+
+#color_input::-moz-color-swatch {
+  border-radius: 50%;
+  border: none;
+}
+
+.history-btn {
+  top: 10em;
+  right: 1em;
+  cursor: pointer;
+}
+
+.history-btn:hover {
+  box-shadow: var(--shadow);
+}
+
+.historyicon {
+  fill: var(--foreground);
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+}
+
+.shortcuts {
+  top: 14.5em;
+  right: 1em;
+}
+
+.shortcuts:hover {
+  box-shadow: var(--shadow);
+}
+
+.command {
+  fill: var(--foreground);
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+  --animate-duration: 0.6s
+}
+
+.shortcuts-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3.5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: default;
+}
+
+.shortcuts-popup.show {
+  opacity: 2;
+  pointer-events: auto;
+}
+
+.modal {
+  height: auto;
+  max-height: 800px;
+  background-color: rgb(31, 31, 31);
+  width: 550px;
+  max-width: 100%;
+  padding: 30px 50px;
+  border-radius: 35px;
+  box-shadow: var(--shadow);
+  cursor: default;
+  overflow: auto;
+}
+
+table,
+tr,
+td {
+  cursor: default;
+}
+
+.s-close {
+  outline: none;
+  border: 3px solid red;
+  padding: 15px;
+  background: transparent;
+  color: red;
+  font-size: 18px;
+  border-radius: 15px;
+  width: auto;
+  transition-duration: 0.2s;
+  animation-delay: 0.5s;
+  cursor: pointer;
+}
+
+.s-close:hover {
+  opacity: 0.5;
+}
+
+
+.s-delete {
+  display: none;
+  border: 3px solid rgb(255, 80, 80);
+  color: rgb(255, 80, 80);
+  cursor: pointer;
+}
+
+.s-header {
+  font-size: 24px;
+  color: white;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.s-p {
+  font-size: 16px;
+  color: white;
+  opacity: 0.7;
+}
+
+#favsli {
+  transition: 0.2s;
+  opacity: 0.8;
+  text-align: center;
+  margin-right: 220px;
+  padding: 8px;
+  border-radius: 15px;
+  font-size: 20px;
+  color: white;
+  text-decoration: underline;
+  border: 3px solid rgb(58, 65, 110);
+  cursor: pointer;
+}
+
+#favsli:hover {
+  background-color: rgb(58, 65, 110);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.favsclrname {
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.favsimg {
+  position: relative;
+  border-radius: 50px;
+  margin-right: 6px;
+}
+
+.favsheader {
+  opacity: 0.8;
+  font-size: 30px;
+  color: white;
+  margin-left: 10px;
+  cursor: text;
+}
+
+@media (max-width: 700px) {
+  .modal {
+      width: 450px;
+  }
+
+  #favsli {
+      margin-right: 125px;
   }
 }
-urlLoad();
 
-window.addEventListener('hashchange', () => {
-  urlLoad();
-}, false);
-
-
-// Google Analytics
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  dataLayer.push(arguments);
+.key {
+  font-size: 18px;
+  margin-left: 100px;
+  color: white;
+  opacity: 0.6;
+  background: #4e4e4e;
+  padding: 6px;
+  border-radius: 5px;
 }
-gtag("js", new Date());
 
-gtag("config", "G-4QTNJRWC58");
+.fullscreen {
+  top: 19em;
+  right: 1em;
+}
+
+.fs-icon {
+  fill: var(--foreground);
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+}
+
+.fullscreen:hover {
+  box-shadow: var(--shadow);
+}
+
+
+.fav-btn {
+  top: 23.5em;
+  right: 1em;
+}
+
+.fa-solid {
+  color: currentColor;
+  --fa-animation-duration: 2s;
+  cursor: pointer;
+}
+
+.fav-btn:hover {
+  box-shadow: var(--shadow);
+}
+
+
+.fav-list-btn {
+  top: 28em;
+  right: 1em;
+}
+
+.fav-list-btn:hover {
+  box-shadow: var(--shadow);
+}
+
+.right-bar {
+  z-index: 99;
+  backdrop-filter: blur(30px);
+  height: 435px;
+  width: 75px;
+  background: var(--bar-clr);
+  display: inline-block;
+  position: absolute;
+  right: 0em;
+  top: 0em;
+  border-radius: 18px 0 0 18px;
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+  border-left: 2px solid var(--foreground);
+  border-bottom: 2px solid var(--foreground);
+  cursor: default;
+}
+
+@media (max-width: 550px) {
+  .dark-mode-toggle {
+      top: 20em;
+  }
+
+  #color_input {
+      top: 25em;
+  }
+
+  .history-btn {
+      top: 29.5em;
+  }
+
+  .shortcuts {
+      top: 34em;
+  }
+
+  .fullscreen {
+      top: 38.5em;
+  }
+
+  .fav-btn {
+      top: 43em;
+  }
+
+  .fav-list-btn {
+      top: 47.5em;
+  }
+
+  .right-bar {
+      border-top: 2px solid var(--foreground);
+      top: 16em;
+  }
+}
+
+.main {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.div1 {
+  padding: 12px;
+  font-size: 96px;
+  height: auto;
+  width: 450px;
+  border-radius: 60px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1.7px;
+  background-color: var(--foreground);
+  transition: 0s all;
+  -webkit-text-stroke: 1.5px var(--font-clr);
+}
+
+.divrgb {
+  font-size: 21px;
+  color: var(--font-clr);
+  -webkit-text-stroke: 0px currentColor;
+  margin-bottom: 3px;
+}
+
+.divname {
+  font-size: 21px;
+  text-decoration: none;
+  -webkit-text-stroke: 0px;
+  color: var(--font-clr);
+  margin-bottom: 5px;
+  display: block;
+}
+
+@media (max-width: 650px) {
+  .div1 {
+    font-size: 80px;
+    width: 400px;
+  }
+}
+.buttons {
+  text-align: center;
+}
+
+.button1 {
+  background-color: var(--foreground);
+  padding: 10px 20px;
+  font-size: 36px;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+  color: var(--font-clr);
+  cursor: pointer;
+}
+
+.button1:hover {
+  box-shadow: var(--shadow);
+  background-color: var(--btn-hover);
+  color: var(--button-txt-hover);
+}
+
+.button1:active {
+  transition-duration: 0s;
+  animation-delay: 0s;
+}
+
+.body1,
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  cursor: pointer;
+}
+
+.social-links {
+  display: flex;
+}
+
+.social-btn {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  color: var(--font-clr);
+  border-radius: 10px;
+  background: var(--foreground);
+  margin: 5px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.social-btn span {
+  width: 0px;
+  overflow: hidden;
+  transition: 1s;
+  text-align: center;
+  cursor: pointer;
+}
+
+.social-btn:hover {
+  width: 150px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  background-color: var(--btn-hover);
+  color: var(--button-txt-hover);
+}
+
+.social-btn:hover span {
+  padding: 2px;
+  width: max-content;
+  background-color: var(--btn-hover);
+  color: var(--button-txt-hover);
+}
+
+#github {
+  fill: var(--github-fill);
+}
+
+.history {
+  height: 300px;
+  overflow: auto;
+}
+
+#historyhex {
+  transition: 0.1s;
+  padding: 7px;
+  border-radius: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#historyhex:hover {
+  color: white;
+  background: rgb(58, 65, 110);
+  text-decoration: none;
+}
+
+.hclrimg {
+  border-radius: 7px;
+  position: relative;
+  bottom: -10px;
+  margin: 4px;
+}
+
+.h-close-btn {
+  margin-top: 5px;
+  margin-right: 10px;
+  color: var(--font-clr);
+  font-weight: bold;
+  float: right;
+  font-size: 28px;
+  line-height: 20px;
+  transition: 0.3s;
+  cursor: default;
+}
+
+.h-top {
+  fill: white;
+  align-items: center;
+}
+
+#h-back-to-top {
+  display: none;
+  margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: #1d1f28;
+  padding: 14px;
+  text-align: center;
+  border: none;
+  border-radius: 13px;
+  transition-duration: 0.5s;
+  animation-delay: 5s;
+  color: var(--font-clr);
+  cursor: pointer;
+}
+
+#h-back-to-top:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  background: rgb(58, 65, 110);
+}
+
+#history {
+  padding: 10px;
+  color: var(--font-clr);
+  background-color: var(--foreground);
+  width: 380px;
+  min-height: 350px;
+  height: auto;
+  border-radius: 30px;
+  font-size: 20px;
+  margin-left: 17px;
+}
+
+li {
+  margin: 6px;
+  text-align: left;
+}
+
+.history-header {
+  margin-top: 40px;
+  margin-left: 20px;
+  font-size: 27px;
+  cursor: text;
+}
+
+hr {
+  height: 2px;
+  border: none;
+  /* background: var(--hr-gradient); */
+  background-color: rgba(114, 114, 114, 0.5);
+  border-radius: 100px;
+}
+
+.fa-chevron-up {
+  color: white;
+}
+
+.alertbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.alert {
+  display: none;
+  position: absolute;
+  bottom: 2em;
+  padding: 30px;
+  background-color: var(--foreground);
+  backdrop-filter: blur(80px);
+  width: auto;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: default;
+  font-weight: 600;
+}
+
+#alertspan {
+  color: var(--font-clr);
+  cursor: default;
+  text-align: center;
+}
+
+.alert-emoji {
+  font-size: 18px;
+  cursor: default;
+}
+
+.closebtn {
+  margin-top: 3px;
+  margin-left: 15px;
+  color: var(--font-clr);
+  font-weight: bold;
+  float: right;
+  font-size: 26px;
+  line-height: 20px;
+  transition: 0.3s;
+  cursor: default;
+}
+
+.closebtn:hover,
+.h-close-btn:hover {
+  color: red;
+  cursor: pointer;
+}
+
+#db {
+  display: none;
+}
+
+noscript {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 30000000;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  font-size: 32px;
+  color: white;
+  text-align: center;
+}
+
+.key,
+.s-p,
+.s-header,
+ol,
+li,
+hr,
+h2,
+.divtxt,
+.span1,
+.divrgb,
+.div1,
+#history,
+.divname {
+  cursor: text;
+}
+
+img,
+svg,
+path,
+#bmc-wbtn
+{
+  cursor: pointer;
+}
+
+br,
+.button1,
+.social-btn,
+.closebtn,
+.dark-mode-toggle,
+.h-close-btn {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
