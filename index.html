@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SebastianAigner/twemoji-amazing@1.0.0/twemoji-amazing.css">
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     <title>Random Color</title>
 </head>
 
 <body>
-    <div class="right-bar"></div> <button id="dark-mode-toggle" class="dark-mode-toggle" title="Change Theme Color"> <svg width="100%" viewBox="0 0 496 496">
+    <div id="right-bar-container"><div class="right-bar"></div> <button id="dark-mode-toggle" class="dark-mode-toggle" title="Change Theme Color"> <svg width="100%" viewBox="0 0 496 496">
             <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)" />
         </svg> </button> <input id="color_input" type="color" value="#000000" title="Set Custom Color" onchange="locals();clr_name();urlChange();"> <br>
          <button id="hbutton" class="history-btn" title="Show History"> <svg class="historyicon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.12">
@@ -46,11 +48,13 @@
             </div>
         </div>
     </div>
+    <div></div></div>
     <section id="main" class="main">
         <div class="div1">
             <div class="divtxt" id="txt"></div>
             <div class="divname" id="name"></div>
             <div class="divrgb" id="divrgb"></div>
+            
     </section> <br><br>
     <div class="buttons"> <button class="button1" id="moreinfo">more info</button> </div><br>
     <div class="buttons"> <button id="copy" class="button1">copy text</button> </div><br>
