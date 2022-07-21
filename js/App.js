@@ -38,7 +38,7 @@ const main = () => {
   let StrNew = Str.replace("#", "");
   document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
   document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + bg_clr;
+    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + bg_clr;
   console.log("%c--------- ", "color:#949494; font-size: 20px;");
   console.log(
     counter + ". " + txt.textContent + " " + document.getElementById("name").textContent + " RGB " + clr_link.convertToRGB()
@@ -99,7 +99,7 @@ const hclr = () => {
   link = "https://www.color-hex.com/color/" + x2;
   document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
   document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + x;
+    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + x;
   locals();
   urlChange();
 };
@@ -135,7 +135,7 @@ document.getElementById("shortcuts").addEventListener("click", () => {
   }
   document.getElementById("history").style.display = "none";
   document.getElementById("modaltext").innerHTML =
-    '<h1 class="s-header">⌨️ Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Color Picker </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
+    '<h1 class="s-header"><i class="twa twa-lg twa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Color Picker </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
 });
 
 document.getElementById("s-close").addEventListener("click", () => {
@@ -151,20 +151,7 @@ document.getElementById("s-close").addEventListener("click", () => {
 //   // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
 // };
 
-const hidea = () => {
-  //hide copy alert
-  $("#alert").hide();
-  document
-    .querySelector(".alert")
-    .classList.remove(
-      "animate__animated",
-      "animate__fadeInDown",
-      "animate__faster"
-    );
-  document
-    .querySelector(".alert")
-    .classList.remove("animate__animated", "animate__fadeOut");
-};
+
 
 // copy
 const copyToClipboard = (element) => {
@@ -197,7 +184,7 @@ const clrpicker = () => {
       .querySelector('input[type="color"]')
       .setAttribute("value", colorPicker.value);
     document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
+      "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " +
       colorPicker.value;
   });
 };
@@ -255,7 +242,7 @@ document.getElementById("copy").addEventListener("click", () => {
   console.log("Copied to clipboard " + txt.textContent);
   // document.getElementById("history").style.display = "none"
   document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " +
+    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " +
     txt.textContent;
   // showa();
   showalert();
@@ -269,16 +256,32 @@ const showalert = () => {
   alert.classList.add("animate__animated", "animate__fadeInDown");
   alert.addEventListener("animationend", () => {
     alert.classList.remove("animate__animated", "animate__fadeInDown");
-    setTimeout(() => {
+   setTimeout(() => {
       alert.classList.add("animate__animated", "animate__fadeOut");
     }, 800);
-    setTimeout(() => {
+  setTimeout(() => {
       hidea();
       alert.classList.remove("animate__animated", "animate__fadeOut");
     }, 1300);
   });
   document.getElementById("shortcuts-popup").classList.remove("show");
 };
+
+const hidea = () => {
+  //hide alert
+  $("#alert").hide();
+  document
+    .querySelector(".alert")
+    .classList.remove(
+      "animate__animated",
+      "animate__fadeInDown",
+      "animate__faster"
+    );
+  document
+    .querySelector(".alert")
+    .classList.remove("animate__animated", "animate__fadeOut");
+};
+
 const uniqueFavs = (array) =>
   array.filter(
     (currentValue, index, arr) => arr.indexOf(currentValue) === index
@@ -318,7 +321,7 @@ document.getElementById("fav").addEventListener("click", () => {
     like.style.color = "#FF2E78";
     showalert();
     document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>❤️</span> Added to favorites: " +
+      "<span class='alert-emoji'>❤️</span>Added to favorites: " +
       txt.textContent;
     like.classList.add("fa-beat");
     setTimeout(() => {
@@ -340,7 +343,7 @@ document.getElementById("fav").addEventListener("click", () => {
     like.style.color = "currentColor";
     showalert();
     document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>💔</span> Removed from favorites: " +
+      "<span class='alert-emoji'>💔</span> Removed from favorites: " +
       txt.textContent;
     like.classList.add("fa-shake");
     setTimeout(() => {
@@ -369,7 +372,7 @@ if (localStorage.getItem("clr") != null) {
     "RGB " + clr.replace("#", "").convertToRGB();
   txt.innerHTML = clr;
   document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + clr;
+    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + clr;
   const c_link = txt.textContent.replace("#", "");
   document.getElementById("historylist").innerHTML +=
     "<li>" +
@@ -431,13 +434,13 @@ darkModeToggle.addEventListener("click", () => {
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
     showalert();
     document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>🌙</span> Darkmode Enabled!";
+      "<span class='alert-emoji'>🌙</span> Darkmode Enabled!";
   } else {
     disableDarkMode();
     console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
     showalert();
     document.getElementById("alertspan").innerHTML =
-      "<span class='copy-emoji'>☀️</span> Darkmode Disabled!";
+      "<span class='alert-emoji'>☀️</span> Darkmode Disabled!";
   }
 });
 
@@ -455,7 +458,7 @@ document.getElementById("favlist").addEventListener("click", () => {
     document.getElementById("shortcuts-popup").classList.remove("show");
   }
   document.getElementById("modaltext").innerHTML =
-    "<h1 class='favsheader'>🌈 Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors: " +
+    "<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors: " +
     favsarr.length +
     "</h1>";
   ul = document.createElement("div");
@@ -508,7 +511,7 @@ const ChangeToFav = () => {
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", favsChangeClr);
   document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + favsChangeClr;
+    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + favsChangeClr;
   locals();
   urlChange();
 };
@@ -564,7 +567,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
       if (window.screen.width > 1024) {
         showalert();
         document.getElementById("alertspan").innerHTML =
-          "<span class='copy-emoji'>🖥️</span> Fullscreen Disabled!";
+          "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Disabled!";
         console.log("Fullscreen disabled");
       }
       // document.getElementById("fullscreen").style.top = "19em";
@@ -582,7 +585,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
       if (window.screen.width > 1024) {
         showalert();
         document.getElementById("alertspan").innerHTML =
-          "<span class='copy-emoji'>🖥️</span> Fullscreen Enabled!";
+          "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Enabled!";
         console.log("Fullscreen enabled");
       }
       // document.getElementById("fullscreen").style.top = "3em";
@@ -599,7 +602,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
   }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
+const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
   location = url + "/?" + txt.textContent
 }
@@ -609,7 +612,7 @@ const urlError = () => {
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL")
     document.getElementById("alertspan").innerHTML =
-    "<span class='alert-emoji'>❌</span> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL"
+    "<i class='twa twa-lg twa-cross-mark'></i> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL"
     showalert();
   }, 300);
 }
@@ -618,7 +621,7 @@ isHexColor = hex => typeof hex === 'string' && hex.length === 6 && !isNaN(Number
 const urlLoad = () => {
   let urlhex = location.toString().replace(url + "/?", "");
   let urlhexnumber = urlhex.replace("#", "")
-  let targetLength  = 49; //30 for http://127.0.0.1:5500 49 for https://maciekt07.github.io/random-color
+  let targetLength  = 30; //30 for http://127.0.0.1:5500 49 for https://maciekt07.github.io/random-color
   if (location.toString().length  == targetLength && isHexColor(urlhexnumber)) {
   document.getElementById("shortcuts-popup").classList.remove("show");
   let url2 = urlhex.replace("#", "");
@@ -632,7 +635,7 @@ const urlLoad = () => {
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", urlhex);
   document.getElementById("alertspan").innerHTML =
-    "<span class='copy-emoji'>📋</span> Copied to clipboard: " + urlhex;
+    "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + urlhex;
   locals();
   urlChange();
   ifFavClr();
