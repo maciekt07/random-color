@@ -20,41 +20,32 @@
 </head>
 
 <body>
-    <div id="right-bar-container"><div class="right-bar"></div> <button id="dark-mode-toggle" class="dark-mode-toggle" title="Change Theme Color"> <svg width="100%" viewBox="0 0 496 496">
-            <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)" />
-        </svg> </button> <input id="color_input" type="color" value="#000000" title="Set Custom Color" onchange="locals();clr_name();urlChange();"> <br>
-         <button id="hbutton" class="history-btn" title="Show History"> <svg class="historyicon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.12">
-            <path d="M28.45,55.88c0,.11,0,.22,0,.32l4.44-4.46a6.68,6.68,0,1,1,9.48,9.42L27.14,76.51a6.69,6.69,0,0,1-9.32.15L2.28,63A6.68,6.68,0,0,1,11.08,53l4,3.54v0a54.33,54.33,0,0,1,8-31,52.56,52.56,0,0,1,24-20.73,60.17,60.17,0,0,1,11-3.51,52.58,52.58,0,0,1,60.1,31.09,58.07,58.07,0,0,1,3.47,11,52.47,52.47,0,0,1-1.31,26.95A53.16,53.16,0,0,1,105.8,93a57.11,57.11,0,0,1-22.56,13.1,48.52,48.52,0,0,1-40.51-5.89A6.68,6.68,0,0,1,50,89a35.12,35.12,0,0,0,5.53,3,34.21,34.21,0,0,0,5.7,1.86,35.43,35.43,0,0,0,18.23-.54A43.77,43.77,0,0,0,96.74,83.19a39.7,39.7,0,0,0,10.93-17.06,39,39,0,0,0,1-20.08,46.38,46.38,0,0,0-2.68-8.5,39.19,39.19,0,0,0-45-23.22,45,45,0,0,0-8.52,2.72A39,39,0,0,0,34.5,32.49a40.94,40.94,0,0,0-6.05,23.39ZM60.83,34a6.11,6.11,0,0,1,12.22,0V53l14.89,8.27A6.09,6.09,0,1,1,82,71.93L64.43,62.16a6.11,6.11,0,0,1-3.6-5.57V34Z" />
-        </svg> </button> <button id="shortcuts" class="shortcuts" title="Show Shortcuts"> <svg class="command" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
-            <g>
-                <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
-                    <path d="M1748.1,4996.3c-619.2-79.6-1187.6-488.7-1461.8-1052.7c-143.7-291.9-183.5-473.3-183.5-835.9c0-272,6.6-333.9,59.7-504.2C352.7,1971,788.3,1517.7,1409.7,1303.2l214.5-75.2l747.5-6.6l745.3-6.6V111.2V-990.1l-712.1-8.9c-650.2-8.8-729.8-13.3-889-57.5C848-1240,330.5-1757.5,151.4-2423.2c-68.6-249.9-68.6-696.6,0-948.7c238.8-884.6,1057.1-1477.3,1957.2-1419.8c254.3,17.7,440.1,64.1,672.3,172.5c524.1,241.1,889,674.5,1057.1,1247.3c30.9,110.6,39.8,254.3,46.4,866.9l11.1,736.4h1101.3h1101.3l11.1-734.2c6.6-614.8,15.5-758.5,46.5-869.1c212.3-725.4,782.9-1258.3,1492.7-1391c977.5-185.8,1935,422.4,2193.8,1391c57.5,212.3,68.6,654.6,22.1,862.5c-168.1,760.7-778.4,1349-1539.2,1481.7c-143.7,24.3-358.3,33.2-820.4,33.2h-628.1V109v1105.7l747.5,6.6l745.3,6.6l214.5,75.2c513.1,176.9,908.9,524.1,1134.5,999.6c493.2,1043.8-57.5,2284.5-1167.7,2627.2c-858,265.4-1837.7-150.4-2235.8-946.5c-183.5-367.1-212.3-546.2-212.3-1344.6v-648H4996.8H3891v650.2c0,475.5-8.8,694.4-30.9,813.8c-163.7,829.3-813.8,1437.5-1649.8,1541.4C2002.4,5022.9,1953.8,5022.9,1748.1,4996.3z M8393.6,4162.6c557.3-210.1,855.8-822.7,676.7-1386.6c-112.8-360.5-422.4-654.6-789.5-751.9c-103.9-26.5-267.6-33.2-767.4-33.2h-636.9v625.8c0,678.9,11.1,767.4,126.1,1004c117.2,241,378.2,466.6,632.5,550.7C7869.5,4248.9,8176.9,4246.6,8393.6,4162.6z M2325.3,4180.3c179.1-55.3,378.2-181.3,502-322.9c115-128.3,236.6-371.5,267.6-537.4c11.1-64.1,22.1-391.4,22.1-723.2v-605.9h-636.9c-499.8,0-663.4,6.6-767.4,33.2c-493.2,130.5-833.7,568.3-835.9,1083.6c-4.4,490.9,291.9,906.7,758.5,1065.9C1827.7,4240,2124.1,4242.2,2325.3,4180.3z M6098.1,106.8l4.4-1101.3H4996.8H3891V95.7c0,601.5,6.6,1099.1,15.5,1105.7c6.6,8.9,502,13.3,1099.1,11.1l1085.8-6.6L6098.1,106.8z M3117-2392.2c0-479.9-8.8-659-33.2-767.4c-123.8-524.1-639.1-902.3-1172.1-858c-521.9,44.2-942.1,431.2-1030.5,950.9c-95.1,563.9,305.2,1141.1,873.5,1265c92.9,19.9,327.3,30.9,749.7,30.9l612.6,2.2V-2392.2z M8227.7-1799.5c575-121.6,973-685.6,884.6-1251.7c-79.6-526.3-502-920-1030.5-966.4c-548.4-46.4-1063.7,345-1180.9,895.7c-15.5,70.8-24.3,362.7-24.3,734.2v619.2h603.7C7911.5-1768.6,8123.8-1777.4,8227.7-1799.5z" />
+    <div id="right-bar-container">
+        <div class="right-bar"></div> <button id="dark-mode-toggle" class="dark-mode-toggle" title="Change Theme Color"> <svg width="100%" viewBox="0 0 496 496">
+                <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)" />
+            </svg> </button> <input id="color_input" type="color" value="#000000" title="Set Custom Color" onchange="locals();clr_name();urlChange();"> <br> <button id="hbutton" class="history-btn" title="Show History"> <svg class="historyicon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.12">
+                <path d="M28.45,55.88c0,.11,0,.22,0,.32l4.44-4.46a6.68,6.68,0,1,1,9.48,9.42L27.14,76.51a6.69,6.69,0,0,1-9.32.15L2.28,63A6.68,6.68,0,0,1,11.08,53l4,3.54v0a54.33,54.33,0,0,1,8-31,52.56,52.56,0,0,1,24-20.73,60.17,60.17,0,0,1,11-3.51,52.58,52.58,0,0,1,60.1,31.09,58.07,58.07,0,0,1,3.47,11,52.47,52.47,0,0,1-1.31,26.95A53.16,53.16,0,0,1,105.8,93a57.11,57.11,0,0,1-22.56,13.1,48.52,48.52,0,0,1-40.51-5.89A6.68,6.68,0,0,1,50,89a35.12,35.12,0,0,0,5.53,3,34.21,34.21,0,0,0,5.7,1.86,35.43,35.43,0,0,0,18.23-.54A43.77,43.77,0,0,0,96.74,83.19a39.7,39.7,0,0,0,10.93-17.06,39,39,0,0,0,1-20.08,46.38,46.38,0,0,0-2.68-8.5,39.19,39.19,0,0,0-45-23.22,45,45,0,0,0-8.52,2.72A39,39,0,0,0,34.5,32.49a40.94,40.94,0,0,0-6.05,23.39ZM60.83,34a6.11,6.11,0,0,1,12.22,0V53l14.89,8.27A6.09,6.09,0,1,1,82,71.93L64.43,62.16a6.11,6.11,0,0,1-3.6-5.57V34Z" />
+            </svg> </button> <button id="shortcuts" class="shortcuts" title="Show Shortcuts"> <svg class="command" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                <g>
+                    <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+                        <path d="M1748.1,4996.3c-619.2-79.6-1187.6-488.7-1461.8-1052.7c-143.7-291.9-183.5-473.3-183.5-835.9c0-272,6.6-333.9,59.7-504.2C352.7,1971,788.3,1517.7,1409.7,1303.2l214.5-75.2l747.5-6.6l745.3-6.6V111.2V-990.1l-712.1-8.9c-650.2-8.8-729.8-13.3-889-57.5C848-1240,330.5-1757.5,151.4-2423.2c-68.6-249.9-68.6-696.6,0-948.7c238.8-884.6,1057.1-1477.3,1957.2-1419.8c254.3,17.7,440.1,64.1,672.3,172.5c524.1,241.1,889,674.5,1057.1,1247.3c30.9,110.6,39.8,254.3,46.4,866.9l11.1,736.4h1101.3h1101.3l11.1-734.2c6.6-614.8,15.5-758.5,46.5-869.1c212.3-725.4,782.9-1258.3,1492.7-1391c977.5-185.8,1935,422.4,2193.8,1391c57.5,212.3,68.6,654.6,22.1,862.5c-168.1,760.7-778.4,1349-1539.2,1481.7c-143.7,24.3-358.3,33.2-820.4,33.2h-628.1V109v1105.7l747.5,6.6l745.3,6.6l214.5,75.2c513.1,176.9,908.9,524.1,1134.5,999.6c493.2,1043.8-57.5,2284.5-1167.7,2627.2c-858,265.4-1837.7-150.4-2235.8-946.5c-183.5-367.1-212.3-546.2-212.3-1344.6v-648H4996.8H3891v650.2c0,475.5-8.8,694.4-30.9,813.8c-163.7,829.3-813.8,1437.5-1649.8,1541.4C2002.4,5022.9,1953.8,5022.9,1748.1,4996.3z M8393.6,4162.6c557.3-210.1,855.8-822.7,676.7-1386.6c-112.8-360.5-422.4-654.6-789.5-751.9c-103.9-26.5-267.6-33.2-767.4-33.2h-636.9v625.8c0,678.9,11.1,767.4,126.1,1004c117.2,241,378.2,466.6,632.5,550.7C7869.5,4248.9,8176.9,4246.6,8393.6,4162.6z M2325.3,4180.3c179.1-55.3,378.2-181.3,502-322.9c115-128.3,236.6-371.5,267.6-537.4c11.1-64.1,22.1-391.4,22.1-723.2v-605.9h-636.9c-499.8,0-663.4,6.6-767.4,33.2c-493.2,130.5-833.7,568.3-835.9,1083.6c-4.4,490.9,291.9,906.7,758.5,1065.9C1827.7,4240,2124.1,4242.2,2325.3,4180.3z M6098.1,106.8l4.4-1101.3H4996.8H3891V95.7c0,601.5,6.6,1099.1,15.5,1105.7c6.6,8.9,502,13.3,1099.1,11.1l1085.8-6.6L6098.1,106.8z M3117-2392.2c0-479.9-8.8-659-33.2-767.4c-123.8-524.1-639.1-902.3-1172.1-858c-521.9,44.2-942.1,431.2-1030.5,950.9c-95.1,563.9,305.2,1141.1,873.5,1265c92.9,19.9,327.3,30.9,749.7,30.9l612.6,2.2V-2392.2z M8227.7-1799.5c575-121.6,973-685.6,884.6-1251.7c-79.6-526.3-502-920-1030.5-966.4c-548.4-46.4-1063.7,345-1180.9,895.7c-15.5,70.8-24.3,362.7-24.3,734.2v619.2h603.7C7911.5-1768.6,8123.8-1777.4,8227.7-1799.5z" />
+                    </g>
                 </g>
-            </g>
-        </svg> </button> <button title="Toggle Fullscreen" id="fullscreen" class="fullscreen"> <svg class="fs-icon" xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z" />
-        </svg> </button>
-    </button> <button title="Add To Favourite" id="fav" class="fav-btn"><i id="like" class="fa-solid fa-heart fa-2x"></i></button>
-
-    <button title="Favourite List" id="favlist" class="fav-list-btn"><i class="fa-solid fa-heart-circle-exclamation fa-2x"></i></i></button>
-    <div id="shortcuts-popup" class="shortcuts-popup">
-        <div id="modal-scroll">
-            <div class="modal">
-                <span id="modaltext">
-                </span>
-                <br>
-                <button id="s-delete" class="s-close s-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete All</button><br>
-                <button id="s-close" class="s-close"><i class="fa-solid fa-circle-xmark"></i></i>&nbsp;Close</button>
+            </svg> </button> <button title="Toggle Fullscreen" id="fullscreen" class="fullscreen"> <svg class="fs-icon" xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z" />
+            </svg> </button> </button> <button title="Add To Favourite" id="fav" class="fav-btn"><i id="like" class="fa-solid fa-heart fa-2x"></i></button> <button title="Favourite List" id="favlist" class="fav-list-btn"><i class="fa-solid fa-heart-circle-exclamation fa-2x"></i></i></button>
+        <div id="shortcuts-popup" class="shortcuts-popup">
+            <div id="modal-scroll">
+                <div class="modal"> <span id="modaltext"> </span> <br> <button id="s-delete" class="s-close s-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete All</button><br> <button id="s-close" class="s-close"><i class="fa-solid fa-circle-xmark"></i></i>&nbsp;Close</button> </div>
             </div>
         </div>
+        <div></div>
     </div>
-    <div></div></div>
     <section id="main" class="main">
         <div class="div1">
             <div class="divtxt" id="txt"></div>
             <div class="divname" id="name"></div>
             <div class="divrgb" id="divrgb"></div>
-            
     </section> <br><br>
     <div class="buttons"> <button class="button1" id="moreinfo">more info</button> </div><br>
     <div class="buttons"> <button id="copy" class="button1">copy text</button> </div><br>
@@ -79,16 +70,20 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QTNJRWC58"></script>
     <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="maciekt07" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
     <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         function clr_name() {
             const hex = document.getElementById("txt").textContent;
-            var n_match = ntc.name(hex);
-            n_name = n_match[1];
-            document.getElementById("name").textContent = n_name
+            const divName = document.getElementById("name");
+            const matchIcon = '<i class="fa-solid fa-equals"></i>';
+            let n_match = ntc.name(hex);
+            if (n_match[2]) {
+                divName.innerHTML = matchIcon + n_match[1] + matchIcon;
+            } else {
+                divName.innerHTML = n_match[1];
+            }
         }
         clr_name();
-    </script>
-    <noscript>
+    </script> <noscript>
         <p>You need to enable JavaScript to run this app.</p>
     </noscript>
 </body>
