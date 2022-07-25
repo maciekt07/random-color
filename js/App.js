@@ -4,8 +4,8 @@ fetch(luckyURL, {
     })
     .then(response => response.json())
     .then(json => {
-        const luckyDate = json.color;
-        console.log("%cToday Lucky Color is: " + luckyDate, "color:white;padding:8px;border:2px solid yellow;border-radius:12px");
+        const luckyColor = json.color;
+        console.log("%cToday Lucky Color is: " + luckyColor, "color:white;padding:8px;border:2px solid yellow;border-radius:12px");
     });
 //rgb
 String.prototype.convertToRGB = function() {
@@ -106,11 +106,11 @@ const hclr = () => {
 document.getElementById("history").style.display = "none";
 
 const showh = () => {
-    const x = document.getElementById("history");
-    if (x.style.display === "none") {
-        x.style.display = "block";
+    const h = document.getElementById("history");
+    if (h.style.display === "none") {
+        h.style.display = "block";
     } else {
-        x.style.display = "none";
+        h.style.display = "none";
     }
 };
 // const btn = document.getElementById("hbutton"); //change button text show/hide
@@ -578,7 +578,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
+const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
     location = url + "/?" + txt.textContent
 }
@@ -619,11 +619,10 @@ const urlLoad = () => {
 }
 urlLoad();
 
+if (location != url + "/?" + txt.textContent) {
+    urlError();
+}
 
-
-window.addEventListener('hashchange', () => {
-    urlLoad();
-}, false);
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
