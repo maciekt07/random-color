@@ -71,7 +71,7 @@
     <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="maciekt07" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
     <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
     <script type="text/javascript" defer>
-        function clr_name() {
+        const clr_name = () => {
             const hex = document.getElementById("txt").textContent;
             const divName = document.getElementById("name");
             const matchIcon = '<i class="fa-solid fa-equals"></i>';
@@ -83,6 +83,10 @@
             }
         }
         clr_name();
+        window.addEventListener('hashchange', () => {
+            urlLoad();
+            clr_name();
+        }, false);
     </script> <noscript>
         <p>You need to enable JavaScript to run this app.</p>
     </noscript>
