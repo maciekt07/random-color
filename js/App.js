@@ -1,16 +1,16 @@
-const URL = 'https://aztro.sameerkumar.website/?sign=aries&day=today';
-fetch(URL, {
+const luckyURL = 'https://aztro.sameerkumar.website/?sign=aries&day=today';
+fetch(luckyURL, {
         method: 'POST'
     })
     .then(response => response.json())
     .then(json => {
-        const date = json.color;
-        console.log("%cToday Lucky Color is: " + date, "color:white;padding:8px;border:2px solid yellow;border-radius:12px");
+        const luckyDate = json.color;
+        console.log("%cToday Lucky Color is: " + luckyDate, "color:white;padding:8px;border:2px solid yellow;border-radius:12px");
     });
 //rgb
 String.prototype.convertToRGB = function() {
-    let aRgbHex = this.match(/.{1,2}/g);
-    let aRgb = [
+    const aRgbHex = this.match(/.{1,2}/g);
+    const aRgb = [
         parseInt(aRgbHex[0], 16),
         parseInt(aRgbHex[1], 16),
         parseInt(aRgbHex[2], 16),
@@ -34,8 +34,8 @@ const main = () => {
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", bg_clr);
     const txt1 = txt.textContent;
-    let Str = txt1;
-    let StrNew = Str.replace("#", "");
+    const Str = txt1;
+    const StrNew = Str.replace("#", "");
     document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
     document.getElementById("alertspan").innerHTML =
         "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + bg_clr;
@@ -87,7 +87,7 @@ const historyl = () => {
 
 const hclr = () => {
     const x = hclrx[hclrx.length - 1];
-    let x2 = x.replace("#", "");
+    const x2 = x.replace("#", "");
     txt.textContent = x;
     document.body.style.backgroundColor = x;
     document.fgColor = x;
@@ -149,8 +149,6 @@ document.getElementById("s-close").addEventListener("click", () => {
 //   // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
 // };
 
-
-
 // copy
 const copyToClipboard = (element) => {
     let $temp = $("<input>");
@@ -166,8 +164,8 @@ const clrpicker = () => {
     colorPicker.addEventListener("input", () => {
         clr_name();
         const txt1 = txt.textContent;
-        let Str = txt1;
-        let StrNew = Str.replace("#", "");
+        const Str = txt1;
+        const StrNew = Str.replace("#", "");
         hidea();
         document.body.style.backgroundColor = colorPicker.value;
         document.fgColor = colorPicker.value;
@@ -294,7 +292,7 @@ const addToFavs = () => {
     old_favs.push(new_favs);
     localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)));
 };
-let ifFavClr = () => {
+const ifFavClr = () => {
     if (localStorage.getItem("favs") !== null) {
         if (localStorage.getItem("favs").includes(txt.textContent)) {
             like.style.color = "#FF2E78";
@@ -427,7 +425,7 @@ let favsChangeClr = null;
 document.getElementById("favlist").addEventListener("click", () => {
     hidea();
     document.getElementById("history").style.display = "none";
-    let favsarr = JSON.parse(localStorage.getItem("favs"));
+    const favsarr = JSON.parse(localStorage.getItem("favs"));
     if (
         document.getElementById("shortcuts-popup").className == "shortcuts-popup"
     ) {
@@ -580,7 +578,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
+const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
     location = url + "/?" + txt.textContent
 }
@@ -596,12 +594,11 @@ const urlError = () => {
 }
 
 const urlLoad = () => {
-    let urlhex = location.toString().replace(url + "/?", "");
-    let urlhexnumber = urlhex.replace("#", "")
-    let targetLength = 49; //30 for http://127.0.0.1:5500 49 for https://maciekt07.github.io/random-color
-    if (location.toString().length == targetLength && isHexColor(urlhexnumber)) {
+    const urlhex = location.toString().replace(url + "/?", "").toLowerCase();
+    const urlhexnumber = urlhex.replace("#", "").toLowerCase()
+    if (isHexColor(urlhexnumber)) {
         document.getElementById("shortcuts-popup").classList.remove("show");
-        let url2 = urlhex.replace("#", "");
+        const url2 = urlhex.replace("#", "").toLowerCase();
         txt.textContent = urlhex;
         document.body.style.backgroundColor = urlhex;
         document.fgColor = urlhex;
@@ -622,10 +619,11 @@ const urlLoad = () => {
 }
 urlLoad();
 
+
+
 window.addEventListener('hashchange', () => {
     urlLoad();
 }, false);
-
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
