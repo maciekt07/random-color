@@ -578,7 +578,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
 });
 //url
-const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
+const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
     location = url + "/?" + txt.textContent
 }
