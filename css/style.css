@@ -203,6 +203,7 @@ td {
     font-size: 18px;
     border-radius: 15px;
     width: auto;
+    height: 60px;
     transition-duration: 0.2s;
     animation-delay: 0.5s;
     cursor: pointer;
@@ -211,7 +212,6 @@ td {
 .s-close:hover {
     opacity: 0.5;
 }
-
 
 .s-delete {
     display: none;
@@ -252,7 +252,6 @@ td {
     background-color: rgb(58, 65, 110);
     opacity: 1;
     text-decoration: none;
-    transform: scale(1.07);
 }
 
 .favsclrname {
@@ -282,6 +281,18 @@ td {
 
     #favsli {
         margin-right: 125px;
+    }
+}
+
+@media (max-height: 820px) {
+    .modal {
+        max-height: 650px;
+    }
+}
+
+@media (max-height: 660px) {
+    .modal {
+        max-height: 520px;
     }
 }
 
@@ -429,7 +440,6 @@ td {
     .div1 {
         font-size: 80px;
         width: 400px;
-        font-family: Tahoma, Verdana, sans-serif;
     }
 }
 
@@ -528,7 +538,7 @@ td {
 }
 
 .hclrimg {
-    border-radius: 7px;
+    border-radius: 8px;
     position: relative;
     bottom: -11px;
     right: 2px;
@@ -606,6 +616,7 @@ hr {
     border-radius: 100px;
 }
 
+
 @media (max-width: 550px) {
     #history {
         transform: scale(0.9);
@@ -666,7 +677,7 @@ hr {
 
 .closebtn:hover,
 .h-close-btn:hover {
-    color: red;
+    color: #FF274E;
     cursor: pointer;
 }
 
