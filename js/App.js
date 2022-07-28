@@ -1,13 +1,3 @@
-const luckyURL = 'https://aztro.sameerkumar.website/?sign=aries&day=today';
-fetch(luckyURL, {
-        method: 'POST'
-    })
-    .then(response => response.json())
-    .then(json => {
-        const luckyColor = json.color;
-        const luckyStyle = "color:" + luckyColor +";padding:8px;border:3px solid;border-color:" + luckyColor + ";border-radius:10px"
-        console.log("%cToday Lucky Color is: " + luckyColor, luckyStyle);
-    });
 //rgb
 String.prototype.convertToRGB = function() {
     const aRgbHex = this.match(/.{1,2}/g);
@@ -274,6 +264,7 @@ const showalert = () => {
         }, 1300);
     });
     document.getElementById("shortcuts-popup").classList.remove("show");
+    navigator.vibrate(100)
 };
 
 const hidea = () => {
@@ -324,7 +315,6 @@ const removeFromFavs = (arr, item) => {
 };
 let l = 0;
 document.getElementById("fav").addEventListener("click", () => {
-    navigator.vibrate(500)
     addToFavs();
     l++;
     if (l % 2 != 0) {
@@ -592,7 +582,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
+const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 
 const urlChange = () => {
     location = url + "/?" + txt.textContent
 }
@@ -637,6 +627,50 @@ if (location != url + "/?" + txt.textContent) {
     urlError();
 }
 
+// daily lucky color
+const luckyURL = 'https://aztro.sameerkumar.website/?sign=aries&day=today';
+fetch(luckyURL, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(json => {
+        const luckyColor = json.color.toLowerCase().replace(/\s/g, '');
+        const luckyStyle = "color:" + luckyColor +";padding:8px;border:3px solid;border-color:" + luckyColor + ";border-radius:10px"
+        console.log("%cToday Lucky Color is: " + luckyColor, luckyStyle);
+        const getHexColor = (colorStr) => {
+            const a = document.createElement('div');
+            a.style.color = colorStr;
+            const colors = window.getComputedStyle( document.body.appendChild(a) ).color.match(/\d+/g).map(function(a){ return parseInt(a,10); });
+            document.body.removeChild(a);
+            return (colors.length >= 3) ? '#' + (((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1)) : false;
+        }
+        console.log(getHexColor(luckyColor))
+        const luckyLink = url + "/?" + getHexColor(luckyColor)
+        const luckyImage = "https://singlecolorimage.com/get/" + getHexColor(luckyColor).replace("#", "") + "/16x16"
+
+        //push notification
+        const showNotification = () => {
+            const notification = new Notification("Daily Lucky Color", {
+                body: "Today Lucky Color is: " + luckyColor + " " + "(" + getHexColor(luckyColor) + ")",
+                icon: luckyImage
+            });
+            notification.onclick = (e) => {
+                location = luckyLink
+            }
+        }
+        console.log(Notification.permission)
+        if (Notification.permission === "granted") {
+            console.log("We have permission to send you push notifications!")
+            showNotification()
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission => {
+                // console.log(permission)
+                if (permission === "granted") {
+                showNotification()
+                }
+            })
+        }
+    });
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
