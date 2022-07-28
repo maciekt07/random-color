@@ -33,6 +33,7 @@ html {
     --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
     --bar-clr: rgba(222, 222, 222, 0.5);
     --hr-gradient: linear-gradient(90deg, rgba(108, 209, 228, 1) 24%, rgba(67, 143, 223, 1) 76%);
+    --arrows-background: rgba(255, 255, 255, 0.662);
 }
 
 .darkmode {
@@ -47,6 +48,7 @@ html {
     --a-hover: #0076d7;
     --bar-clr: rgba(45, 45, 45, 0.5);
     --hr-gradient: linear-gradient(90deg, rgba(136, 108, 228, 1) 24%, rgba(142, 60, 228, 1) 76%);
+    --arrows-background: rgba(0, 0, 0, 0.662);
 }
 
 .twa-lg,
@@ -400,6 +402,48 @@ td {
     }
 }
 
+/* .arrows-container {
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 20px;
+}
+
+#back, #forward {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 18px;
+    background: var(--foreground);
+    backdrop-filter: blur(30px);
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    animation-delay: 3s;
+}
+
+.fa-angle-right, .fa-angle-left {
+    color: var(--font-clr);
+    transition-duration: 0.3s;
+    animation-delay: 3s;
+}
+
+#back:hover > .fa-angle-left  {
+    color: var(--button-txt-hover);
+}
+
+#forward:hover > .fa-angle-right  {
+    color: var(--button-txt-hover);
+}
+
+@media (max-width: 752px) {
+    #back, #forward {
+        display: block;
+    }
+    .arrows-container {
+        padding: 2px;
+    }
+} */
+
 .main {
     text-align: center;
     display: flex;
@@ -726,7 +770,8 @@ br,
 .social-btn,
 .closebtn,
 .dark-mode-toggle,
-.h-close-btn {
+.h-close-btn,
+.arrows-container {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
