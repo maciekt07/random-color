@@ -237,13 +237,13 @@ document.getElementById("moreinfo").addEventListener("click", () => {
     document.getElementById("shortcuts-popup").classList.remove("show");
 });
 
-document.getElementById("back").addEventListener("click", () => {
-    history.go(-1);
-})
+// document.getElementById("back").addEventListener("click", () => {
+//     history.go(-1);
+// })
 
-document.getElementById("forward").addEventListener("click", () => {
-    history.forward();
-})
+// document.getElementById("forward").addEventListener("click", () => {
+//     history.forward();
+// })
 
 
 document.getElementById("copy").addEventListener("click", () => {
