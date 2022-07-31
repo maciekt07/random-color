@@ -588,7 +588,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
 });
 //url
-const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 
+const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
 const urlChange = () => {
     location = url + "/?" + txt.textContent
 }
@@ -667,7 +667,7 @@ fetch(luckyURL, {
         console.log("%cToday Lucky Color is: " + luckyColor + " (" + getHexColor(luckyColorHTML) + ")", luckyStyle);
         const luckyLink = url + "/?" + getHexColor(luckyColorHTML)
         const luckyImage = "https://singlecolorimage.com/get/" + getHexColor(luckyColorHTML).replace("#", "") + "/16x16"
-        
+
         //push notification
         const showNotification = () => {
             const notification = new Notification("Daily Lucky Color " + json.current_date , {
