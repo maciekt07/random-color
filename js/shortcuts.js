@@ -30,13 +30,13 @@ shortcut(slash, "shortcuts")
 const p = 80
 shortcut(p, "color_input")
 
-const f = 80
-shortcut(f, "fullscreen")
+const f = 70
+shortcut(70, "fullscreen")
 
-const l = 76
-shortcut(l, "fav")
+const L = 76
+shortcut(L, "fav")
 
-const o = 72
+const o = 79
 shortcut(o, "favlist")
 
 
@@ -44,6 +44,7 @@ shortcut(o, "favlist")
 //   const n = document.getElementById("name");
 //   if (event.keyCode == 78) {
 //     // n button hides color name
+
 //     if (n.style.display == "block") {
 //       n.style.display = "none";
 //     } else {
