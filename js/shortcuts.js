@@ -1,90 +1,53 @@
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 82) {
-      // r button changes color
-      document.getElementById("refresh").click();
-  }
-});
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 67) {
-      // c button copies text
-      document.getElementById("copy").click();
-  }
-});
+const shortcut = (key, id) => {
+  return document.addEventListener("keyup", (event) => {
+    if (event.keyCode == key) {
+      document.getElementById(id).click();
+    }
+  });
+}
+const r = 82
+shortcut(r, "refresh")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 84) {
-      // t button changes theme
-      document.getElementById("dark-mode-toggle").click();
-  }
-});
+const c = 67
+shortcut(c, "copy")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 77) {
-      // m button shows more info
-      document.getElementById("moreinfo").click();
-  }
-});
+const t = 84
+shortcut(t, "dark-mode-toggle")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 71) {
-      // g button opens github profile
-      document.getElementById("github").click();
-  }
-});
+const m = 77
+shortcut(m, "moreinfo")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 72) {
-      // h button shows history list
-      document.getElementById("hbutton").click();
-  }
-});
+const g = 71
+shortcut(g, "github")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 191) {
-      // / button shows shortucts
-      document.getElementById("shortcuts").click();
-  }
-});
+const h = 72
+shortcut(h, "hbutton")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 80) {
-      // p button opens color picker
-      document.getElementById("color_input").click();
-  }
-});
+const slash = 191
+shortcut(slash, "shortcuts")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 70) {
-      // f button toggles fullscreen
-      document.getElementById("fullscreen").click();
-  }
-});
+const p = 80
+shortcut(p, "color_input")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 76) {
-      // l adds to favourite list
-      document.getElementById("fav").click();
-  }
-});
+const f = 80
+shortcut(f, "fullscreen")
 
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 79) {
-      // l adds to favourite list
-      document.getElementById("favlist").click();
-  }
-});
+const l = 76
+shortcut(l, "fav")
+
+const o = 72
+shortcut(o, "favlist")
 
 
-document.addEventListener("keyup", (event) => {
-  const n = document.getElementById("name")
-  if (event.keyCode == 78) {
-      // n button hides color name
-
-      if (n.style.display == "block") {
-          n.style.display = "none"
-      } else {
-          n.style.display = "block"
-      }
-  }
-});
+// document.addEventListener("keyup", (event) => {
+//   const n = document.getElementById("name");
+//   if (event.keyCode == 78) {
+//     // n button hides color name
+//     if (n.style.display == "block") {
+//       n.style.display = "none";
+//     } else {
+//       n.style.display = "block";
+//     }
+//   }
+// });
