@@ -359,9 +359,10 @@ td {
     position: absolute;
     right: 0em;
     top: 0em;
-    border-radius: 18px 0 0 18px;
+    border-radius: 20px 0 0 20px;
     transition-duration: 0.5s;
     animation-delay: 5s;
+    border-top: 2px solid var(--foreground);
     border-left: 2px solid var(--foreground);
     border-bottom: 2px solid var(--foreground);
     cursor: default;
@@ -460,7 +461,7 @@ td {
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     letter-spacing: 1.7px;
     background-color: var(--foreground);
-    transition: 0s all;
+    transition: 0.01s all;
     -webkit-text-stroke: 1.5px var(--font-clr);
 }
 
@@ -730,6 +731,7 @@ hr {
 }
 
 noscript {
+    padding: 20px;
     position: fixed;
     top: 0px;
     left: 0px;
