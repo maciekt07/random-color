@@ -14,7 +14,7 @@ const main = () => {
     counter++;
     let bg_clr = Math.floor(Math.random() * 16777215).toString(16);
     bg_clr = "#" + ("000000" + bg_clr).slice(-6);
-    clr_link = ("000000" + bg_clr).slice(-6);
+    let clr_link = ("000000" + bg_clr).slice(-6);
     document.body.style.backgroundColor = bg_clr;
     txt.innerHTML = bg_clr;
     link = "https://www.color-hex.com/color/" + clr_link;
@@ -30,10 +30,12 @@ const main = () => {
     document.getElementById("divrgb").innerHTML = "RGB " + StrNew.convertToRGB();
     document.getElementById("alertspan").innerHTML =
         "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + bg_clr;
-    console.log("%c--------- ", "color:#949494; font-size: 20px;");
+    setTimeout(() => {
+    console.log("%c------------------------------ ", "color:#949494; font-size: 20px;");
     console.log(
         counter + ". " + txt.textContent + " " + document.getElementById("name").textContent + " RGB " + clr_link.convertToRGB()
     );
+}, 10);
     const top_btn = document.getElementById("h-back-to-top");
     if (counter == 4) {
         top_btn.style.display = "block";
@@ -281,14 +283,14 @@ const hidea = () => {
         .querySelector(".alert")
         .classList.remove("animate__animated", "animate__fadeOut");
 };
-
+isHexColor = hex => typeof hex === 'string' && hex.length === 6 && !isNaN(Number('0x' + hex))
 const uniqueFavs = (array) =>
     array.filter(
         (currentValue, index, arr) => arr.indexOf(currentValue) === index
     );
 const like = document.getElementById("like");
 const addToFavs = () => {
-    let new_favs = txt.textContent;
+    let new_favs = document.getElementById("color_input").value;
     if (localStorage.getItem("favs") == null) {
         localStorage.setItem("favs", "[]");
     }
@@ -321,7 +323,7 @@ document.getElementById("fav").addEventListener("click", () => {
         like.style.color = "#FF2E78";
         document.getElementById("alertspan").innerHTML =
             "<span class='alert-emoji'>❤️</span>Added to favorites: " +
-            txt.textContent;
+            document.getElementById("color_input").value;
         showalert();
         like.classList.add("fa-beat");
         setTimeout(() => {
@@ -387,8 +389,12 @@ if (localStorage.getItem("clr") != null) {
     }
 } else {
     document.getElementById("fav").click();
+    document.getElementById("s-delete").click();
+    document.getElementById("fav").click();
     historyl();
-    ifFavClr();
+    setTimeout(() => {
+        localStorage.setItem("firstColor", txt.textContent)
+    }, 100);
     l++;
 }
 locals();
@@ -582,7 +588,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
     }
 });
 //url
-const url = "https://maciekt07.github.io/random-color" // http://127.0.0.1:5500 
+const url = "http://127.0.0.1:5500" // http://127.0.0.1:5500 
 const urlChange = () => {
     location = url + "/?" + txt.textContent
 }
@@ -627,38 +633,58 @@ if (location != url + "/?" + txt.textContent) {
     urlError();
 }
 
+const getHexColor = (colorStr) => {
+    const a = document.createElement('div');
+    a.style.color = colorStr;
+    const colors = window.getComputedStyle( document.body.appendChild(a) ).color.match(/\d+/g).map(function(a){ return parseInt(a,10); });
+    document.body.removeChild(a);
+    return (colors.length >= 3) ? '#' + (((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1)) : false;
+}
 // daily lucky color
+
 const luckyURL = 'https://aztro.sameerkumar.website/?sign=aries&day=today';
 fetch(luckyURL, {
         method: 'POST'
     })
     .then(response => response.json())
     .then(json => {
-        const luckyColor = json.color.toLowerCase().replace(/\s/g, '');
-        const luckyStyle = "color:" + luckyColor +";padding:8px;border:3px solid;border-color:" + luckyColor + ";border-radius:10px"
-        console.log("%cToday Lucky Color is: " + luckyColor, luckyStyle);
-        const getHexColor = (colorStr) => {
-            const a = document.createElement('div');
-            a.style.color = colorStr;
-            const colors = window.getComputedStyle( document.body.appendChild(a) ).color.match(/\d+/g).map(function(a){ return parseInt(a,10); });
-            document.body.removeChild(a);
-            return (colors.length >= 3) ? '#' + (((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1)) : false;
+        let luckyColor = json.color;
+        switch (luckyColor) {
+            case "Navy Blue":  
+                luckyColor = "Navy";    
         }
-        console.log(getHexColor(luckyColor))
-        const luckyLink = url + "/?" + getHexColor(luckyColor)
-        const luckyImage = "https://singlecolorimage.com/get/" + getHexColor(luckyColor).replace("#", "") + "/16x16"
+        let luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, '')
 
+        // Lucky Color Error
+        document.getElementById("db").style.color = luckyColorHTML
+        if (document.getElementById("db").style.color == "") {
+            console.error("Lucky Color Error invalid color: " + luckyColor)
+        luckyColor = "Hot Pink"
+        luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, '')
+        }
+
+        const luckyStyle = "color:white"+";padding:8px;border:4px solid;border-color:" + luckyColorHTML + ";border-radius:10px"
+        console.log("%cToday Lucky Color is: " + luckyColor + " (" + getHexColor(luckyColorHTML) + ")", luckyStyle);
+        const luckyLink = url + "/?" + getHexColor(luckyColorHTML)
+        const luckyImage = "https://singlecolorimage.com/get/" + getHexColor(luckyColorHTML).replace("#", "") + "/16x16"
+        
         //push notification
         const showNotification = () => {
-            const notification = new Notification("Daily Lucky Color", {
-                body: "Today Lucky Color is: " + luckyColor + " " + "(" + getHexColor(luckyColor) + ")",
-                icon: luckyImage
+            const notification = new Notification("Daily Lucky Color " + json.current_date , {
+                body: "Today Lucky Color is: " + luckyColor + " " + "(" + getHexColor(luckyColorHTML) + ")" + "\r\n" + "Mood: " + json.mood,
+                icon: luckyImage,
+                badge: luckyImage,
+                lang: 'en-US',
+                silent: true,
+                // image: luckyImage
             });
+           console.log(luckyImage)
             notification.onclick = (e) => {
                 location = luckyLink
             }
+
         }
-        console.log(Notification.permission)
+        // console.log(Notification.permission)
         if (Notification.permission === "granted") {
             console.log("We have permission to send you push notifications!")
             showNotification()
@@ -671,7 +697,6 @@ fetch(luckyURL, {
             })
         }
     });
-
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
 
