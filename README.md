@@ -27,6 +27,8 @@ shortcut(r, "refresh")
 # Notifications
 ![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
 
+Api: [https://aztro.readthedocs.io/en/latest/](https://aztro.readthedocs.io/en/latest/)
+
 ``` js
 // Notification
 const showNotification = () => {
