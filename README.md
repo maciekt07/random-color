@@ -78,10 +78,6 @@ const urlError = () => {
     showalert();
   }, 300);
 };
-
-if (location != url + "/?" + document.getElementById("color_input").value) {
-    urlError();
-}
 ```
 
 # History
