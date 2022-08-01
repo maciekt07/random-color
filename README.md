@@ -27,6 +27,36 @@ shortcut(r, "refresh")
 # Notifications
 ![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
 
+``` js
+const showNotification = () => {
+    const notification = new Notification("Daily Lucky Color " + json.current_date, {
+        body: "Today Lucky Color is: " + luckyColor + " " + "(" + getHexColor(luckyColorHTML) + ")" +
+        "\r\n" + "Mood: " + json.mood,
+        icon: luckyImage,
+        badge: luckyImage,
+        lang: 'en-US',
+        silent: true,
+        // image: luckyImage
+    });
+    console.log(luckyImage)
+    notification.onclick = (e) => {
+        location = luckyLink
+    }
+}
+// console.log(Notification.permission)
+if (Notification.permission === "granted") {
+    console.log("We have permission to send you push notifications!")
+    showNotification()
+} else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(permission => {
+        // console.log(permission)
+        if (permission === "granted") {
+            showNotification()
+        }
+    })
+}
+});
+ ```
 Daily notifications about today lucky color (with onclick)
 # Page Speed
 ![pagespeed](https://raw.githubusercontent.com/maciekkoks/random-color/main/img/pagespeed.png)
