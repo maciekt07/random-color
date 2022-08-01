@@ -95,3 +95,6 @@ Session history of random colors
 ![pagespeed](https://raw.githubusercontent.com/maciekkoks/random-color/main/img/pagespeed.png)
 
 By [Google PageSpeed](https://pagespeed.web.dev)
+
+## Made With ❤ By [maciekt07](https://github.com/maciekt07)
+
