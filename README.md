@@ -61,6 +61,28 @@ if (Notification.permission === "granted") {
  ```
 Daily notifications about today lucky color (with onclick)
 
+# Changing Color From URL
+![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/url.png)
+
+### URL error 
+![urlerror](https://raw.githubusercontent.com/maciekt07/random-color/main/img/urlerror.png)
+
+``` js 
+const urlError = () => {
+  //change url to previous
+  location = url + "/?" + localStorage.getItem("clr");
+  setTimeout(() => {
+    console.error("ERROR: Invalid Color in URL");
+    document.getElementById("alertspan").innerHTML =
+      "<span class='alert-emoji'>❌</span> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL";
+    showalert();
+  }, 300);
+};
+if (location != url + "/?" + document.getElementById("color_input").value) {
+    urlError();
+}
+```
+
 # History
 ![history](https://raw.githubusercontent.com/maciekt07/random-color/main/img/history.png)
 
