@@ -43,13 +43,11 @@ const showNotification = () => {
         location = luckyLink
     }
 }
-// console.log(Notification.permission)
 if (Notification.permission === "granted") {
     console.log("We have permission to send you push notifications!")
     showNotification()
 } else if (Notification.permission !== "denied") {
     Notification.requestPermission().then(permission => {
-        // console.log(permission)
         if (permission === "granted") {
             showNotification()
         }
