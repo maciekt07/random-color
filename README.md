@@ -64,6 +64,12 @@ Daily notifications about today lucky color (with onclick)
 # Changing Color From URL
 ![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/url.png)
 
+``` js
+window.addEventListener('hashchange', () => {
+    urlLoad();
+}, false);
+```
+
 ### URL error 
 ![urlerror](https://raw.githubusercontent.com/maciekt07/random-color/main/img/urlerror.png)
 
