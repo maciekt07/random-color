@@ -60,6 +60,12 @@ if (Notification.permission === "granted") {
 });
  ```
 Daily notifications about today lucky color (with onclick)
+
+# History
+![history](https://raw.githubusercontent.com/maciekt07/random-color/main/img/history.png)
+
+History of random colors
+
 # Page Speed
 ![pagespeed](https://raw.githubusercontent.com/maciekkoks/random-color/main/img/pagespeed.png)
 
