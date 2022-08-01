@@ -28,6 +28,7 @@ shortcut(r, "refresh")
 ![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
 
 ``` js
+// Notification
 const showNotification = () => {
     const notification = new Notification("Daily Lucky Color " + json.current_date, {
         body: "Today Lucky Color is: " + luckyColor + " " + "(" + getHexColor(luckyColorHTML) + ")" +
@@ -38,11 +39,12 @@ const showNotification = () => {
         silent: true,
         // image: luckyImage
     });
-    console.log(luckyImage)
+    // Change color to lucky color on click
     notification.onclick = (e) => {
         location = luckyLink
     }
 }
+// Permissions
 if (Notification.permission === "granted") {
     console.log("We have permission to send you push notifications!")
     showNotification()
