@@ -338,10 +338,14 @@ td {
 .share-btn:hover, .fav-list-btn:hover, .fav-btn:hover, .fullscreen:hover, .shortcuts:hover, .history-btn:hover, .dark-mode-toggle:hover, #color_input:hover{
     box-shadow: var(--shadow);
 }
+.fa-share {
+    color: var(--foreground);
+    transition: 0.4s all ease;
+}
 .right-bar {
     z-index: 99;
     backdrop-filter: blur(30px);
-    height: 496px;
+    height: 493px;
     width: 75px;
     background: var(--bar-clr);
     display: inline-block;
