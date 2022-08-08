@@ -465,6 +465,7 @@ td {
     color: var(--font-clr);
     -webkit-text-stroke: 0px currentColor;
     margin-bottom: 3px;
+    text-shadow: none;
 }
 
 .divname {
@@ -474,12 +475,19 @@ td {
     color: var(--font-clr);
     margin-bottom: 5px;
     display: block;
+    text-shadow: none;
 }
 
 @media (max-width: 650px) {
     .div1 {
         font-size: 80px;
         width: 400px;
+        -webkit-text-stroke: 0px currentColor;
+        text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
     }
 }
 
