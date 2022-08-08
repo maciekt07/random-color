@@ -3,6 +3,13 @@ A simple random color picker with hex code made by using HTML, CSS and JavaScrip
 All data is stored in local storage.
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png)
 
+# Icons
+
+<img width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
+<img width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconDark.png"></img>
+
+Made by me in figma
+
 # Features
 # Liked Colors List
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
