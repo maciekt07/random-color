@@ -235,14 +235,19 @@ String.prototype.convertToRGB = function () {
     window.open(link);
     document.getElementById("shortcuts-popup").classList.remove("show");
   });
-  
-  // document.getElementById("back").addEventListener("click", () => {
-  //     history.go(-1);
-  // })
-  
-  // document.getElementById("forward").addEventListener("click", () => {
-  //     history.forward();
-  // })
+  //history back/forward buttons
+  setTimeout(() => {
+    sessionStorage.setItem("firstSessionClr", document.getElementById("color_input").value)
+  }, 50);
+
+  document.getElementById("back").addEventListener("click", () => {
+    if (sessionStorage.getItem("firstSessionClr") != document.getElementById("color_input").value) {
+      history.go(-1);
+    }
+  })
+  document.getElementById("forward").addEventListener("click", () => {
+      history.go(1);
+  })
   
   document.getElementById("copy").addEventListener("click", () => {
     copyToClipboard("#txt");
@@ -309,8 +314,10 @@ String.prototype.convertToRGB = function () {
     if (localStorage.getItem("favs") !== null) {
       if (localStorage.getItem("favs").includes(txt.textContent)) {
         like.style.color = "#FF2E78";
+        l=1
       } else {
         like.style.color = "currentColor";
+        l=2
       }
     }
   };
@@ -474,7 +481,7 @@ String.prototype.convertToRGB = function () {
         "</span>";
       li.setAttribute(
         "onclick",
-        "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();l=1"
+        "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();"
       );
     });
     const del = document.getElementById("s-delete");
@@ -484,6 +491,7 @@ String.prototype.convertToRGB = function () {
       del.style.display = "none";
     }
     del.addEventListener("click", () => {
+      l=2
       document.getElementById("shortcuts-popup").classList.remove("show");
       like.style.color = "currentColor";
       localStorage.setItem("favs", "[]");
@@ -596,14 +604,29 @@ String.prototype.convertToRGB = function () {
       }
     }
   });
+
+  const shareData = {
+    title: 'Random Color Tool By maciekt07',
+    text: 'Check out this cool color: ' + document.getElementById("color_input").value,
+    url: location
+  }
+document.getElementById("share").addEventListener('click', async () => {
+  try {
+    await navigator.share(shareData)
+    console.log('Color shared successfully')
+  } catch(err) {
+    console.log(`Error: ${err}`)
+  }
+});
+
   //url
-  const url = "https://maciekt07.github.io/random-color"; // http://127.0.0.1:5500 https://maciekt07.github.io/random-color
+  const url = "https://maciekt07.github.io/random-color/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
   const urlChange = () => {
-    location = url + "/?" + document.getElementById("color_input").value;
+    location = url + "?" + document.getElementById("color_input").value;
   };
   const urlError = () => {
     //change url to previous
-    location = url + "/?" + localStorage.getItem("clr");
+    location = url + "?" + localStorage.getItem("clr");
     setTimeout(() => {
       console.error("ERROR: Invalid Color in URL");
       document.getElementById("alertspan").innerHTML =
@@ -615,7 +638,7 @@ String.prototype.convertToRGB = function () {
   const urlLoad = () => {
     const urlhex = location
       .toString()
-      .replace(url + "/?", "")
+      .replace(url + "?", "")
       .toLowerCase();
     const urlhexnumber = urlhex.replace("#", "").toLowerCase();
     if (isHexColor(urlhexnumber)) {
@@ -641,7 +664,7 @@ String.prototype.convertToRGB = function () {
   };
   urlLoad();
   
-  if (location != url + "/?" + document.getElementById("color_input").value) {
+  if (location != url + "?" + document.getElementById("color_input").value) {
     urlError();
   }
   
@@ -698,7 +721,7 @@ String.prototype.convertToRGB = function () {
           ")",
         luckyStyle
       );
-      const luckyLink = url + "/?" + getHexColor(luckyColorHTML);
+      const luckyLink = url + "?" + getHexColor(luckyColorHTML);
       const luckyImage =
         "https://singlecolorimage.com/get/" +
         getHexColor(luckyColorHTML).replace("#", "") +
@@ -711,7 +734,7 @@ String.prototype.convertToRGB = function () {
           {
             body:"Today Lucky Color is: " +
                 luckyColor +" " +"(" +getHexColor(luckyColorHTML) +")" +
-                "\r\n" +"Mood: " +json.mood,
+                "\r\n" +"Mood: " + json.mood,
             icon: luckyImage,
             badge: luckyImage,
             lang: "en-US",
@@ -721,13 +744,15 @@ String.prototype.convertToRGB = function () {
         );
         console.log(luckyImage);
         notification.onclick = (e) => {
-          location = luckyLink;
+          window.open(luckyLink, "_self")
         };
       };
       // console.log(Notification.permission)
       if (Notification.permission === "granted") {
         console.log("We have permission to send you push notifications!");
-        showNotification();
+        setTimeout(() => {
+          showNotification();
+        }, 1500);
       } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then((permission) => {
           // console.log(permission)
