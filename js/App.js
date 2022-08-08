@@ -1,3 +1,4 @@
+
 //rgb
 String.prototype.convertToRGB = function () {
     const aRgbHex = this.match(/.{1,2}/g);
@@ -271,13 +272,13 @@ String.prototype.convertToRGB = function () {
       setTimeout(() => {
         alert.classList.add("animate__animated", "animate__fadeOut");
       }, 800);
-      setTimeout(() => {
+    setTimeout(() => {
         hidea();
         alert.classList.remove("animate__animated", "animate__fadeOut");
       }, 1300);
     });
     document.getElementById("shortcuts-popup").classList.remove("show");
-    navigator.vibrate(100);
+    navigator.vibrate(200);
   };
   
   const hidea = () => {
@@ -427,6 +428,7 @@ String.prototype.convertToRGB = function () {
   if (darkMode === "enabled") {
     enableDarkMode();
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
+    document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconDark.png");
   }
   darkModeToggle.addEventListener("click", () => {
     darkMode = localStorage.getItem("darkMode");
@@ -436,12 +438,15 @@ String.prototype.convertToRGB = function () {
       showalert();
       document.getElementById("alertspan").innerHTML =
         "<span class='alert-emoji'>🌙</span> Darkmode Enabled!";
+        document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconDark.png");
     } else {
       disableDarkMode();
       console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
+      document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconLight.png");
       showalert();
       document.getElementById("alertspan").innerHTML =
         "<span class='alert-emoji'>☀️</span> Darkmode Disabled!";
+        document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconLight.png");
     }
   });
   
@@ -607,6 +612,13 @@ String.prototype.convertToRGB = function () {
 
  
 document.getElementById("share").addEventListener('click', async () => {
+  navigator.vibrate(200);
+  document.querySelector(".fa-share").classList.add("fa-flip")
+  document.querySelector(".fa-share").style.color = "#48b4ea"
+  setTimeout(() => {
+    document.querySelector(".fa-share").classList.remove("fa-flip")
+    document.querySelector(".fa-share").style.color = "var(--foreground)"
+  }, 2000);
   let shareData = {
     title: 'Random Color Tool By maciekt07',
     text: 'Check out this cool color: ' + document.getElementById("color_input").value,
