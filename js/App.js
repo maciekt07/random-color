@@ -612,6 +612,11 @@ String.prototype.convertToRGB = function () {
 
  
 document.getElementById("share").addEventListener('click', async () => {
+  document.getElementById("url").innerHTML = location;
+  copyToClipboard("#url");
+  document.getElementById("alertspan").innerHTML =
+      "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
+  showalert();
   navigator.vibrate(200);
   document.querySelector(".fa-share").classList.add("fa-flip")
   document.querySelector(".fa-share").style.color = "#48b4ea"
@@ -633,7 +638,7 @@ document.getElementById("share").addEventListener('click', async () => {
 });
 
   //url
-  const url = "https://maciekt07.github.io/random-color/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
+  const url = "http://127.0.0.1:5500/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
   const urlChange = () => {
     location = url + "?" + document.getElementById("color_input").value;
   };
