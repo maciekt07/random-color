@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SebastianAigner/twemoji-amazing@1.0.0/twemoji-amazing.css">
+    <link rel="manifest" href="manifest.json">
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     <title>Random Color</title>
 </head>
@@ -33,7 +34,9 @@
                 </g>
             </svg> <button title="Toggle Fullscreen" id="fullscreen" class="fullscreen"> <svg class="fs-icon" xmlns="http://www.w3.org/2000/svg" width="33.5" height="33.5" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M1 1v6h2V3h4V1H1zm2 12H1v6h6v-2H3v-4zm14 4h-4v2h6v-6h-2v4zm0-16h-4v2h4v4h2V1h-2z" />
-            </svg> </button> <button title="Add To Favourite" id="fav" class="fav-btn"><i id="like" class="fa-solid fa-heart fa-2x"></i></button> <button title="Favourite List" id="favlist" class="fav-list-btn"><i class="fa-solid fa-heart-circle-exclamation fa-2x"></i></button>
+            </svg> </button> <button title="Add To Favourite" id="fav" class="fav-btn"><i id="like" class="fa-solid fa-heart fa-2x"></i></button> 
+            <button title="Favourite List" id="favlist" class="fav-list-btn"><i class="fa-solid fa-heart-circle-exclamation fa-2x"></i></button>
+            <button title="Share" id="share" class="share-btn"><i class="fa-solid fa-share fa-2x"></i></button>
         <div id="shortcuts-popup" class="shortcuts-popup">
             <div id="modal-scroll">
                 <div class="modal"> <span id="modaltext"> </span> <br> <button id="s-delete" class="s-close s-delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete All</button><br> <button id="s-close" class="s-close"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Close</button> </div>
@@ -41,10 +44,10 @@
         </div>
         <div></div>
     </div>
-    <!-- <div class="arrows-container">
+    <div class="arrows-container">
         <span id="back"><i class="fa-solid fa-angle-left fa-2x"></i></span>
         <span id="forward"><i class="fa-solid fa-angle-right fa-2x" id="backicon"></i></span>
-    </div> -->
+    </div>
     <section id="main" class="main">
             <div class="div1">
             <div class="divtxt" id="txt"></div>
@@ -65,7 +68,7 @@
         </div>
     </center>
     <div class="alertbox">
-        <div class="alert" id="alert"> <span class="closebtn" id="a-close2">&times;</span> <span id="alertspan"></span> </div>
+        <div class="alert" id="alert"> <span class="closebtn" id="a-close2">&times;</span> <span id="alertspan"></span></div>
     </div><button id="db"></button>
     <script type="text/javascript" src="js/App.js"></script>
     <script type="text/javascript" src="js/shortcuts.js"></script>
