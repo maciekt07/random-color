@@ -5,39 +5,39 @@ const shortcut = (key, id) => {
       document.getElementById(id).click();
     }
   });
-}
-const r = 82
-shortcut(r, "refresh")
+};
+const R = 82;
+shortcut(R, "refresh");
 
-const c = 67
-shortcut(c, "copy")
+const C = 67;
+shortcut(C, "copy");
 
-const t = 84
-shortcut(t, "dark-mode-toggle")
+const T = 84;
+shortcut(T, "dark-mode-toggle");
 
-const m = 77
-shortcut(m, "moreinfo")
+const M = 77;
+shortcut(M, "moreinfo");
 
-const g = 71
-shortcut(g, "github")
+const G = 71;
+shortcut(G, "github");
 
-const h = 72
-shortcut(h, "hbutton")
+const H = 72;
+shortcut(H, "hbutton");
 
-const slash = 191
-shortcut(slash, "shortcuts")
+const slash = 191;
+shortcut(slash, "shortcuts");
 
-const p = 80
-shortcut(p, "color_input")
+const P = 80;
+shortcut(P, "color_input");
 
-const f = 70
-shortcut(70, "fullscreen")
+const F = 70;
+shortcut(F, "fullscreen");
 
-const L = 76
-shortcut(L, "fav")
+const L = 76;
+shortcut(L, "fav");
 
-const o = 79
-shortcut(o, "favlist")
+const O = 79
+shortcut(O, "favlist");
 
 
 // document.addEventListener("keyup", (event) => {
