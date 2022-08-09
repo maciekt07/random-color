@@ -1,18 +1,20 @@
 {
-    "name": "Random Color Tool",
-    "short_name": "RandomColor",
-    "description": "Random Color Tool author: github.com/maciekt07",
-    "display": "standalone",
-    "icons": [
-        {
-            "src": "img/iconLight.png",
-            "type": "image/png",
-            "sizes": "256x256"
-        },
-        {
-            "src": "img/iconDark.png",
-            "type": "image/png",
-            "sizes": "256x256" 
-        }
-    ]
+  "name": "Random Color Tool",
+  "short_name": "RandomColor",
+  "description": "Random Color Tool author: github.com/maciekt07",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "img/iconLight.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "img/iconDark.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "background_color": "#1d1f28",
+  "theme_color": "#ffffff"
 }
