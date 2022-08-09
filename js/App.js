@@ -334,6 +334,7 @@ let l = 0;
 document.getElementById("fav").addEventListener("click", () => {
   addToFavs();
   l++;
+  navigator.vibrate(150);
   if (l % 2 != 0) {
     like.style.color = "#FF2E78";
     document.getElementById("alertspan").innerHTML =
@@ -578,8 +579,20 @@ document.getElementById("a-close2").addEventListener("click", () => {
 const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
+    if (window.screen.width > 1024) {
+      showalert();
+      document.getElementById("alertspan").innerHTML =
+        "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Enabled!";
+      console.log("Fullscreen enabled");
+    }
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
+    if (window.screen.width > 1024) {
+      showalert();
+      document.getElementById("alertspan").innerHTML =
+        "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Disabled!";
+      console.log("Fullscreen disabled");
+    }
   }
 };
 document.getElementById("fullscreen").addEventListener("click", () => {
@@ -591,7 +604,7 @@ document.getElementById("share").addEventListener("click", async () => {
   document.getElementById("alertspan").innerHTML =
     "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
   showalert();
-  navigator.vibrate(200);
+  navigator.vibrate(150);
   document.querySelector(".fa-share").classList.add("fa-flip");
   document.querySelector(".fa-share").style.color = "#48b4ea";
   setTimeout(() => {
@@ -754,7 +767,7 @@ fetch(luckyURL, {
       console.log("We have permission to send you push notifications!");
       setTimeout(() => {
         showNotification();
-      }, 1500);
+      }, 2200);
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
         // console.log(permission)
