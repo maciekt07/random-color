@@ -1,5 +1,5 @@
 # [maciekt07.github.io/random-color/](https://maciekt07.github.io/random-color/)
-A simple random color picker with hex code made by using HTML, CSS and JavaScript.
+A simple random color picker with hex code made by using HTML, CSS, JavaScript and Native Web APIs.
 All data is stored in local storage.
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png)
 
