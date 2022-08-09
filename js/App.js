@@ -646,15 +646,8 @@ document.getElementById("share").addEventListener("click", async () => {
 });
 
 //url
-// http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
-const url = "";
-if (origin == "http://127.0.0.1:5500") {
-  url = "http://127.0.0.1:5500/";
-}
-if (origin == "https://maciekt07.github.io") {
-  url = "https://maciekt07.github.io/random-color/";
-}
 
+const url = "https://maciekt07.github.io/random-color/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
 const urlChange = () => {
   location = url + "?" + document.getElementById("color_input").value;
 };
