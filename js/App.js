@@ -575,47 +575,15 @@ document.getElementById("a-close2").addEventListener("click", () => {
 // document.getElementById("main").addEventListener("dblclick", () => {
 //   document.getElementById("fav").click();
 // })
-
-document.getElementById("fullscreen").addEventListener("click", () => {
-  if (screenfull.isEnabled) {
-    if (screenfull.isFullscreen) {
-      screenfull.exit();
-      if (window.screen.width > 1024) {
-        showalert();
-        document.getElementById("alertspan").innerHTML =
-          "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Disabled!";
-        console.log("Fullscreen disabled");
-      }
-      // document.getElementById("fullscreen").style.top = "19em";
-      document.getElementById("main").style.display = "flex";
-      // document.getElementById("dark-mode-toggle").style.display = "block";
-      // document.getElementById("shortcuts").style.display = "block";
-      document.getElementById("moreinfo").style.visibility = "visible";
-      document.getElementById("copy").style.visibility = "visible";
-      document.getElementById("refresh").style.visibility = "visible";
-      document.getElementById("github").style.display = "flex";
-      // document.getElementById("hbutton").style.display = "block";
-      // document.getElementById("color_input").style.display = "block";
-    } else {
-      screenfull.request();
-      if (window.screen.width > 1024) {
-        showalert();
-        document.getElementById("alertspan").innerHTML =
-          "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Enabled!";
-        console.log("Fullscreen enabled");
-      }
-      // document.getElementById("fullscreen").style.top = "3em";
-      document.getElementById("main").style.display = "none";
-      // document.getElementById("dark-mode-toggle").style.display = "none";
-      // document.getElementById("shortcuts").style.display = "none";
-      document.getElementById("moreinfo").style.visibility = "hidden";
-      document.getElementById("copy").style.visibility = "hidden";
-      document.getElementById("refresh").style.visibility = "hidden";
-      document.getElementById("github").style.display = "none";
-      // document.getElementById("hbutton").style.display = "none";
-      // document.getElementById("color_input").style.display = "none";
-    }
+const toggleFullScreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    document.exitFullscreen();
   }
+};
+document.getElementById("fullscreen").addEventListener("click", () => {
+  toggleFullScreen();
 });
 
 document.getElementById("share").addEventListener("click", async () => {
@@ -647,7 +615,7 @@ document.getElementById("share").addEventListener("click", async () => {
 
 //url
 
-const url = "https://maciekt07.github.io/random-color/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
+const url = "http://127.0.0.1:5500/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
 const urlChange = () => {
   location = url + "?" + document.getElementById("color_input").value;
 };
@@ -796,12 +764,6 @@ fetch(luckyURL, {
       });
     }
   });
-document
-  .querySelectorAll("meta[property=og\\:image]")[0]
-  .setAttribute(
-    "content",
-    "https://image.shutterstock.com/image-photo/portrait-surprised-cat-scottish-straight-260nw-499196506.jpg"
-  );
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
