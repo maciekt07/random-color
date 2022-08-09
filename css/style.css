@@ -375,6 +375,40 @@ td {
   cursor: default;
 }
 
+.arrows-container {
+  top: 0;
+  left: 0;
+  position: absolute;
+  padding: 20px;
+}
+
+#back,
+#forward {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 18px;
+  background: var(--foreground);
+  backdrop-filter: blur(30px);
+  border-radius: 15px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  animation-delay: 3s;
+}
+
+.fa-angle-right,
+.fa-angle-left {
+  color: var(--font-clr);
+  transition-duration: 0.3s;
+  animation-delay: 3s;
+}
+
+#back:hover > .fa-angle-left {
+  color: var(--button-txt-hover);
+}
+
+#forward:hover > .fa-angle-right {
+  color: var(--button-txt-hover);
+}
 @media (max-width: 550px) {
   .dark-mode-toggle {
     top: 20em;
@@ -412,42 +446,10 @@ td {
     border-top: 2px solid var(--foreground);
     top: 16em;
   }
+  .arrows-container {
+    margin-top: 180px;
+  }
 }
-.arrows-container {
-  top: 0;
-  left: 0;
-  position: absolute;
-  padding: 20px;
-}
-
-#back,
-#forward {
-  display: inline-block;
-  margin: 5px;
-  padding: 10px 18px;
-  background: var(--foreground);
-  backdrop-filter: blur(30px);
-  border-radius: 15px;
-  cursor: pointer;
-  transition-duration: 0.3s;
-  animation-delay: 3s;
-}
-
-.fa-angle-right,
-.fa-angle-left {
-  color: var(--font-clr);
-  transition-duration: 0.3s;
-  animation-delay: 3s;
-}
-
-#back:hover > .fa-angle-left {
-  color: var(--button-txt-hover);
-}
-
-#forward:hover > .fa-angle-right {
-  color: var(--button-txt-hover);
-}
-
 @media (max-width: 752px) {
   #back,
   #forward {
@@ -504,7 +506,16 @@ td {
       1px 1px 0 #000;
   }
   body {
-    margin-top: 40px;
+    margin-top: 50px;
+  }
+  .arrows-container {
+    padding: 92px 10px;
+  }
+  .fa-angle-right,
+  .fa-angle-left,
+  #back,
+  #forward {
+    transform: scale(0.8);
   }
 }
 
