@@ -151,12 +151,8 @@ document.getElementById("s-close").addEventListener("click", () => {
 // };
 
 // copy
-const copyToClipboard = (element) => {
-  let $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
+const copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text);
 };
 
 // color picker
@@ -256,7 +252,7 @@ document.getElementById("forward").addEventListener("click", () => {
 });
 
 document.getElementById("copy").addEventListener("click", () => {
-  copyToClipboard("#txt");
+  copyToClipboard(txt.textContent);
   console.log("Copied to clipboard " + txt.textContent);
   // document.getElementById("history").style.display = "none"
   document.getElementById("alertspan").innerHTML =
@@ -283,7 +279,6 @@ const showalert = () => {
     }, 1300);
   });
   document.getElementById("shortcuts-popup").classList.remove("show");
-  navigator.vibrate(200);
 };
 
 const hidea = () => {
@@ -624,8 +619,7 @@ document.getElementById("fullscreen").addEventListener("click", () => {
 });
 
 document.getElementById("share").addEventListener("click", async () => {
-  document.getElementById("url").innerHTML = location;
-  copyToClipboard("#url");
+  copyToClipboard(location);
   document.getElementById("alertspan").innerHTML =
     "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
   showalert();
