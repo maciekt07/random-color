@@ -9,6 +9,7 @@
 }
 
 body {
+  margin-top: 30px;
   transition: 0.35s all;
   cursor: crosshair;
   font-family: Arial;
@@ -163,6 +164,7 @@ i,
   pointer-events: none;
   transition: opacity 0.3s ease;
   cursor: default;
+  z-index: 2;
 }
 
 .shortcuts-popup.show {
@@ -380,6 +382,7 @@ td {
   left: 0;
   position: absolute;
   padding: 20px;
+  z-index: 0;
 }
 
 #back,
