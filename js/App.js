@@ -646,7 +646,7 @@ document.getElementById("share").addEventListener("click", async () => {
 });
 
 //url
-const url = "https://maciekt07.github.io/random-color/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
+const url = "http://127.0.0.1:5500/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
 const urlChange = () => {
   location = url + "?" + document.getElementById("color_input").value;
 };
@@ -795,32 +795,13 @@ fetch(luckyURL, {
       });
     }
   });
-
-window.addEventListener("hashchange", () => {
-  document
-    .querySelector('meta[property="og:image"]')
-    .setAttribute(
-      "content",
-      "https://singlecolorimage.com/get/" +
-        colorPicker.value.replace("#", "") +
-        "/16x16"
-    );
-  document
-    .querySelector('meta[property="og:description"]')
-    .setAttribute("content", "Random Color Tool - " + colorPicker.value);
-});
 document
-  .querySelector('meta[property="og:image"]')
+  .querySelectorAll("meta[property=og\\:image]")[0]
   .setAttribute(
     "content",
-    "https://singlecolorimage.com/get/" +
-      colorPicker.value.replace("#", "") +
-      "/16x16"
+    "https://image.shutterstock.com/image-photo/portrait-surprised-cat-scottish-straight-260nw-499196506.jpg"
   );
 
-document
-  .querySelector('meta[property="og:description"]')
-  .setAttribute("content", "Random Color Tool" + colorPicker.value);
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
 
