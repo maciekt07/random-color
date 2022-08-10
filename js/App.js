@@ -259,12 +259,12 @@ document.getElementById("copy").addEventListener("click", () => {
     "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " +
     txt.textContent;
   // showa();
-  showalert();
+  showalert(800, 1300);
 });
 
 const alert = document.querySelector(".alert");
 alert.style.setProperty("--animate-duration", "0.6s");
-const showalert = () => {
+const showalert = (start, end) => {
   hidea();
   document.getElementById("alert").style.display = "block";
   alert.classList.add("animate__animated", "animate__fadeInDown");
@@ -272,11 +272,11 @@ const showalert = () => {
     alert.classList.remove("animate__animated", "animate__fadeInDown");
     setTimeout(() => {
       alert.classList.add("animate__animated", "animate__fadeOut");
-    }, 800);
+    }, start);
     setTimeout(() => {
       hidea();
       alert.classList.remove("animate__animated", "animate__fadeOut");
-    }, 1300);
+    }, end);
   });
   document.getElementById("shortcuts-popup").classList.remove("show");
 };
@@ -340,7 +340,7 @@ document.getElementById("fav").addEventListener("click", () => {
     document.getElementById("alertspan").innerHTML =
       "<span class='alert-emoji'>❤️</span>Added to favorites: " +
       document.getElementById("color_input").value;
-    showalert();
+    showalert(800, 1300);
     like.classList.add("fa-beat");
     setTimeout(() => {
       like.classList.remove("fa-beat");
@@ -362,7 +362,7 @@ document.getElementById("fav").addEventListener("click", () => {
     document.getElementById("alertspan").innerHTML =
       "<span class='alert-emoji'>💔</span> Removed from favorites: " +
       txt.textContent;
-    showalert();
+    showalert(800, 1300);
     like.classList.add("fa-shake");
     setTimeout(() => {
       like.classList.remove("fa-shake");
@@ -438,7 +438,7 @@ darkModeToggle.addEventListener("click", () => {
   if (darkMode !== "enabled") {
     enableDarkMode();
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-    showalert();
+    showalert(800, 1300);
     document.getElementById("alertspan").innerHTML =
       "<span class='alert-emoji'>🌙</span> Darkmode Enabled!";
     document
@@ -450,7 +450,7 @@ darkModeToggle.addEventListener("click", () => {
     document
       .querySelector('link[rel="icon"]')
       .setAttribute("href", "img/iconLight.png");
-    showalert();
+    showalert(800, 1300);
     document.getElementById("alertspan").innerHTML =
       "<span class='alert-emoji'>☀️</span> Darkmode Disabled!";
     document
@@ -460,7 +460,6 @@ darkModeToggle.addEventListener("click", () => {
 });
 
 let favsChangeClr = null;
-
 document.getElementById("favlist").addEventListener("click", () => {
   hidea();
   document.getElementById("history").style.display = "none";
@@ -580,7 +579,7 @@ const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
     if (window.screen.width > 1024) {
-      showalert();
+      showalert(800, 1300);
       document.getElementById("alertspan").innerHTML =
         "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Enabled!";
       console.log("Fullscreen enabled");
@@ -588,7 +587,7 @@ const toggleFullScreen = () => {
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
     if (window.screen.width > 1024) {
-      showalert();
+      showalert(800, 1300);
       document.getElementById("alertspan").innerHTML =
         "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Disabled!";
       console.log("Fullscreen disabled");
@@ -603,7 +602,7 @@ document.getElementById("share").addEventListener("click", async () => {
   copyToClipboard(location);
   document.getElementById("alertspan").innerHTML =
     "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
-  showalert();
+  showalert(800, 1300);
   navigator.vibrate(150);
   document.querySelector(".fa-share").classList.add("fa-flip");
   document.querySelector(".fa-share").style.color = "#48b4ea";
@@ -639,7 +638,7 @@ const urlError = () => {
     console.error("ERROR: Invalid Color in URL");
     document.getElementById("alertspan").innerHTML =
       "<span class='alert-emoji'>❌</span> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL";
-    showalert();
+    showalert(800, 1300);
   }, 300);
 };
 
@@ -675,7 +674,9 @@ urlLoad();
 if (location != url + "?" + document.getElementById("color_input").value) {
   urlError();
 }
+//url end
 
+//get hex color
 const getHexColor = (colorStr) => {
   const a = document.createElement("div");
   a.style.color = colorStr;
@@ -693,8 +694,9 @@ const getHexColor = (colorStr) => {
           .substr(1)
     : false;
 };
-// daily lucky color
+//get hex color end
 
+// daily lucky color
 const luckyURL = "https://aztro.sameerkumar.website/?sign=aries&day=today";
 fetch(luckyURL, {
   method: "POST",
@@ -702,9 +704,12 @@ fetch(luckyURL, {
   .then((response) => response.json())
   .then((json) => {
     let luckyColor = json.color;
+    console.log(luckyColor);
     switch (luckyColor) {
       case "Navy Blue":
         luckyColor = "Navy";
+      case "Peach":
+        luckyColor = "PeachPuff";
     }
     let luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, "");
 
@@ -734,6 +739,8 @@ fetch(luckyURL, {
       "https://singlecolorimage.com/get/" +
       getHexColor(luckyColorHTML).replace("#", "") +
       "/16x16";
+
+    //daily lucky color end
 
     //push notification
     const showNotification = () => {
@@ -777,6 +784,7 @@ fetch(luckyURL, {
       });
     }
   });
+//push notification end
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
@@ -787,3 +795,4 @@ function gtag() {
 gtag("js", new Date());
 
 gtag("config", "G-4QTNJRWC58");
+// Google Analytics end
