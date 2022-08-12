@@ -3,7 +3,7 @@
   "short_name": "RandomColor",
   "description": "Random Color Tool author: github.com/maciekt07",
   "orientation": "natural",
-  "start_url": "/index.html",
+  "start_url": "/random-color/index.html",
   "display": "minimal-ui",
   "icons": [
     {
