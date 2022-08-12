@@ -76,7 +76,7 @@ You can install this web app on your device like a normall app
 <img width="300px" alt="android" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/androidapp.jpg">
 
 ## 🔗 Changing Color From URL
-![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/url.png)
+![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/link.png)
 
 ``` js
 window.addEventListener('hashchange', () => {
