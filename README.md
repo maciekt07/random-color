@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6173ec8f-e9f6-471a-86e6-71210349ffe3/deploy-status)](https://app.netlify.com/sites/random-color-tool/deploys)
 # [maciekt07.github.io/random-color/](https://maciekt07.github.io/random-color/)
 Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png)
