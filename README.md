@@ -84,22 +84,6 @@ window.addEventListener('hashchange', () => {
 }, false);
 ```
 
-### URL error 
-![urlerror](https://raw.githubusercontent.com/maciekt07/random-color/main/img/urlerror.png)
-
-``` js 
-const urlError = () => {
-  //change url to previous
-  location = url + "/?" + localStorage.getItem("clr");
-  setTimeout(() => {
-    console.error("ERROR: Invalid Color in URL");
-    document.getElementById("alertspan").innerHTML =
-      "<span class='alert-emoji'>❌</span> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL";
-    showalert();
-  }, 300);
-};
-```
-
 And many more... 👀
 
 # ⚡ Performance
