@@ -21,7 +21,7 @@
 
 
 <p align="center">
-<img alt="preview" src="https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png"></img>
+<img alt="preview" src="https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview.png"></img>
 </p
 <br><br>
 
