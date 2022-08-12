@@ -10,8 +10,7 @@ Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All da
 
 Made by me in figma
 
-# 💡 Features
-<br/>
+# 💡 Features 🡣
 
 ## 💜 Liked Colors List
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
