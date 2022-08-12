@@ -71,11 +71,13 @@ if (Notification.permission === "granted") {
 Daily notifications about today lucky color (with onclick)
 
 ## 📱 Progressive Web App (PWA)
-You can install this app on your device like a normall app
+You can install this web app on your device like a normall app
 
 ![install](https://raw.githubusercontent.com/maciekt07/random-color/main/img/installation.png)
 
 ![tasks](https://raw.githubusercontent.com/maciekt07/random-color/main/img/tasks.png)
+
+<img width="300px" alt="android" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/androidapp.jpg">
 
 ## 🔗 Changing Color From URL
 ![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/url.png)
@@ -102,12 +104,9 @@ const urlError = () => {
 };
 ```
 
-## History
-![history](https://raw.githubusercontent.com/maciekt07/random-color/main/img/history.png)
+And many more... 👀
 
-Session history of random colors
-
-## ⚡ Performance
+# ⚡ Performance
 <img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
 
 # 💌 Made With ❤ By [maciekt07](https://github.com/maciekt07)
