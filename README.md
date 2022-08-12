@@ -7,13 +7,9 @@
 <h3 align="center">Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage</h3>
 
 
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6173ec8f-e9f6-471a-86e6-71210349ffe3/deploy-status)](https://app.netlify.com/sites/random-color-tool/deploys)
-![](https://img.shields.io/github/languages/code-size/maciekt07/random-color?color=blue&style=flat-square)
-![](https://img.shields.io/github/languages/top/maciekt07/random-color?color=blue&style=flat-square)
-![](https://img.shields.io/github/last-commit/maciekt07/random-color?color=blue&style=flat-square)
-![](https://img.shields.io/github/license/maciekt07/random-color?color=blue&style=flat-square)
-
+<div align="center">
+<a href="https://app.netlify.com/sites/random-color-tool/deploys"><img src="https://api.netlify.com/api/v1/badges/6173ec8f-e9f6-471a-86e6-71210349ffe3/deploy-status"></a><img src="https://img.shields.io/github/languages/code-size/maciekt07/random-color?color=blue&style=flat-square)"><img src="https://img.shields.io/github/languages/top/maciekt07/random-color?color=blue&style=flat-square)"><img src="https://img.shields.io/github/last-commit/maciekt07/random-color?color=blue&style=flat-square)"><img src="https://img.shields.io/github/license/maciekt07/random-color?color=blue&style=flat-square)">
+</div>
 
 
 
