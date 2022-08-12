@@ -1,11 +1,22 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6173ec8f-e9f6-471a-86e6-71210349ffe3/deploy-status)](https://app.netlify.com/sites/random-color-tool/deploys)
-# [🔗 https://random-color-tool.netlify.app](https://random-color-tool.netlify.app)
-Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage
-![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png)
 
-# 🖼️ Icon
 
-<img width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
+<h1 align="center"><a href="https://random-color-tool.netlify.app">🔗 https://random-color-tool.netlify.app</a></h1>
+
+<p align="center">
+<img alt="icon" width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
+</p>
+
+<h3 align="center">Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage</h3>
+
+<p align="center">
+<img alt="preview" src="https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png"></img>
+</p
+
+
+
+
+
 
 
 Made by me in figma
