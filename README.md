@@ -17,7 +17,8 @@
 
 <br>
 
-# 💡 Features
+<h1 align="center"> 💡 Features <br>↓</h1>
+
 
 ## 💜 Liked Colors List
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
