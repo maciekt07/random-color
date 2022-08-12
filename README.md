@@ -89,5 +89,31 @@ And many more... 👀
 # ⚡ Performance
 <img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
 
+## To run this project locally
+
+Download this repository
+
+```bash
+git clone https://github.com/maciekt07/random-color.git
+```
+
+```bash
+cd random-color
+```
+
+Install node modules
+
+```bash
+npm install
+```
+
+Run local server and open ``http://localhost:8888/``
+
+```bash
+node js/server.js
+```
+
+
+
 # 💌 Made With ❤ By [maciekt07](https://github.com/maciekt07)
 
