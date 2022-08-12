@@ -4,10 +4,27 @@
 const MY_CACHE = "cache-all";
 const MY_FILES = ["/css/style.css", "/js/App.js", "/js/shortcuts.js", "/index.html", "/js/ntc.js"];
 
-self.addEventListener("install", (event) => {
+setTimeout(() => {
+  self.addEventListener("install", (event) => {
+    event.waitUntil(
+      caches.open(MY_CACHE).then((cache) => {
+        return cache.addAll(MY_FILES);
+      })
+    );
+  });
+}, 300);
+elf.addEventListener("activate", function (event) {
   event.waitUntil(
-    caches.open(MY_CACHE).then((cache) => {
-      return cache.addAll(MY_FILES);
+    caches.keys().then(function (cacheNames) {
+      return Promise.all(
+        cacheNames
+          .filter(function (cacheName) {
+            return cacheName !== MY_CACHE;
+          })
+          .map(function (cacheName) {
+            return caches.delete(cacheName);
+          })
+      );
     })
   );
 });
