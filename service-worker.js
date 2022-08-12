@@ -2,7 +2,7 @@
 // workbox.routing.registerRoute(({ request }) => request.destination === "image", new workbox.strategies.NetworkFirst());
 
 const MY_CACHE = "cache-all";
-const MY_FILES = ["/css/style.css", "/js/App.js", "/js/shortcuts.js", "/img", "/img/icons", "/index.html", "/service-worker.js", "/manifest.json", "/js/ntc.js"];
+const MY_FILES = ["/css/style.css", "/js/App.js", "/js/shortcuts.js", "/index.html", "/js/ntc.js"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -19,4 +19,3 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
