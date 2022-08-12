@@ -7,19 +7,15 @@
 <img alt="icon" width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
 </p>
 
-<h3 align="center">Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage</h3>
+
 
 <p align="center">
 <img alt="preview" src="https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png"></img>
 </p
+<br>
+<h3 align="center">Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage</h3>
 
-
-
-
-
-
-
-Made by me in figma
+<br>
 
 # 💡 Features
 
