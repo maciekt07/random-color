@@ -3,14 +3,14 @@
 Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png)
 
-# 💟 Icon
+# 🖼️ Icon
 
 <img width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
 
 
 Made by me in figma
 
-# 💡 Features 🡣
+# 💡 Features
 
 ## 💜 Liked Colors List
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
@@ -40,20 +40,17 @@ Api: [https://aztro.readthedocs.io/en/latest/](https://aztro.readthedocs.io/en/l
 ``` js
 // Notification
 const showNotification = () => {
-    const notification = new Notification("Daily Lucky Color " + json.current_date, {
-        body: "Today Lucky Color is: " + luckyColor + " " + "(" + getHexColor(luckyColorHTML) + ")" +
-        "\r\n" + "Mood: " + json.mood,
+      const notification = new Notification(`Daily Lucky Color ${json.current_date}`, {
+        body: `Today Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})\r\nMood: ${json.mood}`,
         icon: luckyImage,
         badge: luckyImage,
-        lang: 'en-US',
+        lang: "en-US",
         silent: true,
-        // image: luckyImage
-    });
-    // Change color to lucky color on click
-    notification.onclick = (e) => {
-        location = luckyLink
-    }
-}
+      });
+      notification.onclick = (e) => {
+        window.open(luckyLink, "_self");
+      };
+    };
 // Permissions
 if (Notification.permission === "granted") {
     console.log("We have permission to send you push notifications!")
