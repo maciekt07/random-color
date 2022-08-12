@@ -1,38 +1,99 @@
-// importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
-// workbox.routing.registerRoute(({ request }) => request.destination === "image", new workbox.strategies.NetworkFirst());
-
-const MY_CACHE = "cache-all";
-const MY_FILES = ["/css/style.css", "/js/App.js", "/js/shortcuts.js", "/index.html", "/js/ntc.js"];
-
-setTimeout(() => {
-  self.addEventListener("install", (event) => {
-    event.waitUntil(
-      caches.open(MY_CACHE).then((cache) => {
-        return cache.addAll(MY_FILES);
-      })
-    );
-  });
-}, 300);
-self.addEventListener("activate", function (event) {
-  event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(
-        cacheNames
-          .filter(function (cacheName) {
-            return cacheName !== MY_CACHE;
-          })
-          .map(function (cacheName) {
-            return caches.delete(cacheName);
-          })
-      );
-    })
-  );
-});
-// strategia 'Network falling back to cache'
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      return caches.match(event.request);
-    })
-  );
-});
+{
+  "name": "Random Color Tool",
+  "short_name": "RandomColor",
+  "description": "Random Color Tool author: github.com/maciekt07",
+  "orientation": "natural",
+  "start_url": "/random-color/index.html",
+  "display": "minimal-ui",
+  "icons": [
+    {
+      "src": "img/iconLight.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "img/icons/android-icon-36x36.png",
+      "sizes": "36x36",
+      "type": "image/png",
+      "density": "0.75"
+    },
+    {
+      "src": "img/icons/android-icon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "density": "1.0"
+    },
+    {
+      "src": "img/icons/android-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "density": "1.5"
+    },
+    {
+      "src": "img/icons/android-icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "density": "2.0"
+    },
+    {
+      "src": "img/icons/android-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "density": "3.0"
+    },
+    {
+      "src": "img/icons/android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "4.0"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Electric Violet",
+      "description": "Electric Violet | #8d43ff",
+      "url": "/?#8d43ff",
+      "icons": [
+        {
+          "src": "img/shortcuts/ElectricViolet.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Heliotrope",
+      "description": "Heliotrope | #a66cff",
+      "url": "/?#a66cff",
+      "icons": [
+        {
+          "src": "img/shortcuts/Heliotrope.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Melrose",
+      "description": "Melrose | #9c9efe",
+      "url": "/?#9c9efe",
+      "icons": [
+        {
+          "src": "img/shortcuts/Melrose.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Anakiwa",
+      "description": "Anakiwa | #b1e1ff",
+      "url": "/?#b1e1ff",
+      "icons": [
+        {
+          "src": "img/shortcuts/Anakiwa.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
