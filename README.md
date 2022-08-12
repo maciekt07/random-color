@@ -1,22 +1,24 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6173ec8f-e9f6-471a-86e6-71210349ffe3/deploy-status)](https://app.netlify.com/sites/random-color-tool/deploys)
-# [maciekt07.github.io/random-color/](https://maciekt07.github.io/random-color/)
+# [🔗 https://random-color-tool.netlify.app](https://random-color-tool.netlify.app)
 Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage
 ![preview](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview1.png)
 
-# Icons
+# 💟 Icon
 
 <img width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
-<img width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconDark.png"></img>
+
 
 Made by me in figma
 
-# Features
-# Liked Colors List
+# 💡 Features
+<br/>
+
+## 💜 Liked Colors List
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
 
 Your liked colors list stored in LocalStorage
 
-# Shortcuts
+## ⌘ Shortcuts
 ![shortcuts](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/shortcuts.png)
 
 ``` js
@@ -31,7 +33,7 @@ const r = 82
 shortcut(r, "refresh")
 ```
 
-# Notifications
+## 🔔 Notifications
 ![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
 
 Api: [https://aztro.readthedocs.io/en/latest/](https://aztro.readthedocs.io/en/latest/)
@@ -68,7 +70,7 @@ if (Notification.permission === "granted") {
  ```
 Daily notifications about today lucky color (with onclick)
 
-# Changing Color From URL
+## 🔗 Changing Color From URL
 ![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/url.png)
 
 ``` js
@@ -93,15 +95,13 @@ const urlError = () => {
 };
 ```
 
-# History
+## History
 ![history](https://raw.githubusercontent.com/maciekt07/random-color/main/img/history.png)
 
 Session history of random colors
 
-# Page Speed
-![pagespeed](https://raw.githubusercontent.com/maciekkoks/random-color/main/img/pagespeed.png)
+## ⚡ Performance
+<img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
 
-By [Google PageSpeed](https://pagespeed.web.dev)
-
-## Made With ❤ By [maciekt07](https://github.com/maciekt07)
+# 💌 Made With ❤ By [maciekt07](https://github.com/maciekt07)
 
