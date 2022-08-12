@@ -4,7 +4,7 @@
   "description": "Random Color Tool author: github.com/maciekt07",
   "orientation": "natural",
   "start_url": "/index.html",
-  "display": "standalone",
+  "display": "minimal-ui",
   "icons": [
     {
       "src": "img/iconLight.png",
