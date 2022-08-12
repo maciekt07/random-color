@@ -89,7 +89,7 @@ And many more... 👀
 # ⚡ Performance
 <img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
 
-## To run this project locally
+## 👨‍💻 To run this project locally
 
 Download this repository
 
