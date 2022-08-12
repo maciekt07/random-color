@@ -1,0 +1,18 @@
+{
+  "name": "random-color-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maciekt07/random-color"
+  },
+  "author": "maciekt07",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  }
+}
