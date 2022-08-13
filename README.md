@@ -133,3 +133,7 @@ node js/server.js
 
 # 💌 Made With ❤ By [maciekt07](https://github.com/maciekt07)
 
+## 💸 Donate
+<a href="https://www.buymeacoffee.com/maciekt07" target="_blank">
+ <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=maciekt07&button_colour=1a1b27&font_colour=ffffff&font_family=Lato&outline_colour=ffffff&coffee_colour=FFDD00"></a>
+</a>
