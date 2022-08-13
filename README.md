@@ -25,13 +25,13 @@
 # 💡 Features
 
 
-## 💜 Liked Colors List
+# 💜 Liked Colors List
 
-Your liked colors list stored in LocalStorage
+## Your liked colors list stored in LocalStorage
 
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
 
-## ⌘ Shortcuts
+# ⌘ Shortcuts
 ![shortcuts](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/shortcuts.png)
 
 ``` js
@@ -46,10 +46,11 @@ const r = 82
 shortcut(r, "refresh")
 ```
 
-## 🔔 Notifications
-![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
+# 🔔 Notifications
 
-Daily notifications about today lucky color (with onclick)
+## Daily notifications about today lucky color (with onclick)
+
+![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
 
 Api: [https://aztro.readthedocs.io/en/latest/](https://aztro.readthedocs.io/en/latest/)
 
@@ -81,8 +82,8 @@ if (Notification.permission === "granted") {
 });
  ```
 
-## 📱 Progressive Web App (PWA)
-You can install this web app on your device like a normall app
+# 📱 Progressive Web App (PWA)
+## You can install this web app on your device like a normall app
 
 ![install](https://raw.githubusercontent.com/maciekt07/random-color/main/img/installation.png)
 
@@ -90,7 +91,7 @@ You can install this web app on your device like a normall app
 
 <img width="300px" alt="android" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/androidapp.jpg">
 
-## 🔗 Changing Color From URL
+# 🔗 Changing Color From URL
 ![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/link.png)
 
 ``` js
@@ -99,12 +100,12 @@ window.addEventListener('hashchange', () => {
 }, false);
 ```
 
-And many more... 👀
+## And many more... 👀
 
 # ⚡ Performance
 <img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
 
-## 👨‍💻 To run this project locally
+# 👨‍💻 To run this project locally
 
 Download this repository
 
