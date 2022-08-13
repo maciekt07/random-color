@@ -26,9 +26,10 @@
 
 
 ## 💜 Liked Colors List
-![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
 
 Your liked colors list stored in LocalStorage
+
+![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
 
 ## ⌘ Shortcuts
 ![shortcuts](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/shortcuts.png)
@@ -47,6 +48,8 @@ shortcut(r, "refresh")
 
 ## 🔔 Notifications
 ![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
+
+Daily notifications about today lucky color (with onclick)
 
 Api: [https://aztro.readthedocs.io/en/latest/](https://aztro.readthedocs.io/en/latest/)
 
@@ -77,7 +80,6 @@ if (Notification.permission === "granted") {
 }
 });
  ```
-Daily notifications about today lucky color (with onclick)
 
 ## 📱 Progressive Web App (PWA)
 You can install this web app on your device like a normall app
