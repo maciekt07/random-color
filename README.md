@@ -128,6 +128,7 @@ Run local server and open ``http://localhost:8888/``
 ```bash
 node js/server.js
 ```
+(or use live server)
 
 
 
