@@ -114,16 +114,40 @@ Push.create(nHeader, {
 
 <img width="300px" alt="android" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/androidapp.jpg">
 
-# 🔗 Changing Color From URL
+# 🔗 Share Button And Changing Color From URL
+
 ![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/link.png)
 
-``` js
+```js
 window.addEventListener('hashchange', () => {
     urlLoad();
-}, false);
+    clr_name();
+})
 ```
 
-## And many more... 👀
+![share](https://raw.githubusercontent.com/maciekt07/random-color/main/img/shareAndroid.png)
+
+``` js
+let shareData = {
+    title: "Random Color Tool By maciekt07",
+    text: `Check out this cool color: ${colorInput.value}`,
+    url: location,
+};
+try {
+    await navigator.share(shareData);
+    console.log("Shared color successfully");
+} catch (err) {
+    console.log(`Share Error: ${err}`);
+    if (err != "AbortError: Share canceled") {
+        // Copy link and show alert if browser does not support sharing
+        copyToClipboard(location);
+        document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
+        showalert(800, 1300);
+    }
+}
+```
+
+# And many more... 👀
 
 # ⚡ Performance
 <img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
