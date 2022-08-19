@@ -50,37 +50,64 @@ shortcut(r, "refresh")
 
 ## Daily notifications about today lucky color (with onclick)
 
-![notification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/notification.png)
-
 Api: [https://aztro.readthedocs.io/en/latest/](https://aztro.readthedocs.io/en/latest/)
 
+Desktop:
+
+<img src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/notiWindows.png">
+
 ``` js
-// Notification
+// Desktop
 const showNotification = () => {
-      const notification = new Notification(`Daily Lucky Color ${json.current_date}`, {
-        body: `Today Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})\r\nMood: ${json.mood}`,
+    const notification = new Notification(nHeader, {
+        body: nBody,
         icon: luckyImage,
         badge: luckyImage,
         lang: "en-US",
         silent: true,
-      });
-      notification.onclick = (e) => {
-        window.open(luckyLink, "_self");
-      };
+    });
+    notification.onclick = (e) => {
+        window.focus();
+        location = luckyLink;
     };
-// Permissions
+};
+console.log(Notification.permission);
 if (Notification.permission === "granted") {
-    console.log("We have permission to send you push notifications!")
-    showNotification()
+    console.log("We have permission to send you push notifications!");
+    setTimeout(() => {
+        showNotification();
+    }, 2000);
 } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then(permission => {
+    Notification.requestPermission().then((permission) => {
+        // console.log(permission)
         if (permission === "granted") {
-            showNotification()
+            showNotification();
         }
-    })
+    });
 }
+```
+
+Mobile:
+
+<img src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/notiAndroid.png">
+
+```js
+// Mobile
+Push.create(nHeader, {
+    body: nBody,
+    icon: luckyImage,
+    tag: "lucky-color",
+    // timeout: 4000,
+    link: luckyLink,
+    vibrate: [200, 200, 200, 200, 200],
+    requireInteraction: false,
+    onClick: () => {
+        window.focus();
+        window.open(luckyLink);
+        this.close();
+    },
 });
- ```
+```
 
 # 📱 Progressive Web App (PWA)
 ## You can install this web app on your device like a normall app
