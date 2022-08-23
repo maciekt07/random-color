@@ -1,4 +1,3 @@
-
 const shortcut = (key, id) => {
   return document.addEventListener("keyup", (event) => {
     if (event.keyCode == key) {
@@ -36,19 +35,5 @@ shortcut(F, "fullscreen");
 const L = 76;
 shortcut(L, "fav");
 
-const O = 79
+const O = 79;
 shortcut(O, "favlist");
-
-
-// document.addEventListener("keyup", (event) => {
-//   const n = document.getElementById("name");
-//   if (event.keyCode == 78) {
-//     // n button hides color name
-
-//     if (n.style.display == "block") {
-//       n.style.display = "none";
-//     } else {
-//       n.style.display = "block";
-//     }
-//   }
-// });

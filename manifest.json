@@ -1,10 +1,10 @@
 {
   "name": "Random Color Tool",
-  "short_name": "RandomColor",
+  "short_name": "Random Color",
   "description": "Random Color Tool author: github.com/maciekt07",
   "orientation": "natural",
-  "start_url": "/random-color/index.html",
-  "display": "minimal-ui",
+  "start_url": "/",
+  "display": "standalone",
   "icons": [
     {
       "src": "img/iconLight.png",
@@ -52,7 +52,7 @@
     {
       "name": "Electric Violet",
       "description": "Electric Violet | #8d43ff",
-      "url": "https://maciekt07.github.io/random-color/?#8d43ff",
+      "url": "/?#8d43ff",
       "icons": [
         {
           "src": "img/shortcuts/ElectricViolet.png",
@@ -63,7 +63,7 @@
     {
       "name": "Heliotrope",
       "description": "Heliotrope | #a66cff",
-      "url": "https://maciekt07.github.io/random-color/?#a66cff",
+      "url": "/?#a66cff",
       "icons": [
         {
           "src": "img/shortcuts/Heliotrope.png",
@@ -74,7 +74,7 @@
     {
       "name": "Melrose",
       "description": "Melrose | #9c9efe",
-      "url": "https://maciekt07.github.io/random-color/?#9c9efe",
+      "url": "/?#9c9efe",
       "icons": [
         {
           "src": "img/shortcuts/Melrose.png",
@@ -85,7 +85,7 @@
     {
       "name": "Anakiwa",
       "description": "Anakiwa | #b1e1ff",
-      "url": "https://maciekt07.github.io/random-color/?#b1e1ff",
+      "url": "/?#b1e1ff",
       "icons": [
         {
           "src": "img/shortcuts/Anakiwa.png",

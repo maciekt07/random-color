@@ -4,28 +4,31 @@ String.prototype.convertToRGB = function () {
   const aRgb = [parseInt(aRgbHex[0], 16), parseInt(aRgbHex[1], 16), parseInt(aRgbHex[2], 16)];
   return aRgb;
 };
+
 let counter = 0;
 const txt = document.getElementById("txt");
 const colorInput = document.getElementById("color_input");
+const popup = document.getElementById("shortcuts-popup");
+
+const loadColor = (hex) => {
+  document.body.style.backgroundColor = hex;
+  txt.innerHTML = hex;
+  colorInput.value = hex;
+  document.fgColor = hex;
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", hex);
+  document.getElementById("divrgb").innerHTML = `RGB ${hex.replace("#", "").convertToRGB()}`;
+};
+
 const main = () => {
   counter++;
   let bg_clr = Math.floor(Math.random() * 16777215).toString(16);
   bg_clr = "#" + ("000000" + bg_clr).slice(-6);
-  let clr_link = ("000000" + bg_clr).slice(-6);
-  document.body.style.backgroundColor = bg_clr;
-  txt.innerHTML = bg_clr;
-  document.fgColor = bg_clr;
-  document.querySelector('input[type="color"]').setAttribute("value", bg_clr);
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", bg_clr);
-  const txt1 = txt.textContent;
-  const Str = txt1;
-  const StrNew = Str.replace("#", "");
-  document.getElementById("divrgb").innerHTML = `RGB ${StrNew.convertToRGB()}`;
+  loadColor(bg_clr);
   setTimeout(() => {
     console.log("%c------------------------------ ", "color:#949494; font-size: 20px;");
-    console.log(`${counter}. ${txt.textContent} ${document.getElementById("name").textContent} RGB ${clr_link.convertToRGB()}`);
-  }, 10);
-  if (counter == 4) {
+    console.log(`${counter}. ${txt.textContent} ${document.getElementById("name").textContent} RGB ${bg_clr.replace("#", "").convertToRGB()}`);
+  }, 100);
+  if (counter >= 4) {
     document.getElementById("h-back-to-top").style.display = "block";
   }
 };
@@ -39,38 +42,29 @@ window.onblur = () => {
   document.title = `Random Color - ${colorInput.value}`;
 }; //title
 window.onfocus = () => {
-  document.title = "Random Color";
+  document.title = "Random Color Tool";
 };
 
 // add color to history list
 let hclrx = [];
-const historyl = () => {
-  setTimeout(() => {
-    const c_link = txt.textContent.replace("#", "");
-    document.getElementById("historylist").innerHTML +=
-      "<li>" +
-      "<span id='historyhex' onclick='hclrx.push(this.textContent);hclr();ifFavClr();hidea()'>" +
-      "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-      c_link +
-      "/25x25'/>" +
-      txt.textContent +
-      "</span>" +
-      " | " +
-      document.getElementById("name").textContent +
-      "<hr><br></li>";
-  }, 10);
+const addToHistoryList = () => {
+  const c_link = txt.textContent.replace("#", "");
+  document.getElementById("historylist").innerHTML +=
+    "<li>" +
+    "<span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'>" +
+    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
+    c_link +
+    "/25x25'/>" +
+    txt.textContent +
+    "</span>" +
+    " | " +
+    document.getElementById("name").textContent +
+    "<hr><br></li>";
 };
 
-const hclr = () => {
-  const x = hclrx[hclrx.length - 1];
-  const x2 = x.replace("#", "");
-  txt.textContent = x;
-  document.body.style.backgroundColor = x;
-  document.fgColor = x;
-  colorInput.value = x;
+const changeColorFromHistory = () => {
+  loadColor(hclrx[hclrx.length - 1]);
   clr_name();
-  document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", x);
   locals();
   urlChange();
 };
@@ -78,37 +72,21 @@ const hclr = () => {
 //show history
 document.getElementById("history").style.display = "none";
 
-const showh = () => {
+const showHistory = () => {
   const h = document.getElementById("history");
-  if (h.style.display === "none") {
-    h.style.display = "block";
-  } else {
-    h.style.display = "none";
-  }
+  h.style.display === "none" ? (h.style.display = "block") : (h.style.display = "none");
 };
-// const btn = document.getElementById("hbutton"); //change button text show/hide
-// btn.addEventListener("click", () => {
-//     if (btn.innerText === "show history") {
-//         btn.innerText = "hide history";
-//     } else {
-//         btn.innerText = "show history";
-//     };
-// });
 
 document.getElementById("shortcuts").addEventListener("click", () => {
   document.getElementById("s-delete").style.display = "none";
-  if (document.getElementById("shortcuts-popup").className == "shortcuts-popup") {
-    document.getElementById("shortcuts-popup").classList.add("show");
-  } else {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-  }
+  popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
   document.getElementById("history").style.display = "none";
   document.getElementById("modaltext").innerHTML =
     '<h1 class="s-header"><i class="twa twa-lg twa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Color Picker </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
 });
 
-document.getElementById("s-close").addEventListener("click", () => {
-  document.getElementById("shortcuts-popup").classList.remove("show");
+document.getElementById("closeShortcuts").addEventListener("click", () => {
+  popup.classList.remove("show");
 });
 
 // document.getElementById("shortcuts-popup").addEventListener('click', () => {
@@ -121,27 +99,16 @@ document.getElementById("s-close").addEventListener("click", () => {
 // };
 
 // copy
-const copyToClipboard = (text) => {
-  navigator.clipboard.writeText(text);
-};
+const copyToClipboard = (txt) => navigator.clipboard.writeText(txt);
 
 // color picker
 const colorPicker = colorInput;
 const clrpicker = () => {
   colorPicker.addEventListener("input", () => {
     clr_name();
-    hidea();
-    document.body.style.backgroundColor = colorPicker.value;
-    document.fgColor = colorPicker.value;
-    document.getElementById("divrgb").innerHTML = "RGB " + colorPicker.value.replace("#", "").convertToRGB();
-    txt.innerHTML = colorPicker.value;
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
-    document.querySelector('input[type="color"]').setAttribute("value", colorPicker.value);
+    hideAlert();
+    loadColor(colorInput.value);
   });
-};
-
-const input_refresh = () => {
-  colorInput.value = txt.textContent;
 };
 
 // darkmode toggle
@@ -151,8 +118,8 @@ if (document.location.search.match(/type=embed/gi)) {
 
 //buttons
 document.getElementById("dark-mode-toggle").addEventListener("click", () => {
-  hidea();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  hideAlert();
+  popup.classList.remove("show");
 });
 
 let rpt = 0;
@@ -161,12 +128,12 @@ colorInput.addEventListener("change", () => {
   locals();
   clr_name();
   urlChange();
-  ifFavClr();
+  isFavColor();
   l = 0;
 });
 
 colorInput.addEventListener("click", () => {
-  ifFavClr();
+  isFavColor();
   l = 0;
   if (rpt == 0) {
     //bug fix for color picker
@@ -177,17 +144,17 @@ colorInput.addEventListener("click", () => {
   clrpicker();
   locals();
   clr_name();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  popup.classList.remove("show");
 });
 
 document.getElementById("hbutton").addEventListener("click", () => {
-  showh();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  showHistory();
+  popup.classList.remove("show");
 });
 
 document.getElementById("moreinfo").addEventListener("click", () => {
   window.open(`https://www.color-hex.com/color/${colorInput.value.replace("#", "")}`);
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  popup.classList.remove("show");
 });
 //history back/forward buttons
 setTimeout(() => {
@@ -208,14 +175,15 @@ document.getElementById("copy").addEventListener("click", () => {
   console.log(`Copied to clipboard ${colorPicker.value}`);
   document.getElementById("alertspan").innerHTML = `<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: ${colorPicker.value}`;
   // showa();
-  showalert(800, 1300);
+  showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", `Copied to clipboard: ${colorPicker.value}`);
 });
 
 const alert = document.querySelector(".alert");
 alert.style.setProperty("--animate-duration", "0.6s");
-const showalert = (start, end) => {
-  hidea();
-  document.getElementById("alert").style.display = "block";
+const showAlert = (start, end, emoji, text) => {
+  hideAlert();
+  document.getElementById("alertspan").innerHTML = `<span class='alert-emoji'>${emoji}</span> ${text}`;
+  alert.style.display = "block";
   alert.classList.add("animate__animated", "animate__fadeInDown");
   alert.addEventListener("animationend", () => {
     alert.classList.remove("animate__animated", "animate__fadeInDown");
@@ -223,14 +191,14 @@ const showalert = (start, end) => {
       alert.classList.add("animate__animated", "animate__fadeOut");
     }, start);
     setTimeout(() => {
-      hidea();
+      hideAlert();
       alert.classList.remove("animate__animated", "animate__fadeOut");
     }, end);
   });
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  popup.classList.remove("show");
 };
 
-const hidea = () => {
+const hideAlert = () => {
   //hide alert
   document.getElementById("alert").style.display = "none";
   document.querySelector(".alert").classList.remove("animate__animated", "animate__fadeInDown", "animate__faster");
@@ -248,7 +216,7 @@ const addToFavs = () => {
   old_favs.push(new_favs);
   localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)));
 };
-const ifFavClr = () => {
+const isFavColor = () => {
   if (localStorage.getItem("favs") !== null) {
     if (localStorage.getItem("favs").includes(txt.textContent)) {
       document.getElementById("fav").setAttribute("title", "Remove From Favorites");
@@ -269,6 +237,17 @@ const removeFromFavs = (arr, item) => {
     return newArray;
   }
 };
+const removeItemFromFavs = (item) => {
+  //remove from favs
+  let favsNew = JSON.parse(localStorage.getItem("favs"));
+  localStorage.removeItem("favs");
+  if (localStorage.getItem("favs") == null) {
+    localStorage.setItem("favs", "[]");
+  }
+  localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
+  isFavColor();
+  showAlert(800, 1300, "💔", `Removed from favorites: ${item}`);
+};
 let l = 0;
 document.getElementById("fav").addEventListener("click", () => {
   addToFavs();
@@ -276,31 +255,21 @@ document.getElementById("fav").addEventListener("click", () => {
   navigator.vibrate(150);
   if (l % 2 != 0) {
     like.style.color = "#FF2E78";
-    document.getElementById("alertspan").innerHTML = `<span class='alert-emoji'>❤️</span>Added to favorites: ${colorInput.value}`;
-    showalert(800, 1300);
+    document.getElementById("alertspan").innerHTML = `<span class='alert-emoji'>❤️</span> Added to favorites: ${colorInput.value}`;
+    showAlert(800, 1300, "❤️", `Added to favorites: ${colorInput.value}`);
     like.classList.add("fa-beat");
     setTimeout(() => {
       like.classList.remove("fa-beat");
     }, 2050);
   } else {
-    //remove from favs
-    let favsNew = JSON.parse(localStorage.getItem("favs"));
-    localStorage.removeItem("favs");
-    if (localStorage.getItem("favs") == null) {
-      localStorage.setItem("favs", "[]");
-    }
-    localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, txt.textContent)));
-    ifFavClr();
+    removeItemFromFavs(colorInput.value);
     like.classList.remove("fa-beat");
     like.style.color = "currentColor";
-    document.getElementById("alertspan").innerHTML = `<span class='alert-emoji'>💔</span> Removed from favorites: ${txt.textContent}`;
-    showalert(800, 1300);
     like.classList.add("fa-shake");
     setTimeout(() => {
       like.classList.remove("fa-shake");
     }, 600);
   }
-  ifFavClr();
 });
 //local storage
 // save last color in local storage
@@ -310,27 +279,22 @@ const locals = () => {
   if (isHexColor(txt.textContent.replace("#", ""))) {
     localStorage.setItem("clr", txt.textContent);
   }
-  // console.log("%c%s", "color:#b144e4", localStorage.getItem("clr"));
 };
 
 if (localStorage.getItem("clr") != null) {
   l = 1;
-  const clr = localStorage.getItem("clr");
-  document.body.style.backgroundColor = clr;
-  document.fgColor = clr;
-  document.querySelector('input[type="color"]').setAttribute("value", clr);
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", clr);
-  colorInput.value = clr;
-  document.getElementById("divrgb").innerHTML = `RGB ${clr.replace("#", "").convertToRGB()}`;
-  txt.innerHTML = clr;
-  historyl();
+  loadColor(localStorage.getItem("clr"));
+  setTimeout(() => {
+    addToHistoryList();
+  }, 100);
 } else {
   document.getElementById("fav").click();
+  hideAlert();
   document.getElementById("s-delete").click();
   document.getElementById("fav").click();
-  historyl();
+  hideAlert();
   setTimeout(() => {
-    localStorage.setItem("firstColor", txt.textContent);
+    addToHistoryList();
   }, 100);
   l++;
 }
@@ -356,29 +320,33 @@ darkModeToggle.addEventListener("click", () => {
   if (darkMode !== "enabled") {
     enableDarkMode();
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-    showalert(800, 1300);
-    document.getElementById("alertspan").innerHTML = "<span class='alert-emoji'>🌙</span> Darkmode Enabled!";
+    showAlert(800, 1300, "🌙", "Darkmode Enabled!");
     // document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconDark.png");
   } else {
     disableDarkMode();
     console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
     // document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconLight.png");
-    showalert(800, 1300);
-    document.getElementById("alertspan").innerHTML = "<span class='alert-emoji'>☀️</span> Darkmode Disabled!";
+    showAlert(800, 1300, "☀️", "Darkmode Disabled!");
     // document.querySelector('link[rel="icon"]').setAttribute("href", "img/iconLight.png");
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", colorPicker.value);
   }
 });
 
+const delClick = () => {
+  setTimeout(() => {
+    document.getElementById("favlist").click();
+  }, 50);
+  setTimeout(() => {
+    document.getElementById("back").click();
+  }, 25);
+};
+
 let favsChangeClr = null;
 document.getElementById("favlist").addEventListener("click", () => {
-  hidea();
+  hideAlert();
   document.getElementById("history").style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
-  if (document.getElementById("shortcuts-popup").className == "shortcuts-popup") {
-    document.getElementById("shortcuts-popup").classList.add("show");
-  } else {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-  }
+  popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
   document.getElementById(
     "modaltext"
   ).innerHTML = `<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
@@ -388,53 +356,41 @@ document.getElementById("favlist").addEventListener("click", () => {
   ul.setAttribute("style", "cursor:default");
   document.getElementById("modaltext").appendChild(ul);
   favsarr.forEach((item) => {
-    let li = document.createElement("p");
-    li.setAttribute("id", "favsli");
-    ul.appendChild(li);
-    li.innerHTML += `<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/${item.replace("#", "")}/29x44'/>${item}</br> <span class='favsclrname'>${
-      ntc.name(item)[1]
-    }</span>`;
-    li.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav();ifFavClr();");
-    li.setAttribute("title", `Change Color To: ${item} (${ntc.name(item)[1]})`);
+    let p = document.createElement("p");
+    const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');delClick()" title="Delete From Favs: ${item}" class="fa-solid fa-trash-can fa-sm"></i>`;
+    const img = `<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/${item.replace("#", "")}/29x44'/>`;
+    p.setAttribute("id", "favsli");
+    ul.appendChild(p);
+    p.innerHTML += `${img}<div style="margin-left:65px">${item}</br>${del} <span class='favsclrname'>${ntc.name(item)[1]}</span></div>`;
+    p.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav()");
+    p.setAttribute("title", `Change Color To: ${item} (${ntc.name(item)[1]})`);
   });
-  const del = document.getElementById("s-delete");
-  if (favsarr.length > 0) {
-    del.style.display = "block";
-  } else {
-    del.style.display = "none";
-  }
-  del.addEventListener("click", () => {
+  const delAll = document.getElementById("s-delete");
+  favsarr.length > 0 ? (delAll.style.display = "block") : (delAll.style.display = "none");
+  delAll.addEventListener("click", () => {
     l = 2;
-    document.getElementById("shortcuts-popup").classList.remove("show");
+    popup.classList.remove("show");
     like.style.color = "currentColor";
     localStorage.setItem("favs", "[]");
   });
 });
 
 const ChangeToFav = () => {
-  document.getElementById("shortcuts-popup").classList.remove("show");
-  let x2 = favsChangeClr.replace("#", "");
-  txt.textContent = favsChangeClr;
-  document.body.style.backgroundColor = favsChangeClr;
-  document.fgColor = favsChangeClr;
-  colorInput.value = favsChangeClr;
+  popup.classList.remove("show");
+  loadColor(favsChangeClr);
   clr_name();
-  document.getElementById("divrgb").textContent = "RGB " + x2.convertToRGB();
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", favsChangeClr);
   locals();
   urlChange();
 };
 
 document.getElementById("refresh").addEventListener("click", () => {
   main();
-  hidea();
-  input_refresh();
+  hideAlert();
   locals();
-  historyl();
   clr_name();
-  ifFavClr();
   urlChange();
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  addToHistoryList();
+  popup.classList.remove("show");
   l = 0;
   // const el = document.querySelector(".div1");
   // el.classList.add('animate__animated', 'animate__headShake');
@@ -444,12 +400,12 @@ document.getElementById("refresh").addEventListener("click", () => {
 });
 
 document.getElementById("github").addEventListener("click", () => {
-  window.open("https://github.com/maciekt07");
-  document.getElementById("shortcuts-popup").classList.remove("show");
+  window.open("https://github.com/maciekt07", "_blank");
+  popup.classList.remove("show");
 });
 
-document.getElementById("close1").addEventListener("click", () => {
-  showh();
+document.getElementById("closeHistory").addEventListener("click", () => {
+  showHistory();
 });
 
 document.getElementById("h-back-to-top").addEventListener("click", () => {
@@ -461,8 +417,8 @@ document.getElementById("h-back-to-top").addEventListener("click", () => {
   });
 });
 
-document.getElementById("a-close2").addEventListener("click", () => {
-  hidea();
+document.getElementById("closeAlert").addEventListener("click", () => {
+  hideAlert();
 });
 
 // document.getElementById("main").addEventListener("dblclick", () => {
@@ -472,15 +428,13 @@ const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
     if (window.screen.width > 1024) {
-      showalert(800, 1300);
-      document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Enabled!";
+      showAlert(800, 1300, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Enabled!");
       console.log("Fullscreen enabled");
     }
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
     if (window.screen.width > 1024) {
-      showalert(800, 1300);
-      document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-desktop-computer'></i> Fullscreen Disabled!";
+      showAlert(800, 1300, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Disabled!");
       console.log("Fullscreen disabled");
     }
   }
@@ -490,9 +444,6 @@ document.getElementById("fullscreen").addEventListener("click", () => {
 });
 
 document.getElementById("share").addEventListener("click", async () => {
-  copyToClipboard(location);
-  document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
-  showalert(800, 1300);
   navigator.vibrate(150);
   document.querySelector(".fa-share").classList.add("fa-flip");
   document.querySelector(".fa-share").style.color = "#48b4ea";
@@ -508,15 +459,19 @@ document.getElementById("share").addEventListener("click", async () => {
   };
   try {
     await navigator.share(shareData);
-    console.log("Color shared successfully");
+    console.log("Shared color successfully");
   } catch (err) {
-    console.log(`Error: ${err}`);
+    console.log(`Share Error: ${err}`);
+    if (err != "AbortError: Share canceled") {
+      copyToClipboard(location);
+      showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", "Copied URL to clipboard!");
+    }
   }
 });
 
 //url
 
-const url = "https://maciekt07.github.io/random-color/"; // http://127.0.0.1:5500/ https://maciekt07.github.io/random-color/
+const url = `${location.origin}/`;
 const urlChange = () => {
   location = `${url}?${colorInput.value}`;
 };
@@ -526,7 +481,7 @@ const urlError = () => {
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL");
     document.getElementById("alertspan").innerHTML = "<span class='alert-emoji'>❌</span> <span style='color:#FF4B56'>ERROR:</span> Invalid Color in URL";
-    showalert(800, 1300);
+    showAlert(800, 1300);
   }, 300);
 };
 
@@ -534,16 +489,10 @@ const urlLoad = () => {
   const urlhex = location.toString().replace(`${url}?`, "").toLowerCase();
   const urlhexnumber = urlhex.replace("#", "").toLowerCase();
   if (isHexColor(urlhexnumber)) {
-    document.getElementById("shortcuts-popup").classList.remove("show");
-    txt.textContent = urlhex;
-    document.body.style.backgroundColor = urlhex;
-    document.fgColor = urlhex;
-    colorInput.value = urlhex;
-    document.getElementById("divrgb").textContent = `RGB ${urlhexnumber.convertToRGB()}`;
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", urlhex);
+    loadColor(urlhex);
     locals();
     urlChange();
-    ifFavClr();
+    isFavColor();
   } else {
     urlError();
   }
@@ -553,92 +502,24 @@ urlLoad();
 if (location != `${url}?${colorInput.value}`) {
   urlError();
 }
-//url end
-
-//get hex color
-const getHexColor = (colorStr) => {
-  const a = document.createElement("div");
-  a.style.color = colorStr;
-  const colors = window
-    .getComputedStyle(document.body.appendChild(a))
-    .color.match(/\d+/g)
-    .map(function (a) {
-      return parseInt(a, 10);
-    });
-  document.body.removeChild(a);
-  return colors.length >= 3 ? "#" + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1) : false;
-};
-//get hex color end
-
-// daily lucky color
-const luckyURL = "https://aztro.sameerkumar.website/?sign=aries&day=today";
-fetch(luckyURL, {
-  method: "POST",
-})
-  .then((response) => response.json())
-  .then((json) => {
-    let luckyColor = json.color;
-    console.log(luckyColor);
-    switch (luckyColor) {
-      case "Navy Blue":
-        luckyColor = "Navy";
-      case "Peach":
-        luckyColor = "PeachPuff";
-      case "Rose Pink":
-        luckyColor = "Pink";
-    }
-    let luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, "");
-
-    // Lucky Color Error
-    document.getElementById("db").style.color = luckyColorHTML;
-    if (document.getElementById("db").style.color == "") {
-      console.error(`Lucky Color Error invalid color: ${luckyColor}`);
-      luckyColor = "Hot Pink";
-      luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, "");
-    }
-
-    const luckyStyle = `color:white;padding:8px;border:4px solid;border-color:${luckyColorHTML};border-radius:10px`;
-    console.log(`%cToday Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})`, luckyStyle);
-    const luckyLink = `${url}?${getHexColor(luckyColorHTML)}`;
-    const luckyImage = `https://singlecolorimage.com/get/${getHexColor(luckyColorHTML).replace("#", "")}/16x16`;
-
-    //daily lucky color end
-
-    //push notification
-    const showNotification = () => {
-      const notification = new Notification("Daily Lucky Color " + json.current_date, {
-        body: `Today Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})\r\nMood: ${json.mood}`,
-        icon: luckyImage,
-        badge: luckyImage,
-        lang: "en-US",
-        silent: true,
-        // image: luckyImage
-      });
-      console.log(luckyImage);
-      notification.onclick = (e) => {
-        window.open(luckyLink, "_self");
-      };
-    };
-    // console.log(Notification.permission)
-    if (Notification.permission === "granted") {
-      console.log("We have permission to send you push notifications!");
-      setTimeout(() => {
-        showNotification();
-      }, 1000);
-    } else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then((permission) => {
-        // console.log(permission)
-        if (permission === "granted") {
-          showNotification();
-        }
-      });
-    }
-  });
-//push notification end
 
 window.addEventListener("hashchange", () => {
-  ifFavClr();
+  clr_name();
+  urlLoad();
+  isFavColor();
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("service-worker.js")
+    .then(() => {
+      console.log("Service worker installed");
+    })
+    .catch((err) => {
+      console.log(`Service Worker Error: ${err}`);
+    });
+}
+
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
 
@@ -648,5 +529,3 @@ function gtag() {
 gtag("js", new Date());
 
 gtag("config", "G-4QTNJRWC58");
-// Google Analytics end
-

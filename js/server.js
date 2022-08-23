@@ -2,11 +2,11 @@ const http = require("http"),
   url = require("url"),
   path = require("path"),
   fs = require("fs"),
-  port = process.argv[2] || 8888;
+  port = process.argv[2] || 4200;
 
 http
   .createServer((request, response) => {
-    var uri = url.parse(request.url).pathname,
+    let uri = url.parse(request.url).pathname,
       filename = path.join(process.cwd(), uri);
 
     fs.exists(filename, (exists) => {

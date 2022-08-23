@@ -2,7 +2,7 @@
   "name": "random-color-main",
   "version": "1.0.0",
   "description": "",
-  "main": "cypress.config.js",
+  "main": "/js/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,11 @@
   "author": "maciekt07",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.21.0"
+    "eslint": "^8.21.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "push.js": "^1.0.12"
   }
 }
