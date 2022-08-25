@@ -189,21 +189,22 @@ td {
 
 .s-close {
   outline: none;
-  border: 3px solid rgb(255, 17, 17);
+  border: 3px solid rgb(253, 47, 47);
   padding: 15px;
   background: transparent;
-  color: rgb(255, 17, 17);
+  color: rgb(253, 47, 47);
   font-size: 18px;
   border-radius: 15px;
   width: auto;
   height: 60px;
-  transition-duration: 0.2s;
-  animation-delay: 0.5s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
 .s-close:hover {
-  opacity: 0.5;
+  background-color: rgb(253, 47, 47);
+  color: white;
+  opacity: 0.8;
 }
 
 .s-delete {
@@ -211,6 +212,12 @@ td {
   border: 3px solid rgb(255, 80, 80);
   color: rgb(255, 80, 80);
   cursor: pointer;
+}
+
+.s-delete:hover {
+  background-color: rgb(255, 80, 80);
+  color: white;
+  opacity: 0.8;
 }
 
 .s-header {
@@ -285,7 +292,7 @@ td {
   }
 
   #favsli {
-    margin-right: 125px;
+    margin-right: 80px;
   }
 }
 
@@ -295,7 +302,7 @@ td {
   }
 
   #favsli {
-    margin-right: 50px;
+    margin-right: 25px;
   }
 }
 
@@ -836,6 +843,7 @@ hr {
 }
 
 noscript {
+  cursor: default;
   padding: 20px;
   position: fixed;
   top: 0px;

@@ -89,15 +89,6 @@ document.getElementById("closeShortcuts").addEventListener("click", () => {
   popup.classList.remove("show");
 });
 
-// document.getElementById("shortcuts-popup").addEventListener('click', () => {
-//     document.getElementById("shortcuts-popup").classList.remove("show");
-// });
-
-// const showa = () => {
-//   // show copy alert
-//   // $("#alert").slideDown("slow").delay(2600).fadeOut(500);
-// };
-
 // copy
 const copyToClipboard = (txt) => navigator.clipboard.writeText(txt);
 
@@ -334,11 +325,11 @@ darkModeToggle.addEventListener("click", () => {
 
 const delClick = () => {
   setTimeout(() => {
+    history.back();
+  }, 25);
+  setTimeout(() => {
     document.getElementById("favlist").click();
   }, 50);
-  setTimeout(() => {
-    document.getElementById("back").click();
-  }, 25);
 };
 
 let favsChangeClr = null;
@@ -507,6 +498,14 @@ window.addEventListener("hashchange", () => {
   clr_name();
   urlLoad();
   isFavColor();
+});
+
+window.addEventListener("offline", () => {
+  showAlert(800, 1300, "📴", `You are offline`);
+  // document.querySelector(".offline").style.display = "block";
+  window.addEventListener("online", () => {
+    showAlert(800, 1300, "🌐", `You are online`);
+  });
 });
 
 if ("serviceWorker" in navigator) {
