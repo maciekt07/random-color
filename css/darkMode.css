@@ -1,0 +1,37 @@
+:root {
+  --color: #ffffff;
+  --foreground: var(--clr-light);
+  --clr-light: white;
+  --clr-dark: #0f111a;
+  --btn-hover: #cff4fc;
+  --button-txt-hover: #63b1ff;
+  --font-clr: black;
+  --github-fill: #333;
+  --selection: #add8e6;
+  --a-clr: #0076d7;
+  --a-hover: #886ce4;
+  --blackwhite: black;
+  --shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+  --bar-clr: rgba(222, 222, 222, 0.5);
+  --hr-gradient: linear-gradient(90deg, rgba(108, 209, 228, 1) 24%, rgba(67, 143, 223, 1) 76%);
+  --arrows-background: rgba(255, 255, 255, 0.662);
+  --history-hover: #50a8ffad;
+  --history-image-hover: 0px 0px 15px #a9cdff;
+}
+
+.darkmode {
+  --blackwhite: white;
+  --foreground: var(--clr-dark);
+  --btn-hover: black;
+  --button-txt-hover: #6666ff;
+  --font-clr: #dfdfdf;
+  --github-fill: #b5b5b5;
+  --selection: #6666ff;
+  --a-clr: #886ce4;
+  --a-hover: #0076d7;
+  --bar-clr: rgba(45, 45, 45, 0.5);
+  --hr-gradient: linear-gradient(90deg, rgba(136, 108, 228, 1) 24%, rgba(142, 60, 228, 1) 76%);
+  --arrows-background: rgba(0, 0, 0, 0.662);
+  --history-hover: #6666ff80;
+  --history-image-hover: 0px 0px 15px #6b6bff;
+}
