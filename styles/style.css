@@ -406,6 +406,7 @@ td {
 }
 
 .alert {
+  text-align: center;
   display: none;
   position: absolute;
   bottom: 2em;
@@ -414,6 +415,7 @@ td {
   -webkit-backdrop-filter: blur(80px);
           backdrop-filter: blur(80px);
   width: auto;
+  height: auto;
   border-radius: 30px;
   font-size: 16px;
   cursor: default;

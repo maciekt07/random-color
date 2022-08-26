@@ -498,9 +498,24 @@ window.addEventListener("hashchange", () => {
   isFavColor();
 });
 
+document.addEventListener("keyup", (event) => {
+  if (event.keyCode == 80) {
+    const eyeDropper = new EyeDropper();
+    eyeDropper
+      .open()
+      .then((result) => {
+        loadColor(result.sRGBHex);
+        urlChange();
+      })
+      .catch((error) => {
+        console.log(error);
+        showAlert(800, 1300, "🚫", "Your browser does not support eye dropper.");
+      });
+  }
+});
+
 window.addEventListener("offline", () => {
   showAlert(800, 1300, "📴", `You're offline`);
-  // document.querySelector(".offline").style.display = "block";
   window.addEventListener("online", () => {
     showAlert(800, 1300, "🌐", `You're online again`);
   });
@@ -512,8 +527,8 @@ if ("serviceWorker" in navigator) {
     .then(() => {
       console.log("Service worker installed");
     })
-    .catch((err) => {
-      console.log(`Service Worker Error: ${err}`);
+    .catch((error) => {
+      console.log(`Service Worker Error: ${error}`);
     });
 }
 

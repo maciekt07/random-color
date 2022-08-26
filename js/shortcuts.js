@@ -34,17 +34,3 @@ shortcut(L, "fav");
 
 const O = 79;
 shortcut(O, "favlist");
-
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 80) {
-    const eyeDropper = new EyeDropper();
-    eyeDropper
-      .open()
-      .then((result) => {
-        loadColor(result.sRGBHex);
-      })
-      .catch(() => {
-        showAlert(800, 1300, "🚫", "Your Browser does not support eye dropper.");
-      });
-  }
-});
