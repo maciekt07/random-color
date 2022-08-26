@@ -1,3 +1,14 @@
 $font: "Lato", sans-serif;
 $shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-$main-buttons-shadow: 0px 0px 38px -5px currentColor;
+$main-btn-shadow: 0px 0px 38px -5px currentColor;
+$main-content-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+$popup-background: rgba(0, 0, 0, 0.4);
+$popup-close-btn: rgb(253, 47, 47);
+$popup-delete-btn: rgb(255, 80, 80);
+$favs-purple: rgb(58, 65, 110);
+$close-btn: #ff274e;
+
+$hr: rgba(114, 114, 114, 0.5);
+$history-txt-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
+$history-box-shadow: 0px 0px 20px 1px var(--history-hover);

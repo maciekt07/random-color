@@ -17,6 +17,7 @@ const loadColor = (hex) => {
   document.fgColor = hex;
   document.querySelector('meta[name="theme-color"]').setAttribute("content", hex);
   document.getElementById("divrgb").innerHTML = `RGB ${hex.replace("#", "").convertToRGB()}`;
+  // document.querySelector(":root").style.setProperty("--color", hex);
 };
 
 const main = () => {
@@ -338,9 +339,7 @@ document.getElementById("favlist").addEventListener("click", () => {
   document.getElementById("history").style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-  document.getElementById(
-    "modaltext"
-  ).innerHTML = `<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
+  document.getElementById("modaltext").innerHTML = `<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
     ${favsarr.length}
     </h1>`;
   ul = document.createElement("div");
@@ -461,7 +460,6 @@ document.getElementById("share").addEventListener("click", async () => {
 });
 
 //url
-
 const url = `${location.origin}/`;
 const urlChange = () => {
   location = `${url}?${colorInput.value}`;
@@ -501,10 +499,10 @@ window.addEventListener("hashchange", () => {
 });
 
 window.addEventListener("offline", () => {
-  showAlert(800, 1300, "📴", `You are offline`);
+  showAlert(800, 1300, "📴", `You're offline`);
   // document.querySelector(".offline").style.display = "block";
   window.addEventListener("online", () => {
-    showAlert(800, 1300, "🌐", `You are online`);
+    showAlert(800, 1300, "🌐", `You're online again`);
   });
 });
 

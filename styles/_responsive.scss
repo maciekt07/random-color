@@ -1,0 +1,132 @@
+@media (max-width: 650px) {
+  .div1 {
+    font-size: 80px;
+    width: 400px;
+    -webkit-text-stroke: 0px currentColor;
+    text-shadow: -1px -1px 0 var(--blackwhite), 1px -1px 0 var(--blackwhite), -1px 1px 0 var(--blackwhite), 1px 1px 0 var(--blackwhite);
+  }
+
+  body {
+    margin-top: 22%;
+  }
+
+  #back,
+  #forward {
+    display: inline-block;
+  }
+
+  .fa-angle-right,
+  .fa-angle-left,
+  #back,
+  #forward {
+    transform: scale(1);
+  }
+
+  .dark-mode-toggle {
+    top: 11em;
+  }
+
+  #color_input {
+    top: 15.5em;
+  }
+
+  .history-btn {
+    top: 20em;
+  }
+
+  .shortcuts {
+    top: 24.5em;
+  }
+
+  .fullscreen {
+    top: 29em;
+  }
+
+  .fav-btn {
+    top: 33.5em;
+  }
+
+  .fav-list-btn {
+    top: 38em;
+  }
+
+  .share-btn {
+    top: 42.5em;
+  }
+
+  .right-bar {
+    border-top: 2px solid var(--foreground);
+    top: 8em;
+    height: 503px;
+  }
+}
+@media (max-width: 550px) {
+  .dark-mode-toggle {
+    top: 24em;
+  }
+
+  #color_input {
+    top: 28.5em;
+  }
+
+  .history-btn {
+    top: 33em;
+  }
+
+  .shortcuts {
+    top: 37.5em;
+  }
+
+  .fullscreen {
+    top: 42em;
+  }
+
+  .fav-btn {
+    top: 46.5em;
+  }
+
+  .fav-list-btn {
+    top: 51em;
+  }
+
+  .share-btn {
+    top: 55.5em;
+  }
+
+  .right-bar {
+    border-top: 2px solid var(--foreground);
+    top: 19em;
+    height: 497px;
+  }
+}
+@media (max-width: 750px) {
+  .modal {
+    width: 450px;
+  }
+
+  #favsli {
+    margin-right: 80px;
+  }
+}
+
+@media (max-width: 650px) {
+  .modal {
+    width: 400px;
+  }
+
+  #favsli {
+    margin-right: 25px;
+  }
+}
+
+@media (max-height: 820px) {
+  .modal {
+    max-height: 650px;
+  }
+}
+
+@media (max-height: 660px) {
+  .modal {
+    max-height: 520px;
+  }
+}

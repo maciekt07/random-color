@@ -7,7 +7,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: $popup-background;
   backdrop-filter: blur(3.5px);
   opacity: 0;
   pointer-events: none;
@@ -42,10 +42,10 @@ td {
 
 .s-close {
   outline: none;
-  border: 3px solid rgb(253, 47, 47);
+  border: 3px solid $popup-close-btn;
   padding: 15px;
   background: transparent;
-  color: rgb(253, 47, 47);
+  color: $popup-close-btn;
   font-size: 18px;
   border-radius: 15px;
   width: auto;
@@ -54,7 +54,7 @@ td {
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(253, 47, 47);
+    background-color: $popup-close-btn;
     color: white;
     opacity: 0.8;
   }
@@ -62,12 +62,12 @@ td {
 
 .s-delete {
   display: none;
-  border: 3px solid rgb(255, 80, 80);
-  color: rgb(255, 80, 80);
+  border: 3px solid $popup-delete-btn;
+  color: $popup-delete-btn;
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(255, 80, 80);
+    background-color: $popup-delete-btn;
     color: white;
     opacity: 0.8;
   }
@@ -97,11 +97,11 @@ td {
   font-size: 20px;
   color: white;
   text-decoration: underline;
-  border: 3px solid rgb(58, 65, 110);
+  border: 3px solid $favs-purple;
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(58, 65, 110);
+    background-color: $favs-purple;
     opacity: 1;
     text-decoration: none;
   }
@@ -135,7 +135,7 @@ td {
   margin-right: 10px;
 
   &:hover {
-    color: #ff274e;
+    color: $popup-delete-btn;
   }
 }
 .key {
