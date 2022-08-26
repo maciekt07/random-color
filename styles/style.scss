@@ -5,7 +5,7 @@
 @import "popup";
 @import "alert";
 @import "history";
-@import "responsive";
+
 * {
   box-sizing: border-box;
 
@@ -210,3 +210,4 @@ br,
   -ms-user-select: none;
   user-select: none;
 }
+@import "responsive";
