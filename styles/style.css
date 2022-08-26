@@ -837,6 +837,9 @@ br,
   .modal {
     width: 450px;
   }
+  #delFromFavs {
+    display: none;
+  }
   #favsli {
     margin-right: 125px;
   }
