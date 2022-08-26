@@ -4,7 +4,7 @@ importScripts("https://js.pusher.com/beams/service-worker.js");
 // workbox.routing.registerRoute(({ request }) => request.destination === "image", new workbox.strategies.NetworkFirst());
 
 const MY_CACHE = "cache-all";
-const MY_FILES = ["/css/style.css", "/js/App.js", "/js/shortcuts.js", "/index.html", "/js/notification.js"];
+const MY_FILES = ["/styles/style.css", "/js/App.js", "/js/shortcuts.js", "/index.html", "/js/notification.js"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
