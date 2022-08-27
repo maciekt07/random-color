@@ -1,6 +1,17 @@
 .history {
-  height: 320px;
+  margin-top: 20px;
+  height: 350px;
   overflow: auto;
+  overflow-x: hidden;
+  text-align: center;
+}
+.history::-webkit-scrollbar {
+  width: 0px;
+}
+.history-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 #historyhex {

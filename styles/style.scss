@@ -153,6 +153,12 @@ i,
   cursor: default;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #db {
   display: none;
 }

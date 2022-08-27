@@ -5,7 +5,6 @@ fetch(luckyURL, {
   .then((response) => response.json())
   .then((json) => {
     let luckyColor = json.color;
-    console.log(luckyColor);
     switch (luckyColor) {
       case "Navy Blue":
         luckyColor = "Navy";
@@ -31,7 +30,7 @@ fetch(luckyURL, {
       const colors = window
         .getComputedStyle(document.body.appendChild(a))
         .color.match(/\d+/g)
-        .map(function (a) {
+        .map((a) => {
           return parseInt(a, 10);
         });
       document.body.removeChild(a);

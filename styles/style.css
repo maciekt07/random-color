@@ -436,8 +436,25 @@ td {
 }
 
 .history {
-  height: 320px;
+  margin-top: 20px;
+  height: 350px;
   overflow: auto;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.history::-webkit-scrollbar {
+  width: 0px;
+}
+
+.history-container {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #historyhex {
@@ -774,6 +791,18 @@ i,
 
 .fa-equals {
   cursor: default;
+}
+
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #db {

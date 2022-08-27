@@ -22,18 +22,14 @@ const loadColor = (hex) => {
 
 const main = () => {
   counter++;
-  let bg_clr = Math.floor(Math.random() * 16777215).toString(16);
-  bg_clr = "#" + ("000000" + bg_clr).slice(-6);
-  loadColor(bg_clr);
-  setTimeout(() => {
-    console.log("%c------------------------------ ", "color:#949494; font-size: 20px;");
-    console.log(`${counter}. ${txt.textContent} ${document.getElementById("name").textContent} RGB ${bg_clr.replace("#", "").convertToRGB()}`);
-  }, 100);
-  if (counter >= 4) {
+  let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  randomColor = "#" + ("000000" + randomColor).slice(-6);
+  loadColor(randomColor);
+  console.log(`%c${counter}. | ${txt.textContent} | ${document.getElementById("name").textContent} | RGB ${randomColor.replace("#", "").convertToRGB()}`, `color:${randomColor}`);
+  if (counter > 3) {
     document.getElementById("h-back-to-top").style.display = "block";
   }
 };
-main();
 document.getElementById("main").classList.add("animate__animated", "animate__headShake");
 setTimeout(() => {
   document.getElementById("main").classList.remove("animate__animated", "animate__headShake");
@@ -285,6 +281,7 @@ if (localStorage.getItem("clr") != null) {
   document.getElementById("s-delete").click();
   document.getElementById("fav").click();
   hideAlert();
+  main();
   setTimeout(() => {
     addToHistoryList();
   }, 100);

@@ -1,6 +1,6 @@
 const shortcut = (key, id) => {
-  return document.addEventListener("keyup", (event) => {
-    if (event.keyCode == key) {
+  return document.addEventListener("keyup", (e) => {
+    if (event.keyCode == key && !e.ctrlKey && !e.shiftKey && !e.altKey) {
       document.getElementById(id).click();
     }
   });
