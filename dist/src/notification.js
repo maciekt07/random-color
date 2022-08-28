@@ -48,7 +48,7 @@ fetch(luckyURL, {
     var luckyColorHTMLNoHash = luckyColorHTML.replace("#", "");
     console.log(luckyColorHTMLNoHash);
     var luckyStyle = "color:white;padding:8px;border:4px solid;border-color:" + luckyColorHTML + ";border-radius:10px";
-    var luckyLink = url + "?" + getHexColor(luckyColorHTML);
+    var luckyLink = appUrl + "?" + getHexColor(luckyColorHTML);
     var luckyImage = ("https://singlecolorimage.com/get/" + getHexColor(luckyColorHTML) + "/64x64").replace("#", "");
     var nHeader = "Daily Lucky Color " + json.current_date;
     var nBody = "Today Lucky Color is: " + luckyColor + " (" + getHexColor(luckyColorHTML) + ")\nMood: " + json.mood;
