@@ -1,4 +1,4 @@
-const luckyURL = "https://aztro.sameerkumar.website/?sign=aries&day=today";
+const luckyURL: string = "https://aztro.sameerkumar.website/?sign=aries&day=today";
 fetch(luckyURL, {
   method: "POST",
 })
@@ -24,7 +24,7 @@ fetch(luckyURL, {
     }
     let luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, "");
     //get hex color
-    const getHexColor = (colorStr) => {
+    const getHexColor = (colorStr: string) => {
       const a = document.createElement("div");
       a.style.color = colorStr;
       const colors = window
@@ -45,62 +45,44 @@ fetch(luckyURL, {
       luckyColor = "Hot Pink";
       luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, "");
     }
+
+    const luckyColorHTMLNoHash = luckyColorHTML.replace("#", "");
+    console.log(luckyColorHTMLNoHash);
+
     const luckyStyle = `color:white;padding:8px;border:4px solid;border-color:${luckyColorHTML};border-radius:10px`;
-    const luckyLink = `${url}?${getHexColor(luckyColorHTML)}`;
-    const luckyImage = `https://singlecolorimage.com/get/${getHexColor(luckyColorHTML).replace("#", "")}/64x64`;
+    const luckyLink = `${appUrl}?${getHexColor(luckyColorHTML)}`;
+    const luckyImage = `https://singlecolorimage.com/get/${getHexColor(luckyColorHTML)}/64x64`.replace("#", "");
     const nHeader = `Daily Lucky Color ${json.current_date}`;
     const nBody = `Today Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})\nMood: ${json.mood}`;
     console.log(`%cToday Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})`, luckyStyle);
 
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // true for mobile device
-      // mobile notification
-      Push.close("lucky-color");
-      setTimeout(() => {
-        Push.create(nHeader, {
-          body: nBody,
-          icon: luckyImage,
-          tag: "lucky-color",
-          // timeout: 4000,
-          link: luckyLink,
-          vibrate: [200, 200, 200, 200, 200],
-          requireInteraction: false,
-          onClick: () => {
-            window.focus();
-            window.open(luckyLink);
-            this.close();
-          },
-        });
-      }, 3000);
-    } else {
-      // desktop notification
-      const showNotification = () => {
-        const notification = new Notification(nHeader, {
-          body: nBody,
-          icon: luckyImage,
-          badge: luckyImage,
-          lang: "en-US",
-          silent: true,
-          // image: luckyImage,
-        });
-        notification.onclick = (e) => {
-          window.focus();
-          location = luckyLink;
-        };
+    // desktop notification
+    const showNotification = () => {
+      const notification = new Notification(nHeader, {
+        body: nBody,
+        icon: luckyImage,
+        badge: luckyImage,
+        lang: "en-US",
+        silent: true,
+        // image: luckyImage,
+      });
+      notification.onclick = (e) => {
+        window.focus();
+        window.open(luckyLink, "_self");
       };
-      // console.log(Notification.permission);
-      if (Notification.permission === "granted") {
-        console.log("We have permission to send you push notifications!");
-        setTimeout(() => {
+    };
+    // console.log(Notification.permission);
+    if (Notification.permission === "granted") {
+      console.log("We have permission to send you push notifications!");
+      setTimeout(() => {
+        showNotification();
+      }, 2000);
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        // console.log(permission)
+        if (permission === "granted") {
           showNotification();
-        }, 2000);
-      } else if (Notification.permission !== "denied") {
-        Notification.requestPermission().then((permission) => {
-          // console.log(permission)
-          if (permission === "granted") {
-            showNotification();
-          }
-        });
-      }
+        }
+      });
     }
   });
