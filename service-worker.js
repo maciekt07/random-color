@@ -1,6 +1,6 @@
 const cacheName = "v1";
 
-const cacheAssets = ["index.html", "dist/src/app.js", "dist/src/notification.js", "dist/src/shortcuts.js", "/styles/"];
+const cacheAssets = ["index.html", "dist/src/app.js", "dist/src/notification.js", "dist/src/shortcuts.js", "styles/style.css"];
 
 self.addEventListener("install", (e) => {
   console.log("Service Worker: Installed");
