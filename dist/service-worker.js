@@ -1,6 +1,6 @@
 "use strict";
 var cacheName = "v1";
-var cacheAssets = ["index.html", "dist/src/app.js", "dist/src/notification.js", "dist/src/shortcuts.js", "/styles/"];
+var cacheAssets = ["index.html", "dist/src/app.js", "dist/src/notification.js", "dist/src/shortcuts.js", "styles/style.css"];
 self.addEventListener("install", function (e) {
     console.log("Service Worker: Installed");
     e.waitUntil(caches

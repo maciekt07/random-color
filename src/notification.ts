@@ -71,6 +71,7 @@ fetch(luckyURL, {
         window.open(luckyLink, "_self");
       };
     };
+
     // console.log(Notification.permission);
     if (Notification.permission === "granted") {
       console.log("We have permission to send you push notifications!");

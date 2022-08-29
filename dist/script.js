@@ -15,37 +15,7 @@ window.addEventListener("hashchange", () => clr_name());
 document.getElementById("color_input").addEventListener("input", () => clr_name());
 document.getElementById("refresh").addEventListener("click", () => clr_name());
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  // true for mobile device
-  // mobile notification
-  Push.close("lucky-color");
-  setTimeout(() => {
-    Push.create(nHeader, {
-      body: nBody,
-      icon: luckyImage,
-      tag: "lucky-color",
-      // timeout: 4000,
-      link: luckyLink,
-      vibrate: [200, 200, 200, 200, 200],
-      requireInteraction: false,
-      onClick: () => {
-        window.focus();
-        window.open(luckyLink);
-        this.close();
-      },
-    });
-  }, 3000);
-}
-// if ("serviceWorker" in navigator) {
-//   navigator.serviceWorker
-//     .register("service-worker.js")
-//     .then(() => {
-//       console.log("Service worker installed");
-//     })
-//     .catch((error) => {
-//       console.log(`Service Worker Error: ${error}`);
-//     });
-// }
+// true for mobile device
 
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
