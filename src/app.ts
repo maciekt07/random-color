@@ -1,6 +1,3 @@
-let counter: number = 0;
-let like: number = 0;
-
 const hexTxt = document.getElementById("txt") as HTMLDivElement;
 const rgbTxt = document.getElementById("divrgb") as HTMLDivElement;
 const nameTxt = document.getElementById("name") as HTMLDivElement;
@@ -38,12 +35,15 @@ const modalTxt = document.getElementById("modaltext") as HTMLDivElement;
 const messageAlert = document.getElementById("alert") as HTMLDivElement;
 const alertClose = document.getElementById("closeAlert") as HTMLSpanElement;
 
+let counter: number = 0;
+let like: number = 0;
+
 const hexToRgb = (hex: string) => {
   const int = parseInt(hex, 16);
   const r = (int >> 16) & 255;
   const g = (int >> 8) & 255;
   const b = int & 255;
-  return r + ", " + g + ", " + b;
+  return `${r} ${g} ${b}`;
 };
 
 const isHexColor = (hex: string) => typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex));
@@ -63,12 +63,11 @@ const main = () => {
   let randomColor = Math.floor(Math.random() * 16777215).toString(16);
   randomColor = "#" + ("000000" + randomColor).slice(-6);
   loadColor(randomColor);
-  console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(randomColor.replace("#", ""))}`, `color:${randomColor}`);
+  console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
   if (counter > 3) {
     historyBackToTop.style.display = "block";
   }
 };
-main();
 
 mainContent.classList.add("animate__animated", "animate__headShake");
 setTimeout(() => {
@@ -206,10 +205,12 @@ setTimeout(() => {
 back.addEventListener("click", () => {
   if (sessionStorage.getItem("firstSessionClr") != colorInput.value) {
     history.go(-1);
+    isFavColor();
   }
 });
 forward.addEventListener("click", () => {
   history.go(1);
+  isFavColor();
 });
 
 copyBtn.addEventListener("click", () => {
@@ -219,7 +220,7 @@ copyBtn.addEventListener("click", () => {
   showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", `Copied to clipboard: ${colorInput.value}`);
 });
 
-const removeFromFavs = (arr: any, item: any) => {
+const removeFromFavs = (arr: Array<string>, item: string) => {
   let newArray = [...arr];
   const index = newArray.findIndex((element) => element === item);
   if (index !== -1) {
@@ -228,7 +229,7 @@ const removeFromFavs = (arr: any, item: any) => {
   }
 };
 
-const uniqueFavs = (array: any) => array.filter((currentValue: any, index: any, arr: any) => arr.indexOf(currentValue) === index);
+const uniqueFavs = (array: Array<string>) => array.filter((currentValue: string, index: number, arr: Array<string>) => arr.indexOf(currentValue) === index);
 
 const addToFavs = () => {
   let new_favs = colorInput.value;
@@ -243,13 +244,13 @@ const addToFavs = () => {
 const isFavColor = () => {
   if (localStorage.getItem("favs") !== null) {
     if (localStorage.getItem("favs").includes(hexTxt.textContent)) {
-      document.getElementById("fav").setAttribute("title", "Remove From Favorites");
       likeIcon.style.color = "#FF2E78";
       like = 1;
+      likeBtn.setAttribute("title", "Remove From Favorites");
     } else {
       likeIcon.style.color = "currentColor";
-      document.getElementById("fav").setAttribute("title", "Add To Favorites");
       like = 2;
+      likeBtn.setAttribute("title", "Add To Favorites");
     }
   }
 };
@@ -296,11 +297,14 @@ const locals = () => {
 };
 
 if (localStorage.getItem("clr") != null) {
+  counter++;
   like = 1;
+
   loadColor(localStorage.getItem("clr"));
   setTimeout(() => {
+    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${localStorage.getItem("clr")}`);
     addToHistoryList();
-  }, 100);
+  }, 500);
 } else {
   likeBtn.click();
   hideAlert();
@@ -310,7 +314,7 @@ if (localStorage.getItem("clr") != null) {
   main();
   setTimeout(() => {
     addToHistoryList();
-  }, 100);
+  }, 800);
   like++;
 }
 locals();

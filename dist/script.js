@@ -10,13 +10,10 @@ const clr_name = () => {
   }
 };
 clr_name();
-window.addEventListener("hashchange", () => {
-  clr_name();
-});
 
-document.getElementById("color_input").addEventListener("input", () => {
-  clr_name();
-});
+window.addEventListener("hashchange", () => clr_name());
+document.getElementById("color_input").addEventListener("input", () => clr_name());
+document.getElementById("refresh").addEventListener("click", () => clr_name());
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
   // true for mobile device

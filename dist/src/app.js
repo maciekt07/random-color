@@ -44,8 +44,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-var counter = 0;
-var like = 0;
 var hexTxt = document.getElementById("txt");
 var rgbTxt = document.getElementById("divrgb");
 var nameTxt = document.getElementById("name");
@@ -76,12 +74,14 @@ var popupDeleteAll = document.getElementById("s-delete");
 var modalTxt = document.getElementById("modaltext");
 var messageAlert = document.getElementById("alert");
 var alertClose = document.getElementById("closeAlert");
+var counter = 0;
+var like = 0;
 var hexToRgb = function (hex) {
     var int = parseInt(hex, 16);
     var r = (int >> 16) & 255;
     var g = (int >> 8) & 255;
     var b = int & 255;
-    return r + ", " + g + ", " + b;
+    return r + " " + g + " " + b;
 };
 var isHexColor = function (hex) { return typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex)); };
 var loadColor = function (hex) {
@@ -98,12 +98,11 @@ var main = function () {
     var randomColor = Math.floor(Math.random() * 16777215).toString(16);
     randomColor = "#" + ("000000" + randomColor).slice(-6);
     loadColor(randomColor);
-    console.log("%c" + counter + ". | " + hexTxt.textContent + " | " + nameTxt.textContent + " | RGB " + hexToRgb(randomColor.replace("#", "")), "color:" + randomColor);
+    console.log("%c" + counter + ". | " + hexTxt.textContent + " | " + nameTxt.textContent + " | RGB " + hexToRgb(hexTxt.textContent.replace("#", "")), "color:" + randomColor);
     if (counter > 3) {
         historyBackToTop.style.display = "block";
     }
 };
-main();
 mainContent.classList.add("animate__animated", "animate__headShake");
 setTimeout(function () {
     mainContent.classList.remove("animate__animated", "animate__headShake");
@@ -219,10 +218,12 @@ setTimeout(function () {
 back.addEventListener("click", function () {
     if (sessionStorage.getItem("firstSessionClr") != colorInput.value) {
         history.go(-1);
+        isFavColor();
     }
 });
 forward.addEventListener("click", function () {
     history.go(1);
+    isFavColor();
 });
 copyBtn.addEventListener("click", function () {
     copyToClipboard(colorInput.value);
@@ -251,14 +252,14 @@ var addToFavs = function () {
 var isFavColor = function () {
     if (localStorage.getItem("favs") !== null) {
         if (localStorage.getItem("favs").includes(hexTxt.textContent)) {
-            document.getElementById("fav").setAttribute("title", "Remove From Favorites");
             likeIcon.style.color = "#FF2E78";
             like = 1;
+            likeBtn.setAttribute("title", "Remove From Favorites");
         }
         else {
             likeIcon.style.color = "currentColor";
-            document.getElementById("fav").setAttribute("title", "Add To Favorites");
             like = 2;
+            likeBtn.setAttribute("title", "Add To Favorites");
         }
     }
 };
@@ -302,11 +303,13 @@ var locals = function () {
     }
 };
 if (localStorage.getItem("clr") != null) {
+    counter++;
     like = 1;
     loadColor(localStorage.getItem("clr"));
     setTimeout(function () {
+        console.log("%c" + counter + ". | " + hexTxt.textContent + " | " + nameTxt.textContent + " | RGB " + hexToRgb(hexTxt.textContent.replace("#", "")), "color:" + localStorage.getItem("clr"));
         addToHistoryList();
-    }, 100);
+    }, 500);
 }
 else {
     likeBtn.click();
@@ -317,7 +320,7 @@ else {
     main();
     setTimeout(function () {
         addToHistoryList();
-    }, 100);
+    }, 800);
     like++;
 }
 locals();
