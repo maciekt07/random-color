@@ -252,14 +252,14 @@ var addToFavs = function () {
 var isFavColor = function () {
     if (localStorage.getItem("favs") !== null) {
         if (localStorage.getItem("favs").includes(hexTxt.textContent)) {
+            likeBtn.setAttribute("title", "Remove From Favorites");
             likeIcon.style.color = "#FF2E78";
             like = 1;
-            likeBtn.setAttribute("title", "Remove From Favorites");
         }
         else {
+            likeBtn.setAttribute("title", "Add To Favorites");
             likeIcon.style.color = "currentColor";
             like = 2;
-            likeBtn.setAttribute("title", "Add To Favorites");
         }
     }
 };
@@ -365,10 +365,10 @@ document.getElementById("favlist").addEventListener("click", function () {
     document.getElementById("history").style.display = "none";
     var favsarr = JSON.parse(localStorage.getItem("favs"));
     popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-    document.getElementById("modaltext").innerHTML = "<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:\n    " + favsarr.length + "\n    </h1>";
+    modalTxt.innerHTML = "<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:\n    " + favsarr.length + "\n    </h1>";
     var ul = document.createElement("div");
     ul.setAttribute("style", "cursor:default");
-    document.getElementById("modaltext").appendChild(ul);
+    modalTxt.appendChild(ul);
     favsarr.forEach(function (item) {
         var p = document.createElement("p");
         var del = "<i id=\"delFromFavs\" onclick=\"removeItemFromFavs('" + item + "');delClick()\" title=\"Delete From Favs: " + item + "\" class=\"fa-solid fa-trash-can fa-sm\"></i>";
@@ -381,9 +381,8 @@ document.getElementById("favlist").addEventListener("click", function () {
         //@ts-ignore
         p.setAttribute("title", "Change Color To: " + item + " (" + ntc.name(item)[1] + ")");
     });
-    var delAll = document.getElementById("s-delete");
-    favsarr.length > 0 ? (delAll.style.display = "block") : (delAll.style.display = "none");
-    delAll.addEventListener("click", function () {
+    favsarr.length > 0 ? (popupDeleteAll.style.display = "block") : (popupDeleteAll.style.display = "none");
+    popupDeleteAll.addEventListener("click", function () {
         like = 2;
         popup.classList.remove("show");
         likeIcon.style.color = "currentColor";

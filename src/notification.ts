@@ -71,13 +71,19 @@ fetch(luckyURL, {
         window.open(luckyLink, "_self");
       };
     };
+    //@ts-ignore
+    Push.config({
+      serviceWorker: "./service-worker.js",
+    });
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // @ts-ignore
-      Push.create(nHeader, {
-        body: nBody,
-        icon: luckyImage,
-        link: luckyLink,
-      });
+      setTimeout(() => {
+        // @ts-ignore
+        Push.create(nHeader, {
+          body: nBody,
+          icon: luckyImage,
+          link: luckyLink,
+        });
+      }, 3000);
     }
     // console.log(Notification.permission);
     if (Notification.permission === "granted") {
