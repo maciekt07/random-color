@@ -529,6 +529,14 @@ document.addEventListener("keyup", function (event) {
         });
     }
 });
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(function (reg) { return console.log("Service Worker: Registered"); })
+            .catch(function (err) { return console.log("Service Worker: Error " + err); });
+    });
+}
 window.addEventListener("offline", function () {
     showAlert(800, 1300, "📴", "You're offline");
     window.addEventListener("online", function () {

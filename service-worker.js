@@ -1,23 +1,37 @@
-importScripts("https://js.pusher.com/beams/service-worker.js");
+const cacheName = "v1";
 
-// importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
-// workbox.routing.registerRoute(({ request }) => request.destination === "image", new workbox.strategies.NetworkFirst());
+const cacheAssets = ["index.html", "dist/src/app.js", "dist/src/notification.js", "dist/src/shortcuts.js", "/styles/"];
 
-const MY_CACHE = "cache-all";
-const MY_FILES = ["/styles/style.css", "/dist/app.js", "/dist/shortcuts.js", "/index.html", "/dist/notification.js", "dist/script.js"];
+self.addEventListener("install", (e) => {
+  console.log("Service Worker: Installed");
+  e.waitUntil(
+    caches
+      .open(cacheName)
+      .then((cache) => {
+        console.log("Service Worker: Cashing Files");
+        cache.addAll(cacheAssets);
+      })
+      .then(() => self.skipWaiting())
+  );
+});
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(MY_CACHE).then((cache) => {
-      return cache.addAll(MY_FILES);
+self.addEventListener("activate", (e) => {
+  console.log("Service Worker: Activated");
+  e.waitUntil(
+    caches.keys().then((cacheName) => {
+      return Promise.all(
+        cacheName.map((cache) => {
+          if (cache !== cacheName) {
+            console.log("Service Worker: Clearing Old Cache");
+            return caches.delete(cache);
+          }
+        })
+      );
     })
   );
 });
-// strategia 'Network falling back to cache'
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      return caches.match(event.request);
-    })
-  );
+
+self.addEventListener("fetch", (e) => {
+  console.log("Service Worker: Fetching");
+  e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
 });

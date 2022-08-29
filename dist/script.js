@@ -36,16 +36,17 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     });
   }, 3000);
 }
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("service-worker.js")
-    .then(() => {
-      console.log("Service worker installed");
-    })
-    .catch((error) => {
-      console.log(`Service Worker Error: ${error}`);
-    });
-}
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker
+//     .register("service-worker.js")
+//     .then(() => {
+//       console.log("Service worker installed");
+//     })
+//     .catch((error) => {
+//       console.log(`Service Worker Error: ${error}`);
+//     });
+// }
+
 // Google Analytics
 window.dataLayer = window.dataLayer || [];
 
