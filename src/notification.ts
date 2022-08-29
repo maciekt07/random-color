@@ -71,7 +71,14 @@ fetch(luckyURL, {
         window.open(luckyLink, "_self");
       };
     };
-
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      // @ts-ignore
+      Push.create(nHeader, {
+        body: nBody,
+        icon: luckyImage,
+        link: luckyLink,
+      });
+    }
     // console.log(Notification.permission);
     if (Notification.permission === "granted") {
       console.log("We have permission to send you push notifications!");
