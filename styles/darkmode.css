@@ -12,6 +12,8 @@
   --arrows-background: rgba(255, 255, 255, 0.662);
   --history-hover: #50a8ffad;
   --history-image-hover: 0px 0px 15px #a9cdff;
+  --alert-header: #333333;
+  --alert-text: #666666;
 }
 
 .darkmode {
@@ -26,4 +28,6 @@
   --arrows-background: rgba(0, 0, 0, 0.662);
   --history-hover: #6666ff80;
   --history-image-hover: 0px 0px 15px #6b6bff;
+  --alert-header: #f9f9f9;
+  --alert-text: #b3b3b3;
 }

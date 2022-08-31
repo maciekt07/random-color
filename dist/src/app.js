@@ -72,9 +72,6 @@ var popup = document.getElementById("shortcuts-popup");
 var popupClose = document.getElementById("closeShortcuts");
 var popupDeleteAll = document.getElementById("s-delete");
 var modalTxt = document.getElementById("modaltext");
-var messageAlert = document.getElementById("alert");
-var alertClose = document.getElementById("closeAlert");
-var alertText = document.getElementById("alertspan");
 var db = document.getElementById("db");
 var counter = 0;
 var like = 0;
@@ -120,30 +117,41 @@ window.onblur = function () {
 window.onfocus = function () {
     document.title = "Random Color Tool";
 };
-messageAlert.style.setProperty("--animate-duration", "0.6s");
-var showAlert = function (time, emoji, text) {
-    hideAlert();
-    alertText.innerHTML = "<span class='alert-emoji'>" + emoji + "</span> " + text;
-    messageAlert.style.display = "block";
-    messageAlert.classList.add("animate__animated", "animate__fadeInDown");
-    messageAlert.addEventListener("animationend", function () {
-        messageAlert.classList.remove("animate__animated", "animate__fadeInDown");
-        setTimeout(function () {
-            messageAlert.classList.add("animate__animated", "animate__fadeOut");
-        }, time);
-        setTimeout(function () {
-            hideAlert();
-            messageAlert.classList.remove("animate__animated", "animate__fadeOut");
-        }, time + 500);
-    });
+var toast = document.querySelector(".toast");
+var closeIcon = document.querySelector(".close");
+var progress = document.querySelector(".progress");
+var timer1;
+var timer2;
+var showAlert = function (emoji, header, text) {
+    document.getElementById("emoji").innerHTML = emoji;
+    document.getElementById("header").innerHTML = header;
+    document.getElementById("alertText").innerHTML = text;
+    document.getElementById("toast").style.display = "block";
+    setTimeout(function () {
+        toast.classList.add("active");
+        progress.classList.add("active");
+    }, 10);
+    timer1 = setTimeout(function () {
+        toast.classList.remove("active");
+    }, 4000);
+    timer2 = setTimeout(function () {
+        progress.classList.remove("active");
+        document.getElementById("toast").style.display = "none";
+    }, 4300);
     popup.classList.remove("show");
 };
 var hideAlert = function () {
-    //hide alert
-    messageAlert.style.display = "none";
-    messageAlert.classList.remove("animate__animated", "animate__fadeInDown", "animate__faster");
-    messageAlert.classList.remove("animate__animated", "animate__fadeOut");
+    toast.classList.remove("active");
+    setTimeout(function () {
+        progress.classList.remove("active");
+    }, 300);
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    document.getElementById("toast").style.display = "none";
 };
+closeIcon.addEventListener("click", function () {
+    hideAlert();
+});
 var hclrx = [];
 var addToHistoryList = function () {
     historyList.innerHTML += "<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" + hexTxt.textContent.replace("#", "") + "/25x25'/>" + hexTxt.textContent + "</span> | " + nameTxt.textContent + "<hr><br></li>";
@@ -155,7 +163,7 @@ var changeColorFromHistory = function () {
 };
 historyDiv.style.display = "none";
 var showHistory = function () {
-    historyDiv.style.display == "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
+    historyDiv.style.display === "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
 };
 shortcutsBtn.addEventListener("click", function () {
     popupDeleteAll.style.display = "none";
@@ -225,7 +233,7 @@ forward.addEventListener("click", function () {
 copyBtn.addEventListener("click", function () {
     copyToClipboard(colorInput.value);
     console.log("Copied to clipboard " + colorInput.value);
-    showAlert(800, "<i class='twa twa-lg twa-clipboard'></i>", "Copied to clipboard: " + colorInput.value);
+    showAlert("<i class='fa-solid fa-clipboard'></i>", "Copy Info", "Copied to clipboard: " + colorInput.value);
 });
 var removeFromFavs = function (arr, item) {
     var newArray = __spreadArray([], arr, true);
@@ -268,7 +276,7 @@ var removeItemFromFavs = function (item) {
     }
     localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
     isFavColor();
-    showAlert(800, "💔", "Removed from favorites: " + item);
+    showAlert("<i class='fa-solid fa-heart-crack'></i>", "Favourite List", "Removed from favorites: " + item);
 };
 likeBtn.addEventListener("click", function () {
     addToFavs();
@@ -276,8 +284,7 @@ likeBtn.addEventListener("click", function () {
     navigator.vibrate(150);
     if (like % 2 != 0) {
         likeIcon.style.color = "#FF2E78";
-        document.getElementById("alertspan").innerHTML = "<span class='alert-emoji'>\u2764\uFE0F</span> Added to favorites: " + colorInput.value;
-        showAlert(800, "❤️", "Added to favorites: " + colorInput.value);
+        showAlert("<i class='fa-solid fa-heart'></i>", "Favourite List", "Added to favourites: " + colorInput.value);
         likeIcon.classList.add("fa-beat");
         setTimeout(function () {
             likeIcon.classList.remove("fa-beat");
@@ -336,15 +343,14 @@ if (darkMode === "enabled") {
 darkModeToggle.addEventListener("click", function () {
     darkMode = localStorage.getItem("darkMode");
     if (darkMode !== "enabled") {
+        showAlert('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
         enableDarkMode();
-        console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-        showAlert(800, "🌙", "Darkmode Enabled!");
+        console.log("%cDarkmode Enabled!🌙", "color:#bd9ff5;");
     }
     else {
+        showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
         disableDarkMode();
         console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
-        showAlert(800, "☀️", "Darkmode Disabled!");
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", colorInput.value);
     }
 });
 var delClick = function () {
@@ -416,21 +422,18 @@ historyBackToTop.addEventListener("click", function () {
         behavior: "smooth",
     });
 });
-alertClose.addEventListener("click", function () {
-    hideAlert();
-});
 var toggleFullScreen = function () {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         if (window.screen.width > 1024) {
-            showAlert(800, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Enabled!");
+            showAlert("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Enabled!");
             console.log("Fullscreen enabled");
         }
     }
     else if (document.exitFullscreen) {
         document.exitFullscreen();
         if (window.screen.width > 1024) {
-            showAlert(800, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Disabled!");
+            showAlert("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Disabled!");
             console.log("Fullscreen disabled");
         }
     }
@@ -468,7 +471,7 @@ shareBtn.addEventListener("click", function () { return __awaiter(void 0, void 0
                 console.log("Share Error: " + err_1);
                 if (err_1 != "AbortError: Share canceled") {
                     copyToClipboard(location.toString());
-                    showAlert(800, "<i class='twa twa-lg twa-clipboard'></i>", "Copied URL to clipboard!");
+                    showAlert("<i class='fa-solid fa-clipboard fa-sm'></i>", "Share", "Copied URL to clipboard!");
                 }
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -484,7 +487,7 @@ var urlError = function () {
     window.location = appUrl + "?" + localStorage.getItem("clr");
     setTimeout(function () {
         console.error("ERROR: Invalid Color in URL");
-        showAlert(800, "❌", "Invalid Color in URL");
+        showAlert("<i class='fa-solid fa-xmark'></i>", "URL", "Invalid Color in URL");
     }, 300);
 };
 var urlLoad = function () {
@@ -520,7 +523,7 @@ document.addEventListener("keyup", function (event) {
         })
             .catch(function (error) {
             console.log(error);
-            showAlert(3000, "🚫", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
+            showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
         });
     }
 });
@@ -533,8 +536,8 @@ if ("serviceWorker" in navigator) {
     });
 }
 window.addEventListener("offline", function () {
-    showAlert(800, "📴", "You're offline");
+    showAlert("📴", "Conection", "You're offline");
     window.addEventListener("online", function () {
-        showAlert(800, "🌐", "You're online again");
+        showAlert("<i class='fa-solid fa-globe'></i>", "Conection", "You're online again");
     });
 });

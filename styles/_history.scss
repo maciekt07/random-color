@@ -2,7 +2,6 @@
   margin-top: 20px;
   height: 350px;
   overflow: auto;
-  overflow-x: hidden;
   text-align: center;
 }
 .history::-webkit-scrollbar {
@@ -12,6 +11,7 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  margin-right: 25px;
 }
 
 #historyhex {

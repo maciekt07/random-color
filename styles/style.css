@@ -1,4 +1,5 @@
 @import url("darkmode.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 .dark-mode-toggle,
 .history-btn,
 .shortcuts,
@@ -393,7 +394,39 @@ td {
   border-radius: 5px;
 }
 
-.alertbox {
+/* Google Font Import - Poppins */
+.toast {
+  cursor: default;
+  display: none;
+  position: absolute;
+  bottom: 1em;
+  border-radius: 16px;
+  background: var(--foreground);
+  padding: 20px 35px 20px 25px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  -webkit-transform: translateY(calc(100% + 30px));
+          transform: translateY(calc(100% + 30px));
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.toast.active {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+.toast .toast-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.toast-content .emoji {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -403,43 +436,90 @@ td {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 35px;
+  width: 35px;
+  background-color: var(--button-txt-hover);
+  color: #fff;
+  border-radius: 40%;
 }
 
-.alert {
-  text-align: center;
-  display: none;
-  position: absolute;
-  bottom: 2em;
-  padding: 30px;
-  background-color: var(--foreground);
-  -webkit-backdrop-filter: blur(80px);
-          backdrop-filter: blur(80px);
-  width: auto;
-  height: auto;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: default;
+.toast-content .message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 20px;
+}
+
+.message .text {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--alert-text);
+}
+
+.message .text.text-1 {
   font-weight: 600;
-  -webkit-box-shadow: 0px 0px 38px -5px currentColor;
-          box-shadow: 0px 0px 38px -5px currentColor;
+  color: var(--alert-header);
 }
 
-#alertspan {
-  color: var(--font-clr);
-  cursor: default;
-  text-align: center;
+.toast .close {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  padding: 5px;
+  cursor: pointer;
+  color: #ff6666;
 }
 
-.alert-emoji {
-  font-size: 18px;
-  cursor: default;
+.toast .close:hover {
+  opacity: 1;
+  color: red;
+}
+
+.toast .progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+}
+
+.toast .progress:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--button-txt-hover);
+  border-radius: 100px;
+}
+
+.progress.active:before {
+  -webkit-animation: progress 4s linear forwards;
+          animation: progress 4s linear forwards;
+}
+
+@-webkit-keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes progress {
+  100% {
+    right: 100%;
+  }
 }
 
 .history {
   margin-top: 20px;
   height: 350px;
   overflow: auto;
-  overflow-x: hidden;
   text-align: center;
 }
 
@@ -455,6 +535,7 @@ td {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-right: 25px;
 }
 
 #historyhex {
@@ -806,6 +887,7 @@ i,
 }
 
 a {
+  cursor: pointer;
   -webkit-transition: 0.4s all;
   transition: 0.4s all;
   color: #3abdff;
