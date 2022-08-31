@@ -1,4 +1,5 @@
 <br><br>
+
 <p align="center">
 <img alt="icon" width="128px" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/iconLight.png"></img>
 </p>
@@ -6,20 +7,16 @@
 <h1 align="center"><a href="https://random-color-tool.netlify.app">🔗 https://random-color-tool.netlify.app</a></h1>
 <h3 align="center">Random color picker made using HTML, CSS, JavaScript and Native Web APIs. All data is stored in LocalStorage</h3>
 
-
 <div align="center">
 <a href="https://app.netlify.com/sites/random-color-tool/deploys"><img src="https://api.netlify.com/api/v1/badges/6173ec8f-e9f6-471a-86e6-71210349ffe3/deploy-status"></a><img src="https://img.shields.io/github/languages/code-size/maciekt07/random-color?color=blue&style=flat-square)"><img src="https://img.shields.io/github/languages/top/maciekt07/random-color?color=blue&style=flat-square)"><img src="https://img.shields.io/github/last-commit/maciekt07/random-color?color=blue&style=flat-square)"><img src="https://img.shields.io/github/license/maciekt07/random-color?color=blue&style=flat-square)">
 </div>
-
 
 <p align="center">
 <img alt="preview" src="https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/preview.png"></img>
 </p
 <br><br>
 
-
 # 💡 Features
-
 
 # 💜 Liked Colors List
 
@@ -28,18 +25,19 @@
 ![favlist](https://raw.githubusercontent.com/maciekt07/random-color/main/img/favslist.png)
 
 # ⌘ Shortcuts
+
 ![shortcuts](https://raw.githubusercontent.com/maciekkoks/random-colors/main/img/shortcuts.png)
 
-``` js
+```js
 const shortcut = (key, id) => {
   return document.addEventListener("keyup", (event) => {
     if (event.keyCode == key) {
       document.getElementById(id).click();
     }
   });
-}
-const r = 82
-shortcut(r, "refresh")
+};
+const r = 82;
+shortcut(r, "refresh");
 ```
 
 # 🔔 Notifications
@@ -52,34 +50,34 @@ Desktop:
 
 <img src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/notiWindows.png">
 
-``` js
+```js
 // Desktop
 const showNotification = () => {
-    const notification = new Notification(nHeader, {
-        body: nBody,
-        icon: luckyImage,
-        badge: luckyImage,
-        lang: "en-US",
-        silent: true,
-    });
-    notification.onclick = (e) => {
-        window.focus();
-        location = luckyLink;
-    };
+  const notification = new Notification(nHeader, {
+    body: nBody,
+    icon: luckyImage,
+    badge: luckyImage,
+    lang: "en-US",
+    silent: true,
+  });
+  notification.onclick = (e) => {
+    window.focus();
+    location = luckyLink;
+  };
 };
 console.log(Notification.permission);
 if (Notification.permission === "granted") {
-    console.log("We have permission to send you push notifications!");
-    setTimeout(() => {
-        showNotification();
-    }, 2000);
+  console.log("We have permission to send you push notifications!");
+  setTimeout(() => {
+    showNotification();
+  }, 2000);
 } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then((permission) => {
-        // console.log(permission)
-        if (permission === "granted") {
-            showNotification();
-        }
-    });
+  Notification.requestPermission().then((permission) => {
+    // console.log(permission)
+    if (permission === "granted") {
+      showNotification();
+    }
+  });
 }
 ```
 
@@ -90,22 +88,29 @@ Mobile:
 ```js
 // Mobile
 Push.create(nHeader, {
-    body: nBody,
-    icon: luckyImage,
-    tag: "lucky-color",
-    // timeout: 4000,
-    link: luckyLink,
-    vibrate: [200, 200, 200, 200, 200],
-    requireInteraction: false,
-    onClick: () => {
-        window.focus();
-        window.open(luckyLink);
-        this.close();
-    },
+  body: nBody,
+  icon: luckyImage,
+  tag: "lucky-color",
+  // timeout: 4000,
+  link: luckyLink,
+  vibrate: [200, 200, 200, 200, 200],
+  requireInteraction: false,
+  onClick: () => {
+    window.focus();
+    window.open(luckyLink);
+    this.close();
+  },
 });
 ```
 
+## Custom Notification
+
+if the user blocks the notifications, a custom notification will be displayed
+
+![customNotification](https://raw.githubusercontent.com/maciekt07/random-color/main/img/customNotification.png)
+
 # 📱 Progressive Web App (PWA)
+
 ## You can install this web app on your device like a normall app
 
 ![install](https://raw.githubusercontent.com/maciekt07/random-color/main/img/installation.png)
@@ -119,37 +124,38 @@ Push.create(nHeader, {
 ![url](https://raw.githubusercontent.com/maciekt07/random-color/main/img/link.png)
 
 ```js
-window.addEventListener('hashchange', () => {
-    urlLoad();
-    clr_name();
-})
+window.addEventListener("hashchange", () => {
+  urlLoad();
+  clr_name();
+});
 ```
 
 ![share](https://raw.githubusercontent.com/maciekt07/random-color/main/img/shareAndroid.png)
 
-``` js
+```js
 let shareData = {
-    title: "Random Color Tool By maciekt07",
-    text: `Check out this cool color: ${colorInput.value}`,
-    url: location,
+  title: "Random Color Tool By maciekt07",
+  text: `Check out this cool color: ${colorInput.value}`,
+  url: location,
 };
 try {
-    await navigator.share(shareData);
-    console.log("Shared color successfully");
+  await navigator.share(shareData);
+  console.log("Shared color successfully");
 } catch (err) {
-    console.log(`Share Error: ${err}`);
-    if (err != "AbortError: Share canceled") {
-        // Copy link and show alert if browser does not support sharing
-        copyToClipboard(location);
-        document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
-        showalert(800, 1300);
-    }
+  console.log(`Share Error: ${err}`);
+  if (err != "AbortError: Share canceled") {
+    // Copy link and show alert if browser does not support sharing
+    copyToClipboard(location);
+    document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-clipboard'></i> Copied URL to clipboard!";
+    showalert(800, 1300);
+  }
 }
 ```
 
 # And many more... 👀
 
 # ⚡ Performance
+
 <img width="650px" alt="performance" src="https://raw.githubusercontent.com/maciekt07/random-color/main/img/Performance.png">
 
 # 👨‍💻 To run this project locally
@@ -170,18 +176,18 @@ Install node modules
 npm install
 ```
 
-Run local server and open ``http://localhost:8888/``
+Run local server and open `http://localhost:8888/`
 
 ```bash
 node js/server.js
 ```
+
 (or use live server)
-
-
 
 # 💌 Made With ❤ By [maciekt07](https://github.com/maciekt07)
 
 ## 💸 Donate
+
 <a href="https://www.buymeacoffee.com/maciekt07" target="_blank">
  <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=maciekt07&button_colour=1a1b27&font_colour=ffffff&font_family=Lato&outline_colour=ffffff&coffee_colour=FFDD00"></a>
 </a>
