@@ -233,7 +233,7 @@ forward.addEventListener("click", function () {
 copyBtn.addEventListener("click", function () {
     copyToClipboard(colorInput.value);
     console.log("Copied to clipboard " + colorInput.value);
-    showAlert("<i class='fa-solid fa-clipboard'></i>", "Copy Info", "Copied to clipboard: " + colorInput.value);
+    showAlert("<i class='fa-solid fa-clipboard'></i>", "Copy Info", "Copied to clipboard: <b>" + colorInput.value + "</b>");
 });
 var removeFromFavs = function (arr, item) {
     var newArray = __spreadArray([], arr, true);
@@ -276,7 +276,7 @@ var removeItemFromFavs = function (item) {
     }
     localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
     isFavColor();
-    showAlert("<i class='fa-solid fa-heart-crack'></i>", "Favourite List", "Removed from favorites: " + item);
+    showAlert("<i class='fa-solid fa-heart-crack'></i>", "Favourite List", "Removed from favorites: <b>" + item + "</b>");
 };
 likeBtn.addEventListener("click", function () {
     addToFavs();
@@ -284,7 +284,7 @@ likeBtn.addEventListener("click", function () {
     navigator.vibrate(150);
     if (like % 2 != 0) {
         likeIcon.style.color = "#FF2E78";
-        showAlert("<i class='fa-solid fa-heart'></i>", "Favourite List", "Added to favourites: " + colorInput.value);
+        showAlert("<i class='fa-solid fa-heart'></i>", "Favourite List", "Added to favourites: <b>" + colorInput.value + "</b>");
         likeIcon.classList.add("fa-beat");
         setTimeout(function () {
             likeIcon.classList.remove("fa-beat");
@@ -378,7 +378,7 @@ document.getElementById("favlist").addEventListener("click", function () {
     modalTxt.appendChild(ul);
     favsarr.forEach(function (item) {
         var p = document.createElement("p");
-        var del = "<i id=\"delFromFavs\" onclick=\"removeItemFromFavs('" + item + "');delClick()\" title=\"Delete From Favs: " + item + "\" class=\"fa-solid fa-trash-can fa-sm\"></i>";
+        var del = "<i id=\"delFromFavs\" onclick=\"removeItemFromFavs('" + item + "');delClick()\" title=\"Delete From Favs: " + item + "\" style=\"cursor:pointer\" class=\"fa-solid fa-trash-can fa-sm\"></i>";
         var img = ("<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/" + item + "/29x44'/>").replace("#", "");
         p.setAttribute("id", "favsli");
         ul.appendChild(p);

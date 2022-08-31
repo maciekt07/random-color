@@ -117,6 +117,12 @@
   cursor: pointer;
 }
 
+#like,
+#shareIcon,
+#favsIcon {
+  cursor: pointer;
+}
+
 .fav-list-btn {
   top: 28em;
   right: 1em;
@@ -214,6 +220,7 @@
 #back:hover > .fa-angle-left,
 #forward:hover > .fa-angle-right {
   color: var(--button-txt-hover);
+  cursor: pointer;
 }
 
 @media (max-width: 752px) {
@@ -394,13 +401,11 @@ td {
   border-radius: 5px;
 }
 
-/* Google Font Import - Poppins */
 .toast {
   cursor: default;
-  display: none;
   position: absolute;
   bottom: 1em;
-  border-radius: 16px;
+  border-radius: 20px;
   background: var(--foreground);
   padding: 20px 35px 20px 25px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -427,6 +432,7 @@ td {
 }
 
 .toast-content .emoji {
+  cursor: default;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -436,8 +442,8 @@ td {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   background-color: var(--button-txt-hover);
   color: #fff;
   border-radius: 40%;
@@ -451,7 +457,7 @@ td {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 0 20px;
+  margin: 0 15px;
 }
 
 .message .text {
@@ -737,7 +743,8 @@ html {
 .twa-lg,
 i,
 .twa,
-.twa-1x {
+.twa-1x,
+.fa-solid {
   cursor: default;
 }
 

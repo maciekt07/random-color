@@ -5,6 +5,7 @@
 @import "popup";
 @import "alert";
 @import "history";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -33,7 +34,8 @@ html {
 .twa-lg,
 i,
 .twa,
-.twa-1x {
+.twa-1x,
+.fa-solid {
   cursor: default;
 }
 

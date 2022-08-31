@@ -36,6 +36,7 @@
 #back:hover > .fa-angle-left,
 #forward:hover > .fa-angle-right {
   color: var(--button-txt-hover);
+  cursor: pointer;
 }
 
 @media (max-width: 752px) {
