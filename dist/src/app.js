@@ -68,6 +68,9 @@ var historyBackToTop = document.getElementById("h-back-to-top");
 var historyDiv = document.getElementById("history");
 var historyList = document.getElementById("historylist");
 var historyClose = document.getElementById("closeHistory");
+var toast = document.querySelector(".toast");
+var closeIcon = document.querySelector(".close");
+var progress = document.querySelector(".progress");
 var popup = document.getElementById("shortcuts-popup");
 var popupClose = document.getElementById("closeShortcuts");
 var popupDeleteAll = document.getElementById("s-delete");
@@ -75,6 +78,8 @@ var modalTxt = document.getElementById("modaltext");
 var db = document.getElementById("db");
 var counter = 0;
 var like = 0;
+var timer1;
+var timer2;
 var hexToRgb = function (hex) {
     var int = parseInt(hex, 16);
     var r = (int >> 16) & 255;
@@ -117,11 +122,6 @@ window.onblur = function () {
 window.onfocus = function () {
     document.title = "Random Color Tool";
 };
-var toast = document.querySelector(".toast");
-var closeIcon = document.querySelector(".close");
-var progress = document.querySelector(".progress");
-var timer1;
-var timer2;
 var showAlert = function (emoji, header, text) {
     document.getElementById("emoji").innerHTML = emoji;
     document.getElementById("header").innerHTML = header;
@@ -343,16 +343,21 @@ if (darkMode === "enabled") {
 darkModeToggle.addEventListener("click", function () {
     darkMode = localStorage.getItem("darkMode");
     if (darkMode !== "enabled") {
-        showAlert('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
         enableDarkMode();
         console.log("%cDarkmode Enabled!🌙", "color:#bd9ff5;");
+        setTimeout(function () {
+            showAlert('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
+        }, 320);
     }
     else {
-        showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
         disableDarkMode();
         console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
+        setTimeout(function () {
+            showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
+        }, 320);
     }
 });
+darkModeToggle.addEventListener("click", function () { });
 var delClick = function () {
     setTimeout(function () {
         history.back();

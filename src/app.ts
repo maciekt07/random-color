@@ -27,6 +27,10 @@ const historyDiv = document.getElementById("history") as HTMLDivElement;
 const historyList = document.getElementById("historylist") as HTMLOListElement;
 const historyClose = document.getElementById("closeHistory") as HTMLSpanElement;
 
+const toast = document.querySelector(".toast");
+const closeIcon = document.querySelector(".close");
+const progress = document.querySelector(".progress");
+
 const popup = document.getElementById("shortcuts-popup") as HTMLDivElement as HTMLDivElement;
 const popupClose = document.getElementById("closeShortcuts") as HTMLButtonElement;
 const popupDeleteAll = document.getElementById("s-delete") as HTMLButtonElement;
@@ -36,6 +40,8 @@ const db = document.getElementById("db") as HTMLButtonElement;
 
 let counter: number = 0;
 let like: number = 0;
+let timer1: ReturnType<typeof setTimeout>;
+let timer2: ReturnType<typeof setTimeout>;
 
 const hexToRgb = (hex: string) => {
   const int = parseInt(hex, 16);
@@ -83,13 +89,6 @@ window.onblur = () => {
 window.onfocus = () => {
   document.title = "Random Color Tool";
 };
-
-const toast = document.querySelector(".toast");
-const closeIcon = document.querySelector(".close");
-const progress = document.querySelector(".progress");
-
-let timer1: any;
-let timer2: any;
 
 const showAlert = (emoji: string, header: string, text: string) => {
   document.getElementById("emoji").innerHTML = emoji;
@@ -345,15 +344,22 @@ if (darkMode === "enabled") {
 darkModeToggle.addEventListener("click", () => {
   darkMode = localStorage.getItem("darkMode");
   if (darkMode !== "enabled") {
-    showAlert('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
     enableDarkMode();
     console.log("%cDarkmode Enabled!🌙", "color:#bd9ff5;");
+    setTimeout(() => {
+      showAlert('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
+    }, 320);
   } else {
-    showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
     disableDarkMode();
     console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
+    setTimeout(() => {
+      showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
+    }, 320);
   }
 });
+
+darkModeToggle.addEventListener("click", () => {});
+
 const delClick = () => {
   setTimeout(() => {
     history.back();

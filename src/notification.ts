@@ -87,16 +87,26 @@ fetch(luckyURL, {
     }
     // console.log(Notification.permission);
     if (Notification.permission === "granted") {
-      console.log("We have permission to send you push notifications!");
+      console.log("We have permission to send you notifications!");
       setTimeout(() => {
         showNotification();
       }, 2000);
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
-        // console.log(permission)
         if (permission === "granted") {
+          console.log(permission);
           showNotification();
+          showAlert("<i class='fa-solid fa-bell'></i>", "Notifications", "We have permission to send you notifications!");
+        }
+        if (permission === "denied") {
+          showAlert("<i class='fa-solid fa-bell-slash'></i>", "Notifications", "notifications have been disabled");
+          setTimeout(() => {
+            showAlert(`<img style="border-radius:8px;" src="${`https://singlecolorimage.com/get/${getHexColor(luckyColorHTML)}/48x48`.replace("#", "")}">`, "Daily Lucky Color", `Today Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})<br>Mood: ${json.mood}`);
+          }, 6000);
         }
       });
+    }
+    if (Notification.permission === "denied") {
+      showAlert(`<img style="border-radius:8px;" src="${`https://singlecolorimage.com/get/${getHexColor(luckyColorHTML)}/48x48`.replace("#", "")}">`, "Daily Lucky Color", `Today Lucky Color is: ${luckyColor} (${getHexColor(luckyColorHTML)})<br>Mood: ${json.mood}`);
     }
   });
