@@ -805,6 +805,16 @@ i,
           justify-content: center;
 }
 
+a {
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  color: #3abdff;
+}
+
+a:hover {
+  color: #0093dd;
+}
+
 #db {
   display: none;
 }

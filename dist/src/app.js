@@ -74,6 +74,8 @@ var popupDeleteAll = document.getElementById("s-delete");
 var modalTxt = document.getElementById("modaltext");
 var messageAlert = document.getElementById("alert");
 var alertClose = document.getElementById("closeAlert");
+var alertText = document.getElementById("alertspan");
+var db = document.getElementById("db");
 var counter = 0;
 var like = 0;
 var hexToRgb = function (hex) {
@@ -85,13 +87,18 @@ var hexToRgb = function (hex) {
 };
 var isHexColor = function (hex) { return typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex)); };
 var loadColor = function (hex) {
-    document.body.style.backgroundColor = hex;
-    document.fgColor = hex;
-    hexTxt.innerHTML = hex;
-    rgbTxt.innerHTML = "RGB " + hexToRgb(hex.replace("#", ""));
-    colorInput.value = hex;
-    themeColor.setAttribute("content", hex);
-    // document.querySelector(":root").style.setProperty("--color", hex);
+    if (isHexColor(hex.replace("#", ""))) {
+        document.body.style.backgroundColor = hex;
+        document.fgColor = hex;
+        hexTxt.innerHTML = hex;
+        rgbTxt.innerHTML = "RGB " + hexToRgb(hex.replace("#", ""));
+        colorInput.value = hex;
+        themeColor.setAttribute("content", hex);
+        // document.querySelector(":root").style.setProperty("--color", hex);
+    }
+    else {
+        console.error("Load Color Error: Invalid hex color: " + hex);
+    }
 };
 var main = function () {
     counter++;
@@ -114,20 +121,20 @@ window.onfocus = function () {
     document.title = "Random Color Tool";
 };
 messageAlert.style.setProperty("--animate-duration", "0.6s");
-var showAlert = function (start, end, emoji, text) {
+var showAlert = function (time, emoji, text) {
     hideAlert();
-    document.getElementById("alertspan").innerHTML = "<span class='alert-emoji'>" + emoji + "</span> " + text;
+    alertText.innerHTML = "<span class='alert-emoji'>" + emoji + "</span> " + text;
     messageAlert.style.display = "block";
     messageAlert.classList.add("animate__animated", "animate__fadeInDown");
     messageAlert.addEventListener("animationend", function () {
         messageAlert.classList.remove("animate__animated", "animate__fadeInDown");
         setTimeout(function () {
             messageAlert.classList.add("animate__animated", "animate__fadeOut");
-        }, start);
+        }, time);
         setTimeout(function () {
             hideAlert();
             messageAlert.classList.remove("animate__animated", "animate__fadeOut");
-        }, end);
+        }, time + 500);
     });
     popup.classList.remove("show");
 };
@@ -139,17 +146,7 @@ var hideAlert = function () {
 };
 var hclrx = [];
 var addToHistoryList = function () {
-    document.getElementById("historylist").innerHTML +=
-        "<li>" +
-            "<span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'>" +
-            "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-            hexTxt.textContent.replace("#", "") +
-            "/25x25'/>" +
-            hexTxt.textContent +
-            "</span>" +
-            " | " +
-            nameTxt.textContent +
-            "<hr><br></li>";
+    historyList.innerHTML += "<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" + hexTxt.textContent.replace("#", "") + "/25x25'/>" + hexTxt.textContent + "</span> | " + nameTxt.textContent + "<hr><br></li>";
 };
 var changeColorFromHistory = function () {
     loadColor(hclrx[hclrx.length - 1]);
@@ -158,7 +155,7 @@ var changeColorFromHistory = function () {
 };
 historyDiv.style.display = "none";
 var showHistory = function () {
-    historyDiv.style.display === "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
+    historyDiv.style.display == "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
 };
 shortcutsBtn.addEventListener("click", function () {
     popupDeleteAll.style.display = "none";
@@ -197,7 +194,7 @@ colorInput.addEventListener("click", function () {
     if (rpt == 0) {
         //bug fix for color picker
         colorInput.click();
-        document.getElementById("db").click();
+        db.click();
     }
     rpt++;
     clrpicker();
@@ -228,8 +225,7 @@ forward.addEventListener("click", function () {
 copyBtn.addEventListener("click", function () {
     copyToClipboard(colorInput.value);
     console.log("Copied to clipboard " + colorInput.value);
-    document.getElementById("alertspan").innerHTML = "<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: " + colorInput.value;
-    showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", "Copied to clipboard: " + colorInput.value);
+    showAlert(800, "<i class='twa twa-lg twa-clipboard'></i>", "Copied to clipboard: " + colorInput.value);
 });
 var removeFromFavs = function (arr, item) {
     var newArray = __spreadArray([], arr, true);
@@ -272,7 +268,7 @@ var removeItemFromFavs = function (item) {
     }
     localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
     isFavColor();
-    showAlert(800, 1300, "💔", "Removed from favorites: " + item);
+    showAlert(800, "💔", "Removed from favorites: " + item);
 };
 likeBtn.addEventListener("click", function () {
     addToFavs();
@@ -281,7 +277,7 @@ likeBtn.addEventListener("click", function () {
     if (like % 2 != 0) {
         likeIcon.style.color = "#FF2E78";
         document.getElementById("alertspan").innerHTML = "<span class='alert-emoji'>\u2764\uFE0F</span> Added to favorites: " + colorInput.value;
-        showAlert(800, 1300, "❤️", "Added to favorites: " + colorInput.value);
+        showAlert(800, "❤️", "Added to favorites: " + colorInput.value);
         likeIcon.classList.add("fa-beat");
         setTimeout(function () {
             likeIcon.classList.remove("fa-beat");
@@ -342,12 +338,12 @@ darkModeToggle.addEventListener("click", function () {
     if (darkMode !== "enabled") {
         enableDarkMode();
         console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-        showAlert(800, 1300, "🌙", "Darkmode Enabled!");
+        showAlert(800, "🌙", "Darkmode Enabled!");
     }
     else {
         disableDarkMode();
         console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
-        showAlert(800, 1300, "☀️", "Darkmode Disabled!");
+        showAlert(800, "☀️", "Darkmode Disabled!");
         document.querySelector('meta[name="theme-color"]').setAttribute("content", colorInput.value);
     }
 });
@@ -427,14 +423,14 @@ var toggleFullScreen = function () {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         if (window.screen.width > 1024) {
-            showAlert(800, 1300, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Enabled!");
+            showAlert(800, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Enabled!");
             console.log("Fullscreen enabled");
         }
     }
     else if (document.exitFullscreen) {
         document.exitFullscreen();
         if (window.screen.width > 1024) {
-            showAlert(800, 1300, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Disabled!");
+            showAlert(800, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Disabled!");
             console.log("Fullscreen disabled");
         }
     }
@@ -472,7 +468,7 @@ shareBtn.addEventListener("click", function () { return __awaiter(void 0, void 0
                 console.log("Share Error: " + err_1);
                 if (err_1 != "AbortError: Share canceled") {
                     copyToClipboard(location.toString());
-                    showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", "Copied URL to clipboard!");
+                    showAlert(800, "<i class='twa twa-lg twa-clipboard'></i>", "Copied URL to clipboard!");
                 }
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -488,7 +484,7 @@ var urlError = function () {
     window.location = appUrl + "?" + localStorage.getItem("clr");
     setTimeout(function () {
         console.error("ERROR: Invalid Color in URL");
-        showAlert(800, 1300, "❌", "Invalid Color in URL");
+        showAlert(800, "❌", "Invalid Color in URL");
     }, 300);
 };
 var urlLoad = function () {
@@ -512,10 +508,10 @@ window.addEventListener("hashchange", function () {
     urlLoad();
     isFavColor();
 });
+//@ts-ignore
+var picker = new EyeDropper();
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 80) {
-        //@ts-ignore
-        var picker = new EyeDropper();
         picker
             .open()
             .then(function (result) {
@@ -524,7 +520,7 @@ document.addEventListener("keyup", function (event) {
         })
             .catch(function (error) {
             console.log(error);
-            showAlert(800, 1300, "🚫", "Your browser does not support eye dropper.");
+            showAlert(3000, "🚫", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
         });
     }
 });
@@ -532,13 +528,13 @@ if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
         navigator.serviceWorker
             .register("./service-worker.js")
-            .then(function (reg) { return console.log("Service Worker: Registered"); })
+            .then(function () { return console.log("Service Worker: Registered"); })
             .catch(function (err) { return console.log("Service Worker: Error " + err); });
     });
 }
 window.addEventListener("offline", function () {
-    showAlert(800, 1300, "📴", "You're offline");
+    showAlert(800, "📴", "You're offline");
     window.addEventListener("online", function () {
-        showAlert(800, 1300, "🌐", "You're online again");
+        showAlert(800, "🌐", "You're online again");
     });
 });

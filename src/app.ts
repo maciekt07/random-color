@@ -34,6 +34,9 @@ const modalTxt = document.getElementById("modaltext") as HTMLDivElement;
 
 const messageAlert = document.getElementById("alert") as HTMLDivElement;
 const alertClose = document.getElementById("closeAlert") as HTMLSpanElement;
+const alertText = document.getElementById("alertspan") as HTMLSpanElement;
+
+const db = document.getElementById("db") as HTMLButtonElement;
 
 let counter: number = 0;
 let like: number = 0;
@@ -49,13 +52,17 @@ const hexToRgb = (hex: string) => {
 const isHexColor = (hex: string) => typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex));
 
 const loadColor = (hex: string) => {
-  document.body.style.backgroundColor = hex;
-  document.fgColor = hex;
-  hexTxt.innerHTML = hex;
-  rgbTxt.innerHTML = `RGB ${hexToRgb(hex.replace("#", ""))}`;
-  colorInput.value = hex;
-  themeColor.setAttribute("content", hex);
-  // document.querySelector(":root").style.setProperty("--color", hex);
+  if (isHexColor(hex.replace("#", ""))) {
+    document.body.style.backgroundColor = hex;
+    document.fgColor = hex;
+    hexTxt.innerHTML = hex;
+    rgbTxt.innerHTML = `RGB ${hexToRgb(hex.replace("#", ""))}`;
+    colorInput.value = hex;
+    themeColor.setAttribute("content", hex);
+    // document.querySelector(":root").style.setProperty("--color", hex);
+  } else {
+    console.error(`Load Color Error: Invalid hex color: ${hex}`);
+  }
 };
 
 const main = () => {
@@ -82,20 +89,20 @@ window.onfocus = () => {
 };
 
 messageAlert.style.setProperty("--animate-duration", "0.6s");
-const showAlert = (start: number, end: number, emoji: string, text: string) => {
+const showAlert = (time: number, emoji: string, text: string) => {
   hideAlert();
-  document.getElementById("alertspan").innerHTML = `<span class='alert-emoji'>${emoji}</span> ${text}`;
+  alertText.innerHTML = `<span class='alert-emoji'>${emoji}</span> ${text}`;
   messageAlert.style.display = "block";
   messageAlert.classList.add("animate__animated", "animate__fadeInDown");
   messageAlert.addEventListener("animationend", () => {
     messageAlert.classList.remove("animate__animated", "animate__fadeInDown");
     setTimeout(() => {
       messageAlert.classList.add("animate__animated", "animate__fadeOut");
-    }, start);
+    }, time);
     setTimeout(() => {
       hideAlert();
       messageAlert.classList.remove("animate__animated", "animate__fadeOut");
-    }, end);
+    }, time + 500);
   });
   popup.classList.remove("show");
 };
@@ -109,17 +116,9 @@ const hideAlert = () => {
 
 let hclrx: Array<string> = [];
 const addToHistoryList = () => {
-  document.getElementById("historylist").innerHTML +=
-    "<li>" +
-    "<span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'>" +
-    "<img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/" +
-    hexTxt.textContent.replace("#", "") +
-    "/25x25'/>" +
-    hexTxt.textContent +
-    "</span>" +
-    " | " +
-    nameTxt.textContent +
-    "<hr><br></li>";
+  historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${
+    hexTxt.textContent
+  }</span> | ${nameTxt.textContent}<hr><br></li>`;
 };
 
 const changeColorFromHistory = () => {
@@ -131,7 +130,7 @@ const changeColorFromHistory = () => {
 historyDiv.style.display = "none";
 
 const showHistory = () => {
-  historyDiv.style.display === "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
+  historyDiv.style.display == "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
 };
 
 shortcutsBtn.addEventListener("click", () => {
@@ -180,7 +179,7 @@ colorInput.addEventListener("click", () => {
   if (rpt == 0) {
     //bug fix for color picker
     colorInput.click();
-    document.getElementById("db").click();
+    db.click();
   }
   rpt++;
   clrpicker();
@@ -216,8 +215,7 @@ forward.addEventListener("click", () => {
 copyBtn.addEventListener("click", () => {
   copyToClipboard(colorInput.value);
   console.log(`Copied to clipboard ${colorInput.value}`);
-  document.getElementById("alertspan").innerHTML = `<i class='twa twa-lg twa-clipboard'></i> Copied to clipboard: ${colorInput.value}`;
-  showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", `Copied to clipboard: ${colorInput.value}`);
+  showAlert(800, "<i class='twa twa-lg twa-clipboard'></i>", `Copied to clipboard: ${colorInput.value}`);
 });
 
 const removeFromFavs = (arr: Array<string>, item: string) => {
@@ -264,7 +262,7 @@ const removeItemFromFavs = (item: string) => {
   }
   localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
   isFavColor();
-  showAlert(800, 1300, "💔", `Removed from favorites: ${item}`);
+  showAlert(800, "💔", `Removed from favorites: ${item}`);
 };
 
 likeBtn.addEventListener("click", () => {
@@ -274,7 +272,7 @@ likeBtn.addEventListener("click", () => {
   if (like % 2 != 0) {
     likeIcon.style.color = "#FF2E78";
     document.getElementById("alertspan").innerHTML = `<span class='alert-emoji'>❤️</span> Added to favorites: ${colorInput.value}`;
-    showAlert(800, 1300, "❤️", `Added to favorites: ${colorInput.value}`);
+    showAlert(800, "❤️", `Added to favorites: ${colorInput.value}`);
     likeIcon.classList.add("fa-beat");
     setTimeout(() => {
       likeIcon.classList.remove("fa-beat");
@@ -337,11 +335,11 @@ darkModeToggle.addEventListener("click", () => {
   if (darkMode !== "enabled") {
     enableDarkMode();
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
-    showAlert(800, 1300, "🌙", "Darkmode Enabled!");
+    showAlert(800, "🌙", "Darkmode Enabled!");
   } else {
     disableDarkMode();
     console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
-    showAlert(800, 1300, "☀️", "Darkmode Disabled!");
+    showAlert(800, "☀️", "Darkmode Disabled!");
     document.querySelector('meta[name="theme-color"]').setAttribute("content", colorInput.value);
   }
 });
@@ -432,13 +430,13 @@ const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
     if (window.screen.width > 1024) {
-      showAlert(800, 1300, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Enabled!");
+      showAlert(800, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Enabled!");
       console.log("Fullscreen enabled");
     }
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
     if (window.screen.width > 1024) {
-      showAlert(800, 1300, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Disabled!");
+      showAlert(800, "<i class='twa twa-lg twa-desktop-computer'></i>", "Fullscreen Disabled!");
       console.log("Fullscreen disabled");
     }
   }
@@ -468,7 +466,7 @@ shareBtn.addEventListener("click", async () => {
     console.log(`Share Error: ${err}`);
     if (err != "AbortError: Share canceled") {
       copyToClipboard(location.toString());
-      showAlert(800, 1300, "<i class='twa twa-lg twa-clipboard'></i>", "Copied URL to clipboard!");
+      showAlert(800, "<i class='twa twa-lg twa-clipboard'></i>", "Copied URL to clipboard!");
     }
   }
 });
@@ -481,7 +479,7 @@ const urlError = () => {
   (<any>window).location = `${appUrl}?${localStorage.getItem("clr")}`;
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL");
-    showAlert(800, 1300, "❌", "Invalid Color in URL");
+    showAlert(800, "❌", "Invalid Color in URL");
   }, 300);
 };
 
@@ -508,10 +506,10 @@ window.addEventListener("hashchange", () => {
   isFavColor();
 });
 
+//@ts-ignore
+const picker = new EyeDropper();
 document.addEventListener("keyup", (event) => {
   if (event.keyCode == 80) {
-    //@ts-ignore
-    const picker = new EyeDropper();
     picker
       .open()
       .then((result: any) => {
@@ -520,7 +518,7 @@ document.addEventListener("keyup", (event) => {
       })
       .catch((error: string) => {
         console.log(error);
-        showAlert(800, 1300, "🚫", "Your browser does not support eye dropper.");
+        showAlert(3000, "🚫", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
       });
   }
 });
@@ -529,14 +527,14 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("./service-worker.js")
-      .then((reg) => console.log("Service Worker: Registered"))
+      .then(() => console.log("Service Worker: Registered"))
       .catch((err) => console.log(`Service Worker: Error ${err}`));
   });
 }
 
 window.addEventListener("offline", () => {
-  showAlert(800, 1300, "📴", `You're offline`);
+  showAlert(800, "📴", `You're offline`);
   window.addEventListener("online", () => {
-    showAlert(800, 1300, "🌐", `You're online again`);
+    showAlert(800, "🌐", `You're online again`);
   });
 });
