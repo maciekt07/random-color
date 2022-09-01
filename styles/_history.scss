@@ -1,4 +1,5 @@
 .history {
+  font-family: poppins;
   margin-top: 20px;
   height: 350px;
   overflow: auto;
@@ -30,6 +31,9 @@
     text-shadow: $history-txt-shadow;
     box-shadow: $history-box-shadow;
   }
+  &:hover > .hclrimg {
+    box-shadow: var(--history-image-hover);
+  }
 }
 
 .hclrimg {
@@ -41,24 +45,24 @@
   transition: 0.06s;
 }
 
-#historyhex:hover > .hclrimg {
-  box-shadow: var(--history-image-hover);
-}
-
 /* #historyhex:active > .hclrimg {
     transform: scale(0.9);
   } */
 
 .h-close-btn {
-  margin-top: 7px;
+  margin-top: 13px;
   margin-right: 13px;
   color: var(--font-clr);
-  font-weight: bold;
   float: right;
   font-size: 28px;
   line-height: 20px;
   transition: 0.4s;
   cursor: default;
+  &:hover {
+    color: $close-btn;
+    text-shadow: 0px 0px 8px $close-btn;
+    cursor: pointer;
+  }
 }
 
 .h-top {
@@ -87,7 +91,6 @@
     transform: translateY(-6px);
   }
 }
-
 #history {
   padding: 10px;
   color: var(--font-clr);
@@ -152,12 +155,6 @@ hr {
     text-shadow: 0px 0px 8px $close-btn;
     cursor: pointer;
   }
-}
-
-.h-close-btn:hover {
-  color: $close-btn;
-  text-shadow: 0px 0px 8px $close-btn;
-  cursor: pointer;
 }
 
 .closebtn:active,

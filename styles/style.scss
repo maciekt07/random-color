@@ -101,6 +101,7 @@ i,
 
 .body1,
 .flex-center {
+  font-family: poppins;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,20 +176,31 @@ a {
 }
 
 noscript {
+  font-family: poppins;
   cursor: default;
   padding: 20px;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  left: 0;
+  top: 0;
   z-index: 30000000;
   height: 100%;
   width: 100%;
-  background-color: black;
-  font-size: 32px;
+  background-image: linear-gradient(to right bottom, #8b62ff, #5e7eff, #2893ff, #00a4ff, #00b2ff);
+  font-size: 35px;
   color: white;
   text-align: center;
 }
 
+.no-script {
+  background-color: rgba(255, 255, 255, 0.265);
+  border-radius: 25px;
+  padding: 50px;
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .key,
 .s-p,
 .s-header,

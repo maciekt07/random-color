@@ -71,6 +71,7 @@ var historyClose = document.getElementById("closeHistory");
 var toast = document.querySelector(".toast");
 var closeIcon = document.querySelector(".close");
 var progress = document.querySelector(".progress");
+var alertEmoji = document.getElementById("emoji");
 var popup = document.getElementById("shortcuts-popup");
 var popupClose = document.getElementById("closeShortcuts");
 var popupDeleteAll = document.getElementById("s-delete");

@@ -1,6 +1,6 @@
 .toast {
   cursor: default;
-  // display: none;
+  display: none;
   position: absolute;
   bottom: 1em;
   border-radius: 20px;
@@ -58,12 +58,11 @@
   padding: 5px;
   cursor: pointer;
   color: lighten($color: red, $amount: 20);
-}
-
-.toast .close:hover {
-  opacity: 1;
-  color: red;
-  text-shadow: 0px 0px 8px red;
+  &:hover {
+    opacity: 1;
+    color: red;
+    text-shadow: 0px 0px 8px red;
+  }
 }
 
 .toast .progress {
@@ -73,17 +72,16 @@
   height: 3px;
   width: 100%;
   background: #ddd;
-}
-
-.toast .progress:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--button-txt-hover);
-  border-radius: 100px;
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--button-txt-hover);
+    border-radius: 100px;
+  }
 }
 
 .progress.active:before {

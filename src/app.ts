@@ -30,6 +30,7 @@ const historyClose = document.getElementById("closeHistory") as HTMLSpanElement;
 const toast = document.querySelector(".toast");
 const closeIcon = document.querySelector(".close");
 const progress = document.querySelector(".progress");
+const alertEmoji = document.getElementById("emoji") as HTMLSpanElement;
 
 const popup = document.getElementById("shortcuts-popup") as HTMLDivElement as HTMLDivElement;
 const popupClose = document.getElementById("closeShortcuts") as HTMLButtonElement;
