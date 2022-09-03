@@ -31,6 +31,9 @@ const toast = document.querySelector(".toast");
 const closeIcon = document.querySelector(".close");
 const progress = document.querySelector(".progress");
 const alertEmoji = document.getElementById("emoji") as HTMLSpanElement;
+const alertText = document.getElementById("alertText") as HTMLSpanElement;
+const alertHeader = document.getElementById("header") as HTMLSpanElement;
+const alertToast = document.getElementById("toast") as HTMLDivElement;
 
 const popup = document.getElementById("shortcuts-popup") as HTMLDivElement as HTMLDivElement;
 const popupClose = document.getElementById("closeShortcuts") as HTMLButtonElement;
@@ -64,7 +67,7 @@ const loadColor = (hex: string) => {
     themeColor.setAttribute("content", hex);
     // document.querySelector(":root").style.setProperty("--color", hex);
   } else {
-    console.error(`Load Color Error: Invalid hex color: ${hex}`);
+    showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color", `Load Color Error: Invalid hex color: ${hex}`);
   }
 };
 
@@ -92,10 +95,10 @@ window.onfocus = () => {
 };
 
 const showAlert = (emoji: string, header: string, text: string) => {
-  document.getElementById("emoji").innerHTML = emoji;
-  document.getElementById("header").innerHTML = header;
-  document.getElementById("alertText").innerHTML = text;
-  document.getElementById("toast").style.display = "block";
+  alertEmoji.innerHTML = emoji;
+  alertHeader.innerHTML = header;
+  alertText.innerHTML = text;
+  alertToast.style.display = "block";
   setTimeout(() => {
     toast.classList.add("active");
     progress.classList.add("active");
@@ -107,7 +110,7 @@ const showAlert = (emoji: string, header: string, text: string) => {
 
   timer2 = setTimeout(() => {
     progress.classList.remove("active");
-    document.getElementById("toast").style.display = "none";
+    alertToast.style.display = "none";
   }, 4300);
 
   popup.classList.remove("show");
@@ -255,16 +258,20 @@ const addToFavs = () => {
 const isFavColor = () => {
   if (localStorage.getItem("favs") !== null) {
     if (localStorage.getItem("favs").includes(hexTxt.textContent)) {
-      likeBtn.setAttribute("title", "Remove From Favorites");
       likeIcon.style.color = "#FF2E78";
       like = 1;
+      likeBtn.setAttribute("title", "Remove From Favorites");
     } else {
-      likeBtn.setAttribute("title", "Add To Favorites");
       likeIcon.style.color = "currentColor";
       like = 2;
+      likeBtn.setAttribute("title", "Add To Favorites");
     }
   }
 };
+
+likeBtn.addEventListener("mouseover", () => {
+  isFavColor();
+});
 
 const removeItemFromFavs = (item: string) => {
   //remove from favs
@@ -309,7 +316,6 @@ const locals = () => {
 if (localStorage.getItem("clr") != null) {
   counter++;
   like = 1;
-
   loadColor(localStorage.getItem("clr"));
   setTimeout(() => {
     console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${localStorage.getItem("clr")}`);
@@ -363,7 +369,7 @@ darkModeToggle.addEventListener("click", () => {});
 
 const delClick = () => {
   setTimeout(() => {
-    history.back();
+    history.back(-1);
   }, 25);
   setTimeout(() => {
     document.getElementById("favlist").click();
@@ -517,23 +523,6 @@ if ((<any>window).location != `${appUrl}?${colorInput.value}`) {
 window.addEventListener("hashchange", () => {
   urlLoad();
   isFavColor();
-});
-
-//@ts-ignore
-const picker = new EyeDropper();
-document.addEventListener("keyup", (event) => {
-  if (event.keyCode == 80) {
-    picker
-      .open()
-      .then((result: any) => {
-        loadColor(result.sRGBHex);
-        urlChange();
-      })
-      .catch((error: string) => {
-        console.log(error);
-        showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
-      });
-  }
 });
 
 if ("serviceWorker" in navigator) {

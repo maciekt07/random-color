@@ -30,9 +30,7 @@ fetch(luckyURL, {
       const colors = window
         .getComputedStyle(document.body.appendChild(a))
         .color.match(/\d+/g)
-        .map((a) => {
-          return parseInt(a, 10);
-        });
+        .map((a) => parseInt(a, 10));
       document.body.removeChild(a);
       return colors.length >= 3 ? "#" + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1) : false;
     };
@@ -110,7 +108,7 @@ fetch(luckyURL, {
           showAlert("<i class='fa-solid fa-bell-slash'></i>", "Notifications", "Notifications have been disabled");
           setTimeout(() => {
             customNotification();
-          }, 5800);
+          }, 5300);
         }
       });
     }

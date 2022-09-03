@@ -27,3 +27,19 @@ var L = 76;
 shortcut(L, "fav");
 var O = 79;
 shortcut(O, "favlist");
+//@ts-ignore
+var picker = new EyeDropper();
+document.addEventListener("keyup", function (event) {
+    if (event.keyCode == 80) {
+        picker
+            .open()
+            .then(function (result) {
+            loadColor(result.sRGBHex);
+            urlChange();
+        })
+            .catch(function (error) {
+            console.log(error);
+            showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
+        });
+    }
+});

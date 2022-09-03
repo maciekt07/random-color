@@ -72,6 +72,9 @@ var toast = document.querySelector(".toast");
 var closeIcon = document.querySelector(".close");
 var progress = document.querySelector(".progress");
 var alertEmoji = document.getElementById("emoji");
+var alertText = document.getElementById("alertText");
+var alertHeader = document.getElementById("header");
+var alertToast = document.getElementById("toast");
 var popup = document.getElementById("shortcuts-popup");
 var popupClose = document.getElementById("closeShortcuts");
 var popupDeleteAll = document.getElementById("s-delete");
@@ -100,7 +103,7 @@ var loadColor = function (hex) {
         // document.querySelector(":root").style.setProperty("--color", hex);
     }
     else {
-        console.error("Load Color Error: Invalid hex color: " + hex);
+        showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color", "Load Color Error: Invalid hex color: " + hex);
     }
 };
 var main = function () {
@@ -124,10 +127,10 @@ window.onfocus = function () {
     document.title = "Random Color Tool";
 };
 var showAlert = function (emoji, header, text) {
-    document.getElementById("emoji").innerHTML = emoji;
-    document.getElementById("header").innerHTML = header;
-    document.getElementById("alertText").innerHTML = text;
-    document.getElementById("toast").style.display = "block";
+    alertEmoji.innerHTML = emoji;
+    alertHeader.innerHTML = header;
+    alertText.innerHTML = text;
+    alertToast.style.display = "block";
     setTimeout(function () {
         toast.classList.add("active");
         progress.classList.add("active");
@@ -137,7 +140,7 @@ var showAlert = function (emoji, header, text) {
     }, 4000);
     timer2 = setTimeout(function () {
         progress.classList.remove("active");
-        document.getElementById("toast").style.display = "none";
+        alertToast.style.display = "none";
     }, 4300);
     popup.classList.remove("show");
 };
@@ -257,17 +260,20 @@ var addToFavs = function () {
 var isFavColor = function () {
     if (localStorage.getItem("favs") !== null) {
         if (localStorage.getItem("favs").includes(hexTxt.textContent)) {
-            likeBtn.setAttribute("title", "Remove From Favorites");
             likeIcon.style.color = "#FF2E78";
             like = 1;
+            likeBtn.setAttribute("title", "Remove From Favorites");
         }
         else {
-            likeBtn.setAttribute("title", "Add To Favorites");
             likeIcon.style.color = "currentColor";
             like = 2;
+            likeBtn.setAttribute("title", "Add To Favorites");
         }
     }
 };
+likeBtn.addEventListener("mouseover", function () {
+    isFavColor();
+});
 var removeItemFromFavs = function (item) {
     //remove from favs
     var favsNew = JSON.parse(localStorage.getItem("favs"));
@@ -361,7 +367,7 @@ darkModeToggle.addEventListener("click", function () {
 darkModeToggle.addEventListener("click", function () { });
 var delClick = function () {
     setTimeout(function () {
-        history.back();
+        history.back(-1);
     }, 25);
     setTimeout(function () {
         document.getElementById("favlist").click();
@@ -516,22 +522,6 @@ if (window.location != appUrl + "?" + colorInput.value) {
 window.addEventListener("hashchange", function () {
     urlLoad();
     isFavColor();
-});
-//@ts-ignore
-var picker = new EyeDropper();
-document.addEventListener("keyup", function (event) {
-    if (event.keyCode == 80) {
-        picker
-            .open()
-            .then(function (result) {
-            loadColor(result.sRGBHex);
-            urlChange();
-        })
-            .catch(function (error) {
-            console.log(error);
-            showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
-        });
-    }
 });
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {

@@ -35,3 +35,20 @@ shortcut(L, "fav");
 
 const O = 79;
 shortcut(O, "favlist");
+
+//@ts-ignore
+const picker = new EyeDropper();
+document.addEventListener("keyup", (event) => {
+  if (event.keyCode == 80) {
+    picker
+      .open()
+      .then((result: any) => {
+        loadColor(result.sRGBHex);
+        urlChange();
+      })
+      .catch((error: string) => {
+        console.log(error);
+        showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
+      });
+  }
+});
