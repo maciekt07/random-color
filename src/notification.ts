@@ -34,7 +34,6 @@ fetch(luckyURL, {
       document.body.removeChild(a);
       return colors.length >= 3 ? "#" + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1) : false;
     };
-    //get hex color end
 
     // Lucky Color Error
     document.getElementById("db").style.color = luckyColorHTML;
@@ -43,9 +42,6 @@ fetch(luckyURL, {
       luckyColor = "Hot Pink";
       luckyColorHTML = luckyColor.toLowerCase().replace(/\s/g, "");
     }
-
-    const luckyColorHTMLNoHash = luckyColorHTML.replace("#", "");
-    console.log(luckyColorHTMLNoHash);
 
     const luckyStyle = `color:white;padding:8px;border:4px solid;border-color:${luckyColorHTML};border-radius:10px`;
     const luckyLink = `${appUrl}?${getHexColor(luckyColorHTML)}`;

@@ -175,11 +175,6 @@ if (document.location.search.match(/type=embed/gi)) {
   window.parent.postMessage("resize", "*");
 }
 
-darkModeToggle.addEventListener("click", () => {
-  hideAlert();
-  popup.classList.remove("show");
-});
-
 let rpt: number = 0;
 
 colorInput.addEventListener("change", () => {
@@ -349,6 +344,8 @@ if (darkMode === "enabled") {
   console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
 }
 darkModeToggle.addEventListener("click", () => {
+  hideAlert();
+  popup.classList.remove("show");
   darkMode = localStorage.getItem("darkMode");
   if (darkMode !== "enabled") {
     enableDarkMode();
@@ -365,11 +362,9 @@ darkModeToggle.addEventListener("click", () => {
   }
 });
 
-darkModeToggle.addEventListener("click", () => {});
-
 const delClick = () => {
   setTimeout(() => {
-    history.back(-1);
+    history.back();
   }, 25);
   setTimeout(() => {
     document.getElementById("favlist").click();
@@ -419,7 +414,7 @@ const ChangeToFav = () => {
 refreshBtn.addEventListener("click", () => {
   setTimeout(() => {
     addToHistoryList();
-  }, 100);
+  }, 10);
   main();
   hideAlert();
   locals();
