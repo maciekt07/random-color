@@ -29,6 +29,7 @@ const shareBtn = document.getElementById("share");
 const shareIcon = document.getElementById("shareIcon");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const historyBackToTop = document.getElementById("h-back-to-top");
+const historyContainer = document.getElementById("h-container");
 const historyDiv = document.getElementById("history");
 const historyList = document.getElementById("historylist");
 const historyClose = document.getElementById("closeHistory");
@@ -67,7 +68,7 @@ const loadColor = (hex) => {
         // document.querySelector(":root").style.setProperty("--color", hex);
     }
     else {
-        showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color", `Load Color Error: Invalid hex color: ${hex}`);
+        showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color Error", `Invalid hex color: ${hex}`);
     }
 };
 const main = () => {
@@ -75,7 +76,9 @@ const main = () => {
     let randomColor = Math.floor(Math.random() * 16777215).toString(16);
     randomColor = "#" + ("000000" + randomColor).slice(-6);
     loadColor(randomColor);
-    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
+    setTimeout(() => {
+        console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
+    }, 250);
     if (counter > 3) {
         historyBackToTop.style.display = "block";
     }
@@ -122,7 +125,7 @@ closeIcon.addEventListener("click", () => {
 });
 let hclrx = [];
 const addToHistoryList = () => {
-    historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${nameTxt.textContent}<hr><br></li>`;
+    historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${nameTxt.textContent}<hr><br></li>`;
 };
 const changeColorFromHistory = () => {
     loadColor(hclrx[hclrx.length - 1]);
@@ -131,7 +134,14 @@ const changeColorFromHistory = () => {
 };
 historyDiv.style.display = "none";
 const showHistory = () => {
-    historyDiv.style.display === "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
+    if (historyDiv.style.display === "none") {
+        historyDiv.style.display = "block";
+        historyContainer.style.display = "flex";
+    }
+    else {
+        historyDiv.style.display = "none";
+        historyContainer.style.display = "none";
+    }
 };
 shortcutsBtn.addEventListener("click", () => {
     popupDeleteAll.style.display = "none";
@@ -146,7 +156,6 @@ popupClose.addEventListener("click", () => {
 const copyToClipboard = (txt) => navigator.clipboard.writeText(txt);
 const clrpicker = () => {
     colorInput.addEventListener("input", () => {
-        hideAlert();
         loadColor(colorInput.value);
     });
 };
@@ -295,6 +304,9 @@ else {
 }
 locals();
 let darkMode = localStorage.getItem("darkMode");
+const isDarkMode = () => {
+    darkMode === "enabled" ? true : false;
+};
 const enableDarkMode = () => {
     document.body.classList.add("darkmode");
     localStorage.setItem("darkMode", "enabled");
@@ -377,7 +389,6 @@ refreshBtn.addEventListener("click", () => {
         addToHistoryList();
     }, 10);
     main();
-    hideAlert();
     locals();
     urlChange();
     popup.classList.remove("show");
@@ -482,6 +493,9 @@ if ("serviceWorker" in navigator) {
             .catch((err) => console.log(`Service Worker: Error ${err}`));
     });
 }
+setTimeout(() => {
+    showAlert("<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>", "Donate", `If you like this app you can donate me ${isDarkMode ? "💜" : "💙"} <br><a target='_blank' href='https://www.buymeacoffee.com/maciekt07'>https://www.buymeacoffee.com/maciekt07</a>`);
+}, Math.floor(Math.random() * (48000 - 12000 + 1)) + 12000);
 window.addEventListener("offline", () => {
     showAlert("📴", "Conection", `You're offline`);
     window.addEventListener("online", () => {

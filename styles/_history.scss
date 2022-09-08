@@ -2,17 +2,25 @@
   font-family: poppins;
   margin-top: 20px;
   height: 350px;
-  overflow: auto;
+  overflow: hidden;
   text-align: center;
+  transition: 0.3s all;
 }
-.history::-webkit-scrollbar {
-  width: 0px;
-}
+// .history::-webkit-scrollbar {
+//   border-radius: 25px;
+// }
+// .history:hover::-webkit-scrollbar {
+//   display: flex;
+// }
+
 .history-container {
+  display: none;
   text-align: center;
-  display: flex;
   justify-content: center;
   margin-right: 25px;
+  &:hover > .history {
+    overflow-y: auto;
+  }
 }
 
 #historyhex {
@@ -45,9 +53,9 @@
   transition: 0.06s;
 }
 
-/* #historyhex:active > .hclrimg {
-    transform: scale(0.9);
-  } */
+// #historyhex:active > .hclrimg {
+//   transform: scale(0.9);
+// }
 
 .h-close-btn {
   margin-top: 13px;

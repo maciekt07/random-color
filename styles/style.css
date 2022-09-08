@@ -401,6 +401,7 @@ td {
 }
 
 .toast {
+  z-index: 100;
   cursor: default;
   display: none;
   position: absolute;
@@ -529,23 +530,23 @@ td {
   font-family: poppins;
   margin-top: 20px;
   height: 350px;
-  overflow: auto;
+  overflow: hidden;
   text-align: center;
-}
-
-.history::-webkit-scrollbar {
-  width: 0px;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
 .history-container {
+  display: none;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   margin-right: 25px;
+}
+
+.history-container:hover > .history {
+  overflow-y: auto;
 }
 
 #historyhex {
@@ -584,9 +585,6 @@ td {
   transition: 0.06s;
 }
 
-/* #historyhex:active > .hclrimg {
-    transform: scale(0.9);
-  } */
 .h-close-btn {
   margin-top: 13px;
   margin-right: 13px;

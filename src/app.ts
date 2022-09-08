@@ -23,6 +23,7 @@ const themeColor = document.querySelector('meta[name="theme-color"]') as HTMLMet
 
 const historyBackToTop = document.getElementById("h-back-to-top") as HTMLButtonElement;
 
+const historyContainer = document.getElementById("h-container") as HTMLDivElement;
 const historyDiv = document.getElementById("history") as HTMLDivElement;
 const historyList = document.getElementById("historylist") as HTMLOListElement;
 const historyClose = document.getElementById("closeHistory") as HTMLSpanElement;
@@ -67,7 +68,7 @@ const loadColor = (hex: string) => {
     themeColor.setAttribute("content", hex);
     // document.querySelector(":root").style.setProperty("--color", hex);
   } else {
-    showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color", `Load Color Error: Invalid hex color: ${hex}`);
+    showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color Error", `Invalid hex color: ${hex}`);
   }
 };
 
@@ -76,7 +77,9 @@ const main = () => {
   let randomColor = Math.floor(Math.random() * 16777215).toString(16);
   randomColor = "#" + ("000000" + randomColor).slice(-6);
   loadColor(randomColor);
-  console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
+  setTimeout(() => {
+    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
+  }, 250);
   if (counter > 3) {
     historyBackToTop.style.display = "block";
   }
@@ -132,9 +135,9 @@ closeIcon.addEventListener("click", () => {
 
 let hclrx: Array<string> = [];
 const addToHistoryList = () => {
-  historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory();hideAlert()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${
-    hexTxt.textContent
-  }</span> | ${nameTxt.textContent}<hr><br></li>`;
+  historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${
+    nameTxt.textContent
+  }<hr><br></li>`;
 };
 
 const changeColorFromHistory = () => {
@@ -146,14 +149,19 @@ const changeColorFromHistory = () => {
 historyDiv.style.display = "none";
 
 const showHistory = () => {
-  historyDiv.style.display === "none" ? (historyDiv.style.display = "block") : (historyDiv.style.display = "none");
+  if (historyDiv.style.display === "none") {
+    historyDiv.style.display = "block";
+    historyContainer.style.display = "flex";
+  } else {
+    historyDiv.style.display = "none";
+    historyContainer.style.display = "none";
+  }
 };
 
 shortcutsBtn.addEventListener("click", () => {
   popupDeleteAll.style.display = "none";
   historyDiv.style.display = "none";
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-
   modalTxt.innerHTML =
     '<h1 class="s-header"><i class="twa twa-lg twa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Eye Dropper </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
 });
@@ -166,7 +174,6 @@ const copyToClipboard = (txt: string) => navigator.clipboard.writeText(txt);
 
 const clrpicker = () => {
   colorInput.addEventListener("input", () => {
-    hideAlert();
     loadColor(colorInput.value);
   });
 };
@@ -331,6 +338,9 @@ if (localStorage.getItem("clr") != null) {
 locals();
 
 let darkMode = localStorage.getItem("darkMode");
+const isDarkMode = () => {
+  darkMode === "enabled" ? true : false;
+};
 const enableDarkMode = () => {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkMode", "enabled");
@@ -416,7 +426,6 @@ refreshBtn.addEventListener("click", () => {
     addToHistoryList();
   }, 10);
   main();
-  hideAlert();
   locals();
   urlChange();
   popup.classList.remove("show");
@@ -528,6 +537,13 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.log(`Service Worker: Error ${err}`));
   });
 }
+setTimeout(() => {
+  showAlert(
+    "<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>",
+    "Donate",
+    `If you like this app you can donate me ${isDarkMode ? "💜" : "💙"} <br><a target='_blank' href='https://www.buymeacoffee.com/maciekt07'>https://www.buymeacoffee.com/maciekt07</a>`
+  );
+}, Math.floor(Math.random() * (48000 - 12000 + 1)) + 12000);
 
 window.addEventListener("offline", () => {
   showAlert("📴", "Conection", `You're offline`);
