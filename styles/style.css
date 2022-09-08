@@ -214,21 +214,13 @@
           transition-duration: 0.5s;
   -webkit-animation-delay: 5s;
           animation-delay: 5s;
+  cursor: pointer;
 }
 
 #back:hover > .fa-angle-left,
 #forward:hover > .fa-angle-right {
   color: var(--button-txt-hover);
   cursor: pointer;
-}
-
-@media (max-width: 752px) {
-  #back,
-  #forward {
-    display: block;
-    -webkit-transform: scale(0.87);
-            transform: scale(0.87);
-  }
 }
 
 .shortcuts-popup {
@@ -509,7 +501,7 @@ td {
   border-radius: 100px;
 }
 
-.progress.active:before {
+.toast .progress.active:before {
   -webkit-animation: progress 4s linear forwards;
           animation: progress 4s linear forwards;
 }
@@ -742,7 +734,8 @@ html {
 i,
 .twa,
 .twa-1x,
-.fa-solid {
+.fa-solid,
+.twa-artist-palette {
   cursor: default;
 }
 
@@ -957,7 +950,10 @@ h2,
 img,
 svg,
 path,
-#bmc-wbtn {
+#bmc-wbtn,
+.fa-trash-can,
+.fa-circle-xmark,
+.fa-chevron-up {
   cursor: pointer;
 }
 
@@ -1099,6 +1095,15 @@ br,
     border-top: 2px solid var(--foreground);
     top: 19em;
     height: 497px;
+  }
+}
+
+@media (max-width: 752px) {
+  #back,
+  #forward {
+    display: block;
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
   }
 }
 /*# sourceMappingURL=style.css.map */

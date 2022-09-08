@@ -1,11 +1,11 @@
 @import url("darkmode.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@use "variables";
-@use "right-bar";
-@use "arrows";
-@use "popup";
-@use "alert";
-@use "history";
+@import "variables";
+@import "right-bar";
+@import "arrows";
+@import "popup";
+@import "alert";
+@import "history";
 
 * {
   box-sizing: border-box;
@@ -35,7 +35,8 @@ html {
 i,
 .twa,
 .twa-1x,
-.fa-solid {
+.fa-solid,
+.twa-artist-palette {
   cursor: default;
 }
 
@@ -220,7 +221,10 @@ h2,
 img,
 svg,
 path,
-#bmc-wbtn {
+#bmc-wbtn,
+.fa-trash-can,
+.fa-circle-xmark,
+.fa-chevron-up {
   cursor: pointer;
 }
 
@@ -239,4 +243,4 @@ br,
   -ms-user-select: none;
   user-select: none;
 }
-@use "responsive";
+@import "responsive";

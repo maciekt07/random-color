@@ -1,4 +1,4 @@
-const luckyURL: string = "https://aztro.sameerkumar.website/?sign=aries&day=today";
+const luckyURL = "https://aztro.sameerkumar.website/?sign=aries&day=today";
 fetch(luckyURL, {
   method: "POST",
 })

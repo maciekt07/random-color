@@ -27,18 +27,11 @@
   color: var(--font-clr);
   transition-duration: 0.5s;
   animation-delay: 5s;
+  cursor: pointer;
 }
 
 #back:hover > .fa-angle-left,
 #forward:hover > .fa-angle-right {
   color: var(--button-txt-hover);
   cursor: pointer;
-}
-
-@media (max-width: 752px) {
-  #back,
-  #forward {
-    display: block;
-    transform: scale(0.87);
-  }
 }

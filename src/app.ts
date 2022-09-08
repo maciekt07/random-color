@@ -22,7 +22,6 @@ const shareIcon = document.getElementById("shareIcon");
 const themeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
 const historyBackToTop = document.getElementById("h-back-to-top") as HTMLButtonElement;
-
 const historyContainer = document.getElementById("h-container") as HTMLDivElement;
 const historyDiv = document.getElementById("history") as HTMLDivElement;
 const historyList = document.getElementById("historylist") as HTMLOListElement;
@@ -99,14 +98,14 @@ window.onfocus = () => {
   document.title = "Random Color Tool";
 };
 
-const showAlert = (emoji: string, header: string, text: string, url: string = null, urlOpenInNewWindow: boolean = false) => {
+const showAlert = (emoji: string, header: string, text: string, url: string = null, openInNewWindow: boolean = false) => {
   alertEmoji.innerHTML = emoji;
   alertHeader.innerHTML = header;
   alertText.innerHTML = text;
   // alert onclick
   if (url != null) {
     alertClick.style.cursor = "pointer";
-    if (urlOpenInNewWindow) {
+    if (openInNewWindow) {
       alertClick.onclick = () => {
         window.open(url, "_blank");
       };
@@ -120,6 +119,12 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
     alertClick.onclick = null;
   }
   alertToast.style.display = "block";
+  //disable scrollbar for 500ms
+  document.body.style.overflow = "hidden";
+  setTimeout(() => {
+    document.body.style.overflow = "auto";
+  }, 500);
+
   setTimeout(() => {
     toast.classList.add("active");
     progress.classList.add("active");
@@ -147,15 +152,15 @@ const hideAlert = () => {
   document.getElementById("toast").style.display = "none";
 };
 
-closeIcon.addEventListener("click", () => {
-  hideAlert();
-});
+closeIcon.addEventListener("click", hideAlert);
 
 let hclrx: Array<string> = [];
 const addToHistoryList = () => {
-  historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${
-    nameTxt.textContent
-  }<hr><br></li>`;
+  setTimeout(() => {
+    historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${
+      nameTxt.textContent
+    }<hr><br></li>`;
+  }, 50);
 };
 
 const changeColorFromHistory = () => {
@@ -289,9 +294,7 @@ const isFavColor = () => {
   }
 };
 
-likeBtn.addEventListener("mouseover", () => {
-  isFavColor();
-});
+likeBtn.addEventListener("mouseover", isFavColor);
 
 const removeItemFromFavs = (item: string) => {
   //remove from favs
@@ -405,7 +408,7 @@ document.getElementById("favlist").addEventListener("click", () => {
   document.getElementById("history").style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-  modalTxt.innerHTML = `<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
+  modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
     ${favsarr.length}
     </h1>`;
   const ul = document.createElement("div");
@@ -413,7 +416,7 @@ document.getElementById("favlist").addEventListener("click", () => {
   modalTxt.appendChild(ul);
   favsarr.forEach((item: number) => {
     let p = document.createElement("p");
-    const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');delClick()" title="Delete From Favs: ${item}" style="cursor:pointer" class="fa-solid fa-trash-can fa-sm"></i>`;
+    const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');delClick()" title="Delete From Favs: ${item}" class="fa-solid fa-trash-can fa-sm"></i>`;
     const img = `<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/${item}/29x44'/>`.replace("#", "");
     p.setAttribute("id", "favsli");
     ul.appendChild(p);
@@ -455,9 +458,7 @@ githubBtn.addEventListener("click", () => {
   popup.classList.remove("show");
 });
 
-historyClose.addEventListener("click", () => {
-  showHistory();
-});
+historyClose.addEventListener("click", showHistory);
 
 historyBackToTop.addEventListener("click", () => {
   document.getElementById("h").scrollTo({
@@ -482,9 +483,7 @@ const toggleFullScreen = () => {
     }
   }
 };
-fullscreenBtn.addEventListener("click", () => {
-  toggleFullScreen();
-});
+fullscreenBtn.addEventListener("click", toggleFullScreen);
 
 shareBtn.addEventListener("click", async () => {
   navigator.vibrate(150);
@@ -506,6 +505,7 @@ shareBtn.addEventListener("click", async () => {
   } catch (err) {
     console.log(`Share Error: ${err}`);
     if (err != "AbortError: Share canceled") {
+      // copy link to clipboard if browser doesn't support sharing
       copyToClipboard(location.toString());
       showAlert("<i class='fa-solid fa-clipboard fa-sm'></i>", "Share", "Copied URL to clipboard!");
     }

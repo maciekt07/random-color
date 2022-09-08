@@ -11,44 +11,42 @@
   overflow: hidden;
   transform: translateY(calc(100% + 30px));
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  &.active {
+    transform: translateY(0%);
+  }
+  .toast-content {
+    display: flex;
+    align-items: center;
+  }
 }
 
-.toast.active {
-  transform: translateY(0%);
-}
-
-.toast .toast-content {
-  display: flex;
-  align-items: center;
-}
-
-.toast-content .emoji {
-  cursor: default;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: 40px;
-  background-color: var(--button-txt-hover);
-  color: #fff;
-  border-radius: 40%;
-}
-
-.toast-content .message {
-  display: flex;
-  flex-direction: column;
-  margin: 0 15px;
+.toast-content {
+  .emoji {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background-color: var(--button-txt-hover);
+    color: #fff;
+    border-radius: 40%;
+  }
+  .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+  }
 }
 
 .message .text {
   font-size: 20px;
   font-weight: 400;
   color: var(--alert-text);
-}
-
-.message .text.text-1 {
-  font-weight: 600;
-  color: var(--alert-header);
+  &.text-1 {
+    font-weight: 600;
+    color: var(--alert-header);
+  }
 }
 
 .toast .close {
@@ -66,27 +64,28 @@
   }
 }
 
-.toast .progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  background: #ddd;
-  &:before {
-    content: "";
+.toast {
+  .progress {
     position: absolute;
     bottom: 0;
-    right: 0;
-    height: 100%;
+    left: 0;
+    height: 3px;
     width: 100%;
-    background-color: var(--button-txt-hover);
-    border-radius: 100px;
+    background: #ddd;
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      background-color: var(--button-txt-hover);
+      border-radius: 100px;
+    }
+    &.active:before {
+      animation: progress 4s linear forwards;
+    }
   }
-}
-
-.progress.active:before {
-  animation: progress 4s linear forwards;
 }
 
 @keyframes progress {

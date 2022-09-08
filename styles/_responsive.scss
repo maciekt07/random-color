@@ -135,3 +135,10 @@
     height: 497px;
   }
 }
+@media (max-width: 752px) {
+  #back,
+  #forward {
+    display: block;
+    transform: scale(0.87);
+  }
+}

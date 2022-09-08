@@ -4,6 +4,7 @@ const shortcut = (key, id) => {
         //@ts-ignore
         if (event.keyCode == key && !e.ctrlKey && !e.shiftKey && !e.altKey) {
             document.getElementById(id).click();
+            console.log(`Clicked: ${id} (${key})`);
         }
     });
 };
@@ -35,6 +36,7 @@ document.addEventListener("keyup", (event) => {
             .open()
             .then((result) => {
             loadColor(result.sRGBHex);
+            console.log(typeof result.sRGBHex);
             urlChange();
         })
             .catch((error) => {

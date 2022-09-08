@@ -38,9 +38,9 @@
     backdrop-filter: blur(4px);
     text-shadow: $history-txt-shadow;
     box-shadow: $history-box-shadow;
-  }
-  &:hover > .hclrimg {
-    box-shadow: var(--history-image-hover);
+    & > .hclrimg {
+      box-shadow: var(--history-image-hover);
+    }
   }
 }
 

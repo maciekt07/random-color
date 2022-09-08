@@ -95,14 +95,14 @@ window.onblur = () => {
 window.onfocus = () => {
     document.title = "Random Color Tool";
 };
-const showAlert = (emoji, header, text, url = null, urlOpenInNewWindow = false) => {
+const showAlert = (emoji, header, text, url = null, openInNewWindow = false) => {
     alertEmoji.innerHTML = emoji;
     alertHeader.innerHTML = header;
     alertText.innerHTML = text;
     // alert onclick
     if (url != null) {
         alertClick.style.cursor = "pointer";
-        if (urlOpenInNewWindow) {
+        if (openInNewWindow) {
             alertClick.onclick = () => {
                 window.open(url, "_blank");
             };
@@ -118,6 +118,11 @@ const showAlert = (emoji, header, text, url = null, urlOpenInNewWindow = false) 
         alertClick.onclick = null;
     }
     alertToast.style.display = "block";
+    //disable scrollbar for 500ms
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+        document.body.style.overflow = "auto";
+    }, 500);
     setTimeout(() => {
         toast.classList.add("active");
         progress.classList.add("active");
@@ -140,12 +145,12 @@ const hideAlert = () => {
     clearTimeout(timer2);
     document.getElementById("toast").style.display = "none";
 };
-closeIcon.addEventListener("click", () => {
-    hideAlert();
-});
+closeIcon.addEventListener("click", hideAlert);
 let hclrx = [];
 const addToHistoryList = () => {
-    historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${nameTxt.textContent}<hr><br></li>`;
+    setTimeout(() => {
+        historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${nameTxt.textContent}<hr><br></li>`;
+    }, 50);
 };
 const changeColorFromHistory = () => {
     loadColor(hclrx[hclrx.length - 1]);
@@ -260,9 +265,7 @@ const isFavColor = () => {
         }
     }
 };
-likeBtn.addEventListener("mouseover", () => {
-    isFavColor();
-});
+likeBtn.addEventListener("mouseover", isFavColor);
 const removeItemFromFavs = (item) => {
     //remove from favs
     let favsNew = JSON.parse(localStorage.getItem("favs"));
@@ -372,7 +375,7 @@ document.getElementById("favlist").addEventListener("click", () => {
     document.getElementById("history").style.display = "none";
     const favsarr = JSON.parse(localStorage.getItem("favs"));
     popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-    modalTxt.innerHTML = `<h1 class='favsheader' style=cursor:default><i class='twa twa-1x twa-artist-palette' style='cursor:default'></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
+    modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
     ${favsarr.length}
     </h1>`;
     const ul = document.createElement("div");
@@ -380,7 +383,7 @@ document.getElementById("favlist").addEventListener("click", () => {
     modalTxt.appendChild(ul);
     favsarr.forEach((item) => {
         let p = document.createElement("p");
-        const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');delClick()" title="Delete From Favs: ${item}" style="cursor:pointer" class="fa-solid fa-trash-can fa-sm"></i>`;
+        const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');delClick()" title="Delete From Favs: ${item}" class="fa-solid fa-trash-can fa-sm"></i>`;
         const img = `<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/${item}/29x44'/>`.replace("#", "");
         p.setAttribute("id", "favsli");
         ul.appendChild(p);
@@ -418,9 +421,7 @@ githubBtn.addEventListener("click", () => {
     window.open("https://github.com/maciekt07", "_blank");
     popup.classList.remove("show");
 });
-historyClose.addEventListener("click", () => {
-    showHistory();
-});
+historyClose.addEventListener("click", showHistory);
 historyBackToTop.addEventListener("click", () => {
     document.getElementById("h").scrollTo({
         top: 0,
@@ -444,9 +445,7 @@ const toggleFullScreen = () => {
         }
     }
 };
-fullscreenBtn.addEventListener("click", () => {
-    toggleFullScreen();
-});
+fullscreenBtn.addEventListener("click", toggleFullScreen);
 shareBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
     navigator.vibrate(150);
     shareIcon.classList.add("fa-flip");
@@ -467,6 +466,7 @@ shareBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, funct
     catch (err) {
         console.log(`Share Error: ${err}`);
         if (err != "AbortError: Share canceled") {
+            // copy link to clipboard if browser doesn't support sharing
             copyToClipboard(location.toString());
             showAlert("<i class='fa-solid fa-clipboard fa-sm'></i>", "Share", "Copied URL to clipboard!");
         }
