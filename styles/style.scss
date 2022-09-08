@@ -1,11 +1,11 @@
 @import url("darkmode.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@import "variables";
-@import "right-bar";
-@import "arrows";
-@import "popup";
-@import "alert";
-@import "history";
+@use "variables";
+@use "right-bar";
+@use "arrows";
+@use "popup";
+@use "alert";
+@use "history";
 
 * {
   box-sizing: border-box;
@@ -239,4 +239,4 @@ br,
   -ms-user-select: none;
   user-select: none;
 }
-@import "responsive";
+@use "responsive";

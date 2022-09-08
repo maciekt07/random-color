@@ -104,6 +104,7 @@
         </div>
         <div class="center">
             <div class="toast" id="toast">
+                <div id="alertclick">
                 <div class="toast-content">
                     <span id="emoji" class="emoji"></span>
                     <div class="message">
@@ -111,7 +112,8 @@
                         <span id="alertText" class="text text-2"></span>
                     </div>
                 </div>
-                <i class="fa-solid fa-xmark close fa-lg"></i>
+            </div>
+                <i id="closeAlert" class="fa-solid fa-xmark close fa-lg"></i>
                 <div class="progress"></div>
             </div>
         </div>
@@ -126,6 +128,7 @@
 
             const clr_name = () => {
                 // console.log(ntc.names[23][0])
+                setTimeout(() => {
                 const hex = document.getElementById("txt").textContent;
                 const divName = document.getElementById("name");
                 const matchIcon = '<i class="fa-solid fa-equals"></i>';
@@ -135,7 +138,9 @@
                 } else {
                     divName.innerHTML = n_match[1];
                 }
-            };
+            }, 10);
+            }
+        
             clr_name();
 
             window.addEventListener("hashchange",  clr_name);

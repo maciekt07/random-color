@@ -40,6 +40,8 @@ const alertEmoji = document.getElementById("emoji");
 const alertText = document.getElementById("alertText");
 const alertHeader = document.getElementById("header");
 const alertToast = document.getElementById("toast");
+const alertClick = document.getElementById("alertclick");
+const closeAlert = document.getElementById("closeAlert");
 const popup = document.getElementById("shortcuts-popup");
 const popupClose = document.getElementById("closeShortcuts");
 const popupDeleteAll = document.getElementById("s-delete");
@@ -78,7 +80,7 @@ const main = () => {
     loadColor(randomColor);
     setTimeout(() => {
         console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
-    }, 250);
+    }, 25);
     if (counter > 3) {
         historyBackToTop.style.display = "block";
     }
@@ -93,10 +95,28 @@ window.onblur = () => {
 window.onfocus = () => {
     document.title = "Random Color Tool";
 };
-const showAlert = (emoji, header, text) => {
+const showAlert = (emoji, header, text, url = null, urlOpenInNewWindow = false) => {
     alertEmoji.innerHTML = emoji;
     alertHeader.innerHTML = header;
     alertText.innerHTML = text;
+    // alert onclick
+    if (url != null) {
+        alertClick.style.cursor = "pointer";
+        if (urlOpenInNewWindow) {
+            alertClick.onclick = () => {
+                window.open(url, "_blank");
+            };
+        }
+        else {
+            alertClick.onclick = () => {
+                window.location = url;
+            };
+        }
+    }
+    else {
+        alertClick.style.cursor = "default";
+        alertClick.onclick = null;
+    }
     alertToast.style.display = "block";
     setTimeout(() => {
         toast.classList.add("active");

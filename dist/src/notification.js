@@ -78,7 +78,7 @@ fetch(luckyURL, {
         }, 3000);
     }
     const customNotification = () => {
-        showAlert(`<img style="border-radius:8px;cursor:default" src="${`https://singlecolorimage.com/get/${getHexColor(luckyColorHTML)}/48x48`.replace("#", "")}">`, "Daily Lucky Color", `Today Lucky Color is: <b>${luckyColor} (${getHexColor(luckyColorHTML)})</b><br>Mood: ${json.mood}`);
+        showAlert(`<img style="border-radius:8px;cursor:default" src="${`https://singlecolorimage.com/get/${getHexColor(luckyColorHTML)}/48x48`.replace("#", "")}">`, "Daily Lucky Color", `Today Lucky Color is: <b>${luckyColor} (${getHexColor(luckyColorHTML)})</b><br>Mood: ${json.mood}`, luckyLink);
     };
     // console.log(Notification.permission);
     if (Notification.permission === "granted") {

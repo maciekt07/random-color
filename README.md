@@ -176,13 +176,7 @@ Install node modules
 npm install
 ```
 
-Run local server and open `http://localhost:8888/`
-
-```bash
-node js/server.js
-```
-
-(or use live server)
+Run local server using live server
 
 # 💌 Made With ❤ By [maciekt07](https://github.com/maciekt07)
 

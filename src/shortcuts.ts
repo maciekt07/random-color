@@ -48,7 +48,8 @@ document.addEventListener("keyup", (event) => {
       })
       .catch((error: string) => {
         console.log(error);
-        showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", "<a target='_blank' href='https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility'>Eye Dropper</a> Error");
+        const eyeDropperLink = "https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility";
+        showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", `<a target='_blank' href='${eyeDropperLink}'>Eye Dropper</a> Error`, eyeDropperLink, true);
       });
   }
 });
