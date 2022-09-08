@@ -537,13 +537,13 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.log(`Service Worker: Error ${err}`));
   });
 }
-setTimeout(() => {
-  showAlert(
-    "<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>",
-    "Donate",
-    `If you like this app you can donate me ${isDarkMode ? "💜" : "💙"} <br><a target='_blank' href='https://www.buymeacoffee.com/maciekt07'>https://www.buymeacoffee.com/maciekt07</a>`
-  );
-}, Math.floor(Math.random() * (48000 - 12000 + 1)) + 12000);
+// setTimeout(() => {
+//   showAlert(
+//     "<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>",
+//     "Donate",
+//     `If you like this app you can donate me ${isDarkMode ? "💜" : "💙"} <br><a target='_blank' href='https://www.buymeacoffee.com/maciekt07'>https://www.buymeacoffee.com/maciekt07</a>`
+//   );
+// }, Math.floor(Math.random() * (48000 - 12000 + 1)) + 12000);
 
 window.addEventListener("offline", () => {
   showAlert("📴", "Conection", `You're offline`);

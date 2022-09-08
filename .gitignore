@@ -1,1 +1,4 @@
 /node_modules
+/dist/cypress
+/dist/service.worker.js
+/dist/cypress.config.js
