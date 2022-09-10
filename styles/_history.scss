@@ -5,13 +5,17 @@
   overflow: hidden;
   text-align: center;
   transition: 0.3s all;
+  // &::-webkit-scrollbar-track {
+  //   background-color: #f5f5f5;
+  // }
+  // &::-webkit-scrollbar {
+  //   width: 12px;
+  //   background-color: #f5f5f5;
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: #d62929;
+  // }
 }
-// .history::-webkit-scrollbar {
-//   border-radius: 25px;
-// }
-// .history:hover::-webkit-scrollbar {
-//   display: flex;
-// }
 
 .history-container {
   display: none;

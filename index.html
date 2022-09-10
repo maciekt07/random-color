@@ -165,8 +165,16 @@
       clr_name();
 
       window.addEventListener("hashchange", clr_name);
-      document.getElementById("color_input").addEventListener("input", clr_name);
-      document.getElementById("color_input").addEventListener("change", clr_name);
+      document.getElementById("color_input").addEventListener("input", () => {
+        setTimeout(() => {
+          clr_name();
+        }, 25);
+      });
+      document.getElementById("color_input").addEventListener("change", () => {
+        setTimeout(() => {
+          clr_name();
+        }, 25);
+      });
       document.getElementById("txt").addEventListener("change", clr_name);
       document.getElementById("refresh").addEventListener("click", clr_name);
 

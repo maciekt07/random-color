@@ -982,6 +982,11 @@ br,
   #favsli {
     margin-right: 125px;
   }
+  #back,
+  #forward {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 650px) {
@@ -991,30 +996,6 @@ br,
   #favsli {
     margin-right: 50px;
   }
-}
-
-@media (max-height: 820px) {
-  .modal {
-    max-height: 650px;
-  }
-}
-
-@media (max-height: 660px) {
-  .modal {
-    max-height: 520px;
-  }
-}
-
-@media (max-width: 752px) {
-  #back,
-  #forward {
-    display: block;
-    -webkit-transform: scale(0.87);
-            transform: scale(0.87);
-  }
-}
-
-@media (max-width: 650px) {
   .div1 {
     font-size: 80px;
     width: 400px;
@@ -1027,13 +1008,6 @@ br,
   #back,
   #forward {
     display: inline-block;
-  }
-  .fa-angle-right,
-  .fa-angle-left,
-  #back,
-  #forward {
-    -webkit-transform: scale(1);
-            transform: scale(1);
   }
   .dark-mode-toggle {
     top: 11em;
@@ -1066,6 +1040,18 @@ br,
   }
 }
 
+@media (max-height: 820px) {
+  .modal {
+    max-height: 650px;
+  }
+}
+
+@media (max-height: 660px) {
+  .modal {
+    max-height: 520px;
+  }
+}
+
 @media (max-width: 550px) {
   .dark-mode-toggle {
     top: 24em;
@@ -1095,15 +1081,6 @@ br,
     border-top: 2px solid var(--foreground);
     top: 19em;
     height: 497px;
-  }
-}
-
-@media (max-width: 752px) {
-  #back,
-  #forward {
-    display: block;
-    -webkit-transform: scale(0.87);
-            transform: scale(0.87);
   }
 }
 /*# sourceMappingURL=style.css.map */
