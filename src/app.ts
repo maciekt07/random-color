@@ -35,7 +35,6 @@ const alertText = document.getElementById("alertText") as HTMLSpanElement;
 const alertHeader = document.getElementById("header") as HTMLSpanElement;
 const alertToast = document.getElementById("toast") as HTMLDivElement;
 const alertClick = document.getElementById("alertclick") as HTMLDivElement;
-const closeAlert = document.getElementById("closeAlert");
 
 const popup = document.getElementById("shortcuts-popup") as HTMLDivElement as HTMLDivElement;
 const popupClose = document.getElementById("closeShortcuts") as HTMLButtonElement;
@@ -132,10 +131,12 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
 
   timer1 = setTimeout(() => {
     toast.classList.remove("active");
+    document.body.style.overflow = "hidden";
   }, 4000);
 
   timer2 = setTimeout(() => {
     progress.classList.remove("active");
+    document.body.style.overflow = "auto";
     alertToast.style.display = "none";
   }, 4300);
 
@@ -165,7 +166,7 @@ const addToHistoryList = () => {
 
 const changeColorFromHistory = () => {
   loadColor(hclrx[hclrx.length - 1]);
-  locals();
+  saveColor();
   urlChange();
 };
 
@@ -205,14 +206,14 @@ if (document.location.search.match(/type=embed/gi)) {
   window.parent.postMessage("resize", "*");
 }
 
-let rpt: number = 0;
-
 colorInput.addEventListener("change", () => {
-  locals();
+  saveColor();
   urlChange();
   isFavColor();
   like = 0;
 });
+
+let rpt: number = 0;
 
 colorInput.addEventListener("click", () => {
   isFavColor();
@@ -224,7 +225,7 @@ colorInput.addEventListener("click", () => {
   }
   rpt++;
   clrpicker();
-  locals();
+  saveColor();
   popup.classList.remove("show");
 });
 
@@ -286,10 +287,12 @@ const isFavColor = () => {
       likeIcon.style.color = "#FF2E78";
       like = 1;
       likeBtn.setAttribute("title", "Remove From Favorites");
+      return true;
     } else {
       likeIcon.style.color = "currentColor";
       like = 2;
       likeBtn.setAttribute("title", "Add To Favorites");
+      return false;
     }
   }
 };
@@ -330,7 +333,7 @@ likeBtn.addEventListener("click", () => {
   }
 });
 
-const locals = () => {
+const saveColor = () => {
   if (isHexColor(hexTxt.textContent.replace("#", ""))) {
     localStorage.setItem("clr", hexTxt.textContent);
   }
@@ -356,7 +359,7 @@ if (localStorage.getItem("clr") != null) {
   }, 800);
   like++;
 }
-locals();
+saveColor();
 
 let darkMode = localStorage.getItem("darkMode");
 const isDarkMode = () => {
@@ -408,8 +411,8 @@ document.getElementById("favlist").addEventListener("click", () => {
   document.getElementById("history").style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-  modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>Liked Colors:
-    ${favsarr.length}
+  modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>
+    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "You don't have a favorite colors yet"}
     </h1>`;
   const ul = document.createElement("div");
   ul.setAttribute("style", "cursor:default");
@@ -438,7 +441,7 @@ document.getElementById("favlist").addEventListener("click", () => {
 const ChangeToFav = () => {
   popup.classList.remove("show");
   loadColor(favsChangeClr);
-  locals();
+  saveColor();
   urlChange();
 };
 
@@ -447,7 +450,7 @@ refreshBtn.addEventListener("click", () => {
     addToHistoryList();
   }, 10);
   main();
-  locals();
+  saveColor();
   urlChange();
   popup.classList.remove("show");
   like = 0;
@@ -529,7 +532,7 @@ const urlLoad = () => {
   const urlhexnumber = urlhex.replace("#", "").toLowerCase();
   if (isHexColor(urlhexnumber)) {
     loadColor(urlhex);
-    locals();
+    saveColor();
     urlChange();
     isFavColor();
   } else {

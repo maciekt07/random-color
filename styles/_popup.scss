@@ -90,7 +90,7 @@ td {
 #favsli {
   transition: 0.3s;
   opacity: 0.8;
-  text-align: left;
+  text-align: auto;
   margin-right: 180px;
   padding: 8px;
   border-radius: 15px;
@@ -120,9 +120,9 @@ td {
 }
 
 .favsheader {
-  opacity: 0.8;
+  opacity: 1;
   font-size: 30px;
-  color: white;
+  color: darken($color: white, $amount: 20);
   margin-left: 10px;
   cursor: text;
 }
