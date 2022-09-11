@@ -159,6 +159,9 @@ const changeColorFromHistory = () => {
     urlChange();
 };
 historyDiv.style.display = "none";
+if (window.matchMedia("(pointer: coarse)").matches) {
+    document.getElementById("h").style.overflowY = "auto";
+}
 const showHistory = () => {
     if (historyDiv.style.display === "none") {
         historyDiv.style.display = "block";

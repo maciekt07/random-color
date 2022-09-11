@@ -19,6 +19,7 @@
     "typescript": "4.8.2"
   },
   "dependencies": {
+    "fetch": "^1.1.0",
     "push.js": "^1.0.12"
   }
 }
