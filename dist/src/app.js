@@ -161,6 +161,7 @@ const changeColorFromHistory = () => {
 historyDiv.style.display = "none";
 if (window.matchMedia("(pointer: coarse)").matches) {
     document.getElementById("h").style.overflowY = "auto";
+    document.getElementById("delFromFavs").style.display = "none";
 }
 const showHistory = () => {
     if (historyDiv.style.display === "none") {
@@ -370,10 +371,15 @@ darkModeToggle.addEventListener("click", () => {
 const delClick = () => {
     setTimeout(() => {
         history.back();
-    }, 25);
+    }, 30);
     setTimeout(() => {
         document.getElementById("favlist").click();
     }, 50);
+};
+const delFavClick = () => {
+    setTimeout(() => {
+        document.getElementById("favlist").click();
+    }, 25);
 };
 let favsChangeClr = null;
 document.getElementById("favlist").addEventListener("click", () => {
@@ -389,7 +395,7 @@ document.getElementById("favlist").addEventListener("click", () => {
     modalTxt.appendChild(ul);
     favsarr.forEach((item) => {
         let p = document.createElement("p");
-        const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');delClick()" title="Delete From Favs: ${item}" class="fa-solid fa-trash-can fa-sm"></i>`;
+        const del = `<i id="delFromFavs" onclick="removeItemFromFavs('${item}');${isFavColor() ? "delFavClick()" : "delClick()"}" title="Delete From Favs: ${item}" class="fa-solid fa-trash-can fa-sm"></i>`;
         const img = `<img loading='lazy' class='favsimg' align='left' src='https://singlecolorimage.com/get/${item}/29x44'/>`.replace("#", "");
         p.setAttribute("id", "favsli");
         ul.appendChild(p);

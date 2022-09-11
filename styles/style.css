@@ -327,7 +327,7 @@ td {
   transition: 0.3s;
   opacity: 0.8;
   text-align: auto;
-  margin-right: 180px;
+  margin-right: 140px;
   padding: 8px;
   border-radius: 15px;
   font-size: 20px;
@@ -976,11 +976,8 @@ br,
   .modal {
     width: 450px;
   }
-  #delFromFavs {
-    display: none;
-  }
   #favsli {
-    margin-right: 125px;
+    margin-right: 70px;
   }
   #back,
   #forward {
@@ -994,7 +991,7 @@ br,
     width: 400px;
   }
   #favsli {
-    margin-right: 50px;
+    margin-right: 40px;
   }
   .div1 {
     font-size: 80px;
