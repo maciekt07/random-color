@@ -147,37 +147,8 @@
     <script src="dist/src/shortcuts.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QTNJRWC58"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js" integrity="sha512-DjIQO7OxE8rKQrBLpVCk60Zu0mcFfNx2nVduB96yk5HS/poYZAkYu5fxpwXj3iet91Ezqq2TNN6cJh9Y5NtfWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://chir.ag/projects/ntc/ntc.js"></script>
+    <script src="dist/src/ntc.js"></script>
     <script>
-      const clr_name = () => {
-        // console.log(ntc.names[23][0])
-        const hex = document.getElementById("txt").textContent;
-        const divName = document.getElementById("name");
-        const matchIcon = '<i class="fa-solid fa-equals"></i>';
-        const n_match = ntc.name(hex);
-        if (n_match[2]) {
-          divName.innerHTML = `${matchIcon}${n_match[1]}${matchIcon}`;
-        } else {
-          divName.innerHTML = n_match[1];
-        }
-      };
-
-      clr_name();
-
-      window.addEventListener("hashchange", clr_name);
-      document.getElementById("color_input").addEventListener("input", () => {
-        setTimeout(() => {
-          clr_name();
-        }, 25);
-      });
-      document.getElementById("color_input").addEventListener("change", () => {
-        setTimeout(() => {
-          clr_name();
-        }, 25);
-      });
-      document.getElementById("txt").addEventListener("change", clr_name);
-      document.getElementById("refresh").addEventListener("click", clr_name);
-
       // Google Analytics
       window.dataLayer = window.dataLayer || [];
 

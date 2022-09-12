@@ -206,9 +206,9 @@ const clrpicker = () => {
   });
 };
 
-if (document.location.search.match(/type=embed/gi)) {
-  window.parent.postMessage("resize", "*");
-}
+// if (document.location.search.match(/type=embed/gi)) {
+//   window.parent.postMessage("resize", "*");
+// }
 
 colorInput.addEventListener("change", () => {
   saveColor();
@@ -439,11 +439,15 @@ document.getElementById("favlist").addEventListener("click", () => {
     p.setAttribute("title", `Change Color To: ${item} (${ntc.name(item)[1]})`);
   });
   favsarr.length > 0 ? (popupDeleteAll.style.display = "block") : (popupDeleteAll.style.display = "none");
+
   popupDeleteAll.addEventListener("click", () => {
+    const deleted = JSON.parse(localStorage.getItem("favs"));
+    console.log(`Deleted from favourites: ${deleted.toString()}`);
     like = 2;
     popup.classList.remove("show");
     likeIcon.style.color = "currentColor";
     localStorage.setItem("favs", "[]");
+    showAlert("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted");
   });
 });
 
