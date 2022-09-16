@@ -48,6 +48,9 @@ let like: number = 0;
 let timer1: ReturnType<typeof setTimeout>;
 let timer2: ReturnType<typeof setTimeout>;
 
+let likeTimer1: ReturnType<typeof setTimeout>;
+let likeTimer2: ReturnType<typeof setTimeout>;
+
 const hexToRgb = (hex: string) => {
   const int = parseInt(hex, 16);
   const r = (int >> 16) & 255;
@@ -135,13 +138,13 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
   timer1 = setTimeout(() => {
     toast.classList.remove("active");
     document.body.style.overflow = "hidden";
-  }, 4000);
+  }, 5000);
 
   timer2 = setTimeout(() => {
     progress.classList.remove("active");
     document.body.style.overflow = "auto";
     alertToast.style.display = "none";
-  }, 4300);
+  }, 5300);
 
   popup.classList.remove("show");
 };
@@ -319,6 +322,9 @@ const removeItemFromFavs = (item: string) => {
 };
 
 likeBtn.addEventListener("click", () => {
+  clearTimeout(likeTimer1);
+  clearTimeout(likeTimer2);
+
   addToFavs();
   like++;
   navigator.vibrate(150);
@@ -326,7 +332,7 @@ likeBtn.addEventListener("click", () => {
     likeIcon.style.color = "#FF2E78";
     showAlert("<i class='fa-solid fa-heart'></i>", "Favourite List", `Added to favourites: <b>${colorInput.value}</b>`);
     likeIcon.classList.add("fa-beat");
-    setTimeout(() => {
+    likeTimer1 = setTimeout(() => {
       likeIcon.classList.remove("fa-beat");
     }, 2050);
   } else {
@@ -334,7 +340,7 @@ likeBtn.addEventListener("click", () => {
     likeIcon.classList.remove("fa-beat");
     likeIcon.style.color = "currentColor";
     likeIcon.classList.add("fa-shake");
-    setTimeout(() => {
+    likeTimer2 = setTimeout(() => {
       likeIcon.classList.remove("fa-shake");
     }, 600);
   }

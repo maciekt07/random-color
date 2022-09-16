@@ -85,6 +85,10 @@
   right: 1em;
 }
 
+#like {
+  transition: color 0.6s;
+}
+
 .fs-icon {
   fill: var(--foreground);
   transition-duration: 0.5s;

@@ -1,5 +1,38 @@
-@import url("darkmode.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+:root {
+  --foreground: var(--clr-light);
+  --clr-light: white;
+  --clr-dark: #0f111a;
+  --btn-hover: #cff4fc;
+  --button-txt-hover: #63b1ff;
+  --font-clr: black;
+  --github-fill: #333;
+  --selection: #add8e6;
+  --blackwhite: black;
+  --bar-clr: rgba(222, 222, 222, 0.5);
+  --arrows-background: rgba(255, 255, 255, 0.662);
+  --history-hover: #50a8ffad;
+  --history-image-hover: 0px 0px 15px #a9cdff;
+  --alert-header: #333333;
+  --alert-text: #666666;
+}
+
+.darkmode {
+  --blackwhite: white;
+  --foreground: var(--clr-dark);
+  --btn-hover: black;
+  --button-txt-hover: #6666ff;
+  --font-clr: #dfdfdf;
+  --github-fill: #b5b5b5;
+  --selection: #6666ff;
+  --bar-clr: rgba(45, 45, 45, 0.5);
+  --arrows-background: rgba(0, 0, 0, 0.662);
+  --history-hover: #6666ff80;
+  --history-image-hover: 0px 0px 15px #6b6bff;
+  --alert-header: #f9f9f9;
+  --alert-text: #c5c5c5;
+}
+
 .dark-mode-toggle,
 .history-btn,
 .shortcuts,
@@ -96,6 +129,11 @@
 .fullscreen {
   top: 19em;
   right: 1em;
+}
+
+#like {
+  -webkit-transition: color 0.6s;
+  transition: color 0.6s;
 }
 
 .fs-icon {
@@ -507,8 +545,8 @@ td {
 }
 
 .toast .progress.active:before {
-  -webkit-animation: progress 4s linear forwards;
-          animation: progress 4s linear forwards;
+  -webkit-animation: progress 5s linear forwards;
+          animation: progress 5s linear forwards;
 }
 
 @-webkit-keyframes progress {
@@ -691,40 +729,6 @@ hr {
 .closebtn:active,
 .h-close-btn:active {
   text-shadow: 0px 0px 25px #ff274e;
-}
-
-:root {
-  --foreground: var(--clr-light);
-  --clr-light: white;
-  --clr-dark: #0f111a;
-  --btn-hover: #cff4fc;
-  --button-txt-hover: #63b1ff;
-  --font-clr: black;
-  --github-fill: #333;
-  --selection: #add8e6;
-  --blackwhite: black;
-  --bar-clr: rgba(222, 222, 222, 0.5);
-  --arrows-background: rgba(255, 255, 255, 0.662);
-  --history-hover: #50a8ffad;
-  --history-image-hover: 0px 0px 15px #a9cdff;
-  --alert-header: #333333;
-  --alert-text: #666666;
-}
-
-.darkmode {
-  --blackwhite: white;
-  --foreground: var(--clr-dark);
-  --btn-hover: black;
-  --button-txt-hover: #6666ff;
-  --font-clr: #dfdfdf;
-  --github-fill: #b5b5b5;
-  --selection: #6666ff;
-  --bar-clr: rgba(45, 45, 45, 0.5);
-  --arrows-background: rgba(0, 0, 0, 0.662);
-  --history-hover: #6666ff80;
-  --history-image-hover: 0px 0px 15px #6b6bff;
-  --alert-header: #f9f9f9;
-  --alert-text: #c5c5c5;
 }
 
 * {
