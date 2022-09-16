@@ -464,6 +464,11 @@ td {
   color: var(--alert-header);
 }
 
+#alertclick {
+  cursor: default;
+  padding: 3px;
+}
+
 .toast .close {
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -664,18 +669,6 @@ hr {
   color: white;
 }
 
-/* .history-btn[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  top: 0%;
-  right: 180%;
-  background: var(--bar-clr);
-  border: 2px solid var(--foreground);
-  color: white;
-  backdrop-filter: blur(30px);
-  padding: 8px;
-  border-radius: 8px;
-} */
 .closebtn {
   margin-top: 3px;
   margin-left: 15px;

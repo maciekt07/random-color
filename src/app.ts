@@ -80,9 +80,7 @@ const main = () => {
   setTimeout(() => {
     console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
   }, 25);
-  if (counter > 3) {
-    historyBackToTop.style.display = "block";
-  }
+  counter > 3 ? (historyBackToTop.style.display = "block") : (historyBackToTop.style.display = "none");
 };
 
 mainContent.classList.add("animate__animated", "animate__headShake");
@@ -98,6 +96,11 @@ window.onfocus = () => {
 };
 
 const showAlert = (emoji: string, header: string, text: string, url: string = null, openInNewWindow: boolean = false) => {
+  progress.classList.remove("active");
+  alertToast.classList.remove("active");
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+
   alertEmoji.innerHTML = emoji;
   alertHeader.innerHTML = header;
   alertText.innerHTML = text;
@@ -366,9 +369,7 @@ if (localStorage.getItem("clr") != null) {
 saveColor();
 
 let darkMode = localStorage.getItem("darkMode");
-const isDarkMode = () => {
-  darkMode === "enabled" ? true : false;
-};
+
 const enableDarkMode = () => {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkMode", "enabled");
@@ -398,6 +399,10 @@ darkModeToggle.addEventListener("click", () => {
       showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
     }, 320);
   }
+});
+
+darkModeToggle.addEventListener("mouseover", () => {
+  darkModeToggle.setAttribute("title", `${localStorage.getItem("darkMode") == "enabled" ? "Disable Darkmode" : "Enable Darkmode"}`);
 });
 
 const delClick = () => {
@@ -442,12 +447,15 @@ document.getElementById("favlist").addEventListener("click", () => {
 
   popupDeleteAll.addEventListener("click", () => {
     const deleted = JSON.parse(localStorage.getItem("favs"));
-    console.log(`Deleted from favourites: ${deleted.toString()}`);
+
     like = 2;
     popup.classList.remove("show");
     likeIcon.style.color = "currentColor";
     localStorage.setItem("favs", "[]");
-    showAlert("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted");
+    setTimeout(() => {
+      showAlert("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted<br>");
+      console.log(`Deleted from favourites: ${deleted.toString()}`);
+    }, 200);
   });
 });
 
@@ -571,13 +579,18 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.log(`Service Worker: Error ${err}`));
   });
 }
-// setTimeout(() => {
-//   showAlert(
-//     "<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>",
-//     "Donate",
-//     `If you like this app you can donate me ${isDarkMode ? "💜" : "💙"} <br><a target='_blank' href='https://www.buymeacoffee.com/maciekt07'>https://www.buymeacoffee.com/maciekt07</a>`
-//   );
-// }, Math.floor(Math.random() * (48000 - 12000 + 1)) + 12000);
+
+const donateLink = "https://www.buymeacoffee.com/maciekt07";
+
+setTimeout(() => {
+  showAlert(
+    "<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>",
+    "Donate",
+    `If you like this app you can donate me ${localStorage.getItem("darkMode") == "enabled" ? "💜" : "💙"} <br><a target='_blank' href='${donateLink}'>${donateLink}</a>`,
+    donateLink,
+    true
+  );
+}, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
 
 window.addEventListener("offline", () => {
   showAlert("📴", "Conection", `You're offline`);

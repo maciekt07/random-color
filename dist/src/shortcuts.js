@@ -42,7 +42,8 @@ document.addEventListener("keyup", (event) => {
             .catch((error) => {
             console.log(error);
             const eyeDropperLink = "https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility";
-            showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", `<a target='_blank' href='${eyeDropperLink}'>Eye Dropper</a> Error`, eyeDropperLink, true);
+            showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper", `<a target='_blank' href='${eyeDropperLink}'>Eye Dropper</a> Error<br>your browser may not support this feature
+        `, eyeDropperLink, true);
         });
     }
 });

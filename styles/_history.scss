@@ -139,18 +139,20 @@ hr {
   color: white;
 }
 
-/* .history-btn[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  top: 0%;
-  right: 180%;
-  background: var(--bar-clr);
-  border: 2px solid var(--foreground);
-  color: white;
-  backdrop-filter: blur(30px);
-  padding: 8px;
-  border-radius: 8px;
-} */
+// .history-btn[title]:hover::after {
+//   content: attr(title);
+//   position: absolute;
+//   top: 0%;
+//   right: 180%;
+//   background: var(--bar-clr);
+//   border: 2px solid var(--foreground);
+//   color: white;
+//   backdrop-filter: blur(30px);
+//   padding: 8px;
+//   border-radius: 8px;
+//   transition: 0.3s all;
+// }
+
 .closebtn {
   margin-top: 3px;
   margin-left: 15px;
