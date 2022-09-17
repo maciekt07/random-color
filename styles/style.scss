@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@import "darkmode";
 @import "variables";
+@import "darkmode";
 @import "right-bar";
 @import "arrows";
 @import "popup";
@@ -9,14 +9,13 @@
 
 * {
   box-sizing: border-box;
-
   &::before,
   &::after {
     box-sizing: border-box;
   }
-
   &::selection {
     background: var(--selection);
+    opacity: 0;
   }
 }
 
@@ -103,9 +102,7 @@ i,
 .body1,
 .flex-center {
   font-family: poppins;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include center();
   height: 100vh;
   cursor: pointer;
 }
@@ -158,9 +155,7 @@ i,
 }
 
 .center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include center();
 }
 
 a {

@@ -1,7 +1,5 @@
 .shortcuts-popup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include center();
   position: fixed;
   top: 0;
   left: 0;
@@ -47,6 +45,7 @@ td {
   background: transparent;
   color: $popup-close-btn;
   font-size: 18px;
+  font-weight: $regular;
   border-radius: 15px;
   width: auto;
   height: 60px;
@@ -58,6 +57,7 @@ td {
     color: white;
     opacity: 0.8;
   }
+  @include selectionPopup();
 }
 
 .s-delete {
@@ -71,6 +71,7 @@ td {
     color: white;
     opacity: 0.8;
   }
+  @include selectionPopup();
 }
 
 .s-header {
@@ -78,6 +79,7 @@ td {
   color: white;
   opacity: 0.8;
   text-transform: uppercase;
+  @include selectionPopup();
 }
 
 .s-p {
@@ -85,6 +87,7 @@ td {
   color: white;
   opacity: 0.7;
   text-transform: capitalize;
+  @include selectionPopup();
 }
 
 #favsli {
@@ -105,11 +108,13 @@ td {
     opacity: 1;
     text-decoration: none;
   }
+  @include selectionPopup();
 }
 
 .favsclrname {
   font-size: 17px;
   cursor: pointer;
+  @include selectionPopup();
 }
 
 .favsimg {
@@ -117,6 +122,7 @@ td {
   position: relative;
   border-radius: 50px;
   margin-right: 6px;
+  @include selectionPopup();
 }
 
 .favsheader {
@@ -125,6 +131,24 @@ td {
   color: darken($color: white, $amount: 20);
   margin-left: 10px;
   cursor: text;
+  @include selectionPopup();
+}
+
+.favstext {
+  font-size: 22px;
+  font-weight: $regular;
+  color: darken($color: white, $amount: 20);
+  margin-left: 15px;
+  @include selectionPopup();
+}
+
+.favssmalltext {
+  font-size: 18px;
+  @include selectionPopup();
+}
+
+.favshex {
+  @include selectionPopup();
 }
 
 #delFromFavs {
@@ -146,4 +170,5 @@ td {
   background: #4e4e4e;
   padding: 6px;
   border-radius: 5px;
+  @include selectionPopup();
 }

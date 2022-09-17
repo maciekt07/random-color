@@ -15,17 +15,14 @@
     transform: translateY(0%);
   }
   .toast-content {
-    display: flex;
-    align-items: center;
+    @include center();
   }
 }
 
 .toast-content {
   .emoji {
     cursor: default;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include center();
     height: 40px;
     width: 40px;
     background-color: var(--button-txt-hover);
@@ -41,10 +38,10 @@
 
 .message .text {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: $regular;
   color: var(--alert-text);
   &.text-1 {
-    font-weight: 600;
+    font-weight: $medium;
     color: var(--alert-header);
   }
 }

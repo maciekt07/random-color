@@ -3,6 +3,7 @@ $shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 $main-btn-shadow: 0px 0px 38px -5px currentColor;
 $main-content-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 
+$popup-selection: #8b62ff;
 $popup-background: rgba(0, 0, 0, 0.4);
 $popup-close-btn: rgb(253, 47, 47);
 $popup-delete-btn: rgb(255, 80, 80);
@@ -14,3 +15,19 @@ $history-txt-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
 $history-box-shadow: 0px 0px 20px 1px var(--history-hover);
 
 $a-color: #3abdff;
+
+$regular: 400;
+$medium: 600;
+$bold: 800;
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin selectionPopup {
+  &::selection {
+    background: $popup-selection;
+  }
+}

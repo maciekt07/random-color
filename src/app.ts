@@ -61,6 +61,8 @@ const hexToRgb = (hex: string) => {
 
 const isHexColor = (hex: string) => typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex));
 
+// const changeAttr = (element: Element, atribute: string, content: string) => element.setAttribute(atribute, content);
+
 const loadColor = (hex: string) => {
   if (isHexColor(hex.replace("#", ""))) {
     document.body.style.backgroundColor = hex;
@@ -164,7 +166,7 @@ closeIcon.addEventListener("click", hideAlert);
 let hclrx: Array<string> = [];
 const addToHistoryList = () => {
   setTimeout(() => {
-    historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${hexTxt.textContent.replace("#", "")}/25x25'/>${hexTxt.textContent}</span> | ${
+    historyList.innerHTML += `<li><span id='historyhex' onclick='hclrx.push(this.textContent);changeColorFromHistory()'><img loading=lazy class='hclrimg' src='https://singlecolorimage.com/get/${colorInput.value.replace("#", "")}/25x25'/>${colorInput.value}</span> | ${
       nameTxt.textContent
     }<hr><br></li>`;
   }, 50);
@@ -267,7 +269,7 @@ forward.addEventListener("click", () => {
 copyBtn.addEventListener("click", () => {
   copyToClipboard(colorInput.value);
   console.log(`Copied to clipboard ${colorInput.value}`);
-  showAlert("<i class='fa-solid fa-clipboard'></i>", "Copy Info", `Copied to clipboard: <b>${colorInput.value}</b>`);
+  showAlert("<i class='fa-solid fa-clipboard'></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
 });
 
 const removeFromFavs = (arr: Array<string>, item: string) => {
@@ -293,7 +295,7 @@ const addToFavs = () => {
 
 const isFavColor = () => {
   if (localStorage.getItem("favs") !== null) {
-    if (localStorage.getItem("favs").includes(hexTxt.textContent)) {
+    if (localStorage.getItem("favs").includes(hexTxt.textContent) || localStorage.getItem("favs").includes(colorInput.value)) {
       likeIcon.style.color = "#FF2E78";
       like = 1;
       likeBtn.setAttribute("title", "Remove From Favorites");
@@ -318,7 +320,7 @@ const removeItemFromFavs = (item: string) => {
   }
   localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
   isFavColor();
-  showAlert("<i class='fa-solid fa-heart-crack'></i>", "Favourite List", `Removed from favorites: <b>${item}</b>`);
+  showAlert("<i class='fa-solid fa-heart-crack'></i>", "Liked Colors", `Removed from your liked colors: <b>${item}</b>`);
 };
 
 likeBtn.addEventListener("click", () => {
@@ -330,7 +332,7 @@ likeBtn.addEventListener("click", () => {
   navigator.vibrate(150);
   if (like % 2 != 0) {
     likeIcon.style.color = "#FF2E78";
-    showAlert("<i class='fa-solid fa-heart'></i>", "Favourite List", `Added to favourites: <b>${colorInput.value}</b>`);
+    showAlert("<i class='fa-solid fa-heart'></i>", "Liked Colors", `Added to your liked colors: <b>${colorInput.value}</b>`);
     likeIcon.classList.add("fa-beat");
     likeTimer1 = setTimeout(() => {
       likeIcon.classList.remove("fa-beat");
@@ -431,8 +433,8 @@ document.getElementById("favlist").addEventListener("click", () => {
   document.getElementById("history").style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-  modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Favourite Colors List</h1></br><h1 class='favsheader' style='font-size:20px'>
-    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "You don't have a favorite colors yet"}
+  modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Liked Colors List</h1></br><h1 class='favstext''>
+    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "Colors you like will appear here<br><br><span class='favssmalltext'></i>Save colors by tapping the heart icon <i style='color:red' class='fa-solid fa-heart fa-beat'></i></span>"}
     </h1>`;
   const ul = document.createElement("div");
   ul.setAttribute("style", "cursor:default");
@@ -444,7 +446,7 @@ document.getElementById("favlist").addEventListener("click", () => {
     p.setAttribute("id", "favsli");
     ul.appendChild(p);
     //@ts-ignore
-    p.innerHTML += `${img}<div style="margin-left:65px">${item}</br>${del} <span class='favsclrname'>${ntc.name(item)[1]}</span></div>`;
+    p.innerHTML += `${img}<div style="margin-left:65px"><span class='favshex'>${item}</span></br>${del} <span class='favsclrname'>${ntc.name(item)[1]}</span></div>`;
     p.setAttribute("onclick", "favsChangeClr = this.textContent.split(' ')[0];ChangeToFav()");
     //@ts-ignore
     p.setAttribute("title", `Change Color To: ${item} (${ntc.name(item)[1]})`);
@@ -453,7 +455,6 @@ document.getElementById("favlist").addEventListener("click", () => {
 
   popupDeleteAll.addEventListener("click", () => {
     const deleted = JSON.parse(localStorage.getItem("favs"));
-
     like = 2;
     popup.classList.remove("show");
     likeIcon.style.color = "currentColor";

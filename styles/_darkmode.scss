@@ -16,7 +16,7 @@
   --alert-text: #666666;
 }
 
-.darkmode {
+body.darkmode {
   --blackwhite: white;
   --foreground: var(--clr-dark);
   --btn-hover: black;
