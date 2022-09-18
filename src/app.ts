@@ -101,61 +101,67 @@ window.onfocus = () => {
 };
 
 const showAlert = (emoji: string, header: string, text: string, url: string = null, openInNewWindow: boolean = false) => {
-  progress.classList.remove("active");
-  alertToast.classList.remove("active");
-  clearTimeout(timer1);
-  clearTimeout(timer2);
-
-  alertEmoji.innerHTML = emoji;
-  alertHeader.innerHTML = header;
-  alertText.innerHTML = text;
-  // alert onclick
-  if (url != null) {
-    alertClick.style.cursor = "pointer";
-    if (openInNewWindow) {
-      alertClick.onclick = () => {
-        window.open(url, "_blank");
-      };
-    } else {
-      alertClick.onclick = () => {
-        (<any>window).location = url;
-      };
-    }
-  } else {
-    alertClick.style.cursor = "default";
-    alertClick.onclick = null;
-  }
-  alertToast.style.display = "block";
-  //disable scrollbar for 500ms
-  document.body.style.overflow = "hidden";
+  hideAlert();
   setTimeout(() => {
-    document.body.style.overflow = "auto";
-  }, 500);
-
-  setTimeout(() => {
-    toast.classList.add("active");
-    progress.classList.add("active");
-  }, 10);
-
-  timer1 = setTimeout(() => {
-    toast.classList.remove("active");
-    document.body.style.overflow = "hidden";
-  }, 5000);
-
-  timer2 = setTimeout(() => {
     progress.classList.remove("active");
-    document.body.style.overflow = "auto";
-    alertToast.style.display = "none";
-  }, 5300);
+    alertToast.classList.remove("active");
+    clearTimeout(timer1);
+    clearTimeout(timer2);
 
-  popup.classList.remove("show");
+    emoji == "_none" ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
+
+    alertEmoji.innerHTML = emoji;
+    alertHeader.innerHTML = header;
+    alertText.innerHTML = text;
+    // alert onclick
+    if (url != null) {
+      alertClick.style.cursor = "pointer";
+      if (openInNewWindow) {
+        alertClick.onclick = () => {
+          window.open(url, "_blank");
+        };
+      } else {
+        alertClick.onclick = () => {
+          (<any>window).location = url;
+        };
+      }
+    } else {
+      alertClick.style.cursor = "default";
+      alertClick.onclick = null;
+    }
+
+    alertToast.style.display = "block";
+    //disable scrollbar for 500ms
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+      document.body.style.overflow = "auto";
+    }, 500);
+
+    setTimeout(() => {
+      toast.classList.add("active");
+      progress.classList.add("active");
+    }, 10);
+
+    timer1 = setTimeout(() => {
+      toast.classList.remove("active");
+      document.body.style.overflow = "hidden";
+    }, 5000);
+
+    timer2 = setTimeout(() => {
+      progress.classList.remove("active");
+      document.body.style.overflow = "auto";
+      alertToast.style.display = "none";
+    }, 5300);
+
+    popup.classList.remove("show");
+  }, 50);
 };
 
 const hideAlert = () => {
   toast.classList.remove("active");
-  setTimeout(() => {
-    progress.classList.remove("active");
-  }, 300);
+
+  progress.classList.remove("active");
+
   clearTimeout(timer1);
   clearTimeout(timer2);
   document.getElementById("toast").style.display = "none";
@@ -391,6 +397,10 @@ if (darkMode === "enabled") {
   console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
 }
 darkModeToggle.addEventListener("click", () => {
+  likeBtn.style.transition = "0s all";
+  setTimeout(() => {
+    likeBtn.style.transition = "all 0.4s";
+  }, 400);
   hideAlert();
   popup.classList.remove("show");
   darkMode = localStorage.getItem("darkMode");
