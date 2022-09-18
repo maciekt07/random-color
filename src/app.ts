@@ -153,7 +153,7 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
       alertToast.style.display = "none";
     }, 5300);
 
-    popup.classList.remove("show");
+    // popup.classList.remove("show");
   }, 50);
 };
 
@@ -264,12 +264,10 @@ setTimeout(() => {
 back.addEventListener("click", () => {
   if (sessionStorage.getItem("firstSessionClr") != colorInput.value) {
     history.go(-1);
-    isFavColor();
   }
 });
 forward.addEventListener("click", () => {
   history.go(1);
-  isFavColor();
 });
 
 copyBtn.addEventListener("click", () => {
@@ -332,6 +330,8 @@ const removeItemFromFavs = (item: string) => {
 likeBtn.addEventListener("click", () => {
   clearTimeout(likeTimer1);
   clearTimeout(likeTimer2);
+  popup.classList.add("show");
+  popup.classList.remove("show");
 
   addToFavs();
   like++;
@@ -558,10 +558,11 @@ const urlChange = () => {
 };
 const urlError = () => {
   //change url to previous
+  const errorURL: string = (<any>window).location.hash;
   (<any>window).location = `${appUrl}?${localStorage.getItem("clr")}`;
   setTimeout(() => {
     console.error("ERROR: Invalid Color in URL");
-    showAlert("<i class='fa-solid fa-xmark'></i>", "URL", "Invalid Color in URL");
+    showAlert("<i class='fa-solid fa-xmark'></i>", "URL", `Invalid Color in URL:<b> ${errorURL}</b>`);
   }, 300);
 };
 
