@@ -75,6 +75,9 @@
     text-shadow: 0px 0px 8px $close-btn;
     cursor: pointer;
   }
+  &:active {
+    text-shadow: 0px 0px 25px $close-btn;
+  }
 }
 
 .h-top {
@@ -130,7 +133,6 @@ li {
 hr {
   height: 2px;
   border: none;
-  /* background: var(--hr-gradient); */
   background-color: $hr;
   border-radius: 100px;
   margin-right: 20px;
@@ -170,9 +172,7 @@ hr {
     text-shadow: 0px 0px 8px $close-btn;
     cursor: pointer;
   }
-}
-
-.closebtn:active,
-.h-close-btn:active {
-  text-shadow: 0px 0px 25px $close-btn;
+  &:active {
+    text-shadow: 0px 0px 25px $close-btn;
+  }
 }

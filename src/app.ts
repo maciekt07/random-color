@@ -19,6 +19,7 @@ const likeIcon = document.getElementById("like") as HTMLButtonElement;
 const fullscreenBtn = document.getElementById("fullscreen") as HTMLButtonElement;
 const shareBtn = document.getElementById("share") as HTMLButtonElement;
 const shareIcon = document.getElementById("shareIcon");
+const newItem = document.getElementById("newitem") as HTMLSpanElement;
 const themeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
 const historyBackToTop = document.getElementById("h-back-to-top") as HTMLButtonElement;
@@ -45,8 +46,8 @@ const db = document.getElementById("db") as HTMLButtonElement;
 
 let counter: number = 0;
 let like: number = 0;
-let timer1: ReturnType<typeof setTimeout>;
-let timer2: ReturnType<typeof setTimeout>;
+let AlertTimer1: ReturnType<typeof setTimeout>;
+let AlertTimer2: ReturnType<typeof setTimeout>;
 
 let likeTimer1: ReturnType<typeof setTimeout>;
 let likeTimer2: ReturnType<typeof setTimeout>;
@@ -105,10 +106,10 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
   setTimeout(() => {
     progress.classList.remove("active");
     alertToast.classList.remove("active");
-    clearTimeout(timer1);
-    clearTimeout(timer2);
+    clearTimeout(AlertTimer1);
+    clearTimeout(AlertTimer2);
 
-    emoji == "_none" ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
+    emoji == null ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
 
     alertEmoji.innerHTML = emoji;
     alertHeader.innerHTML = header;
@@ -142,12 +143,12 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
       progress.classList.add("active");
     }, 10);
 
-    timer1 = setTimeout(() => {
+    AlertTimer1 = setTimeout(() => {
       toast.classList.remove("active");
       document.body.style.overflow = "hidden";
     }, 5000);
 
-    timer2 = setTimeout(() => {
+    AlertTimer2 = setTimeout(() => {
       progress.classList.remove("active");
       document.body.style.overflow = "auto";
       alertToast.style.display = "none";
@@ -162,8 +163,8 @@ const hideAlert = () => {
 
   progress.classList.remove("active");
 
-  clearTimeout(timer1);
-  clearTimeout(timer2);
+  clearTimeout(AlertTimer1);
+  clearTimeout(AlertTimer2);
   document.getElementById("toast").style.display = "none";
 };
 
@@ -287,6 +288,23 @@ const removeFromFavs = (arr: Array<string>, item: string) => {
 
 const uniqueFavs = (array: Array<string>) => array.filter((currentValue: string, index: number, arr: Array<string>) => arr.indexOf(currentValue) === index);
 
+//new item badge next to liked colors list icon
+const newItemShow = () => {
+  newItem.style.display = "flex";
+  localStorage.setItem("newItem", "true");
+};
+
+const newItemHide = () => {
+  newItem.style.display = "none";
+  localStorage.setItem("newItem", "false");
+};
+
+if (localStorage.getItem("newItem") == "true") {
+  newItemShow();
+} else {
+  newItemHide();
+}
+
 const addToFavs = () => {
   let new_favs = colorInput.value;
   if (localStorage.getItem("favs") == null) {
@@ -339,6 +357,7 @@ likeBtn.addEventListener("click", () => {
   if (like % 2 != 0) {
     likeIcon.style.color = "#FF2E78";
     showAlert("<i class='fa-solid fa-heart'></i>", "Liked Colors", `Added to your liked colors: <b>${colorInput.value}</b>`);
+    newItemShow();
     likeIcon.classList.add("fa-beat");
     likeTimer1 = setTimeout(() => {
       likeIcon.classList.remove("fa-beat");
@@ -397,10 +416,6 @@ if (darkMode === "enabled") {
   console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
 }
 darkModeToggle.addEventListener("click", () => {
-  likeBtn.style.transition = "0s all";
-  setTimeout(() => {
-    likeBtn.style.transition = "all 0.4s";
-  }, 400);
   hideAlert();
   popup.classList.remove("show");
   darkMode = localStorage.getItem("darkMode");
@@ -440,6 +455,7 @@ const delFavClick = () => {
 let favsChangeClr: any = null;
 document.getElementById("favlist").addEventListener("click", () => {
   hideAlert();
+  newItemHide();
   document.getElementById("history").style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");

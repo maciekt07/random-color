@@ -25,6 +25,7 @@
   z-index: 100;
   top: 1em;
   right: 1em;
+  @include tooltip();
 }
 
 #color_input {
@@ -85,8 +86,20 @@
   right: 1em;
 }
 
-#like {
-  transition: color 0.4s;
+// #like {
+//   transition: color 0.4s;
+// }
+
+#newitem {
+  pointer-events: none;
+  display: none;
+  background-color: rgb(255, 46, 120);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 999px;
+  right: 3px;
+  top: 3px;
 }
 
 .fs-icon {

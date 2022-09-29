@@ -1,7 +1,5 @@
 :root {
-  --foreground: var(--clr-light);
-  --clr-light: white;
-  --clr-dark: #0f111a;
+  --foreground: white;
   --btn-hover: #cff4fc;
   --button-txt-hover: #63b1ff;
   --font-clr: black;
@@ -18,7 +16,7 @@
 
 body.darkmode {
   --blackwhite: white;
-  --foreground: var(--clr-dark);
+  --foreground: #0f111a;
   --btn-hover: black;
   --button-txt-hover: #6666ff;
   --font-clr: #dfdfdf;

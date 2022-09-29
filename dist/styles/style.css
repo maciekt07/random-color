@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 :root {
-  --foreground: var(--clr-light);
-  --clr-light: white;
-  --clr-dark: #0f111a;
+  --foreground: white;
   --btn-hover: #cff4fc;
   --button-txt-hover: #63b1ff;
   --font-clr: black;
@@ -19,7 +17,7 @@
 
 body.darkmode {
   --blackwhite: white;
-  --foreground: var(--clr-dark);
+  --foreground: #0f111a;
   --btn-hover: black;
   --button-txt-hover: #6666ff;
   --font-clr: #dfdfdf;
@@ -124,8 +122,16 @@ body.darkmode {
   right: 1em;
 }
 
-#like {
-  transition: color 0.4s;
+#newitem {
+  pointer-events: none;
+  display: none;
+  background-color: rgb(255, 46, 120);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 999px;
+  right: 3px;
+  top: 3px;
 }
 
 .fs-icon {
@@ -227,6 +233,12 @@ body.darkmode {
 #forward:hover {
   box-shadow: 0px 0px 35px -3px var(--button-txt-hover);
 }
+#back:hover > .fa-angle-left, #back:hover > .fa-angle-right,
+#forward:hover > .fa-angle-left,
+#forward:hover > .fa-angle-right {
+  color: var(--button-txt-hover);
+  cursor: pointer;
+}
 
 .fa-angle-right,
 .fa-angle-left {
@@ -234,12 +246,6 @@ body.darkmode {
   transition-duration: 0.5s;
   -webkit-animation-delay: 5s;
           animation-delay: 5s;
-  cursor: pointer;
-}
-
-#back:hover > .fa-angle-left,
-#forward:hover > .fa-angle-right {
-  color: var(--button-txt-hover);
   cursor: pointer;
 }
 
@@ -644,6 +650,9 @@ td {
   text-shadow: 0px 0px 8px #ff274e;
   cursor: pointer;
 }
+.h-close-btn:active {
+  text-shadow: 0px 0px 25px #ff274e;
+}
 
 .h-top {
   fill: white;
@@ -699,7 +708,6 @@ li {
 hr {
   height: 2px;
   border: none;
-  /* background: var(--hr-gradient); */
   background-color: rgba(114, 114, 114, 0.5);
   border-radius: 100px;
   margin-right: 20px;
@@ -725,9 +733,7 @@ hr {
   text-shadow: 0px 0px 8px #ff274e;
   cursor: pointer;
 }
-
-.closebtn:active,
-.h-close-btn:active {
+.closebtn:active {
   text-shadow: 0px 0px 25px #ff274e;
 }
 
