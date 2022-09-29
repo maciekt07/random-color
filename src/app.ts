@@ -290,6 +290,7 @@ const uniqueFavs = (array: Array<string>) => array.filter((currentValue: string,
 
 //new item badge next to liked colors list icon
 const newItemShow = () => {
+  newItem.classList.add("animate__animated", "animate__bounceIn");
   newItem.style.display = "flex";
   localStorage.setItem("newItem", "true");
 };
@@ -298,6 +299,10 @@ const newItemHide = () => {
   newItem.style.display = "none";
   localStorage.setItem("newItem", "false");
 };
+
+// newItem.addEventListener("animationend", () => {
+//   newItem.classList.remove("animate__animated", "animate__bounceIn");
+// });
 
 if (localStorage.getItem("newItem") == "true") {
   newItemShow();
