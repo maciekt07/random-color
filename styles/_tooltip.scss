@@ -1,5 +1,5 @@
 @mixin tooltip {
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     &::after {
       font-family: poppins;
       content: attr(data-tooltip) !important;
@@ -19,6 +19,12 @@
       opacity: 0;
       pointer-events: none;
       transition: 0.2s ease-in-out;
+      font-weight: $regular;
+      text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    }
+    &:hover::after {
+      opacity: 1;
+      left: -125px;
     }
     // &::before {
     //   content: "";
@@ -33,13 +39,9 @@
     //   transition: 0.2s ease-in-out;
     //   opacity: 0;
     // }
-    &:hover::after {
-      opacity: 1;
-      left: -125px;
-    }
-    &:hover::before {
-      opacity: 1;
-      left: -32px;
-    }
+    // &:hover::before {
+    //   opacity: 1;
+    //   left: -32px;
+    // }
   }
 }

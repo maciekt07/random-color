@@ -164,7 +164,7 @@ a {
   transition: 0.4s all;
   color: $a-color;
   &:hover {
-    color: darken($color: $a-color, $amount: 18);
+    color: darken($color: $a-color, $amount: 20);
   }
 }
 

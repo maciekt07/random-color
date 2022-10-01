@@ -171,9 +171,6 @@ const changeColorFromHistory = () => {
     urlChange();
 };
 historyDiv.style.display = "none";
-if (window.matchMedia("(pointer: coarse)").matches) {
-    document.getElementById("h").style.overflowY = "auto";
-}
 tooltip(historyBtn, "Show History");
 const showHistory = () => {
     if (historyDiv.style.display === "none") {

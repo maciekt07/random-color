@@ -125,3 +125,8 @@
     height: 497px;
   }
 }
+@media (pointer: coarse) {
+  .history {
+    overflow-y: auto;
+  }
+}

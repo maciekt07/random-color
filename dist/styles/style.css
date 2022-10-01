@@ -60,7 +60,7 @@ body.darkmode {
   top: 1em;
   right: 1em;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .dark-mode-toggle::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -82,14 +82,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .dark-mode-toggle:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .dark-mode-toggle:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -122,7 +120,7 @@ body.darkmode {
   border-radius: 50%;
   border: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   #color_input::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -144,14 +142,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   #color_input:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  #color_input:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -160,7 +156,7 @@ body.darkmode {
   right: 1em;
   cursor: pointer;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .history-btn::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -182,14 +178,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .history-btn:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .history-btn:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -204,7 +198,7 @@ body.darkmode {
   top: 14.5em;
   right: 1em;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .shortcuts::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -226,14 +220,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .shortcuts:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .shortcuts:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -249,7 +241,7 @@ body.darkmode {
   top: 19em;
   right: 1em;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .fullscreen::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -271,14 +263,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .fullscreen:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .fullscreen:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -305,7 +295,7 @@ body.darkmode {
   top: 23.5em;
   right: 1em;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .fav-btn::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -327,14 +317,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .fav-btn:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .fav-btn:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -354,7 +342,7 @@ body.darkmode {
   top: 28em;
   right: 1em;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .fav-list-btn::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -376,14 +364,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .fav-list-btn:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .fav-list-btn:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 
@@ -391,7 +377,7 @@ body.darkmode {
   top: 32.5em;
   right: 1em;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .share-btn::after {
     font-family: poppins;
     content: attr(data-tooltip) !important;
@@ -413,14 +399,12 @@ body.darkmode {
     opacity: 0;
     pointer-events: none;
     transition: 0.2s ease-in-out;
+    font-weight: 400;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   }
   .share-btn:hover::after {
     opacity: 1;
     left: -125px;
-  }
-  .share-btn:hover::before {
-    opacity: 1;
-    left: -32px;
   }
 }
 .share-btn:hover {
@@ -1156,7 +1140,7 @@ a {
   color: #3abdff;
 }
 a:hover {
-  color: #0093dd;
+  color: #008cd3;
 }
 
 #db {
@@ -1335,5 +1319,10 @@ br,
     border-top: 2px solid var(--foreground);
     top: 19em;
     height: 497px;
+  }
+}
+@media (pointer: coarse) {
+  .history {
+    overflow-y: auto;
   }
 }/*# sourceMappingURL=style.css.map */
