@@ -20,6 +20,7 @@ const fullscreenBtn = document.getElementById("fullscreen") as HTMLButtonElement
 const shareBtn = document.getElementById("share") as HTMLButtonElement;
 const shareIcon = document.getElementById("shareIcon");
 const newItem = document.getElementById("newitem") as HTMLSpanElement;
+const favList = document.getElementById("favlist") as HTMLButtonElement;
 const themeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
 const historyBackToTop = document.getElementById("h-back-to-top") as HTMLButtonElement;
@@ -78,6 +79,10 @@ const loadColor = (hex: string) => {
   }
 };
 
+const tooltip = (element: Element, content: string) => {
+  element.setAttribute("data-tooltip", content);
+};
+
 const main = () => {
   counter++;
   let randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -109,7 +114,7 @@ const showAlert = (emoji: string, header: string, text: string, url: string = nu
     clearTimeout(AlertTimer1);
     clearTimeout(AlertTimer2);
 
-    emoji == null ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
+    emoji === null ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
 
     alertEmoji.innerHTML = emoji;
     alertHeader.innerHTML = header;
@@ -191,23 +196,28 @@ if (window.matchMedia("(pointer: coarse)").matches) {
   document.getElementById("h").style.overflowY = "auto";
 }
 
+tooltip(historyBtn, "Show History");
 const showHistory = () => {
   if (historyDiv.style.display === "none") {
     historyDiv.style.display = "block";
     historyContainer.style.display = "flex";
+    tooltip(historyBtn, "Hide History");
   } else {
     historyDiv.style.display = "none";
     historyContainer.style.display = "none";
+    tooltip(historyBtn, "Show History");
   }
 };
 
 shortcutsBtn.addEventListener("click", () => {
   popupDeleteAll.style.display = "none";
   historyDiv.style.display = "none";
-  popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
+  popup.className === "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
   modalTxt.innerHTML =
     '<h1 class="s-header"><i class="twa twa-lg twa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Eye Dropper </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
 });
+
+tooltip(shortcutsBtn, "Shortcuts");
 
 popupClose.addEventListener("click", () => {
   popup.classList.remove("show");
@@ -237,7 +247,7 @@ let rpt: number = 0;
 colorInput.addEventListener("click", () => {
   isFavColor();
   like = 0;
-  if (rpt == 0) {
+  if (rpt === 0) {
     //bug fix for color picker
     colorInput.click();
     db.click();
@@ -247,6 +257,8 @@ colorInput.addEventListener("click", () => {
   saveColor();
   popup.classList.remove("show");
 });
+
+colorInput.setAttribute("data-tooltip", "Set Custom Color");
 
 historyBtn.addEventListener("click", () => {
   showHistory();
@@ -304,7 +316,7 @@ const newItemHide = () => {
 //   newItem.classList.remove("animate__animated", "animate__bounceIn");
 // });
 
-if (localStorage.getItem("newItem") == "true") {
+if (localStorage.getItem("newItem") === "true") {
   newItemShow();
 } else {
   newItemHide();
@@ -312,7 +324,7 @@ if (localStorage.getItem("newItem") == "true") {
 
 const addToFavs = () => {
   let new_favs = colorInput.value;
-  if (localStorage.getItem("favs") == null) {
+  if (localStorage.getItem("favs") === null) {
     localStorage.setItem("favs", "[]");
   }
   let old_favs = JSON.parse(localStorage.getItem("favs"));
@@ -325,18 +337,27 @@ const isFavColor = () => {
     if (localStorage.getItem("favs").includes(hexTxt.textContent) || localStorage.getItem("favs").includes(colorInput.value)) {
       likeIcon.style.color = "#FF2E78";
       like = 1;
-      likeBtn.setAttribute("title", "Remove From Favorites");
       return true;
     } else {
       likeIcon.style.color = "currentColor";
       like = 2;
-      likeBtn.setAttribute("title", "Add To Favorites");
       return false;
     }
   }
 };
 
-likeBtn.addEventListener("mouseover", isFavColor);
+// tooltip for like button
+likeBtn.addEventListener("mouseover", () => {
+  setTimeout(() => {
+    tooltip(likeBtn, `${localStorage.getItem("favs").includes(colorInput.value) ? "remove from liked colors" : "add to liked colors"}`);
+  }, 50);
+});
+
+likeBtn.addEventListener("click", () => {
+  setTimeout(() => {
+    tooltip(likeBtn, `${localStorage.getItem("favs").includes(colorInput.value) ? "remove from liked colors" : "add to liked colors"}`);
+  }, 50);
+});
 
 const removeItemFromFavs = (item: string) => {
   //remove from favs
@@ -440,7 +461,11 @@ darkModeToggle.addEventListener("click", () => {
 });
 
 darkModeToggle.addEventListener("mouseover", () => {
-  darkModeToggle.setAttribute("title", `${localStorage.getItem("darkMode") == "enabled" ? "Disable Darkmode" : "Enable Darkmode"}`);
+  tooltip(darkModeToggle, `${localStorage.getItem("darkMode") == "enabled" ? "Disable Darkmode" : "Enable Darkmode"}`);
+});
+
+darkModeToggle.addEventListener("click", () => {
+  tooltip(darkModeToggle, `${localStorage.getItem("darkMode") == "enabled" ? "Disable Darkmode" : "Enable Darkmode"}`);
 });
 
 const delClick = () => {
@@ -448,20 +473,21 @@ const delClick = () => {
     history.back();
   }, 30);
   setTimeout(() => {
-    document.getElementById("favlist").click();
+    favList.click();
   }, 50);
 };
 
 const delFavClick = () => {
   setTimeout(() => {
-    document.getElementById("favlist").click();
+    favList.click();
   }, 25);
 };
+tooltip(favList, "your liked colors list");
 let favsChangeClr: any = null;
-document.getElementById("favlist").addEventListener("click", () => {
+favList.addEventListener("click", () => {
   hideAlert();
   newItemHide();
-  document.getElementById("history").style.display = "none";
+  historyDiv.style.display = "none";
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
   modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Liked Colors List</h1></br><h1 class='favstext''>
@@ -530,17 +556,20 @@ historyBackToTop.addEventListener("click", () => {
   });
 });
 
+tooltip(fullscreenBtn, "Enable Fullscreen");
 const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
     if (window.screen.width > 1024) {
       showAlert("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Enabled!");
+      tooltip(fullscreenBtn, "Disable Fullscreen");
       console.log("Fullscreen enabled");
     }
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
     if (window.screen.width > 1024) {
       showAlert("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Disabled!");
+      tooltip(fullscreenBtn, "Enable Fullscreen");
       console.log("Fullscreen disabled");
     }
   }
@@ -573,6 +602,11 @@ shareBtn.addEventListener("click", async () => {
     }
   }
 });
+
+shareBtn.addEventListener("mouseover", () => {
+  tooltip(shareBtn, `share color: ${colorInput.value}`);
+});
+
 const appUrl = `${location.origin}/`;
 const urlChange = () => {
   (<any>window).location = `${appUrl}?${colorInput.value}`;

@@ -60,6 +60,38 @@ body.darkmode {
   top: 1em;
   right: 1em;
 }
+@media (min-width: 768px) {
+  .dark-mode-toggle::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .dark-mode-toggle:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .dark-mode-toggle:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
+}
 
 #color_input {
   position: absolute;
@@ -90,11 +122,75 @@ body.darkmode {
   border-radius: 50%;
   border: none;
 }
+@media (min-width: 768px) {
+  #color_input::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  #color_input:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  #color_input:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
+}
 
 .history-btn {
   top: 10em;
   right: 1em;
   cursor: pointer;
+}
+@media (min-width: 768px) {
+  .history-btn::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .history-btn:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .history-btn:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
 }
 
 .historyicon {
@@ -108,6 +204,38 @@ body.darkmode {
   top: 14.5em;
   right: 1em;
 }
+@media (min-width: 768px) {
+  .shortcuts::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .shortcuts:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .shortcuts:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
+}
 
 .command {
   fill: var(--foreground);
@@ -120,6 +248,38 @@ body.darkmode {
 .fullscreen {
   top: 19em;
   right: 1em;
+}
+@media (min-width: 768px) {
+  .fullscreen::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .fullscreen:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .fullscreen:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
 }
 
 #newitem {
@@ -145,6 +305,38 @@ body.darkmode {
   top: 23.5em;
   right: 1em;
 }
+@media (min-width: 768px) {
+  .fav-btn::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .fav-btn:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .fav-btn:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
+}
 
 .fa-solid {
   color: currentColor;
@@ -162,10 +354,74 @@ body.darkmode {
   top: 28em;
   right: 1em;
 }
+@media (min-width: 768px) {
+  .fav-list-btn::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .fav-list-btn:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .fav-list-btn:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
+}
 
 .share-btn {
   top: 32.5em;
   right: 1em;
+}
+@media (min-width: 768px) {
+  .share-btn::after {
+    font-family: poppins;
+    content: attr(data-tooltip) !important;
+    text-align: center;
+    text-transform: capitalize;
+    width: 100px;
+    height: 50px;
+    background: var(--foreground);
+    color: var(--font-clr);
+    border: 2px solid var(--foreground);
+    border-radius: 8px;
+    position: absolute;
+    left: -140px;
+    transform: translateY(-50%);
+    top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+  .share-btn:hover::after {
+    opacity: 1;
+    left: -125px;
+  }
+  .share-btn:hover::before {
+    opacity: 1;
+    left: -32px;
+  }
 }
 .share-btn:hover {
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);

@@ -1,4 +1,45 @@
-//right-bar.scss - darkmode toggle, style.scss
-
 @mixin tooltip {
+  @media (min-width: 768px) {
+    &::after {
+      font-family: poppins;
+      content: attr(data-tooltip) !important;
+      text-align: center;
+      text-transform: capitalize;
+      width: 100px;
+      height: 50px;
+      background: var(--foreground);
+      color: var(--font-clr);
+      border: 2px solid var(--foreground);
+      border-radius: 8px;
+      position: absolute;
+      left: -140px;
+      transform: translateY(-50%);
+      top: 1.5em;
+      @include center();
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s ease-in-out;
+    }
+    // &::before {
+    //   content: "";
+    //   width: 10px;
+    //   height: 10px;
+    //   background: var(--foreground);
+    //   top: 50%;
+    //   left: -140px;
+    //   border-radius: 1px;
+    //   position: absolute;
+    //   transform: translateY(-50%) rotate(45deg);
+    //   transition: 0.2s ease-in-out;
+    //   opacity: 0;
+    // }
+    &:hover::after {
+      opacity: 1;
+      left: -125px;
+    }
+    &:hover::before {
+      opacity: 1;
+      left: -32px;
+    }
+  }
 }

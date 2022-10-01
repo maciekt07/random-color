@@ -56,12 +56,14 @@
     border-radius: 50%;
     border: none;
   }
+  @include tooltip();
 }
 
 .history-btn {
   top: 10em;
   right: 1em;
   cursor: pointer;
+  @include tooltip();
 }
 
 .historyicon {
@@ -73,6 +75,7 @@
 .shortcuts {
   top: 14.5em;
   right: 1em;
+  @include tooltip();
 }
 
 .command {
@@ -84,6 +87,7 @@
 .fullscreen {
   top: 19em;
   right: 1em;
+  @include tooltip();
 }
 
 // #like {
@@ -111,6 +115,7 @@
 .fav-btn {
   top: 23.5em;
   right: 1em;
+  @include tooltip();
 }
 
 .fa-solid {
@@ -128,12 +133,13 @@
 .fav-list-btn {
   top: 28em;
   right: 1em;
+  @include tooltip();
 }
 
 .share-btn {
   top: 32.5em;
   right: 1em;
-
+  @include tooltip();
   &:hover {
     box-shadow: $shadow;
   }
