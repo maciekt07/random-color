@@ -274,7 +274,7 @@ forward.addEventListener("click", () => {
 copyBtn.addEventListener("click", () => {
   copyToClipboard(colorInput.value);
   console.log(`Copied to clipboard ${colorInput.value}`);
-  showAlert("<i class='fa-solid fa-clipboard'></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
+  showAlert("<i class='fa-solid fa-clipboard '></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
 });
 
 const removeFromFavs = (arr: Array<string>, item: string) => {

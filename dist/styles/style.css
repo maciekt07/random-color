@@ -515,6 +515,7 @@ td {
   background-color: var(--button-txt-hover);
   color: #fff;
   border-radius: 40%;
+  font-size: 18px;
 }
 .toast-content .message {
   display: flex;

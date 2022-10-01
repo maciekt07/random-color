@@ -45,20 +45,20 @@ document.addEventListener("keyup", (event) => {
       .open()
       .then((result: any) => {
         loadColor(result.sRGBHex);
-        console.log(typeof result.sRGBHex);
         urlChange();
       })
       .catch((error: string) => {
         console.log(error);
-        const eyeDropperLink = "https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility";
-        showAlert(
-          "<i class='fa-solid fa-ban fa-xl'></i>",
-          "Eye Dropper",
-          `<a target='_blank' href='${eyeDropperLink}'>Eye Dropper</a> Error<br>your browser may not support this feature
+        if (!error.toString().includes("EyeDropper is already open")) {
+          showAlert(
+            "<i class='fa-solid fa-ban fa-xl'></i>",
+            "Eye Dropper Error",
+            `Your browser may not support this feature
         `,
-          eyeDropperLink,
-          true
-        );
+            "https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility",
+            true
+          );
+        }
       });
   }
 });
