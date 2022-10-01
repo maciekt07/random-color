@@ -427,7 +427,6 @@ const delFavClick = () => {
         favList.click();
     }, 25);
 };
-tooltip(favList, "your liked colors list");
 let favsChangeClr = null;
 favList.addEventListener("click", () => {
     hideAlert();
@@ -436,7 +435,7 @@ favList.addEventListener("click", () => {
     const favsarr = JSON.parse(localStorage.getItem("favs"));
     popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
     modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Liked Colors List</h1></br><h1 class='favstext''>
-    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "Colors you like will appear here<br><br><span class='favssmalltext'></i>Save colors by tapping the heart icon <i style='color:red' class='fa-solid fa-heart fa-beat'></i></span>"}
+    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "<span class='emptyspacetxt'>Colors you like will appear here. <br> Save colors by tapping the heart icon <i style='color:red' class='fa-solid fa-heart fa-beat'></i></span>"}
     </h1>`;
     const ul = document.createElement("div");
     ul.setAttribute("style", "cursor:default");
@@ -465,6 +464,10 @@ favList.addEventListener("click", () => {
             console.log(`Deleted from favourites: ${deleted.toString()}`);
         }, 200);
     });
+});
+// tooltip for liked colors list button
+favList.addEventListener("mouseover", () => {
+    tooltip(favList, `your liked colors list ${JSON.parse(localStorage.getItem("favs")).length > 0 ? "[" + JSON.parse(localStorage.getItem("favs")).length + "]" : ""}`);
 });
 const ChangeToFav = () => {
     popup.classList.remove("show");
