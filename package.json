@@ -2,7 +2,7 @@
   "name": "random-color",
   "version": "1.0.0",
   "description": "",
-  "main": "/js/app.js",
+  "main": "/src/app.ts",
   "scripts": {
     "test": "npx cypress open"
   },
@@ -19,6 +19,7 @@
     "typescript": "4.8.2"
   },
   "dependencies": {
+    "cypress": "^10.9.0",
     "fetch": "^1.1.0",
     "ntcjs": "^1.1.2",
     "push.js": "^1.0.12"

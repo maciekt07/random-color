@@ -19,6 +19,9 @@
   position: absolute;
   z-index: 100;
   cursor: pointer;
+  &:hover {
+    box-shadow: $shadow;
+  }
 }
 
 .dark-mode-toggle {
@@ -56,6 +59,9 @@
     border-radius: 50%;
     border: none;
   }
+  &:hover {
+    box-shadow: $shadow;
+  }
   @include tooltip();
 }
 
@@ -90,9 +96,9 @@
   @include tooltip();
 }
 
-// #like {
-//   transition: color 0.4s;
-// }
+#like {
+  transition: color 0.4s;
+}
 
 #newitem {
   pointer-events: none;
@@ -143,16 +149,6 @@
   &:hover {
     box-shadow: $shadow;
   }
-}
-
-.fav-list-btn:hover,
-.fav-btn:hover,
-.fullscreen:hover,
-.shortcuts:hover,
-.history-btn:hover,
-.dark-mode-toggle:hover,
-#color_input:hover {
-  box-shadow: $shadow;
 }
 
 .fa-share {

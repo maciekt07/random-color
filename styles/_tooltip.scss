@@ -10,7 +10,8 @@
       background: var(--foreground);
       color: var(--font-clr);
       border: 2px solid var(--foreground);
-      border-radius: 8px;
+      backdrop-filter: blur(30px);
+      border-radius: 10px;
       position: absolute;
       left: -155px;
       transform: translateY(-50%);
@@ -23,7 +24,7 @@
       text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
     }
     &:hover::after {
-      transition-delay: 0.3s;
+      transition-delay: 0.4s;
       opacity: 1;
       left: -135px;
     }
@@ -41,6 +42,7 @@
     //   opacity: 0;
     // }
     // &:hover::before {
+    //   transition-delay: 0.4s;
     //   opacity: 1;
     //   left: -32px;
     // }

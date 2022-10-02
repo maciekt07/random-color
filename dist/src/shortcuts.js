@@ -28,6 +28,7 @@ const L = 76;
 shortcut(L, "fav");
 const O = 79;
 shortcut(O, "favlist");
+const EyeDropperLink = "https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility";
 //@ts-ignore
 const picker = new EyeDropper();
 document.addEventListener("keyup", (event) => {
@@ -39,10 +40,10 @@ document.addEventListener("keyup", (event) => {
             urlChange();
         })
             .catch((error) => {
-            console.log(error);
+            // console.log(error);
             if (!error.toString().includes("EyeDropper is already open")) {
-                showAlert("<i class='fa-solid fa-ban fa-xl'></i>", "Eye Dropper Error", `Your browser may not support this feature
-        `, "https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility", true);
+                showAlert("<i class='fa-solid fa-eye-dropper'></i>", `Eye Dropper Error`, `Your browser may not support <span class='alertLink'>this feature</span>
+        `, `${EyeDropperLink}`, true);
             }
         });
     }

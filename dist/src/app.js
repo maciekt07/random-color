@@ -189,7 +189,7 @@ shortcutsBtn.addEventListener("click", () => {
     historyDiv.style.display = "none";
     popup.className === "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
     modalTxt.innerHTML =
-        '<h1 class="s-header"><i class="twa twa-lg twa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Eye Dropper </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
+        '<h1 class="s-header"><i class="fa-regular fa-keyboard"></i> Keyboard Shortcuts</h1><br> <table> <tr> <td> <p class="s-p">Generate Random Color </p> </td> <td><span class="key">R</span></td> </tr> <tr> <td> <p class="s-p">Change Theme Color </p> </td> <td><span class="key">T</span></td> </tr> <tr> <td> <p class="s-p">Copy Text </p> </td> <td><span class="key">C</span></td> </tr> <tr> <td> <p class="s-p">Open Eye Dropper </p> </td> <td><span class="key">P</span></td> </tr> <tr> <td> <p class="s-p">Toggle Fullscreen </p> </td> <td><span class="key">F</span></td> </tr> <tr> <td> <p class="s-p">Show More Info </p> </td> <td><span class="key">M</span></td> </tr> <tr> <td> <p class="s-p">Show History List </p> </td> <td><span class="key">H</span></td> </tr> <td> <p class="s-p">Like Color </p> </td> <td><span class="key">L</span></td> </tr><tr> <td> <p class="s-p">Liked Colors List </p> </td> <td><span class="key">O</span></td> </tr><tr> <td> <p class="s-p">Show Shortcuts </p> </td> <td><span class="key">/</span></td><tr></tr></table>';
 });
 tooltip(shortcutsBtn, "Shortcuts");
 popupClose.addEventListener("click", () => {
@@ -208,12 +208,10 @@ colorInput.addEventListener("change", () => {
     saveColor();
     urlChange();
     isFavColor();
-    like = 0;
 });
 let rpt = 0;
 colorInput.addEventListener("click", () => {
     isFavColor();
-    like = 0;
     if (rpt === 0) {
         //bug fix for color picker
         colorInput.click();
@@ -259,14 +257,21 @@ const removeFromFavs = (arr, item) => {
 };
 const uniqueFavs = (array) => array.filter((currentValue, index, arr) => arr.indexOf(currentValue) === index);
 //new item badge next to liked colors list icon
+let newItemVisible;
 const newItemShow = () => {
+    newItemVisible = true;
+    newItem.classList.remove("animate__animated", "animate__bounceOut");
     newItem.classList.add("animate__animated", "animate__bounceIn");
     newItem.style.display = "flex";
     localStorage.setItem("newItem", "true");
 };
 const newItemHide = () => {
-    newItem.style.display = "none";
-    localStorage.setItem("newItem", "false");
+    newItemVisible = false;
+    newItem.classList.add("animate__animated", "animate__bounceOut");
+    setTimeout(() => {
+        newItem.style.display = "none";
+        localStorage.setItem("newItem", "false");
+    }, 600);
 };
 // newItem.addEventListener("animationend", () => {
 //   newItem.classList.remove("animate__animated", "animate__bounceIn");
@@ -301,16 +306,11 @@ const isFavColor = () => {
     }
 };
 // tooltip for like button
-likeBtn.addEventListener("mouseover", () => {
+["click", "mouseover"].forEach((evt) => likeBtn.addEventListener(evt, () => {
     setTimeout(() => {
-        tooltip(likeBtn, `${localStorage.getItem("favs").includes(colorInput.value) ? "remove from liked colors" : "add to liked colors"}`);
+        tooltip(likeBtn, `${isFavColor() ? "remove from liked colors" : "add to liked colors"}`);
     }, 50);
-});
-likeBtn.addEventListener("click", () => {
-    setTimeout(() => {
-        tooltip(likeBtn, `${localStorage.getItem("favs").includes(colorInput.value) ? "remove from liked colors" : "add to liked colors"}`);
-    }, 50);
-});
+}));
 const removeItemFromFavs = (item) => {
     //remove from favs
     let favsNew = JSON.parse(localStorage.getItem("favs"));
@@ -323,9 +323,9 @@ const removeItemFromFavs = (item) => {
     showAlert("<i class='fa-solid fa-heart-crack'></i>", "Liked Colors", `Removed from your liked colors: <b>${item}</b>`);
 };
 likeBtn.addEventListener("click", () => {
-    clearTimeout(likeTimer1);
-    clearTimeout(likeTimer2);
-    popup.classList.add("show");
+    // clearTimeout(likeTimer1);
+    // clearTimeout(likeTimer2);
+    // popup.classList.add("show");
     popup.classList.remove("show");
     addToFavs();
     like++;
@@ -356,7 +356,6 @@ const saveColor = () => {
 };
 if (localStorage.getItem("clr") != null) {
     counter++;
-    like = 1;
     loadColor(localStorage.getItem("clr"));
     setTimeout(() => {
         console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${localStorage.getItem("clr")}`);
@@ -389,7 +388,15 @@ if (darkMode === "enabled") {
     enableDarkMode();
     console.log("%cDarkmode Enabled! 🌙", "color:#bd9ff5;");
 }
+let darkModeToggleStyle = document.head.appendChild(document.createElement("style"));
 darkModeToggle.addEventListener("click", () => {
+    //disable transition for tooltip and like icon when changing the theme
+    darkModeToggleStyle.innerHTML = ".dark-mode-toggle::after {transition: 0s;} .dark-mode-toggle:hover::after { transition-delay: 0s; }";
+    likeIcon.style.transition = "0s all";
+    setTimeout(() => {
+        likeIcon.style.transition = "color 0.4s";
+        darkModeToggleStyle.innerHTML = "";
+    }, 400);
     hideAlert();
     popup.classList.remove("show");
     darkMode = localStorage.getItem("darkMode");
@@ -408,12 +415,9 @@ darkModeToggle.addEventListener("click", () => {
         }, 320);
     }
 });
-darkModeToggle.addEventListener("mouseover", () => {
+["click", "mouseover"].forEach((evt) => darkModeToggle.addEventListener(evt, () => {
     tooltip(darkModeToggle, `${localStorage.getItem("darkMode") == "enabled" ? "Disable Darkmode" : "Enable Darkmode"}`);
-});
-darkModeToggle.addEventListener("click", () => {
-    tooltip(darkModeToggle, `${localStorage.getItem("darkMode") == "enabled" ? "Disable Darkmode" : "Enable Darkmode"}`);
-});
+}));
 const delClick = () => {
     setTimeout(() => {
         history.back();
@@ -434,7 +438,7 @@ favList.addEventListener("click", () => {
     historyDiv.style.display = "none";
     const favsarr = JSON.parse(localStorage.getItem("favs"));
     popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
-    modalTxt.innerHTML = `<h1 class='favsheader'><i class='twa twa-1x twa-artist-palette''></i> Your Liked Colors List</h1></br><h1 class='favstext''>
+    modalTxt.innerHTML = `<h1 class='favsheader'> Your Liked Colors List</h1></br><h1 class='favstext''>
     ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "<span class='emptyspacetxt'>Colors you like will appear here. <br> Save colors by tapping the heart icon <i style='color:red' class='fa-solid fa-heart fa-beat'></i></span>"}
     </h1>`;
     const ul = document.createElement("div");
@@ -455,7 +459,6 @@ favList.addEventListener("click", () => {
     favsarr.length > 0 ? (popupDeleteAll.style.display = "block") : (popupDeleteAll.style.display = "none");
     popupDeleteAll.addEventListener("click", () => {
         const deleted = JSON.parse(localStorage.getItem("favs"));
-        like = 2;
         popup.classList.remove("show");
         likeIcon.style.color = "currentColor";
         localStorage.setItem("favs", "[]");
@@ -466,9 +469,9 @@ favList.addEventListener("click", () => {
     });
 });
 // tooltip for liked colors list button
-favList.addEventListener("mouseover", () => {
-    tooltip(favList, `your liked colors list ${JSON.parse(localStorage.getItem("favs")).length > 0 ? "[" + JSON.parse(localStorage.getItem("favs")).length + "]" : ""}`);
-});
+["click", "mouseover"].forEach((evt) => favList.addEventListener(evt, () => {
+    tooltip(favList, `${newItemVisible ? "•" : ""} your liked colors list ${JSON.parse(localStorage.getItem("favs")).length > 0 ? "[" + JSON.parse(localStorage.getItem("favs")).length + "]" : ""}`);
+}));
 const ChangeToFav = () => {
     popup.classList.remove("show");
     loadColor(favsChangeClr);
@@ -476,14 +479,13 @@ const ChangeToFav = () => {
     urlChange();
 };
 refreshBtn.addEventListener("click", () => {
-    setTimeout(() => {
-        addToHistoryList();
-    }, 10);
+    likeIcon.classList.remove("fa-shake");
+    likeIcon.classList.remove("fa-beat");
     main();
+    addToHistoryList();
     saveColor();
     urlChange();
     popup.classList.remove("show");
-    like = 0;
 });
 githubBtn.addEventListener("click", () => {
     window.open("https://github.com/maciekt07", "_blank");
@@ -590,7 +592,7 @@ if ("serviceWorker" in navigator) {
 }
 const donateLink = "https://www.buymeacoffee.com/maciekt07";
 setTimeout(() => {
-    showAlert("<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>", "Donate", `If you like this app you can donate me ${localStorage.getItem("darkMode") == "enabled" ? "💜" : "💙"} <br><a target='_blank' href='${donateLink}'>${donateLink}</a>`, donateLink, true);
+    showAlert("<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>", "Donate", `If you like this app you can donate me ${localStorage.getItem("darkMode") == "enabled" ? "💜" : "💙"} <br><span class='alertLink'>${donateLink}</span>`, donateLink, true);
 }, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
 window.addEventListener("offline", () => {
     showAlert("📴", "Conection", `You're offline`);

@@ -54,6 +54,17 @@ body.darkmode {
   z-index: 100;
   cursor: pointer;
 }
+.dark-mode-toggle:hover,
+.history-btn:hover,
+.shortcuts:hover,
+.history-btn:hover,
+.shortcuts:hover,
+.fullscreen:hover,
+.fav-list-btn:hover,
+.fav-btn:hover,
+.share-btn:hover {
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+}
 
 .dark-mode-toggle {
   z-index: 100;
@@ -71,7 +82,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -86,7 +99,7 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .dark-mode-toggle:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
@@ -121,6 +134,9 @@ body.darkmode {
   border-radius: 50%;
   border: none;
 }
+#color_input:hover {
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+}
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   #color_input::after {
     font-family: poppins;
@@ -132,7 +148,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -147,7 +165,7 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   #color_input:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
@@ -169,7 +187,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -184,7 +204,7 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .history-btn:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
@@ -212,7 +232,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -227,7 +249,7 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .shortcuts:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
@@ -256,7 +278,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -271,10 +295,14 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .fullscreen:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
+}
+
+#like {
+  transition: color 0.4s;
 }
 
 #newitem {
@@ -311,7 +339,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -326,7 +356,7 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .fav-btn:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
@@ -359,7 +389,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -374,7 +406,7 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .fav-list-btn:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
@@ -395,7 +427,9 @@ body.darkmode {
     background: var(--foreground);
     color: var(--font-clr);
     border: 2px solid var(--foreground);
-    border-radius: 8px;
+    -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px);
+    border-radius: 10px;
     position: absolute;
     left: -155px;
     transform: translateY(-50%);
@@ -410,22 +444,12 @@ body.darkmode {
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   }
   .share-btn:hover::after {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
     opacity: 1;
     left: -135px;
   }
 }
 .share-btn:hover {
-  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
-}
-
-.fav-list-btn:hover,
-.fav-btn:hover,
-.fullscreen:hover,
-.shortcuts:hover,
-.history-btn:hover,
-.dark-mode-toggle:hover,
-#color_input:hover {
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -686,6 +710,7 @@ td {
 }
 
 .emptyspacetxt {
+  font-size: 20px;
   line-height: 35px;
 }
 .emptyspacetxt::-moz-selection {
@@ -728,6 +753,10 @@ td {
 }
 .key::selection {
   background: #8b62ff;
+}
+
+:root {
+  --animation-progress-time: 5000ms;
 }
 
 .toast {
@@ -820,8 +849,34 @@ td {
   border-radius: 100px;
 }
 .toast .progress.active:before {
-  -webkit-animation: progress 5s linear forwards;
-          animation: progress 5s linear forwards;
+  -webkit-animation: progress var(--animation-progress-time) linear forwards;
+          animation: progress var(--animation-progress-time) linear forwards;
+}
+
+.alertLink {
+  transition: 0.4s all;
+  color: #3abdff;
+  display: inline-block;
+  position: relative;
+}
+.alertLink::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #3abdff;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.alertLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.alertLink:hover {
+  text-shadow: 0px 0px 20px #3abdff;
 }
 
 @-webkit-keyframes progress {
