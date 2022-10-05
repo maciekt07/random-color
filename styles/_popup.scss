@@ -1,3 +1,4 @@
+@use "variables" as *;
 .shortcuts-popup {
   @include center();
   position: fixed;

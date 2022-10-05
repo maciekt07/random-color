@@ -74,7 +74,7 @@ const loadColor = (hex) => {
         // document.querySelector(":root").style.setProperty("--color", hex);
     }
     else {
-        showAlert("<i class='fa-solid fa-xmark'></i>", "Load Color Error", `Invalid hex color: ${hex}`);
+        notification.Show("<i class='fa-solid fa-xmark'></i>", "Load Color Error", `Invalid hex color: ${hex}`);
     }
 };
 const tooltip = (element, content) => {
@@ -100,65 +100,69 @@ window.onblur = () => {
 window.onfocus = () => {
     document.title = "Random Color Tool";
 };
-const showAlert = (emoji, header, text, url = null, openInNewWindow = false) => {
-    hideAlert();
-    setTimeout(() => {
-        progress.classList.remove("active");
-        alertToast.classList.remove("active");
-        clearTimeout(AlertTimer1);
-        clearTimeout(AlertTimer2);
-        emoji === null ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
-        alertEmoji.innerHTML = emoji;
-        alertHeader.innerHTML = header;
-        alertText.innerHTML = text;
-        // alert onclick
-        if (url != null) {
-            alertClick.style.cursor = "pointer";
-            if (openInNewWindow) {
-                alertClick.onclick = () => {
-                    window.open(url, "_blank");
-                };
+const notification = {
+    Show: (emoji, header, text, url = null, openInNewWindow = false) => {
+        notification.Hide();
+        setTimeout(() => {
+            progress.classList.remove("active");
+            alertToast.classList.remove("active");
+            clearTimeout(AlertTimer1);
+            clearTimeout(AlertTimer2);
+            emoji === null ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
+            alertEmoji.innerHTML = emoji;
+            alertHeader.innerHTML = header;
+            alertText.innerHTML = text;
+            // alert onclick
+            if (url != null) {
+                alertClick.style.cursor = "pointer";
+                if (openInNewWindow) {
+                    alertClick.onclick = () => {
+                        window.open(url, "_blank");
+                    };
+                }
+                else {
+                    alertClick.onclick = () => {
+                        window.location = url;
+                    };
+                }
             }
             else {
-                alertClick.onclick = () => {
-                    window.location = url;
-                };
+                alertClick.style.cursor = "default";
+                alertClick.onclick = null;
             }
-        }
-        else {
-            alertClick.style.cursor = "default";
-            alertClick.onclick = null;
-        }
-        alertToast.style.display = "block";
-        //disable scrollbar for 500ms
-        document.body.style.overflow = "hidden";
-        setTimeout(() => {
-            document.body.style.overflow = "auto";
-        }, 500);
-        setTimeout(() => {
-            toast.classList.add("active");
-            progress.classList.add("active");
-        }, 10);
-        AlertTimer1 = setTimeout(() => {
-            toast.classList.remove("active");
+            alertToast.style.display = "block";
+            //disable scrollbar for 500ms
             document.body.style.overflow = "hidden";
-        }, 5000);
-        AlertTimer2 = setTimeout(() => {
-            progress.classList.remove("active");
-            document.body.style.overflow = "auto";
-            alertToast.style.display = "none";
-        }, 5300);
-        // popup.classList.remove("show");
-    }, 50);
+            setTimeout(() => {
+                document.body.style.overflow = "auto";
+            }, 500);
+            setTimeout(() => {
+                toast.classList.add("active");
+                progress.classList.add("active");
+            }, 10);
+            AlertTimer1 = setTimeout(() => {
+                toast.classList.remove("active");
+                document.body.style.overflow = "hidden";
+            }, 5000);
+            AlertTimer2 = setTimeout(() => {
+                progress.classList.remove("active");
+                document.body.style.overflow = "auto";
+                alertToast.style.display = "none";
+            }, 5300);
+            // popup.classList.remove("show");
+        }, 50);
+    },
+    Hide: () => {
+        toast.classList.remove("active");
+        progress.classList.remove("active");
+        clearTimeout(AlertTimer1);
+        clearTimeout(AlertTimer2);
+        document.getElementById("toast").style.display = "none";
+    },
 };
-const hideAlert = () => {
-    toast.classList.remove("active");
-    progress.classList.remove("active");
-    clearTimeout(AlertTimer1);
-    clearTimeout(AlertTimer2);
-    document.getElementById("toast").style.display = "none";
-};
-closeIcon.addEventListener("click", hideAlert);
+closeIcon.addEventListener("click", () => {
+    notification.Hide();
+});
 let hclrx = [];
 const addToHistoryList = () => {
     setTimeout(() => {
@@ -168,7 +172,7 @@ const addToHistoryList = () => {
 const changeColorFromHistory = () => {
     loadColor(hclrx[hclrx.length - 1]);
     saveColor();
-    urlChange();
+    link.Change();
 };
 historyDiv.style.display = "none";
 tooltip(historyBtn, "Show History");
@@ -206,7 +210,7 @@ const clrpicker = () => {
 // }
 colorInput.addEventListener("change", () => {
     saveColor();
-    urlChange();
+    link.Change();
     isFavColor();
 });
 let rpt = 0;
@@ -245,7 +249,7 @@ forward.addEventListener("click", () => {
 copyBtn.addEventListener("click", () => {
     copyToClipboard(colorInput.value);
     console.log(`Copied to clipboard ${colorInput.value}`);
-    showAlert("<i class='fa-solid fa-clipboard '></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
+    notification.Show("<i class='fa-solid fa-clipboard '></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
 });
 const removeFromFavs = (arr, item) => {
     let newArray = [...arr];
@@ -258,29 +262,31 @@ const removeFromFavs = (arr, item) => {
 const uniqueFavs = (array) => array.filter((currentValue, index, arr) => arr.indexOf(currentValue) === index);
 //new item badge next to liked colors list icon
 let newItemVisible;
-const newItemShow = () => {
-    newItemVisible = true;
-    newItem.classList.remove("animate__animated", "animate__bounceOut");
-    newItem.classList.add("animate__animated", "animate__bounceIn");
-    newItem.style.display = "flex";
-    localStorage.setItem("newItem", "true");
-};
-const newItemHide = () => {
-    newItemVisible = false;
-    newItem.classList.add("animate__animated", "animate__bounceOut");
-    setTimeout(() => {
-        newItem.style.display = "none";
-        localStorage.setItem("newItem", "false");
-    }, 600);
+const newItemBadge = {
+    Show: () => {
+        newItemVisible = true;
+        newItem.classList.remove("animate__animated", "animate__bounceOut");
+        newItem.classList.add("animate__animated", "animate__bounceIn");
+        newItem.style.display = "flex";
+        localStorage.setItem("newItem", "true");
+    },
+    Hide: () => {
+        newItemVisible = false;
+        newItem.classList.add("animate__animated", "animate__bounceOut");
+        setTimeout(() => {
+            newItem.style.display = "none";
+            localStorage.setItem("newItem", "false");
+        }, 600);
+    },
 };
 // newItem.addEventListener("animationend", () => {
 //   newItem.classList.remove("animate__animated", "animate__bounceIn");
 // });
 if (localStorage.getItem("newItem") === "true") {
-    newItemShow();
+    newItemBadge.Show();
 }
 else {
-    newItemHide();
+    newItemBadge.Hide();
 }
 const addToFavs = () => {
     let new_favs = colorInput.value;
@@ -320,7 +326,7 @@ const removeItemFromFavs = (item) => {
     }
     localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
     isFavColor();
-    showAlert("<i class='fa-solid fa-heart-crack'></i>", "Liked Colors", `Removed from your liked colors: <b>${item}</b>`);
+    notification.Show("<i class='fa-solid fa-heart-crack'></i>", "Liked Colors", `Removed from your liked colors: <b>${item}</b>`);
 };
 likeBtn.addEventListener("click", () => {
     // clearTimeout(likeTimer1);
@@ -332,8 +338,8 @@ likeBtn.addEventListener("click", () => {
     navigator.vibrate(150);
     if (like % 2 != 0) {
         likeIcon.style.color = "#FF2E78";
-        showAlert("<i class='fa-solid fa-heart'></i>", "Liked Colors", `Added to your liked colors: <b>${colorInput.value}</b>`);
-        newItemShow();
+        notification.Show("<i class='fa-solid fa-heart'></i>", "Liked Colors", `Added to your liked colors: <b>${colorInput.value}</b>`);
+        newItemBadge.Show();
         likeIcon.classList.add("fa-beat");
         likeTimer1 = setTimeout(() => {
             likeIcon.classList.remove("fa-beat");
@@ -364,10 +370,10 @@ if (localStorage.getItem("clr") != null) {
 }
 else {
     likeBtn.click();
-    hideAlert();
+    notification.Hide();
     document.getElementById("s-delete").click();
     likeBtn.click();
-    hideAlert();
+    notification.Hide();
     main();
     setTimeout(() => {
         addToHistoryList();
@@ -397,21 +403,21 @@ darkModeToggle.addEventListener("click", () => {
         likeIcon.style.transition = "color 0.4s";
         darkModeToggleStyle.innerHTML = "";
     }, 400);
-    hideAlert();
+    notification.Hide();
     popup.classList.remove("show");
     darkMode = localStorage.getItem("darkMode");
     if (darkMode !== "enabled") {
         enableDarkMode();
         console.log("%cDarkmode Enabled!🌙", "color:#bd9ff5;");
         setTimeout(() => {
-            showAlert('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
+            notification.Show('<i class="fa-solid fa-moon"></i>', "Darkmode", "Darkmode Enabled");
         }, 320);
     }
     else {
         disableDarkMode();
         console.log("%cDarkmode Disabled! ☀️", "color:#bd9ff5;");
         setTimeout(() => {
-            showAlert('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
+            notification.Show('<i class="fa-solid fa-sun"></i>', "Darkmode", "Darkmode Disabled");
         }, 320);
     }
 });
@@ -433,8 +439,8 @@ const delFavClick = () => {
 };
 let favsChangeClr = null;
 favList.addEventListener("click", () => {
-    hideAlert();
-    newItemHide();
+    notification.Hide();
+    newItemBadge.Hide();
     historyDiv.style.display = "none";
     const favsarr = JSON.parse(localStorage.getItem("favs"));
     popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
@@ -463,7 +469,7 @@ favList.addEventListener("click", () => {
         likeIcon.style.color = "currentColor";
         localStorage.setItem("favs", "[]");
         setTimeout(() => {
-            showAlert("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted<br>");
+            notification.Show("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted<br>");
             console.log(`Deleted from favourites: ${deleted.toString()}`);
         }, 200);
     });
@@ -476,7 +482,7 @@ const ChangeToFav = () => {
     popup.classList.remove("show");
     loadColor(favsChangeClr);
     saveColor();
-    urlChange();
+    link.Change();
 };
 refreshBtn.addEventListener("click", () => {
     likeIcon.classList.remove("fa-shake");
@@ -484,7 +490,7 @@ refreshBtn.addEventListener("click", () => {
     main();
     addToHistoryList();
     saveColor();
-    urlChange();
+    link.Change();
     popup.classList.remove("show");
 });
 githubBtn.addEventListener("click", () => {
@@ -504,7 +510,7 @@ const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         if (window.screen.width > 1024) {
-            showAlert("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Enabled!");
+            notification.Show("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Enabled!");
             tooltip(fullscreenBtn, "Disable Fullscreen");
             console.log("Fullscreen enabled");
         }
@@ -512,7 +518,7 @@ const toggleFullScreen = () => {
     else if (document.exitFullscreen) {
         document.exitFullscreen();
         if (window.screen.width > 1024) {
-            showAlert("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Disabled!");
+            notification.Show("<i class='fa-solid fa-display'></i>", "Fullscreen", "Fullscreen Disabled!");
             tooltip(fullscreenBtn, "Enable Fullscreen");
             console.log("Fullscreen disabled");
         }
@@ -541,7 +547,7 @@ shareBtn.addEventListener("click", () => __awaiter(void 0, void 0, void 0, funct
         if (err != "AbortError: Share canceled") {
             // copy link to clipboard if browser doesn't support sharing
             copyToClipboard(location.toString());
-            showAlert("<i class='fa-solid fa-clipboard fa-sm'></i>", "Share", "Copied URL to clipboard!");
+            notification.Show("<i class='fa-solid fa-clipboard fa-sm'></i>", "Share", "Copied URL to clipboard!");
         }
     }
 }));
@@ -549,37 +555,39 @@ shareBtn.addEventListener("mouseover", () => {
     tooltip(shareBtn, `share color: ${colorInput.value}`);
 });
 const appUrl = `${location.origin}/`;
-const urlChange = () => {
-    window.location = `${appUrl}?${colorInput.value}`;
+const link = {
+    Change: () => {
+        window.location = `${appUrl}?${colorInput.value}`;
+    },
+    Error: () => {
+        //change url to previous
+        const errorURL = window.location.hash;
+        window.location = `${appUrl}?${localStorage.getItem("clr")}`;
+        setTimeout(() => {
+            console.error("ERROR: Invalid Color in URL");
+            notification.Show("<i class='fa-solid fa-xmark'></i>", "URL", `Invalid Color in URL:<b> ${errorURL}</b>`);
+        }, 300);
+    },
+    Load: () => {
+        const urlhex = location.toString().replace(`${appUrl}?`, "").toLowerCase();
+        const urlhexnumber = urlhex.replace("#", "").toLowerCase();
+        if (isHexColor(urlhexnumber)) {
+            loadColor(urlhex);
+            saveColor();
+            link.Change();
+            isFavColor();
+        }
+        else {
+            link.Error();
+        }
+    },
 };
-const urlError = () => {
-    //change url to previous
-    const errorURL = window.location.hash;
-    window.location = `${appUrl}?${localStorage.getItem("clr")}`;
-    setTimeout(() => {
-        console.error("ERROR: Invalid Color in URL");
-        showAlert("<i class='fa-solid fa-xmark'></i>", "URL", `Invalid Color in URL:<b> ${errorURL}</b>`);
-    }, 300);
-};
-const urlLoad = () => {
-    const urlhex = location.toString().replace(`${appUrl}?`, "").toLowerCase();
-    const urlhexnumber = urlhex.replace("#", "").toLowerCase();
-    if (isHexColor(urlhexnumber)) {
-        loadColor(urlhex);
-        saveColor();
-        urlChange();
-        isFavColor();
-    }
-    else {
-        urlError();
-    }
-};
-urlLoad();
+link.Load();
 if (window.location != `${appUrl}?${colorInput.value}`) {
-    urlError();
+    link.Error();
 }
 window.addEventListener("hashchange", () => {
-    urlLoad();
+    link.Load();
     isFavColor();
 });
 if ("serviceWorker" in navigator) {
@@ -591,12 +599,13 @@ if ("serviceWorker" in navigator) {
     });
 }
 const donateLink = "https://www.buymeacoffee.com/maciekt07";
-setTimeout(() => {
-    showAlert("<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>", "Donate", `If you like this app you can donate me ${localStorage.getItem("darkMode") == "enabled" ? "💜" : "💙"} <br><span class='alertLink'>${donateLink}</span>`, donateLink, true);
-}, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
+const dontateAlert = () => {
+    notification.Show("<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>", "Donate", `If you like this app you can donate me ${localStorage.getItem("darkMode") == "enabled" ? "💜" : "💙"} <br><span class='alertLink'>${donateLink}</span>`, donateLink, true);
+};
+setTimeout(dontateAlert, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
 window.addEventListener("offline", () => {
-    showAlert("📴", "Conection", `You're offline`);
+    notification.Show("📴", "Conection", `You're offline`);
     window.addEventListener("online", () => {
-        showAlert("<i class='fa-solid fa-globe'></i>", "Conection", `You're online again`);
+        notification.Show("<i class='fa-solid fa-globe'></i>", "Conection", `You're online again`);
     });
 });

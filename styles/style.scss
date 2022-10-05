@@ -1,18 +1,23 @@
+@use "variables" as *;
+@use "tooltip";
+@use "darkmode";
+@use "right-bar";
+@use "arrows";
+@use "popup";
+@use "alert";
+@use "history";
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@import "variables";
-@import "tooltip";
-@import "darkmode";
-@import "right-bar";
-@import "arrows";
-@import "popup";
-@import "alert";
-@import "history";
 
 * {
   box-sizing: border-box;
   &::before,
   &::after {
     box-sizing: border-box;
+  }
+  &:focus-visible {
+    outline: 4px solid var(--button-txt-hover);
+    box-shadow: 0px 0px 40px 3px var(--button-txt-hover);
   }
   &::selection {
     background: var(--selection);
@@ -23,7 +28,7 @@
 body {
   margin-top: 30px;
   transition: 0.3s all;
-  font-family: $font;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 html {
@@ -91,7 +96,6 @@ i,
   animation-delay: 5s;
   color: var(--font-clr);
   cursor: pointer;
-
   &:hover {
     // box-shadow: $shadow;
     box-shadow: $main-btn-shadow;
@@ -160,12 +164,7 @@ i,
 }
 
 a {
-  cursor: pointer;
-  transition: 0.4s all;
-  color: $a-color;
-  &:hover {
-    color: darken($color: $a-color, $amount: 20);
-  }
+  @include link(#3abdff);
 }
 
 #db {

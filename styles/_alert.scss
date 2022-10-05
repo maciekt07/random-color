@@ -1,3 +1,4 @@
+@use "variables" as *;
 :root {
   --animation-progress-time: 5000ms;
 }
@@ -94,30 +95,7 @@
   }
 }
 .alertLink {
-  transition: 0.4s all;
-  color: $a-color;
-  display: inline-block;
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: $a-color;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-  &:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-  &:hover {
-    // color: darken($color: $a-color, $amount: 20);
-    text-shadow: 0px 0px 20px $a-color;
-  }
+  @include link(var(--a-color));
 }
 
 @keyframes progress {

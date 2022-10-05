@@ -46,12 +46,12 @@ document.addEventListener("keyup", (event) => {
       .open()
       .then((result: any) => {
         loadColor(result.sRGBHex);
-        urlChange();
+        link.Change();
       })
       .catch((error: string) => {
         // console.log(error);
         if (!error.toString().includes("EyeDropper is already open")) {
-          showAlert(
+          notification.Show(
             "<i class='fa-solid fa-eye-dropper'></i>",
             `Eye Dropper Error`,
             `Your browser may not support <span class='alertLink'>this feature</span>

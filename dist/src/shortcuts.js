@@ -37,12 +37,12 @@ document.addEventListener("keyup", (event) => {
             .open()
             .then((result) => {
             loadColor(result.sRGBHex);
-            urlChange();
+            link.Change();
         })
             .catch((error) => {
             // console.log(error);
             if (!error.toString().includes("EyeDropper is already open")) {
-                showAlert("<i class='fa-solid fa-eye-dropper'></i>", `Eye Dropper Error`, `Your browser may not support <span class='alertLink'>this feature</span>
+                notification.Show("<i class='fa-solid fa-eye-dropper'></i>", `Eye Dropper Error`, `Your browser may not support <span class='alertLink'>this feature</span>
         `, `${EyeDropperLink}`, true);
             }
         });
