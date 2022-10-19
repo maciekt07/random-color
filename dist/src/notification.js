@@ -63,10 +63,6 @@ fetch(luckyURL, {
             window.open(luckyLink, "_self");
         };
     };
-    //@ts-ignore
-    Push.config({
-        serviceWorker: "./service-worker.js",
-    });
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         setTimeout(() => {
             // @ts-ignore
@@ -80,7 +76,6 @@ fetch(luckyURL, {
     const customNotification = () => {
         notification.Show(`<img alt="Lucky Color Image" style="border-radius:8px;cursor:default" src="${`https://singlecolorimage.com/get/${getHexColor(luckyColorHTML)}/48x48`.replace("#", "")}">`, "Daily Lucky Color", `Today Lucky Color is: <b>${luckyColor} (${getHexColor(luckyColorHTML)})</b><br>Mood: ${json.mood}`, luckyLink);
     };
-    // console.log(Notification.permission);
     if (Notification.permission === "granted") {
         console.log("We have permission to send you notifications!");
         setTimeout(() => {
@@ -98,7 +93,7 @@ fetch(luckyURL, {
                 notification.Show("<i class='fa-solid fa-bell-slash'></i>", "Notifications", "Notifications have been disabled");
                 setTimeout(() => {
                     customNotification();
-                }, 5300);
+                }, 5500);
             }
         });
     }

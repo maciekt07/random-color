@@ -115,6 +115,7 @@ const notification = {
             // alert onclick
             if (url != null) {
                 alertClick.style.cursor = "pointer";
+                // alertHeader.innerHTML = `<i class='fa-solid fa-arrow-pointer'></i>&nbsp;${header}`;
                 if (openInNewWindow) {
                     alertClick.onclick = () => {
                         window.open(url, "_blank");
@@ -262,20 +263,25 @@ const removeFromFavs = (arr, item) => {
 const uniqueFavs = (array) => array.filter((currentValue, index, arr) => arr.indexOf(currentValue) === index);
 //new item badge next to liked colors list icon
 let newItemVisible;
+let newItemCounter = 0;
 const newItemBadge = {
     Show: () => {
+        newItemCounter++;
         newItemVisible = true;
         newItem.classList.remove("animate__animated", "animate__bounceOut");
         newItem.classList.add("animate__animated", "animate__bounceIn");
         newItem.style.display = "flex";
         localStorage.setItem("newItem", "true");
+        localStorage.setItem("newItemCounter", newItemCounter.toString());
     },
     Hide: () => {
+        newItemCounter = 0;
         newItemVisible = false;
         newItem.classList.add("animate__animated", "animate__bounceOut");
+        localStorage.setItem("newItem", "false");
+        localStorage.setItem("newItemCounter", newItemCounter.toString());
         setTimeout(() => {
             newItem.style.display = "none";
-            localStorage.setItem("newItem", "false");
         }, 600);
     },
 };
@@ -445,7 +451,7 @@ favList.addEventListener("click", () => {
     const favsarr = JSON.parse(localStorage.getItem("favs"));
     popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
     modalTxt.innerHTML = `<h1 class='favsheader'> Your Liked Colors List</h1></br><h1 class='favstext''>
-    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "<span class='emptyspacetxt'>Colors you like will appear here. <br> Save colors by tapping the heart icon <i style='color:red' class='fa-solid fa-heart fa-beat'></i></span>"}
+    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "<span class='emptyspacetxt'>Colors you like will appear here. <br> Save colors by tapping the heart icon <i style='color:white' class='fa-solid fa-heart'></i></span>"}
     </h1>`;
     const ul = document.createElement("div");
     ul.setAttribute("style", "cursor:default");
@@ -476,7 +482,7 @@ favList.addEventListener("click", () => {
 });
 // tooltip for liked colors list button
 ["click", "mouseover"].forEach((evt) => favList.addEventListener(evt, () => {
-    tooltip(favList, `${newItemVisible ? "•" : ""} your liked colors list ${JSON.parse(localStorage.getItem("favs")).length > 0 ? "[" + JSON.parse(localStorage.getItem("favs")).length + "]" : ""}`);
+    tooltip(favList, `${newItemVisible ? "• " : ""}your liked colors list ${JSON.parse(localStorage.getItem("favs")).length > 0 ? "[" + JSON.parse(localStorage.getItem("favs")).length + "]" : ""}`);
 }));
 const ChangeToFav = () => {
     popup.classList.remove("show");
@@ -601,8 +607,14 @@ if ("serviceWorker" in navigator) {
 const donateLink = "https://www.buymeacoffee.com/maciekt07";
 const dontateAlert = () => {
     notification.Show("<img src='https://avatars.githubusercontent.com/u/85953204?v=4'style='border-radius:8px;cursor:default' width='48px'>", "Donate", `If you like this app you can donate me ${localStorage.getItem("darkMode") == "enabled" ? "💜" : "💙"} <br><span class='alertLink'>${donateLink}</span>`, donateLink, true);
+    // don't show donate notification if user clicks close icon
+    closeIcon.addEventListener("click", () => {
+        localStorage.setItem("showDonateAlert", "false");
+    }, { once: true });
 };
-setTimeout(dontateAlert, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
+if (localStorage.getItem("showDonateAlert") != "false") {
+    setTimeout(dontateAlert, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
+}
 window.addEventListener("offline", () => {
     notification.Show("📴", "Conection", `You're offline`);
     window.addEventListener("online", () => {

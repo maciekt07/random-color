@@ -316,8 +316,8 @@ body.darkmode {
   pointer-events: none;
   display: none;
   background-color: rgb(255, 46, 120);
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   position: absolute;
   border-radius: 999px;
   right: 3px;
@@ -801,7 +801,7 @@ td {
   width: 40px;
   background-color: var(--button-txt-hover);
   color: #fff;
-  border-radius: 40%;
+  border-radius: 35%;
   font-size: 18px;
 }
 .toast-content .message {
@@ -818,6 +818,9 @@ td {
 .message .text.text-1 {
   font-weight: 600;
   color: var(--alert-header);
+}
+.message .text b {
+  font-weight: bolder;
 }
 
 #alertclick {
@@ -1060,7 +1063,7 @@ hr {
   box-sizing: border-box;
 }
 *:focus-visible {
-  outline: 4px solid var(--button-txt-hover);
+  outline: 5px solid var(--button-txt-hover) !important;
   box-shadow: 0px 0px 40px 3px var(--button-txt-hover);
 }
 *::-moz-selection {
@@ -1138,10 +1141,9 @@ i,
   font-size: 36px;
   text-align: center;
   border: none;
+  outline: none;
   border-radius: 20px;
-  transition-duration: 0.5s;
-  -webkit-animation-delay: 5s;
-          animation-delay: 5s;
+  transition: 0.5s all;
   color: var(--font-clr);
   cursor: pointer;
 }
@@ -1246,6 +1248,9 @@ a:hover {
 }
 
 noscript {
+  margin: 0;
+  display: flex;
+  place-items: center;
   font-family: poppins;
   cursor: default;
   padding: 20px;
@@ -1256,19 +1261,20 @@ noscript {
   height: 100%;
   width: 100%;
   background-image: linear-gradient(to right bottom, #8b62ff, #5e7eff, #2893ff, #00a4ff, #00b2ff);
-  font-size: 35px;
+  font-size: 42px;
   color: white;
   text-align: center;
 }
 
 .no-script {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  justify-content: center;
   background-color: rgba(255, 255, 255, 0.265);
   border-radius: 25px;
   padding: 50px;
-  position: absolute;
-  left: 50%;
-  top: 150px;
-  transform: translate(-50%, -50%);
 }
 
 .key,

@@ -65,10 +65,6 @@ fetch(luckyURL, {
         window.open(luckyLink, "_self");
       };
     };
-    //@ts-ignore
-    Push.config({
-      serviceWorker: "./service-worker.js",
-    });
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       setTimeout(() => {
         // @ts-ignore
@@ -89,7 +85,6 @@ fetch(luckyURL, {
       );
     };
 
-    // console.log(Notification.permission);
     if (Notification.permission === "granted") {
       console.log("We have permission to send you notifications!");
       setTimeout(() => {
@@ -106,7 +101,7 @@ fetch(luckyURL, {
           notification.Show("<i class='fa-solid fa-bell-slash'></i>", "Notifications", "Notifications have been disabled");
           setTimeout(() => {
             customNotification();
-          }, 5300);
+          }, 5500);
         }
       });
     }

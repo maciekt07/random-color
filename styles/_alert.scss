@@ -31,7 +31,7 @@
     width: 40px;
     background-color: var(--button-txt-hover);
     color: #fff;
-    border-radius: 40%;
+    border-radius: 35%;
     font-size: 18px;
   }
   .message {
@@ -48,6 +48,9 @@
   &.text-1 {
     font-weight: $medium;
     color: var(--alert-header);
+  }
+  b {
+    font-weight: bolder;
   }
 }
 

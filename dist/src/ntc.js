@@ -1684,7 +1684,6 @@ ntc.init();
 // modified
 
 const clr_name = () => {
-  // console.log(ntc.names[23][0])
   const hex = document.getElementById("txt").textContent;
   const divName = document.getElementById("name");
   const matchIcon = '<i class="fa-solid fa-equals"></i>';
