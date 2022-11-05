@@ -5,7 +5,8 @@
   "main": "/src/app.ts",
   "scripts": {
     "test": "npx cypress open",
-    "watch:sass": "sass --watch styles:dist/styles"
+    "watch:sass": "sass --watch styles:dist/styles",
+    "watch:tsc": "tsc --watch"
   },
   "repository": {
     "type": "git",

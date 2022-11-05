@@ -31,6 +31,7 @@ const historyClose = document.getElementById("closeHistory") as HTMLSpanElement;
 
 const toast = document.querySelector(".toast");
 const closeIcon = document.querySelector(".close");
+const disableIcon = document.getElementById("disableAlert");
 const progress = document.querySelector(".progress");
 const alertEmoji = document.getElementById("emoji") as HTMLSpanElement;
 const alertText = document.getElementById("alertText") as HTMLSpanElement;
@@ -54,6 +55,7 @@ let likeTimer1: ReturnType<typeof setTimeout>;
 let likeTimer2: ReturnType<typeof setTimeout>;
 
 const hexToRgb = (hex: string) => {
+  hex = hex.replace("#", "");
   const int = parseInt(hex, 16);
   const r = (int >> 16) & 255;
   const g = (int >> 8) & 255;
@@ -61,27 +63,48 @@ const hexToRgb = (hex: string) => {
   return `${r} ${g} ${b}`;
 };
 
-const isHexColor = (hex: string) => typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex));
+const rgbToHex = (r: number, g: number, b: number) =>
+  "#" +
+  [r, g, b]
+    .map((x) => {
+      const hex = x.toString(16);
+      return hex.length === 1 ? "0" + hex : hex;
+    })
+    .join("");
+
+const isHexColor = (hex: string) => {
+  hex = hex.replace("#", "");
+  if (typeof hex === "string" && hex.length === 6 && !isNaN(Number("0x" + hex))) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const cssVar = (name: string, value: string) => {
+  if (name[0] != "-") name = "--" + name; //allow passing with or without --
+  if (value) document.documentElement.style.setProperty(name, value);
+  return getComputedStyle(document.documentElement).getPropertyValue(name);
+};
 
 // const changeAttr = (element: Element, atribute: string, content: string) => element.setAttribute(atribute, content);
 
 const loadColor = (hex: string) => {
-  if (isHexColor(hex.replace("#", ""))) {
-    document.body.style.backgroundColor = hex;
-    document.fgColor = hex;
+  if (isHexColor(hex)) {
     hexTxt.innerHTML = hex;
-    rgbTxt.innerHTML = `RGB ${hexToRgb(hex.replace("#", ""))}`;
+    rgbTxt.innerHTML = `RGB ${hexToRgb(hex)}`;
     colorInput.value = hex;
     themeColor.setAttribute("content", hex);
-    // document.querySelector(":root").style.setProperty("--color", hex);
+    cssVar("color", hex);
   } else {
-    notification.Show("<i class='fa-solid fa-xmark'></i>", "Load Color Error", `Invalid hex color: ${hex}`);
+    // notification.Show("<i class='fa-solid fa-xmark'></i>", "Load Color Error", `Invalid hex color: ${hex}`);
+    console.error(`Invalid hex color: ${hex}`);
   }
 };
 
-const tooltip = (element: Element, content: string) => {
-  element.setAttribute("data-tooltip", content);
-};
+const tooltip = (element: Element, content: string) => element.setAttribute("data-tooltip", content);
+
+const copyToClipboard = (txt: string) => navigator.clipboard.writeText(txt);
 
 const main = () => {
   counter++;
@@ -89,7 +112,7 @@ const main = () => {
   randomColor = "#" + ("000000" + randomColor).slice(-6);
   loadColor(randomColor);
   setTimeout(() => {
-    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${randomColor}`);
+    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent)}`, `color:${randomColor}`);
   }, 25);
   counter > 3 ? (historyBackToTop.style.display = "block") : (historyBackToTop.style.display = "none");
 };
@@ -109,6 +132,7 @@ window.onfocus = () => {
 const notification = {
   Show: (emoji: string, header: string, text: string, url: string = null, openInNewWindow: boolean = false) => {
     notification.Hide();
+    disableIcon.style.display = "none";
     setTimeout(() => {
       progress.classList.remove("active");
       alertToast.classList.remove("active");
@@ -116,6 +140,7 @@ const notification = {
       clearTimeout(AlertTimer2);
 
       emoji === null ? (alertEmoji.style.display = "none") : (alertEmoji.style.display = "flex");
+      text === null ? (alertText.style.display = "none") : (alertText.style.display = "block");
 
       alertEmoji.innerHTML = emoji;
       alertHeader.innerHTML = header;
@@ -143,7 +168,7 @@ const notification = {
       document.body.style.overflow = "hidden";
       setTimeout(() => {
         document.body.style.overflow = "auto";
-      }, 500);
+      }, 400);
 
       setTimeout(() => {
         toast.classList.add("active");
@@ -162,7 +187,7 @@ const notification = {
       }, 5300);
 
       // popup.classList.remove("show");
-    }, 50);
+    }, 100);
   },
 
   Hide: () => {
@@ -171,6 +196,12 @@ const notification = {
     clearTimeout(AlertTimer1);
     clearTimeout(AlertTimer2);
     document.getElementById("toast").style.display = "none";
+  },
+  HideSmooth: () => {
+    toast.classList.remove("active");
+    setTimeout(() => {
+      notification.Hide();
+    }, 300);
   },
 };
 closeIcon.addEventListener("click", () => {
@@ -220,8 +251,6 @@ tooltip(shortcutsBtn, "Shortcuts");
 popupClose.addEventListener("click", () => {
   popup.classList.remove("show");
 });
-
-const copyToClipboard = (txt: string) => navigator.clipboard.writeText(txt);
 
 const clrpicker = () => {
   colorInput.addEventListener("input", () => {
@@ -281,9 +310,10 @@ forward.addEventListener("click", () => {
 });
 
 copyBtn.addEventListener("click", () => {
-  copyToClipboard(colorInput.value);
-  console.log(`Copied to clipboard ${colorInput.value}`);
-  notification.Show("<i class='fa-solid fa-clipboard '></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
+  copyToClipboard(colorInput.value).then(() => {
+    console.log(`Copied to clipboard ${colorInput.value}`);
+    notification.Show("<i class='fa-solid fa-clipboard '></i>", "Copy", `Copied to clipboard: <b>${colorInput.value}</b>`);
+  });
 });
 
 const removeFromFavs = (arr: Array<string>, item: string) => {
@@ -305,8 +335,10 @@ const newItemBadge = {
   Show: () => {
     newItemCounter++;
     newItemVisible = true;
+
     newItem.classList.remove("animate__animated", "animate__bounceOut");
     newItem.classList.add("animate__animated", "animate__bounceIn");
+
     newItem.style.display = "flex";
     localStorage.setItem("newItem", "true");
     localStorage.setItem("newItemCounter", newItemCounter.toString());
@@ -322,26 +354,34 @@ const newItemBadge = {
       newItem.style.display = "none";
     }, 600);
   },
+  IsVisible: () => {
+    if (localStorage.getItem("newItem") === "true") {
+      newItemBadge.Show();
+      return true;
+    } else {
+      newItemBadge.Hide();
+      return false;
+    }
+  },
 };
-
+newItemBadge.IsVisible();
 // newItem.addEventListener("animationend", () => {
 //   newItem.classList.remove("animate__animated", "animate__bounceIn");
 // });
 
-if (localStorage.getItem("newItem") === "true") {
-  newItemBadge.Show();
-} else {
-  newItemBadge.Hide();
-}
-
-const addToFavs = () => {
-  let new_favs = colorInput.value;
-  if (localStorage.getItem("favs") === null) {
-    localStorage.setItem("favs", "[]");
+const addToFavs = (hex: string = colorInput.value) => {
+  if (isHexColor(hex)) {
+    hex = hex.toLowerCase();
+    let new_favs = hex;
+    if (localStorage.getItem("favs") === null) {
+      localStorage.setItem("favs", "[]");
+    }
+    let old_favs = JSON.parse(localStorage.getItem("favs"));
+    old_favs.push(new_favs);
+    localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)));
+  } else {
+    console.error(`Invalid hex color: ${hex}`);
   }
-  let old_favs = JSON.parse(localStorage.getItem("favs"));
-  old_favs.push(new_favs);
-  localStorage.setItem("favs", JSON.stringify(uniqueFavs(old_favs)));
 };
 
 const isFavColor = () => {
@@ -377,7 +417,6 @@ const removeItemFromFavs = (item: string) => {
   }
   localStorage.setItem("favs", JSON.stringify(removeFromFavs(favsNew, item)));
   isFavColor();
-  notification.Show("<i class='fa-solid fa-heart-crack'></i>", "Liked Colors", `Removed from your liked colors: <b>${item}</b>`);
 };
 
 likeBtn.addEventListener("click", () => {
@@ -399,6 +438,7 @@ likeBtn.addEventListener("click", () => {
     }, 2050);
   } else {
     removeItemFromFavs(colorInput.value);
+    notification.Show("<i class='fa-solid fa-heart-crack'></i>", "Liked Colors", `Removed from your liked colors: <b>${colorInput.value}</b>`);
     likeIcon.classList.remove("fa-beat");
     likeIcon.style.color = "currentColor";
     likeIcon.classList.add("fa-shake");
@@ -409,7 +449,7 @@ likeBtn.addEventListener("click", () => {
 });
 
 const saveColor = () => {
-  if (isHexColor(hexTxt.textContent.replace("#", ""))) {
+  if (isHexColor(hexTxt.textContent)) {
     localStorage.setItem("clr", hexTxt.textContent);
   }
 };
@@ -419,7 +459,7 @@ if (localStorage.getItem("clr") != null) {
 
   loadColor(localStorage.getItem("clr"));
   setTimeout(() => {
-    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent.replace("#", ""))}`, `color:${localStorage.getItem("clr")}`);
+    console.log(`%c${counter}. | ${hexTxt.textContent} | ${nameTxt.textContent} | RGB ${hexToRgb(hexTxt.textContent)}`, `color:${localStorage.getItem("clr")}`);
     addToHistoryList();
   }, 500);
 } else {
@@ -509,7 +549,7 @@ favList.addEventListener("click", () => {
   const favsarr = JSON.parse(localStorage.getItem("favs"));
   popup.className == "shortcuts-popup" ? popup.classList.add("show") : popup.classList.remove("show");
   modalTxt.innerHTML = `<h1 class='favsheader'> Your Liked Colors List</h1></br><h1 class='favstext''>
-    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "<span class='emptyspacetxt'>Colors you like will appear here. <br> Save colors by tapping the heart icon <i style='color:white' class='fa-solid fa-heart'></i></span>"}
+    ${favsarr.length > 0 ? "Liked Colors: " + favsarr.length : "<span class='emptyspacetxt'>Colors you like will appear here <br> Save colors by tapping the heart icon</span>"}
     </h1>`;
   const ul = document.createElement("div");
   ul.setAttribute("style", "cursor:default");
@@ -534,7 +574,7 @@ favList.addEventListener("click", () => {
     likeIcon.style.color = "currentColor";
     localStorage.setItem("favs", "[]");
     setTimeout(() => {
-      notification.Show("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted<br>");
+      notification.Show("<i class='fa-solid fa-trash-can'></i>", "Favourite List", "All favourite color have been deleted");
       console.log(`Deleted from favourites: ${deleted.toString()}`);
     }, 200);
   });
@@ -689,22 +729,26 @@ const dontateAlert = () => {
     donateLink,
     true
   );
-  // don't show donate notification if user clicks close icon
-  closeIcon.addEventListener(
+  // don't show donate notification if user clicks disable icon
+  disableIcon.style.display = "block";
+  disableIcon.addEventListener(
     "click",
     () => {
       localStorage.setItem("showDonateAlert", "false");
+      notification.HideSmooth();
+      console.info("Donate notification have been disabled!");
     },
     { once: true }
   );
 };
+
 if (localStorage.getItem("showDonateAlert") != "false") {
   setTimeout(dontateAlert, Math.floor(Math.random() * (52000 - 16000 + 1)) + 16000);
 }
 
 window.addEventListener("offline", () => {
-  notification.Show("📴", "Conection", `You're offline`);
+  notification.Show("<i class='fa-solid fa-globe'></i>", "Conection", `You're <b>offline</b>`);
   window.addEventListener("online", () => {
-    notification.Show("<i class='fa-solid fa-globe'></i>", "Conection", `You're online again`);
+    notification.Show("<i class='fa-solid fa-globe'></i>", "Conection", `You're <b>online</b> again`);
   });
 });

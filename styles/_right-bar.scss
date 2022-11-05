@@ -21,6 +21,7 @@
   position: absolute;
   z-index: 100;
   cursor: pointer;
+  @include tooltip();
   &:hover {
     box-shadow: $shadow;
   }
@@ -30,7 +31,6 @@
   z-index: 100;
   top: 1em;
   right: 1em;
-  @include tooltip();
 }
 
 #color_input {
@@ -50,7 +50,7 @@
   transition-duration: 0.5s;
   animation-delay: 5s;
   cursor: pointer;
-
+  @include tooltip();
   &::-webkit-color-swatch {
     border-radius: 100%;
     border: none;
@@ -64,14 +64,12 @@
   &:hover {
     box-shadow: $shadow;
   }
-  @include tooltip();
 }
 
 .history-btn {
   top: 10em;
   right: 1em;
   cursor: pointer;
-  @include tooltip();
 }
 
 .historyicon {
@@ -83,7 +81,6 @@
 .shortcuts {
   top: 14.5em;
   right: 1em;
-  @include tooltip();
 }
 
 .command {
@@ -95,7 +92,6 @@
 .fullscreen {
   top: 19em;
   right: 1em;
-  @include tooltip();
 }
 
 #like {
@@ -112,6 +108,42 @@
   border-radius: 999px;
   right: 3px;
   top: 3px;
+  box-shadow: 0 0 0 0 rgba(255, 82, 82, 1);
+  // animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+@keyframes bounceOut {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  50%,
+  55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
 }
 
 .fs-icon {
@@ -123,7 +155,6 @@
 .fav-btn {
   top: 23.5em;
   right: 1em;
-  @include tooltip();
 }
 
 .fa-solid {
@@ -141,13 +172,12 @@
 .fav-list-btn {
   top: 28em;
   right: 1em;
-  @include tooltip();
 }
 
 .share-btn {
   top: 32.5em;
   right: 1em;
-  @include tooltip();
+
   &:hover {
     box-shadow: $shadow;
   }

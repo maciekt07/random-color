@@ -36,7 +36,12 @@ document.addEventListener("keyup", (event) => {
         picker
             .open()
             .then((result) => {
-            loadColor(result.sRGBHex);
+            const rgb = result.sRGBHex.replace(",", "").replace("rgb(", "").replace(")", "").replace(",", "");
+            const r = Number(rgb.split(" ")[0]);
+            const g = Number(rgb.split(" ")[1]);
+            const b = Number(rgb.split(" ")[2]);
+            console.log(rgbToHex(r, g, b));
+            loadColor(rgbToHex(r, g, b));
             link.Change();
         })
             .catch((error) => {

@@ -1,5 +1,4 @@
 @use "variables" as *;
-@use "tooltip";
 @use "darkmode";
 @use "right-bar";
 @use "arrows";
@@ -11,6 +10,7 @@
 
 * {
   box-sizing: border-box;
+  caret-color: var(--color);
   &::before,
   &::after {
     box-sizing: border-box;
@@ -25,10 +25,15 @@
   }
 }
 
+:root {
+  --color: ;
+}
+
 body {
   margin-top: 30px;
   transition: 0.3s all;
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--color);
 }
 
 html {
@@ -61,6 +66,8 @@ i,
   letter-spacing: 1.7px;
   background-color: var(--foreground);
   -webkit-text-stroke: 1.5px var(--font-clr);
+  transition: 0.4s color;
+  color: var(--color);
 }
 
 .divrgb {
@@ -190,17 +197,16 @@ noscript {
   font-size: 42px;
   color: white;
   text-align: center;
-}
-
-.no-script {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.265);
-  border-radius: 25px;
-  padding: 50px;
+  & div {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.265);
+    border-radius: 25px;
+    padding: 50px;
+  }
 }
 .key,
 .s-p,

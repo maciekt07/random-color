@@ -58,6 +58,7 @@ fetch(luckyURL, {
         badge: luckyImage,
         lang: "en-US",
         silent: true,
+        tag: "Daily Random Color",
         // image: luckyImage,
       });
       notification.onclick = (e) => {
@@ -72,6 +73,7 @@ fetch(luckyURL, {
           body: nBody,
           icon: luckyImage,
           link: luckyLink,
+          tag: "Daily Random Color",
         });
       }, 3000);
     }
@@ -89,7 +91,7 @@ fetch(luckyURL, {
       console.log("We have permission to send you notifications!");
       setTimeout(() => {
         showNotification();
-      }, 2000);
+      }, 500);
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
         if (permission === "granted") {
